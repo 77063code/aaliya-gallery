@@ -59,28 +59,33 @@ i.fa-google-plus {
 .gallery {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 @media only screen and (max-width: 400px) {
     .image {
-        width: 400px;
+        width: 100%;
+        height:100%;
     }
 }
 
 @media only screen and (min-width: 401px) and (max-width:960px) {
     .image {
         width: 50vw;
+        height: 50vw;
     }
 }
 
 @media only screen and (min-width: 961px) {
     .image {
         width: 480px;
+        height: 480px;
     }
 }
 
 .img {
     width: 95%;
+    height: 90%;
     margin: 10px 20px 10px 20px;
     border: 3px solid silver;
     outline: 3px solid gold;
@@ -88,8 +93,9 @@ i.fa-google-plus {
 
 .image__info {
     width: 95%;
+    height: 10%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     margin: 0 20px;
     justify-content: space-between;
 }
