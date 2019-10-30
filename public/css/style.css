@@ -37,24 +37,7 @@ body {
     margin-left: 0px;
 }
 
-i.fa-facebook {
-    color: darkblue;
-}
 
-.facebook {
-    margin-left: auto;
-}
-
-i.fa-google-plus {
-    color: red;
-}
-
-i.fa-facebook,
-i.fa-google-plus {
-    border: 1px solid white;
-    border-radius: 3px;
-    background-color: grey;
-}
 
 .gallery {
     display: flex;
@@ -89,10 +72,84 @@ i.fa-google-plus {
     margin-left: auto;
 }
 
+
+
+/** Login Form **/
+
+
+
+.centered-form {
+    background: #333744;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-form__box {
+    box-shadow: 0px 0px 17px 1px #1D1F26;
+    background: #F7F7FA;
+    padding: 24px;
+    width: 250px;
+}
+
+.centered-form .social--auth {
+    display: flex;
+    justify-content: space-around;
+}
+
+i.fa-facebook,
+i.fa-amazon,
+i.fa-google {
+    display: flex;
+    color: #fff;
+    background: #7C5CBF;
+    margin: 20px 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 7px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.centered-form label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #777;
+}
+
+
+.centered-form button {
+    width: 100%;
+    cursor: pointer;
+    padding: 12px;
+    background: #7C5CBF;
+    border: none;
+    color: white;
+    font-size: 16px;
+    transition: background .3s ease;
+    margin: 0 0 10px 0;
+}
+
+.centered-form input {
+    margin-bottom: 16px;
+    width: 100%;
+    border: 1px solid #eeeeee;
+    padding: 12px;
+    outline: none;
+}
+
+
+
+
+
 @media only screen and (max-width: 400px) {
     .image {
         width: 100%;
-        height:100%;
+        height: 100%;
     }
 }
 
@@ -107,7 +164,7 @@ i.fa-google-plus {
     .gallery {
         justify-content: space-between;
     }
-    
+
     .image {
         width: 480px;
         height: 480px;
