@@ -16,9 +16,9 @@
                 <div class="google"><i class="fa-border fa fa-google fa-lg"></i></div>
             </div>
 
-            <form method="POST" action="users/login">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" placeholder="Email" />
+            <form id="login" method="POST" action="users/login">
+                <label for="uasername">Username</label>
+                <input type="text" name="username" id="username" placeholder="Username" />
                 <label for="password">Password</label>
                 <input type="text" name="password" id="password" placeholder="Password" />
                 <button>Login</button>
@@ -30,6 +30,27 @@
         </div>
     </div>
 
+    <script>
+    
+    document.forms['myFormId'].addEventListener('submit', (event) => {
+    event.preventDefault();
+    // TODO do something here to show user that form is being submitted
+    fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+        // TODO handle body
+    }).catch((error) => {
+        // TODO handle error
+    });
+});
+    
+    
+    
+    
+    </script>
 
 </body>
 
