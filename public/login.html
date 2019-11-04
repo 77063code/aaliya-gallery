@@ -21,7 +21,7 @@
                 <input type="text" name="username" id="username" placeholder="Username" />
                 <label for="password">Password</label>
                 <input type="text" name="password" id="password" placeholder="Password" />
-                <button>Login</button>
+                <button type="submit">Login</button>
             </form>
             <form action="register.html">
                 <button>Create a new account</button>
@@ -30,26 +30,28 @@
         </div>
     </div>
 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
     <script>
-    
-    document.forms['myFormId'].addEventListener('submit', (event) => {
-    event.preventDefault();
-    // TODO do something here to show user that form is being submitted
-    fetch(event.target.action, {
-        method: 'POST',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-    }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-    }).then((body) => {
-        // TODO handle body
-    }).catch((error) => {
-        // TODO handle error
-    });
-});
-    
-    
-    
-    
+        
+        document.forms['login'].addEventListener('submit', async (event) => {
+            event.preventDefault();
+           
+            try {
+            const resp = await fetch(event.target.action, {
+                method: 'POST',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            })
+            const loginTemplate = document.querySelector('#login-template').innerHTML;
+            response = await resp.json();
+            console.log(response);
+            const html = Mustache.render(loginTemplate, {});
+            document.querySelector('#logging').innerHTML = html;
+            window.location.href="/";
+            } catch {
+                alert('Unable to login. Please try again')                
+            }
+        });
     </script>
 
 </body>

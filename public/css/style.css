@@ -21,21 +21,21 @@ body {
     margin: 5px 5px;
 }
 
-#signup {
+.header a {
     display: flex;
-    list-style: none;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    margin: 0 5px;
 }
 
-#signup li {
-    margin: 0 10px;
+.header a:link{
+    color: #fff;
 }
 
-#signup > li:nth-child(1) {
-    border: 1px solid white;
-    margin-left: 0px;
+.header a:visited{
+    color: #fff;
 }
+
 
 
 
@@ -154,6 +154,11 @@ i.fa-google {
 }
 
 @media only screen and (min-width: 401px) and (max-width:960px) {
+    
+    .gallery {
+        justify-content: space-around;
+    }
+    
     .image {
         width: 50vw;
         height: 50vw;

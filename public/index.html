@@ -10,9 +10,8 @@
 <body>
     <div class="header">
         <h1>Art Gallery</h1>
-        <ul id="signup">
-            <li><a href="login.html">Login</a></li>
-        </ul>
+        <div id="logging"></div>
+        
     </div>
     <div class="gallery">
         <div class="image">
@@ -105,18 +104,22 @@
         </div>
     </div>
 
-
-<script>
-const classname = document.getElementsByClassName('fa-thumbs-up');
+    <script id ="login-template" type="text/html">
+        <h2 class="username">{{username}}</h2>
+        <a id="login-label" href="login.html">Login</a>
+        <a id="logout-label">Logout</a>    
+    </script>
     
-Array.from(classname).forEach((element) => {
-    element.addEventListener('click', () => {
-    console.log(element.nextSibling.nextSibling.textContent)
-    element.nextSibling.nextSibling.textContent = parseInt(element.nextSibling.nextSibling.textContent) +1;
-    })   
-}); /* This is creating an on-click event on all the thumbs up signs and will increase the value when clicked. Right now anyone can do it any number of times. These need to be only for authenticated users and they can only do it once */
+    <script id ="logout-template" type="text/html">
+        <a id="login-label" href="login.html">Login</a>
+    </script>
 
-</script>
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="./js/app.js"></script>
+
+
 
 </body>
 
