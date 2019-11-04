@@ -32,27 +32,8 @@
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
-    <script>
-        
-        document.forms['login'].addEventListener('submit', async (event) => {
-            event.preventDefault();
-           
-            try {
-            const resp = await fetch(event.target.action, {
-                method: 'POST',
-                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-            })
-            const loginTemplate = document.querySelector('#login-template').innerHTML;
-            response = await resp.json();
-            console.log(response);
-            const html = Mustache.render(loginTemplate, {});
-            document.querySelector('#logging').innerHTML = html;
-            window.location.href="/";
-            } catch {
-                alert('Unable to login. Please try again')                
-            }
-        });
-    </script>
+     <script src="./js/app.js"></script>
+
 
 </body>
 

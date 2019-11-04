@@ -13,8 +13,26 @@ app.use(cookieParser());
 app.use(userRouter);
 
 
+const bcrypt = require('bcryptjs');
+
+const x = async () => {    
+    const password = await bcrypt.hash('Abc123456',8);
+    console.log(password);
+}
+
+
+
+const y = async () => {
+    const passed = await bcrypt.compare('Abc123456','$2a$08$FsjJFCsG/ZpjvSr.65aB6Oird738DNd9C7KUFo4AAMUGaYN6Tjgpy')
+    console.log(passed);
+}
+
+
+
 app.listen(port, () => {
 	console.log('Express server is running');
 });
+
+
 
 
