@@ -3,20 +3,16 @@ document.forms['login'].addEventListener('submit', async (event) => {
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
 
-    const response = await fetch(event.target.action, {
-            method: 'POST',
-            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-    })
-    
-    const response2 = await response.json();
-    
-    console.log(response2);
-    console.log(response2.user.username)
-      
-    
-    const loginTemplate = document.querySelector('#login-template').innerHTML;
-        
-        const html = Mustache.render(loginTemplate, {});
-        document.querySelector('#logging').innerHTML = html;
-        window.location.href = "/";
+    try {
+        const response = await fetch(event.target.action, {
+                method: 'POST',
+                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        })
+
+        let username = await response.json()  
+        username = username.user.username
+        window.location.href = `/?username=${username}`;
+    } catch (e) {
+        alert('Error logging in. Please try again')
+    }
 });
