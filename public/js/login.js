@@ -11,7 +11,7 @@ document.forms['login'].addEventListener('submit', async (event) => {
 
         let username = await response.json()  
         username = username.user.username
-        window.location.href = `/?username=${username}`;
+        window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
     } catch (e) {
         alert('Error logging in. Please try again')
     }

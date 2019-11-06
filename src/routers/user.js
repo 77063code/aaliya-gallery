@@ -29,9 +29,7 @@ router.post('/users/login', async (req, res) => {
     
     
     try {
-        console.log(req.body);
         const user = await User.findByCredentials(req.body.username, req.body.password);
-        console.log(user);
         const token = await user.generateAuthToken(); // Note this method is on instance user and not the model User
         res.cookie('auth_token', token);
         /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/

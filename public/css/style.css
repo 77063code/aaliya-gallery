@@ -49,6 +49,14 @@ body {
     color: black;
 }
 
+#logout-btn {
+    border: none;
+    background-color: lightblue;
+    margin: 0 5px;
+    display: none; /* hide till the user is authenticated */
+    cursor: pointer;
+}
+
 
 
 
