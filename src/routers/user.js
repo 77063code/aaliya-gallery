@@ -8,13 +8,17 @@ const path = require('path');
 
 router.post('/users', async (req, res) => {
 
-    const user = new User(req.body);
+    
+    const user = new User(req.body);    
 
     try {
+        console.log('Hello World')
         await user.save()
+        console.log('Hello World')
         const token = await user.generateAuthToken();
+        console.log('Hello World')
         res.cookie('auth_token', token);
-        res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));
+        console.log('Hello World')
         res.status(201).send({
             user,
             token
