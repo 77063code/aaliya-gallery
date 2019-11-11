@@ -61,6 +61,16 @@ router.post('/users/logout', auth, async (req, res) => {
     }
 });
 
+router.get('/likes', async (req, res) => {
+    
+    const likes = {
+        like: 55
+    }
+    console.log('Got it');
+    console.log(likes.like)
+    res.send(likes);
+})
+
 router.post('/users/logoutAll', auth, async (req, res) => {
     try {
         req.user.tokens = [];

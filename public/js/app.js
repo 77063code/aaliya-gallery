@@ -2,9 +2,18 @@
 const $classname = document.getElementsByClassName('fa-thumbs-up');
 
 Array.from($classname).forEach((element) => {
-    element.addEventListener('click', () => {
-    console.log(element.nextSibling.nextSibling.textContent)
-    element.nextSibling.nextSibling.textContent = parseInt(element.nextSibling.nextSibling.textContent) +1;
+    element.addEventListener('click', async () => {
+   /*console.log(element.nextSibling.nextSibling.textContent)
+    element.nextSibling.nextSibling.textContent = parseInt(element.nextSibling.nextSibling.textContent) +1;*/
+        
+    console.log(element.parentElement.parentElement.previousSibling.previousSibling.classList[1]);
+        
+    const response = await fetch('/likes')
+    console.log(response);
+    let likes = await response.json()
+    console.log(likes)
+    
+        
     })   
 }); /* This is creating an on-click event on all the thumbs up signs and will increase the value when clicked. Right now anyone can do it any number of times. These need to be only for authenticated users and they can only do it once */
 
