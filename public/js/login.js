@@ -8,8 +8,6 @@ document.forms['login'].addEventListener('submit', async (event) => {
                 method: 'POST',
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
-        
-        console.log(response);
 
        let username = await response.json()  
         username = username.user.username

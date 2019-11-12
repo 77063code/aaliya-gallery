@@ -1,21 +1,21 @@
 // Elements
 const $classname = document.getElementsByClassName('fa-thumbs-up');
+const $likesclassname = document.getElementsByClassName('total-likes');
 
 Array.from($classname).forEach((element) => {
+// All the authenticated users can give a thumbs up to a painting, but only once
     element.addEventListener('click', async () => {
-   /*console.log(element.nextSibling.nextSibling.textContent)
-    element.nextSibling.nextSibling.textContent = parseInt(element.nextSibling.nextSibling.textContent) +1;*/
-        
-    console.log(element.parentElement.parentElement.previousSibling.previousSibling.classList[1]);
-        
-    const response = await fetch('/likes')
-    console.log(response);
-    let likes = await response.json()
-    console.log(likes)
-    
-        
+    const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];        
+    const response = await fetch('/like/' + img)
+    console.log(response)
+    if (response.status === 401) {
+        alert('Please authetnticate before using this feature')
+    } else {
+        let like = await response.json()
+        element.nextSibling.nextSibling.textContent = like.likes;  
+    }
     })   
-}); /* This is creating an on-click event on all the thumbs up signs and will increase the value when clicked. Right now anyone can do it any number of times. These need to be only for authenticated users and they can only do it once */
+});
 
 document.forms['logout'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
@@ -34,14 +34,25 @@ document.forms['logout'].addEventListener('submit', async (event) => {
     }
 });
 
-const {username} = Qs.parse(location.search, { ignoreQueryPrefix: true });
+// When the home page is loaded initialize all the likes querying from the database
+Array.from($likesclassname).forEach( async (element) => {
+    const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
+    const response = await fetch('/likes/' + img)
+    const likes = await response.json();
+    element.textContent = likes.likes;
+    
+})
 
+const {username} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 if (username) {
 // logged in user
     document.getElementById('username').textContent = username;
     document.getElementById('logout-btn').style.display = "block"; // display the logout button
     document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button
     
+} else {
+    // Delete any existing cookies
+    document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
 

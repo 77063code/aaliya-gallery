@@ -19,13 +19,14 @@ const likesSchema = new mongoose.Schema({
 // Authenticate the user
 likesSchema.statics.findByUserLike = async (username,img) => {
     
-	const like = await Likes.findOne({username,img});
+    try {
+        const like = await Likes.findOne({username,img});   
 
-	if (!like) {
-		throw new Error('like not found');
-	};
-
-	return like;
+	   return like;
+    } catch(e) {
+        console.log('The collection doesnt exist')
+        return(null);
+    }
 };
 
 

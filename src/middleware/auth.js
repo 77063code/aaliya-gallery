@@ -4,19 +4,25 @@ const User = require('../models/user');
 
 
 const auth = async (req,res,next) => {
+    
+    
 
 	try {
 		//const token = req.header('Authorization').replace('Bearer ', '');
+        
 		const token = req.cookies['auth_token']
         console.log(token);
+        
 		// This is the token being sent by the client
 		const decoded = jwt.verify(token,'HelloWorld');
-        console.log(decoded);
+       
 		// This is the token decoded to get the payload
 		const user = await User.findOne({_id: decoded._id, 'tokens.token': token});
+        
 		// Find the user with that id and also the token that is sent by the client is one of the tokens stored
 
 		if (!user) {
+             
 			throw new Error() // This will run the below catch statement
 		}
 
@@ -26,6 +32,7 @@ const auth = async (req,res,next) => {
 
 
 	} catch (e) {
+        
 		res.status(401).send({error: 'Please authenticate'});
 	}
 };
