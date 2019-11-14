@@ -10,7 +10,10 @@ Array.from($classname).forEach((element) => {
     console.log(response)
     if (response.status === 401) {
         alert('Please authetnticate before using this feature')
-    } else {
+    } else if (response.status === 208) {
+        alert('You have already given a thumbs up to this image')
+    }
+    else  {
         let like = await response.json()
         element.nextSibling.nextSibling.textContent = like.likes;  
     }

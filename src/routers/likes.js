@@ -20,21 +20,24 @@ router.get('/like/:img', auth, async (req, res) => {
     try {
         const like = await Likes.findByUserLike(username,img)
  
+       
                 
         if (!like) {
         // This user is liking this picture for the first time, so add an entry
             const like = new Likes({img, username}); 
             await like.save();
+            const likes = await Likes.countDocuments({img}, (err, count) => {
+                            return count;
+            })
+            res.send({likes});
+        } else {          
+            const likes = await Likes.countDocuments({img}, (err, count) => {
+                            return count;
+            res.status(208).send({likes});
+            })
             }
         
-            const likes = await Likes.countDocuments({img}, (err, count) => {
-            return count;
-        })
-        
-        res.send({likes});
-        
-        
-        }  catch(e) {
+    }  catch(e) {
         throw new Error('There was an error');        
     }   
 
