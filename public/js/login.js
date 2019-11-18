@@ -16,3 +16,9 @@ document.forms['login'].addEventListener('submit', async (event) => {
         alert('Error logging in. Please try again')
     }
 });
+
+document.getElementById('close-login').addEventListener('click', (e) => {
+// Close the form  and go back to the home page
+    e.preventDefault();
+    window.location.href = '/';
+})

@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const uniqueValidator = require('mongoose-unique-validator');
+
 
 
 const userSchema = new mongoose.Schema({
@@ -25,6 +27,7 @@ const userSchema = new mongoose.Schema({
                 validate(value) {
                         if (!validator.isEmail(value)) {
                                 throw new Error('Email is invalid');
+                            
                         }
                 }},
         password: {
@@ -32,7 +35,8 @@ const userSchema = new mongoose.Schema({
                 trim: true,
                 validate(value) {
                         if (value.length <= 6) {
-                                throw new Error('The passwords needs to be more than 6 characters');
+                                //throw new Error('The passwords needs to be more than 6 characters');
+                            throw new Error('The password needs to more than 6 characters')
                         }
                         if (validator.contains(value.toLowerCase(),'password')) {
                                 throw new Error('The password cannnot include string password');
@@ -45,6 +49,8 @@ const userSchema = new mongoose.Schema({
 			}
 		}]
 });
+
+userSchema.plugin(uniqueValidator);
 
 
 // Generate a new token and add it to the tokens array on the object

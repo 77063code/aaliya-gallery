@@ -9,7 +9,12 @@
 
 <body>
     <div class="centered-form">
+        
         <div class="centered-form__box">
+            <div class="close">
+                <div id="close-login">X</div>
+            </div>
+    
             <div class="social--auth">
                 <div class="amazon"><i class="fa-border fa fa-amazon fa-lg"></i></div>
                 <div class="facebook"><i class="fa-border fa fa-facebook fa-lg"></i></div>
@@ -17,6 +22,7 @@
             </div>
 
             <form id="login" method="POST" action="users/login">
+                
                 <label for="uasername">Username</label>
                 <input type="text" name="username" id="username" placeholder="Username" />
                 <label for="password">Password</label>

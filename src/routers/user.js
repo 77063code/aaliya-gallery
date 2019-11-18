@@ -3,16 +3,29 @@ const router = express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
 const path = require('path');
+const uniqueValidator = require('mongoose-unique-validator');
 
 
 
 router.post('/users', async (req, res) => {
 
     
-    const user = new User(req.body);    
+  
+    const user = new User(req.body);
+ 
 
     try {
-        await user.save()
+        /*try {*/
+            await user.save()
+        /*} catch(e) {
+                const keys = Object.keys(e.errors);
+            console.log(keys)
+            keys.forEach((key) => {
+                console.log(key);
+                console.log(e.errors[key].message);
+        })
+        }*/
+        
         const token = await user.generateAuthToken();
         res.cookie('auth_token', token);
         res.status(201).send({
@@ -20,7 +33,26 @@ router.post('/users', async (req, res) => {
             token
         }); // The 201 is most routerropriate status code for a successful creation
     } catch (e) {
-        res.status(400).send(e); // To send a non-standard status code
+        const keys = Object.keys(e.errors);
+        let status = 400;       
+        if (keys[0] === 'name') {
+             status = 350
+        } else if (keys[0] === 'username' && e.errors[keys[0]].message.includes('required')) {
+            status = 351
+        } else if (keys[0] === 'username' && e.errors[keys[0]].message.includes('unique')) {
+            status = 352
+        } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('required')) {
+            status = 353
+        } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('unique')) {
+            status = 354
+        } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('invalid')) {
+            status = 355
+        } else if (keys[0] === 'password' && e.errors[keys[0]].message.includes('characters')) {
+            status = 356
+        } else if (keys[0] === 'password' && e.errors[keys[0]].message.includes('password')) {
+            status = 357
+        }
+        res.status(status).send(e.errors[keys[0]].message); // To send a non-standard status code
     }
 });
 
