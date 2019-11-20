@@ -57,6 +57,10 @@ body {
     cursor: pointer;
 }
 
+#logging i {
+    margin: 0 10px;
+}
+
 
 
 
@@ -164,20 +168,14 @@ i.fa-google {
     outline: none;
 }
 
-
-.centered-form #close-login2
-{
-    color: black;
-    background: #F7F7FA;
-    cursor: pointer;
-    padding: 0px;
-    margin: 0px;
-    display: flex;
-    justify-content: flex-end;
-    width: 226px;
-    border: 1px solid transparent;
-    font-size: 20px;
+.centered-form textarea {
+    margin-bottom: 16px;
+    width: 100%;
+    border: 1px solid #eeeeee;
+    padding: 12px;
+    outline: none;
 }
+
 
 .close {
     padding:0px;
@@ -188,7 +186,7 @@ i.fa-google {
     justify-content: flex-end;
 }
 
-#close-login, #close-register {
+#close-login, #close-register, #close-message {
     border-left: 1px solid black;
     border-bottom: 1px solid black;
     color: black;
@@ -198,7 +196,7 @@ i.fa-google {
     margin: 0px;
 }
 
-#error-register {
+#error-register, #error-login, #error-message {
     width: 100%;
     text-align: center;
     color: red;

@@ -3,7 +3,12 @@ const router = express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
 const path = require('path');
+const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
+const sgMail = require('@sendgrid/mail');
+const sendgridAPIKEY = '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'
+
+
 
 
 
@@ -87,6 +92,31 @@ router.post('/users/logout', auth, async (req, res) => {
         res.status(500).send();
     }
 });
+
+router.post('/users/message', async (req,res) => {
+    let status = 400
+    if (req.body.name.length <= 0) {
+        status = 350
+    } else if (req.body.email.length <= 0) {
+        status = 351
+    } else if (!validator.isEmail(req.body.email)) {
+        status = 352
+    } else if (req.body.message.length <= 0) {
+        status = 353
+    } else {
+        sgMail.setApiKey(sendgridAPIKEY);
+        sgMail.send({
+            to: 'sgupt9999@gmail.com',
+            from: 'sgupt9999@gmail.com',
+            subject: 'aaliya-art',
+            text: `${req.body.name} sent message - ${req.body.message} from ${req.body.email}`
+        })
+        status = 200;       
+    }
+    res.status(status).send();
+    
+});
+    
 
 
 router.post('/users/logoutAll', auth, async (req, res) => {

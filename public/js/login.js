@@ -1,3 +1,7 @@
+// ELEMENT
+
+$errorLogin = document.getElementById('error-login')
+
 document.forms['login'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
@@ -13,7 +17,8 @@ document.forms['login'].addEventListener('submit', async (event) => {
         username = username.user.username
         window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
     } catch (e) {
-        alert('Error logging in. Please try again')
+        $errorLogin.textContent = 'Error logging in. Please try again';
+        // alert('Error logging in. Please try again')
     }
 });
 

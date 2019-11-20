@@ -1,6 +1,8 @@
 // Elements
 const $classname = document.getElementsByClassName('fa-thumbs-up');
 const $likesclassname = document.getElementsByClassName('total-likes');
+const $messageclass = document.getElementsByClassName('fa-envelope')
+
 
 Array.from($classname).forEach((element) => {
 // All the authenticated users can give a thumbs up to a painting, but only once

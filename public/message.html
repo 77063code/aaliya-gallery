@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel='stylesheet' href='./css/style.css' />
+</head>
+
+<body>
+    <div class="centered-form">
+        
+        <div class="centered-form__box">
+            <div class="close">
+                <div id="close-message">X</div>
+            </div>
+    
+            <form id="message" method="POST" action="users/message">                
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Your name" />
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Your email" />
+                <label for="message">Drop us a line</label>
+                <textarea name="message" id="message" placeholder="Your message"></textarea>
+                <button type="submit">Send it!</button>
+            </form>
+            <p id="error-message"></p>
+        </div>
+    </div>
+
+    
+     <script src="./js/message.js"></script>
+
+
+</body>
+
+
+
+</html>

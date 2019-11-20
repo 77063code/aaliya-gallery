@@ -18,5 +18,7 @@ Aaliya's Art Website
 8. Create a back screen for each painting
 
 9. Create a screen for sending an email message
+10. When the users register for the first time, how to confirm the email is legit
+11. To be able to authenticate using google, facebook and amazon
 
 2. 
