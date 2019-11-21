@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const uniqueValidator = require('mongoose-unique-validator');
+const md5 = require('md5');
 
 
 
@@ -30,6 +31,11 @@ const userSchema = new mongoose.Schema({
                             
                         }
                 }},
+        hashvalue: {
+        // MD5 generated hash value based on username and email
+                type: String,
+                required: false
+        },
         password: {
                 type: String,
                 trim: true,
@@ -50,7 +56,7 @@ const userSchema = new mongoose.Schema({
 		}]
 });
 
-userSchema.plugin(uniqueValidator);
+userSchema.plugin(uniqueValidator); // This is needed to check the uniqueness property of a field
 
 
 // Generate a new token and add it to the tokens array on the object
@@ -101,13 +107,12 @@ userSchema.statics.findByCredentials = async (username,password) => {
 userSchema.pre('save', async function (next) {
 
 	const user = this;
-  
 
 	if (user.isModified('password')) {
 	// This will be true when the user is first created and then again if the password is being changed
 		user.password = await bcrypt.hash(user.password,8);
 	}
-    
+    user.hashvalue = md5(user.username + user.email);   
     
 	next();
 });

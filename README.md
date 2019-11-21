@@ -1,9 +1,11 @@
 # aaliya-art
 Aaliya's Art Website
+1. Installing md5 to create hash values 
 
 1. The create account button should create a new account. If there is an error - duplicate email or username it should give an alert and stay on the same page for the user to correct.
 
 2. If the account is successfully created thengo to home page and render the correct template for the right side of the error - DONE, though not using templates
+2a. If the account is created successfully then send an email with a link to be redirected to the proper page. This is to make sure the email provided is legit
 
 3. On the login page, if there is an error, given an error message and let the user correct
 

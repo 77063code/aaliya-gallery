@@ -33,7 +33,7 @@ document.forms['logout'].addEventListener('submit', async (event) => {
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
 
-        location.href = '/' ; // If a user is found based on creds, pass the username to the home page
+        location.href = '/' ; 
     } catch (e) {
         alert('Error logging in. Please try again')
     }

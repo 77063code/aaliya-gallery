@@ -13,12 +13,8 @@ const sendgridAPIKEY = 'SG.2My52BbTQk2pFGjWbiKcMQ.ViuEdFckByAKZ2leGbitswfROECN0r
 
 
 router.post('/users', async (req, res) => {
-
-    
-  
+// Register a new user  
     const user = new User(req.body);
- 
-
     try {
         /*try {*/
             await user.save()
@@ -33,11 +29,20 @@ router.post('/users', async (req, res) => {
         
         const token = await user.generateAuthToken();
         res.cookie('auth_token', token);
+        sgMail.setApiKey(sendgridAPIKEY);
+        sgMail.send({
+            to: user.email,
+            from: 'sgupt9999@gmail.com',
+            subject: 'aaliya-art login confirmation',
+            text: `Please click on following link to login http://localhost:3000?code=${user.hashvalue}`
+        })
+        console.log(user.email);
         res.status(201).send({
             user,
             token
         }); // The 201 is most routerropriate status code for a successful creation
     } catch (e) {
+        // All these errors happen when the save is run
         const keys = Object.keys(e.errors);
         let status = 400;       
         if (keys[0] === 'name') {
@@ -84,7 +89,7 @@ router.post('/users/logout', auth, async (req, res) => {
     try {
         req.user.tokens = req.user.tokens.filter((token) => {
             return token.token !== req.token
-            // Take out the toek that the client is sending from the tokens stored by the user document
+            // Take out the token that the client is sending from the tokens stored by the user document
         });
         await req.user.save();
         res.status(200).send();
@@ -116,6 +121,11 @@ router.post('/users/message', async (req,res) => {
     res.status(status).send();
     
 });
+
+
+router.get('/users/hello', async (req,res) => {
+    res.redirect('https://www.google.com');
+})
     
 
 
