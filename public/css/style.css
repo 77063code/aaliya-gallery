@@ -80,6 +80,22 @@ body {
     outline: 3px solid gold;
 }
 
+.image {
+    perspective: 1000px;
+    
+}
+.img.img1 {
+    transition: all .8s ease;
+}
+
+.image:hover .img1 {
+    transform: rotateY(180deg);
+}
+
+.image.img1--back {
+    background-color: green;
+}
+
 .image__info {
     width: 95%;
     height: 15%;
