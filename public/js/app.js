@@ -1,10 +1,13 @@
 // Elements
-const $classname = document.getElementsByClassName('fa-thumbs-up');
+const $thumbsupclassname = document.getElementsByClassName('fa-thumbs-up');
+const $informationclassname = document.getElementsByClassName('fa-info');
+const $imgbackclose = document.getElementsByClassName('img__back--close');
 const $likesclassname = document.getElementsByClassName('total-likes');
 const $messageclass = document.getElementsByClassName('fa-envelope')
 
 
-Array.from($classname).forEach((element) => {
+Array.from($thumbsupclassname).forEach((element) => {
+// Create a separate click event for all the thumbs-up icons
 // All the authenticated users can give a thumbs up to a painting, but only once
     element.addEventListener('click', async () => {
     const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];        
@@ -21,6 +24,29 @@ Array.from($classname).forEach((element) => {
     }
     })   
 });
+
+Array.from($informationclassname).forEach((element) => {
+// Create a separate click event for all the information icons
+// When clicking on the information icons the back of the image which has all the image information will be displayed
+    element.addEventListener('click',  () => {
+    console.log(element.parentElement.parentElement.childNodes[1].id)
+    const img = element.parentElement.parentElement.childNodes[1].classList[1]; 
+    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)";
+    document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)";
+    })   
+});
+
+Array.from($imgbackclose).forEach((element) => {
+// Create a separate click event for all back pages of the images
+// When clicking close of the back page, it should revert back to the image
+    element.addEventListener('click',  () => {
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)";
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)";
+    })   
+});
+
+
+
 
 document.forms['logout'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
