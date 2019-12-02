@@ -13,7 +13,7 @@ document.forms['login'].addEventListener('submit', async (event) => {
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
 
-       let username = await response.json()  
+        let username = await response.json()  
         username = username.user.username
         window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
     } catch (e) {

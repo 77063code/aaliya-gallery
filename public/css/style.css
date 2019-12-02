@@ -89,13 +89,22 @@ body {
     backface-visibility: hidden;
 }
 
+
+/* backside of the image */
+
+.img__info {
+    margin: 10% 0 0 0;
+}
+.img__info h2 {
+    text-align: center;
+    padding: 3px 0;
+    margin: 3px 0;
+}
 .img__back {
-    background-color: white;
+    background-color: mintcream;
     transform: rotateY(180deg);
 }
 
-
-/* Image back closing button */
 .img__back--close--container {
     padding:0px;
     margin:0px;
@@ -104,7 +113,6 @@ body {
     justify-content: flex-end;
 }
 
-/* Image back closing button */
 .img__back--close {
     border-left: 1px solid black;
     border-bottom: 1px solid black;
@@ -127,7 +135,7 @@ body {
 
 
 
-.image__info {
+.img__stats {
     width: 95%;
     height: 11%;
     display: flex;

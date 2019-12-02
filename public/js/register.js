@@ -31,9 +31,10 @@ document.forms['register'].addEventListener('submit', async (event) => {
         } else if(response.status === 357) {
             $errorRegister.textContent = 'The password cannot contain the word password';
         } else {
-            let username = await response.json()  
+             /*let username = await response.json()  
             username = username.user.username
-            window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
+            window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page */
+            alert('Please check your email for confirmation link')
         }
     } catch (e) {
         console.log(e);

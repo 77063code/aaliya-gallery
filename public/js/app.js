@@ -14,7 +14,11 @@ Array.from($thumbsupclassname).forEach((element) => {
     const response = await fetch('/like/' + img)
     console.log(response)
     if (response.status === 401) {
-        alert('Please authetnticate before using this feature')
+        //alert('Please authetnticate before using this feature')
+        window.dynaform.flashMessage( {
+            emphassisMessage: 'Please authetnticate before using this feature',
+            duration: 1000
+        })
     } else if (response.status === 208) {
         alert('You have already given a thumbs up to this image')
     }
@@ -31,8 +35,8 @@ Array.from($informationclassname).forEach((element) => {
     element.addEventListener('click',  () => {
     console.log(element.parentElement.parentElement.childNodes[1].id)
     const img = element.parentElement.parentElement.childNodes[1].classList[1]; 
-    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)";
-    document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)";
+    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)"; /* Rotate the front side 180deg so its not visible */
+    document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)"; /* Rotate the back side to 0deg so it's visible */
     })   
 });
 
@@ -40,8 +44,8 @@ Array.from($imgbackclose).forEach((element) => {
 // Create a separate click event for all back pages of the images
 // When clicking close of the back page, it should revert back to the image
     element.addEventListener('click',  () => {
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)";
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)";
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)"; /* Rotate the front side to 0deg so it's visible */
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)"; /* Rotate the back side 180deg so its not visible */
     })   
 });
 
@@ -73,6 +77,23 @@ Array.from($likesclassname).forEach( async (element) => {
     element.textContent = likes.likes;
     
 })
+    
+const loginByHashCode = async (hashcode) => {
+    try {
+        const response = await fetch('/users/confirm/' + hashcode)  
+        let username = await response.json()  
+        username = username.user.username
+        window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
+    } catch (e) {
+        alert('The email link not working')
+    }
+}
+
+const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
+// This is he user confirming the creation of the account
+ if (code) {     
+    loginByHashCode(code);
+}
 
 const {username} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 if (username) {
@@ -85,6 +106,8 @@ if (username) {
     // Delete any existing cookies
     document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
+
+
 
 
 

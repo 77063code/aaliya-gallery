@@ -27,6 +27,7 @@ router.post('/users', async (req, res) => {
         })
         }*/
         
+        await user.generateHashCode();
         const token = await user.generateAuthToken();
         res.cookie('auth_token', token);
         sgMail.setApiKey(sendgridAPIKEY);
@@ -34,7 +35,7 @@ router.post('/users', async (req, res) => {
             to: user.email,
             from: 'sgupt9999@gmail.com',
             subject: 'aaliya-art login confirmation',
-            text: `Please click on following link to login http://localhost:3000?code=${user.hashvalue}`
+            text: `Please click on following link to login http://localhost:3000?code=${user.hashcode}`
         })
         console.log(user.email);
         res.status(201).send({
@@ -69,10 +70,11 @@ router.post('/users', async (req, res) => {
 
 router.post('/users/login', async (req, res) => {
     
-    
     try {
         const user = await User.findByCredentials(req.body.username, req.body.password);
+        console.log(user);
         const token = await user.generateAuthToken(); // Note this method is on instance user and not the model User
+        console.log(token);
         res.cookie('auth_token', token);
         /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
         res.send({
@@ -123,11 +125,22 @@ router.post('/users/message', async (req,res) => {
 });
 
 
-router.get('/users/hello', async (req,res) => {
-    res.redirect('https://www.google.com');
+router.get('/users/confirm/:code', async (req, res) => {
+// This route is called when the user clicks on the registration confirmation email
+    const hashcode = req.params.code;
+    try {
+        const user = await User.findByHashCode(hashcode);
+        const token = await user.generateAuthToken(); // Note this method is on instance user and not the model User
+        res.cookie('auth_token', token);
+        res.send({
+            user,
+            token
+        });
+    } catch (e) {
+        console.log('There is an error')
+        res.status(400).send();
+    }
 })
-    
-
 
 router.post('/users/logoutAll', auth, async (req, res) => {
     try {

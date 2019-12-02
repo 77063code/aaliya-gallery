@@ -31,8 +31,10 @@ const userSchema = new mongoose.Schema({
                             
                         }
                 }},
-        hashvalue: {
-        // MD5 generated hash value based on username and email
+        hashcode: {
+        // MD5 generated hash value based on username and email. This is filled in when the user
+        // registers and once the user clicks on the email confirmation link, it should be 
+        // set to zero
                 type: String,
                 required: false
         },
@@ -66,6 +68,15 @@ userSchema.methods.generateAuthToken = async function () {
 	user.tokens = user.tokens.concat({token});
 	await user.save();
 	return token;
+};
+
+
+// Generate a new hashcode and add it to the user instance
+userSchema.methods.generateHashCode = async function () {
+	const user = this;
+    user.hashcode = md5(user.username + user.email + Math.floor(Math.random()*50000)); 
+    // Create a hash value using the username, email and a random number b/w 0 amd 50000
+	await user.save();
 };
 
 // We dont want to expose password and tokens when we send the user data back to the client
@@ -102,6 +113,18 @@ userSchema.statics.findByCredentials = async (username,password) => {
 	return user;
 };
 
+// Find the user by hashcode
+userSchema.statics.findByHashCode = async (hashcode) => {
+    const user = await User.findOne({hashcode});
+    if (!user) {
+        throw new Error('Cannot find the user');
+    }
+    
+    return user;    
+    
+}
+                                                    
+
 
 // Hash the plain text username and password before saving
 userSchema.pre('save', async function (next) {
@@ -112,7 +135,6 @@ userSchema.pre('save', async function (next) {
 	// This will be true when the user is first created and then again if the password is being changed
 		user.password = await bcrypt.hash(user.password,8);
 	}
-    user.hashvalue = md5(user.username + user.email);   
     
 	next();
 });
