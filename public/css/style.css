@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
 body {
     background-color: #fff;
 }
@@ -19,14 +24,16 @@ body {
 
 .header h1 {
     font-family: 'Yellowtail', cursive;
-    padding: 0 20px;
+    padding: 0 2rem;
+    font-size: 3rem;
 }
 
 #logging {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0 20px;
+    padding: 0 2rem;
+    font-size: 1.8rem;
 }
 
 #logging h4 {
@@ -37,7 +44,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 5px;
+    margin: 0 .5rem;
     text-decoration: none;
 }
 
@@ -52,13 +59,13 @@ body {
 #logout-btn {
     border: none;
     background-color: lightblue;
-    margin: 0 5px;
+    margin: 0 .5rem;
     display: none; /* hide till the user is authenticated */
     cursor: pointer;
 }
 
 #logging i {
-    margin: 0 10px;
+    margin: 0 1rem;
 }
 
 
@@ -71,7 +78,7 @@ body {
 }
 
 .image {
-    perspective: 1000px;
+    perspective: 100rem;
     position: relative;  
 }
 
@@ -80,8 +87,8 @@ body {
     width: 95%;
     height: 85%;
     margin: 10px 20px 1px 20px;
-    border: 3px solid silver;
-    outline: 3px solid gold;
+    border: .3rem solid silver;
+    outline: .3rem solid gold;
     transition: all .8s ease;
     position:absolute;
     top: 0;
@@ -99,6 +106,7 @@ body {
     text-align: center;
     padding: 3px 0;
     margin: 3px 0;
+    font-size: 1.8rem;
 }
 .img__back {
     background-color: mintcream;
@@ -114,11 +122,11 @@ body {
 }
 
 .img__back--close {
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
+   /*order-left: 1px solid black;
+    border-bottom: 1px solid black;*/
     color: black;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 1.8rem;
     padding: 0px;
     margin: 0px;
 }
@@ -135,6 +143,7 @@ body {
 
 
 
+/* Image stats */
 .img__stats {
     width: 95%;
     height: 11%;
@@ -145,22 +154,22 @@ body {
     position:absolute;
     top: 89%;
     left: 0;
+    color: darkgray;
+    font-size: 1.8rem;
 }
-
 .likes {
     display: flex;
 }
-
 .total_likes {
     margin-left: auto;
+}
+.fa-thumbs-up:hover, .fa-info:hover {
+    cursor: pointer
 }
 
 
 
-/** Login Form **/
-
-
-
+/** Login, Create and Message forms **/
 .centered-form {
     background: #333744;
     width: 100vw;
@@ -171,10 +180,10 @@ body {
 }
 
 .centered-form__box {
-    box-shadow: 0px 0px 17px 1px #1D1F26;
+    box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
     background: #F7F7FA;
-    padding: 0 24px 24px 24px;
-    width: 250px;
+    padding: 0 2.4rem 2.4rem 2.4rem;
+    width: 25rem;
  
 }
 
@@ -189,10 +198,10 @@ i.fa-google {
     display: flex;
     color: #fff;
     background: lightblue;
-    margin: 20px 0;
-    width: 40px;
-    height: 40px;
-    border-radius: 7px;
+    margin: 2rem 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 3rem;
     justify-content: center;
     align-items: center;
 }
@@ -200,8 +209,8 @@ i.fa-google {
 
 .centered-form label {
     display: block;
-    font-size: 14px;
-    margin-bottom: 8px;
+    font-size: 1.6rem;
+    margin-bottom: .5rem;
     color: #777;
 }
 
@@ -209,13 +218,13 @@ i.fa-google {
 .centered-form button {
     width: 100%;
     cursor: pointer;
-    padding: 12px;
-    background: blue;
+    padding: 1.2rem;
+    background-color: blue;
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 1.6rem;
     transition: background .3s ease;
-    margin: 0 0 10px 0;
+    margin: 0 0 1rem 0;
 }
 
 .centered-form input {
@@ -227,18 +236,20 @@ i.fa-google {
 }
 
 .centered-form textarea {
-    margin-bottom: 16px;
+    margin-bottom: 1.6rem;
     width: 100%;
-    border: 1px solid #eeeeee;
-    padding: 12px;
+    border: .1rem solid #eeeeee;
+    padding: 1.2rem;
     outline: none;
 }
 
 
+
+/* Closing all forms */
 .close {
     padding:0px;
     margin:0px;
-    background-color: #F7F7FA;
+    /*background-color: #F7F7FA;*/
     width: 226px;
     display: flex;
     justify-content: flex-end;
@@ -246,15 +257,27 @@ i.fa-google {
 
 
 #close-login, #close-register, #close-message {
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    color: black;
+    border-left: .1rem solid black;
+    border-bottom: .1rem solid black;
+    border-right: .1rem solid black;
+    border-top: .1rem solid black;
+    border-radius: 3rem;
+    
     cursor: pointer;
-    font-size: 16px;
-    padding: 0px;
-    margin: 0px;
+    font-size: 1.6rem;
+    padding: .5rem;
+    margin: -.2rem;
+    background-color: blue;
+    color: white;
+    opacity: 0.5;
 }
 
+#close-login:hover {
+   
+}
+
+
+/* Error messages on all the forms */
 #error-register, #error-login, #error-message {
     width: 100%;
     text-align: center;

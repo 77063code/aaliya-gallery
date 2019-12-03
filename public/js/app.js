@@ -10,15 +10,12 @@ Array.from($thumbsupclassname).forEach((element) => {
 // Create a separate click event for all the thumbs-up icons
 // All the authenticated users can give a thumbs up to a painting, but only once
     element.addEventListener('click', async () => {
-    const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];        
+    //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
+    const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
     const response = await fetch('/like/' + img)
     console.log(response)
     if (response.status === 401) {
-        //alert('Please authetnticate before using this feature')
-        window.dynaform.flashMessage( {
-            emphassisMessage: 'Please authetnticate before using this feature',
-            duration: 1000
-        })
+        alert('Please authetnticate before using this feature')
     } else if (response.status === 208) {
         alert('You have already given a thumbs up to this image')
     }
