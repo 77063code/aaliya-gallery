@@ -97,6 +97,34 @@ body {
 }
 
 
+/* Image stats */
+.img__stats {
+    width: calc(95% - .3rem);
+    /* height: 11%;*/
+    height: calc(15% -1rem -.3rem);
+    padding-top: 0.5rem;
+    display: flex;
+    align-items: flex-start;
+    margin: 0 1rem;
+    justify-content: space-between;
+    position:absolute;
+    top: 89%;
+    left: 0;
+    color: #6c6b6b;
+    font-size: 1.8rem;
+}
+.likes {
+    display: flex;
+    justify-content: flex-start;
+}
+.total-likes {
+    padding-left: .5rem;
+}
+.fa-thumbs-up:hover, .fa-info:hover {
+    cursor: pointer
+}
+
+
 /* backside of the image */
 
 .img__info {
@@ -143,29 +171,7 @@ body {
 
 
 
-/* Image stats */
-.img__stats {
-    width: 95%;
-    height: 11%;
-    display: flex;
-    align-items: flex-start;
-    margin: 0 2rem;
-    justify-content: space-between;
-    position:absolute;
-    top: 89%;
-    left: 0;
-    color: #6c6b6b;
-    font-size: 1.8rem;
-}
-.likes {
-    display: flex;
-}
-.total_likes {
-    margin-left: auto;
-}
-.fa-thumbs-up:hover, .fa-info:hover {
-    cursor: pointer
-}
+
 
 
 
@@ -183,7 +189,7 @@ body {
     box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
     background: #F7F7FA;
     padding: 0 2.4rem 2.4rem 2.4rem;
-    width: 2.5rem;
+    width: 25rem;
  
 }
 
@@ -209,7 +215,7 @@ i.fa-google {
 
 .centered-form label {
     display: block;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     margin-bottom: .5rem;
     color: #777;
 }
@@ -222,9 +228,14 @@ i.fa-google {
     background-color: blue;
     border: none;
     color: white;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     transition: background .3s ease;
     margin: 0 0 1rem 0;
+    
+}
+
+.centered-form input:focus {
+    background-color: lightblue;
 }
 
 .centered-form input {
@@ -233,7 +244,9 @@ i.fa-google {
     border: .1rem solid #eeeeee;
     padding: 1.2rem;
     outline: none;
+    font-size: 1.8rem;
 }
+
 
 .centered-form textarea {
     margin-bottom: 1.6rem;
@@ -241,6 +254,7 @@ i.fa-google {
     border: .1rem solid #eeeeee;
     padding: 1.2rem;
     outline: none;
+    font-size: 1.8rem;
 }
 
 
@@ -272,31 +286,26 @@ i.fa-google {
     opacity: 0.5;
 }
 
-#close-login:hover {
-   
-}
-
 
 /* Error messages on all the forms */
 #error-register, #error-login, #error-message {
     width: 100%;
     text-align: center;
     color: red;
+    font-size: 1.6rem;
 }
 
 
-
-
-
 @media only screen and (max-width: 400px) {
+    html {
+        font-size: calc(100vw / 40);
+    }
     .gallery {
         justify-content: center;
-    }
-    
+    }    
     .image {
         width: 75vw;
-        height: 75vw;
-        
+        height: 75vw;        
     }
 }
 
@@ -307,8 +316,8 @@ i.fa-google {
     }
     
     .image {
-        width: 50vw;
-        height: 50vw;
+        width: 48vw;
+        height: 48vw;
     }
 }
 

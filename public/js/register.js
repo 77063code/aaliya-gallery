@@ -1,6 +1,6 @@
 // ELEMENT
 
-$errorRegister = document.getElementById('error-register')
+$errorRegister = document.getElementById('error-register');
 
 document.forms['register'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
@@ -34,11 +34,10 @@ document.forms['register'].addEventListener('submit', async (event) => {
              /*let username = await response.json()  
             username = username.user.username
             window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page */
-            alert('Please check your email for confirmation link')
+            $errorRegister.textContent = 'Please check your email for confirmation link'
         }
     } catch (e) {
-        console.log(e);
-        alert('Error logging in. Please try again')
+        $errorRegister.textContent = 'Error registering. Please try again';
     }
 });
 

@@ -12,10 +12,14 @@ document.forms['login'].addEventListener('submit', async (event) => {
                 method: 'POST',
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
-
-        let username = await response.json()  
-        username = username.user.username
-        window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
+        if (response.status === 350) {
+            $errorLogin.textContent = 'Please confirm your registration via link in the registration email';
+            $errorLogin.style.color = 'red';
+        } else {
+            let username = await response.json()  
+            username = username.user.username
+            window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
+        }
     } catch (e) {
         $errorLogin.textContent = 'Error logging in. Please try again';
         // alert('Error logging in. Please try again')
