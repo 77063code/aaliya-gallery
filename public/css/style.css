@@ -120,7 +120,12 @@ body {
 .total-likes {
     padding-left: .5rem;
 }
-.fa-thumbs-up:hover, .fa-info:hover {
+
+.fa-thumbs-up, .fa-info, fa-arrow-circle-left {
+    z-index:99;
+}
+
+.fa-thumbs-up:hover, .fa-info:hover, fa-arrow-circle-left:hover {
     cursor: pointer
 }
 

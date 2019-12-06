@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = process.env.AALIYAPORT || 3000 // AALIYAPORT is defined in /etc/profile.d/custom.sh
-const host = process.env.AALIYAHOST || 'localhost';
+
 
 
 app.use(express.static('public'));
