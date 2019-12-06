@@ -5,7 +5,9 @@ const likesRouter = require('./routers/likes');
 const cookieParser = require('cookie-parser');
 
 const app = express();
-const port = process.env.PORT || 3000
+const port = process.env.AALIYAPORT || 3000 // AALIYAPORT is defined in /etc/profile.d/custom.sh
+const host = process.env.AALIYAHOST || 'localhost';
+
 
 app.use(express.static('public'));
 app.use(express.json()); // This one line parses incoming data into a JSON object

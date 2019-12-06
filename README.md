@@ -1,4 +1,18 @@
 # aaliya-art
+
+FOR PRODUCTION -
+
+1. Create a file /etc/profile.d/custom.sh
+2. Add the following to this file -
+    #!/bin/bash
+    export AALIYAPORT=80
+    export AALIYAHOST='aaliya-gallery'
+3. Login as root to run the src/index.js. This is needed to open port 80
+
+
+
+
+
 Aaliya's Art Website
 1. Installing md5 to create hash values 
 

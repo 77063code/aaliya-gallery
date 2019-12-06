@@ -8,8 +8,8 @@ const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
 const sendgridAPIKEY = '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'
 
-
-
+const port = process.env.AALIYAPORT || 3000;
+const host = process.env.AALIYAHOST || 'localhost';
 
 
 router.post('/users', async (req, res) => {
@@ -35,9 +35,8 @@ router.post('/users', async (req, res) => {
             to: user.email,
             from: 'sgupt9999@gmail.com',
             subject: 'aaliya-art login confirmation',
-            text: `Please click on following link to login http://localhost:3000?code=${user.hashcode}`
+            text: `Please click on following link to login http://${host}.com:${port}?code=${user.hashcode}`
         })
-        console.log(user.email);
         res.status(201).send({
             user,
             token
