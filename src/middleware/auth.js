@@ -11,7 +11,7 @@ const auth = async (req,res,next) => {
 		//const token = req.header('Authorization').replace('Bearer ', '');
         
 		const token = req.cookies['auth_token']
-        console.log(token);
+      
         
 		// This is the token being sent by the client
 		const decoded = jwt.verify(token,'HelloWorld');

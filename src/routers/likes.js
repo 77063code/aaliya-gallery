@@ -33,9 +33,9 @@ router.get('/like/:img', auth, async (req, res) => {
         } else {          
             const likes = await Likes.countDocuments({img}, (err, count) => {
                             return count;
-            res.status(208).send({likes});
             })
-            }
+            res.status(208).send({likes});
+        }
         
     }  catch(e) {
         throw new Error('There was an error');        
@@ -45,9 +45,9 @@ router.get('/like/:img', auth, async (req, res) => {
 
 router.get('/likes/:img', async (req,res) => {
     const img = req.params.img
-    console.log(img);
+    
     const likes = await Likes.countDocuments({img}, (err, count) => {
-        console.log(count);
+       
         return count;
     })
     res.send({likes});

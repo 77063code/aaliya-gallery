@@ -71,11 +71,11 @@ router.post('/users/login', async (req, res) => {
 // Check to see if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
         const user = await User.findByCredentials(req.body.username, req.body.password);
-        console.log(user);
+        
         if (user.hashcode === '0') {
         // means the user has clicked on the confirmation email
             const token = await user.generateAuthToken(); // Note this method is on instance user and not the model User
-            console.log(token);
+            
             res.cookie('auth_token', token);
             /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
             res.send({
@@ -83,7 +83,7 @@ router.post('/users/login', async (req, res) => {
                 token
             });
         }
-        console.log('Hello')
+        
         res.status(350).send(user);
     } catch (e) {
         res.status(400).send();
@@ -134,17 +134,17 @@ router.get('/users/confirm/:code', async (req, res) => {
     const hashcode = req.params.code;
     try {
         const user = await User.findByHashCode(hashcode);
-        console.log(user);
+        
         user.hashcode = 0; // The user is saved in generateAuthToken
         const token = await user.generateAuthToken(); 
-        console.log(user);
+        
         res.cookie('auth_token', token);
         res.send({
             user,
             token
         });
     } catch (e) {
-        console.log('There is an error')
+        
         res.status(400).send();
     }
 })

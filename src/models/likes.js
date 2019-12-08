@@ -24,7 +24,6 @@ likesSchema.statics.findByUserLike = async (username,img) => {
 
 	   return like;
     } catch(e) {
-        console.log('The collection doesnt exist')
         return(null);
     }
 };

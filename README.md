@@ -14,10 +14,14 @@ TO RUN THE APPLICATION -
 2. nohup /home/ec2-user/mongodb/bin/mongod --dbpath=/home/ec2-user/mongodb-data --bind_ip_all &
 3. Go to aaliya-art directory
 4. nohup node src/index.js &
+5. To find out the processes -
+6. netstat -tulpen | grep mongo
+7. netstat -tulpen | grep node
 
 
 TO DO
 1. Tighten security on EC2
+2. If the user tries to like am image for the 2nd time, give an error message
 
 
 Aaliya's Art Website
