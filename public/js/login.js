@@ -13,7 +13,7 @@ document.forms['login'].addEventListener('submit', async (event) => {
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
         if (response.status === 350) {
-            $errorLogin.textContent = 'Please confirm your registration via link in the registration email';
+            $errorLogin.textContent = 'Please first confirm your registration via link in the email sent to you before logging in';
             $errorLogin.style.color = 'red';
         } else {
             let username = await response.json()  

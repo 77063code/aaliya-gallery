@@ -78,7 +78,8 @@ body {
 }
 
 .image {
-    perspective: 100rem;
+    /*perspective: 100rem;
+    -moz-perspective: 100rem;*/
     position: relative;  
 }
 

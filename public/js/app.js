@@ -12,6 +12,7 @@ Array.from($thumbsupclassname).forEach((element) => {
     element.addEventListener('click', async () => {
     //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
     const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
+console.log(img);
     const response = await fetch('/like/' + img)
     console.log(response)
     if (response.status === 401) {
@@ -30,8 +31,9 @@ Array.from($informationclassname).forEach((element) => {
 // Create a separate click event for all the information icons
 // When clicking on the information icons the back of the image which has all the image information will be displayed
     element.addEventListener('click',  () => {
-    console.log(element.parentElement.parentElement.childNodes[1].id)
+    
     const img = element.parentElement.parentElement.childNodes[1].classList[1]; 
+    console.log(img);
     document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)"; /* Rotate the front side 180deg so its not visible */
     document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)"; /* Rotate the back side to 0deg so it's visible */
     })   
@@ -68,7 +70,9 @@ document.forms['logout'].addEventListener('submit', async (event) => {
 
 // When the home page is loaded initialize all the likes querying from the database
 Array.from($likesclassname).forEach( async (element) => {
-    const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
+    //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
+    const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
+    console.log(img);
     const response = await fetch('/likes/' + img)
     const likes = await response.json();
     element.textContent = likes.likes;
@@ -86,8 +90,10 @@ const loginByHashCode = async (hashcode) => {
     }
 }
 
+console.log('Hello')
 const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 // This is he user confirming the creation of the account
+console.log(code);
  if (code) {     
     loginByHashCode(code);
 }
