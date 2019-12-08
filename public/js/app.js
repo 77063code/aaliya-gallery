@@ -74,7 +74,9 @@ Array.from($likesclassname).forEach( async (element) => {
     const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
     console.log(img);
     const response = await fetch('/likes/' + img)
+    console.log(response)
     const likes = await response.json();
+    console.log(likes)
     element.textContent = likes.likes;
     
 })
@@ -90,7 +92,7 @@ const loginByHashCode = async (hashcode) => {
     }
 }
 
-console.log('Hello')
+
 const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 // This is he user confirming the creation of the account
 console.log(code);

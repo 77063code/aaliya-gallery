@@ -9,8 +9,15 @@ FOR PRODUCTION -
     export AALIYAHOST='aaliya-gallery'
 3. Login as root to run the src/index.js. This is needed to open port 80
 
+TO RUN THE APPLICATION -
+1. Log-in as root
+2. nohup /home/ec2-user/mongodb/bin/mongod --dbpath=/home/ec2-user/mongodb-data --bind_ip_all &
+3. Go to aaliya-art directory
+4. nohup node src/index.js &
 
 
+TO DO
+1. Tighten security on EC2
 
 
 Aaliya's Art Website
