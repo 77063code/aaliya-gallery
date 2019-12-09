@@ -24,7 +24,6 @@ TO DO
 2. Figure out how not to reload images
 3. The icon clicking not working on my phone and old ipad
 4. When filling out forms on the phone the keyboard hides the field being filled
-5. Put a red asterik b/f required fields
 6. Password requirement hint
 7. The form error should be under that field
 
