@@ -21,7 +21,7 @@ TO RUN THE APPLICATION -
 
 TO DO
 1. Tighten security on EC2
-2. If the user tries to like am image for the 2nd time, give an error message
+2. Figure out how not to reload images
 
 
 Aaliya's Art Website
