@@ -59,9 +59,7 @@ router.post('/users', async (req, res) => {
             status = 355
         } else if (keys[0] === 'password' && e.errors[keys[0]].message.includes('characters')) {
             status = 356
-        } else if (keys[0] === 'password' && e.errors[keys[0]].message.includes('password')) {
-            status = 357
-        }
+        } 
         res.status(status).send(e.errors[keys[0]].message); // To send a non-standard status code
     }
 });

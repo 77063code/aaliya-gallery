@@ -12,13 +12,14 @@ Array.from($thumbsupclassname).forEach((element) => {
     element.addEventListener('click', async () => {
     //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
     const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
-
+   
     const response = await fetch('/like/' + img)
     
     if (response.status === 401) {
-        alert('Please authetnticate before using this feature')
+       // alert('Please authetnticate before using this feature')
+        element.parentElement.parentElement.nextElementSibling.textContent = 'Please authenticate before using this feature'
     } else if (response.status === 208) {
-        alert('You have already given a thumbs up to this image')
+        element.parentElement.parentElement.nextElementSibling.textContent = 'You have already given a thumbs up to this image';
     }
     else  {
         let like = await response.json()

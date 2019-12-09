@@ -28,8 +28,6 @@ document.forms['register'].addEventListener('submit', async (event) => {
             $errorRegister.textContent = 'Please enter a valid email';
         } else if(response.status === 356) {
             $errorRegister.textContent = 'The password needs to be atleast 7 characters long';
-        } else if(response.status === 357) {
-            $errorRegister.textContent = 'The password cannot contain the word password';
         } else {
              /*let username = await response.json()  
             username = username.user.username

@@ -164,6 +164,16 @@ body {
     cursor: pointer
 }
 
+.likes__error--message {
+    width: calc(95% - .3rem);
+    display: flex;
+    justify-content: center;
+    position:absolute;
+    top: 96%;
+    left: 0;
+    color: red;
+    font-size: 1.2rem;
+}
 
 /* backside of the image */
 
@@ -321,6 +331,14 @@ i.fa-google {
 
 .redAsterik {
     color: red;
+}
+
+.passwordRequirement {
+    font-size: 1.2rem
+}
+
+::placeholder {
+    opacity: 0.5;
 }
 
 

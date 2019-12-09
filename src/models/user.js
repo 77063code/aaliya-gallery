@@ -46,9 +46,7 @@ const userSchema = new mongoose.Schema({
                                 //throw new Error('The passwords needs to be more than 6 characters');
                             throw new Error('The password needs to more than 6 characters')
                         }
-                        if (validator.contains(value.toLowerCase(),'password')) {
-                                throw new Error('The password cannnot include string password');
-                        }}
+                }
         },
 	tokens: [{
 		token: {
