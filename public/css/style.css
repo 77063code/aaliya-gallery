@@ -1,7 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 html {
@@ -18,8 +19,12 @@ body {
     color: black;
     width: 100%;
     height: 20%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .header h1 {
@@ -29,9 +34,14 @@ body {
 }
 
 #logging {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding: 0 2rem;
     font-size: 1.8rem;
 }
@@ -41,9 +51,15 @@ body {
 }
 
 #logging a {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin: 0 .5rem;
     text-decoration: none;
 }
@@ -72,14 +88,20 @@ body {
 
 
 .gallery {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 
 .image {
-    /*perspective: 100rem;
-    -moz-perspective: 100rem;*/
+    -webkit-perspective: 100rem;
+            perspective: 100rem;
+    -moz-perspective: 100rem;
     position: relative;  
 }
 
@@ -90,11 +112,13 @@ body {
     margin: 1rem 1rem 0 1rem;
     border: .3rem solid silver;
     outline: .3rem solid gold;
+    -webkit-transition: all .8s ease;
     transition: all .8s ease;
     position:absolute;
     top: 0;
     left: 0;
-    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
 }
 
 
@@ -104,10 +128,16 @@ body {
     /* height: 11%;*/
     height: calc(15% -1rem -.3rem);
     padding-top: 0.5rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
     margin: 0 1rem;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     position:absolute;
     top: 89%;
     left: 0;
@@ -115,8 +145,12 @@ body {
     font-size: 1.8rem;
 }
 .likes {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
 }
 .total-likes {
     padding-left: .5rem;
@@ -144,15 +178,20 @@ body {
 }
 .img__back {
     background-color: mintcream;
-    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
 }
 
 .img__back--close--container {
     padding:0px;
     margin:0px;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
 }
 
 .img__back--close {
@@ -186,13 +225,20 @@ body {
     background: #333744;
     width: 100vw;
     height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 .centered-form__box {
-    box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
+    -webkit-box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
+            box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
     background: #F7F7FA;
     padding: 0 2.4rem 2.4rem 2.4rem;
     width: 25rem;
@@ -200,13 +246,18 @@ body {
 }
 
 .centered-form .social--auth {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-around;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
 }
 
 i.fa-facebook,
 i.fa-amazon,
 i.fa-google {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     color: #fff;
     background: lightblue;
@@ -214,8 +265,12 @@ i.fa-google {
     width: 4rem;
     height: 4rem;
     border-radius: 3rem;
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 
 
@@ -235,6 +290,7 @@ i.fa-google {
     border: none;
     color: white;
     font-size: 1.8rem;
+    -webkit-transition: background .3s ease;
     transition: background .3s ease;
     margin: 0 0 1rem 0;
     
@@ -271,8 +327,12 @@ i.fa-google {
     margin:0px;
     /*background-color: #F7F7FA;*/
     width: 22.6rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-end;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
 }
 
 
@@ -307,7 +367,9 @@ i.fa-google {
         font-size: calc(100vw / 40);
     }
     .gallery {
-        justify-content: center;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
     }    
     .image {
         width: 75vw;
@@ -318,7 +380,9 @@ i.fa-google {
 @media only screen and (min-width: 401px) and (max-width:960px) {
     
     .gallery {
-        justify-content: space-between;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
     }
     
     .image {
@@ -329,7 +393,9 @@ i.fa-google {
 
 @media only screen and (min-width: 961px) {
     .gallery {
-        justify-content: space-between;
+        -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+                justify-content: space-between;
     }
 
     .image {
