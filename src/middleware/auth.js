@@ -5,10 +5,10 @@ const User = require('../models/user');
 
 const auth = async (req,res,next) => {    
 
-	try {        
+	try {     
 		const token = req.cookies['auth_token'] // token being sent by the client
-		const decoded = jwt.verify(token,'HelloWorld'); // token decoded to get the payload     
-		const user = await User.findOne({_id: decoded._id, 'tokens.token': token});        
+		const decoded = jwt.verify(token,'HelloWorld'); // token decoded to get the payload 
+		const user = await User.findOne({_id: decoded._id, 'tokens.token': token});
 		// Find the user with that id and also the token that is sent by the client is one of the tokens stored
 
 		if (!user) {             

@@ -12,7 +12,7 @@ Array.from($thumbsupclassname).forEach((element) => {
     element.addEventListener('click', async () => {
     //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
     const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
-    console.log(img);
+   
    
     const response = await fetch('/like/' + img)
     

@@ -28,6 +28,7 @@ TO DO
 7. The form error should be under that field
 8. If the user is logged-in pre-populate the name and email fields
 9. In registeriation form give them an option to be sent an email whn new paintings are posted
+10. The like error messages are not working with every size
 
 
 Aaliya's Art Website

@@ -15,21 +15,12 @@ const host = process.env.AALIYAHOST || 'localhost';
 router.post('/users', async (req, res) => {
 // Register a new user  
     const user = new User(req.body);
+    
     try {
-        /*try {*/
-            await user.save()
-        /*} catch(e) {
-                const keys = Object.keys(e.errors);
-            console.log(keys)
-            keys.forEach((key) => {
-                console.log(key);
-                console.log(e.errors[key].message);
-        })
-        }*/
-        
+        await user.save()       
         await user.generateHashCode();
-        const token = await user.generateAuthToken();
-        res.cookie('auth_token', token);
+
+
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,
@@ -37,12 +28,10 @@ router.post('/users', async (req, res) => {
             subject: 'aaliya-art login confirmation',
             text: `Please click on following link to login http://${host}.com:${port}?code=${user.hashcode}`
         })
-        res.status(201).send({
-            user,
-            token
-        }); // The 201 is most routerropriate status code for a successful creation
+        res.status(201).send();// The 201 is most routerropriate status code for a successful creation
     } catch (e) {
         // All these errors happen when the save is run
+        
         const keys = Object.keys(e.errors);
         let status = 400;       
         if (keys[0] === 'name') {
