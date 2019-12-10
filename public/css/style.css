@@ -166,8 +166,12 @@ body {
 
 .likes__error--message {
     width: calc(95% - .3rem);
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     position:absolute;
     top: 96%;
     left: 0;
@@ -335,6 +339,18 @@ i.fa-google {
 
 .passwordRequirement {
     font-size: 1.2rem
+}
+
+::-webkit-input-placeholder {
+    opacity: 0.5;
+}
+
+:-ms-input-placeholder {
+    opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+    opacity: 0.5;
 }
 
 ::placeholder {

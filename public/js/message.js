@@ -1,12 +1,10 @@
 // ELEMENT
-
 $errorMessage = document.getElementById('error-message')
 
 document.forms['message'].addEventListener('submit', async (event) => {
-// When the login form is successfully submitted, render the header of the home page with the correct 
-// template. If unsuccessful then give an alert with a message to try again
+// user can send a message to the administrator of the site
     event.preventDefault();
-
+    
     try {
         const response = await fetch(event.target.action, {
                 method: 'POST',

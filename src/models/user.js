@@ -68,19 +68,19 @@ userSchema.methods.generateAuthToken = async function () {
 	return token;
 };
 
-
-// Generate a new hashcode and add it to the user instance
 userSchema.methods.generateHashCode = async function () {
+// Generate a new hashcode and add it to the user instance
 	const user = this;
     user.hashcode = md5(user.username + user.email + Math.floor(Math.random()*50000)); 
     // Create a hash value using the username, email and a random number b/w 0 amd 50000
 	await user.save();
 };
 
-// We dont want to expose password and tokens when we send the user data back to the client
+
 userSchema.methods.toJSON = function () {
-	// This method is called whenever stringify is called on the object and stringify is
-	// called whenever we do res.send
+// We dont want to expose password and tokens when we send the user data back to the client
+// This method(toJSON) is called whenever stringify is called on the object and stringify is
+// called whenever we do res.send
 	const user = this;
 	const userObject = user.toObject(); // This method is provided by mongoose to remove some metadata and properties can be deleted from the object
 
@@ -92,22 +92,20 @@ userSchema.methods.toJSON = function () {
 	return userObject;
 };
 
-// Authenticate the user
+// Authenticate the user based on username and password
 userSchema.statics.findByCredentials = async (username,password) => {
     
 	const user = await User.findOne({username});
-
+    
 	if (!user) {
 		throw new Error('Unable to login');
 	};
-
-	const isMatch = await bcrypt.compare(password,user.password);
-   
+    
+	const isMatch = await bcrypt.compare(password,user.password);   
 
 	if (!isMatch) {
 		throw new Error('Unable to login');
 	}
-
 	return user;
 };
 
@@ -116,27 +114,22 @@ userSchema.statics.findByHashCode = async (hashcode) => {
     const user = await User.findOne({hashcode});
     if (!user) {
         throw new Error('Cannot find the user');
-    }
-    
-    return user;    
-    
+    }    
+    return user;      
 }
                                                     
 
 
-// Hash the plain text username and password before saving
+// Hash the plain text password before saving
 userSchema.pre('save', async function (next) {
-
 	const user = this;
 
 	if (user.isModified('password')) {
 	// This will be true when the user is first created and then again if the password is being changed
 		user.password = await bcrypt.hash(user.password,8);
-	}
-    
+	}    
 	next();
 });
 
 const User = mongoose.model('User',userSchema);
-
 module.exports = User;

@@ -19,8 +19,6 @@ router.get('/like/:img', auth, async (req, res) => {
     
     try {
         const like = await Likes.findByUserLike(username,img)
- 
-       
                 
         if (!like) {
         // This user is liking this picture for the first time, so add an entry
@@ -33,8 +31,8 @@ router.get('/like/:img', auth, async (req, res) => {
         } else {          
             const likes = await Likes.countDocuments({img}, (err, count) => {
                             return count;
-            })
-            res.status(208).send({likes});
+                        })
+            res.status(360).send({likes}); // For some reason 209 status code is not going through
         }
         
     }  catch(e) {

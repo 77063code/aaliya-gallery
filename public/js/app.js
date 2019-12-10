@@ -12,14 +12,12 @@ Array.from($thumbsupclassname).forEach((element) => {
     element.addEventListener('click', async () => {
     //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
     const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
+    console.log(img);
    
     const response = await fetch('/like/' + img)
     
-    if (response.status === 401) {
-       // alert('Please authetnticate before using this feature')
-        element.parentElement.parentElement.nextElementSibling.textContent = 'Please authenticate before using this feature'
-    } else if (response.status === 208) {
-        element.parentElement.parentElement.nextElementSibling.textContent = 'You have already given a thumbs up to this image';
+    if (response.status === 401) {              element.parentElement.parentElement.nextElementSibling.textContent = 'Please authenticate before using this feature'
+    } else if (response.status === 360) {        element.parentElement.parentElement.nextElementSibling.textContent = 'You have already given a thumbs up to this image';
     }
     else  {
         let like = await response.json()
@@ -96,7 +94,6 @@ const loginByHashCode = async (hashcode) => {
 
 const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 // This is he user confirming the creation of the account
-
  if (code) {     
     loginByHashCode(code);
 }
@@ -106,8 +103,7 @@ if (username) {
 // logged in user
     document.getElementById('username').textContent = username;
     document.getElementById('logout-btn').style.display = "block"; // display the logout button
-    document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button
-    
+    document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
 } else {
     // Delete any existing cookies
     document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
