@@ -310,7 +310,7 @@ i.fa-google {
     
 }
 
-.centered-form input:focus {
+.centered-form input:focus,textarea:focus {
     background-color: lightblue;
 }
 

@@ -86,8 +86,10 @@ userSchema.methods.toJSON = function () {
 
 	delete userObject.password;
 	delete userObject.tokens;
+    /* Need both these fields for the message form
     delete userObject.name;
     delete userObject.email;
+    */
 
 	return userObject;
 };

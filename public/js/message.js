@@ -1,5 +1,35 @@
 // ELEMENT
-$errorMessage = document.getElementById('error-message')
+$errorMessage = document.getElementById('error-message');
+$messageName = document.getElementById('messageName');
+$messageEmail = document.getElementById('messageEmail');
+$messageMessage = document.getElementById('messageMessage');
+
+const getUserInfo = async () => {
+    
+    try {
+        const response = await fetch('/users/info/')
+        const user = await response.json();
+        return user;
+    } catch {
+        return undefined;
+    }
+    
+}
+    
+const initializeForm = async () => {
+// If user is logged in, then add that information to form so the user doest have to type it again
+    const user = await getUserInfo();
+    if (user.user) {
+        $messageName.value = user.user.name;
+        $messageEmail.value = user.user.email
+        $messageMessage.focus();
+    }
+    else {
+        $messageName.focus();
+    }
+}
+
+initializeForm();
 
 document.forms['message'].addEventListener('submit', async (event) => {
 // user can send a message to the administrator of the site
@@ -21,7 +51,8 @@ document.forms['message'].addEventListener('submit', async (event) => {
         } else {
             $errorMessage.textContent = 'Your message was sent successfully';
             $errorMessage.style.color = 'green';
-            window.location.href = `/`; 
+            const user = await getUserInfo();
+            user.user ? (window.location.href = '/?username=' + user.user.username) : (window.location.href = '/')        
         }       
         
     } catch (e) {
@@ -32,8 +63,9 @@ document.forms['message'].addEventListener('submit', async (event) => {
 
 
 
-document.getElementById('close-message').addEventListener('click', (e) => {
+document.getElementById('close-message').addEventListener('click', async (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
-    window.location.href = '/';
+    const user = await getUserInfo();
+    user.user ? (window.location.href = '/?username=' + user.user.username) : (window.location.href = '/')
 })

@@ -93,13 +93,13 @@ router.post('/users/logout', auth, async (req, res) => {
 
 router.post('/users/message', async (req,res) => {
     let status = 400
-    if (req.body.name.length <= 0) {
+    if (req.body.messageName.length <= 0) {
         status = 350
-    } else if (req.body.email.length <= 0) {
+    } else if (req.body.messageEmail.length <= 0) {
         status = 351
-    } else if (!validator.isEmail(req.body.email)) {
+    } else if (!validator.isEmail(req.body.messageEmail)) {
         status = 352
-    } else if (req.body.message.length <= 0) {
+    } else if (req.body.messageMessage.length <= 0) {
         status = 353
     } else {
         sgMail.setApiKey(sendgridAPIKEY);
@@ -107,7 +107,7 @@ router.post('/users/message', async (req,res) => {
             to: 'sgupt9999@gmail.com',
             from: 'sgupt9999@gmail.com',
             subject: 'aaliya-art',
-            text: `${req.body.name} sent message - ${req.body.message} from ${req.body.email}`
+            text: `${req.body.messageName} sent message - ${req.body.messageMessage} from ${req.body.messageEmail}`
         })
         status = 200;       
     }
@@ -136,9 +136,14 @@ router.get('/users/confirm/:code', async (req, res) => {
     }
 })
 
-router.get('/users/info', async (req, res) => {
+router.get('/users/info', auth, async (req, res) => {
 // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
-    
+    try {
+        const user = req.user;
+        res.send({user});
+    } catch (e) {
+        res.status(401).semd({error: 'Please authenticate'});
+    }
 })
 
 module.exports = router;
