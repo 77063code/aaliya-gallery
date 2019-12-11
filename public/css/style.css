@@ -160,10 +160,14 @@ body {
     z-index:99;
 }*/
 
-.btn {
+.btn-info, .btn-thumbs-up {
     width: 3rem;
-    /*border: none;*/
     background-color: #fff;
+    border: none;
+}
+
+.btn-info:focus, .btn-thumbs-up:focus {
+    outline: 0;
 }
 
 .fa-thumbs-up:hover, .fa-info:hover, fa-arrow-circle-left:hover {

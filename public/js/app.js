@@ -1,6 +1,6 @@
 // Elements
-const $thumbsupclassname = document.getElementsByClassName('fa-thumbs-up');
-const $informationclassname = document.getElementsByClassName('fa-info');
+const $thumbsupclassname = document.getElementsByClassName('btn-thumbs-up');
+const $informationclassname = document.getElementsByClassName('btn-info');
 const $imgbackclose = document.getElementsByClassName('img__back--close');
 const $likesclassname = document.getElementsByClassName('total-likes');
 const $messageclass = document.getElementsByClassName('fa-envelope')
@@ -26,26 +26,19 @@ Array.from($thumbsupclassname).forEach((element) => {
     })   
 });
 
-/*Array.from($informationclassname).forEach((element) => {
+Array.from($informationclassname).forEach((element) => {
 // Create a separate click event for all the information icons
 // When clicking on the information icons the back of the image which has all the image information will be displayed
     element.addEventListener('click',  () => {
     
     const img = element.parentElement.parentElement.childNodes[1].classList[1]; 
     
-    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)"; /* Rotate the front side 180deg so its not visible */
-   /* document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)"; /* Rotate the back side to 0deg so it's visible */
-   /* })   
-});*/
+    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)"; // Rotate the front side 180deg so its not visible */
+    document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)"; // Rotate the back side to 0deg so it's visible */
+   })   
+});
 
-document.getElementById('btn1').addEventListener('click', () => {
-    const element = document.getElementById('btn1')
-    const img = element.parentElement.parentElement.childNodes[1].classList[1]; 
-    console.log(img);
-    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)";
-    document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)";
-    
-})
+
 
 Array.from($imgbackclose).forEach((element) => {
 // Create a separate click event for all back pages of the images
