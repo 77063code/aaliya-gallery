@@ -156,8 +156,14 @@ body {
     padding-left: .5rem;
 }
 
-.fa-thumbs-up, .fa-info, fa-arrow-circle-left {
+/*.fa-thumbs-up, .fa-info, fa-arrow-circle-left {
     z-index:99;
+}*/
+
+.btn {
+    width: 3rem;
+    /*border: none;*/
+    background-color: #fff;
 }
 
 .fa-thumbs-up:hover, .fa-info:hover, fa-arrow-circle-left:hover {
