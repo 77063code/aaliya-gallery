@@ -4,7 +4,7 @@ const $informationclassname = document.getElementsByClassName('btn-info');
 const $imgbackclose = document.getElementsByClassName('img__back--close');
 const $likesclassname = document.getElementsByClassName('total-likes');
 const $messageclass = document.getElementsByClassName('fa-envelope')
-
+const $closeinformationclassname = document.getElementsByClassName('btn-close-information');
 
 Array.from($thumbsupclassname).forEach((element) => {
 // Create a separate click event for all the thumbs-up icons
@@ -40,7 +40,7 @@ Array.from($informationclassname).forEach((element) => {
 
 
 
-Array.from($imgbackclose).forEach((element) => {
+Array.from($closeinformationclassname).forEach((element) => {
 // Create a separate click event for all back pages of the images
 // When clicking close of the back page, it should revert back to the image
     element.addEventListener('click',  () => {
@@ -49,6 +49,23 @@ Array.from($imgbackclose).forEach((element) => {
     })   
 });
 
+/*
+Array.from($imgbackclose).forEach((element) => {
+// Create a separate click event for all back pages of the images
+// When clicking close of the back page, it should revert back to the image
+    element.addEventListener('click',  () => {
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)"; 
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)"; 
+    })   
+});
+*/
+
+
+/*const element = document.getElementById("btn-close-information")
+element.addEventListener('click',  () => {
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)"; 
+    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)";
+});*/
 
 
 
