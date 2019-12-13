@@ -26,7 +26,13 @@ document.forms['login'].addEventListener('submit', async (event) => {
     }
 });
 
-document.getElementById('close-login').addEventListener('click', (e) => {
+/*document.getElementById('close-login').addEventListener('click', (e) => {
+// Close the form  and go back to the home page
+    e.preventDefault();
+    window.location.href = '/';
+})*/
+
+document.getElementById('btn-close-login').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';

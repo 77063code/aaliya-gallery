@@ -11,9 +11,14 @@
     <div class="centered-form">
         
         <div class="centered-form__box">
-            <div class="close">
-                <div id="close-login">X</div>
-            </div>
+           
+                <!-- <div id="close-login">X</div> -->
+                <div class="img__back--close--container">
+                <button class="btn btn-close-login" id="btn-close-login">
+                        <i class="fa fa-times-circle" title="Close Form"></i>
+                </button>
+                </div>
+           
     
             <div class="social--auth">
                 <div class="amazon"><i class="fa-border fa fa-amazon fa-lg"></i></div>
@@ -22,8 +27,8 @@
             </div>
 
             <form id="login" method="POST" action="users/login" autocomplete="off">                
-                <label for="username"><span class="redAsterik">*</span> Username</label>
-                <input type="text" name="username" id="username" placeholder="Username" />
+                <label for="username"><span class="redAsterik">*</span> Login Id</label>
+                <input type="text" name="username" id="username" placeholder="Login Id" />
                 <label for="password"><span class="redAsterik">*</span> Password</label>
                 <input type="text" name="password" id="password" placeholder="Password" />
                 <button type="submit">Login</button>
