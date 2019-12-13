@@ -108,7 +108,7 @@ body {
 
 .img {
     width: 95%;
-    height: 85%;
+    height: 80%;
     margin: 1rem 1rem 0 1rem;
     border: .3rem solid silver;
     outline: .3rem solid gold;
@@ -125,8 +125,7 @@ body {
 /* Image stats */
 .img__stats {
     width: calc(95% - .3rem);
-    /* height: 11%;*/
-    height: calc(15% -1rem -.3rem);
+    height: calc(20% - 1.3rem);
     padding-top: 0.5rem;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -139,11 +138,23 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
     position:absolute;
-    top: 89%;
+    top: calc(80% + 1.3rem);
     left: 0;
     color: #6c6b6b;
     font-size: 1.8rem;
 }
+
+.img__stats h4 {
+    font-size: 2.5rem;
+    padding-top: 1rem;
+}
+    
+.img__stats h5 {
+    font-size: 2rem;
+    padding-top: 1rem;
+}
+    
+
 .likes {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -156,10 +167,6 @@ body {
     padding-left: .5rem;
 }
 
-/*.fa-thumbs-up, .fa-info, fa-arrow-circle-left {
-    z-index:99;
-}*/
-
 .btn-info, .btn-thumbs-up, .btn-close-information {
     width: 3rem;
     background-color: #fff;
@@ -171,6 +178,9 @@ body {
     outline: 0;
 }
 
+.fa-thumbs-up, .fa-info, .fa-arrow-circle-left {
+        font-size: 2.5rem;
+}   
 
 .fa-thumbs-up:hover, .fa-info:hover, .fa-arrow-circle-left:hover {
     cursor: pointer
@@ -185,7 +195,7 @@ body {
         -ms-flex-pack: center;
             justify-content: center;
     position:absolute;
-    top: 96%;
+    top: calc(100% - 1.3rem);
     left: 0;
     color: red;
     font-size: 1.2rem;
@@ -397,7 +407,7 @@ i.fa-google {
 }
 
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 600px) {
     html {
         font-size: calc(100vw / 40);
     }
@@ -410,22 +420,10 @@ i.fa-google {
         width: 90vw;
         height: 90vw;        
     }
-    
-    .img {
-        height: 80%;
-    }      
 
-    .img__stats {
-        height: calc(20% -1rem -.3rem);
-        top: 85%;
-    }
     
-    .img__stats h4 {
-        font-size: 2.5rem;
-    }
-    
-    .img__stats h5 {
-        font-size: 2rem;
+    .btn-info, .btn-thumbs-up, .btn-close-information {
+        width: 4rem;
     }
     
     .fa-thumbs-up, .fa-info, .fa-arrow-circle-left {
@@ -433,63 +431,25 @@ i.fa-google {
     }   
 }
 
-@media only screen and (min-width: 401px) and (max-width:600px) {
-    html {
-        font-size: calc(100vw / 40);
-    }
-    .gallery {
-        -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
-    }    
-    .image {
-        width: 80vw;
-        height: 80vw;        
-    }
-    
-    .img {
-        height: 80%;
-    }      
 
-    .img__stats {
-        height: calc(20% -1rem -.3rem);
-        top: 85%;
-    }
-    
-    .img__stats h4 {
-        font-size: 2.5rem;
-    }
-    
-    .img__stats h5 {
-        font-size: 2rem;
-    }
-    
-    .fa-thumbs-up, .fa-info, .fa-arrow-circle-left {
-        font-size: 3.5rem;
-    }
-
-
-
-
-
-}
-
-
-
-
-
-@media only screen and (min-width: 601px) and (max-width:959px) {
-    
+@media only screen and (min-width: 601px) and (max-width:959px) {    
     .gallery {
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
                 justify-content: space-between;
-    }
-    
+    }    
     .image {
         width: 48vw;
         height: 48vw;
-    }
+    }    
+    .img__stats h4 {
+        font-size: 2rem;
+        padding-top: .3rem;
+    }    
+    .img__stats h5 {
+        font-size: 1.5rem;
+        padding-top: .3rem;
+    }   
 }
 
 @media only screen and (min-width: 960px) {
@@ -503,4 +463,12 @@ i.fa-google {
         width: 480px;
         height: 480px;
     }
+    
+     .btn-info, .btn-thumbs-up, .btn-close-information {
+        width: 4rem;
+    }
+    
+    .fa-thumbs-up, .fa-info, .fa-arrow-circle-left {
+        font-size: 3.5rem;
+    }   
 }

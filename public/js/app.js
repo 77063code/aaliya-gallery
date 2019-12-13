@@ -16,8 +16,8 @@ Array.from($thumbsupclassname).forEach((element) => {
    
     const response = await fetch('/like/' + img)
     
-    if (response.status === 401) {              element.parentElement.parentElement.nextElementSibling.textContent = 'Please authenticate before using this feature'
-    } else if (response.status === 360) {        element.parentElement.parentElement.nextElementSibling.textContent = 'You have already given a thumbs up to this image';
+    if (response.status === 401) {              element.parentElement.parentElement.nextElementSibling.textContent = 'Please login before using this feature'
+    } else if (response.status === 360) {        element.parentElement.parentElement.nextElementSibling.textContent = 'You can only click once per image';
     }
     else  {
         let like = await response.json()
