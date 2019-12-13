@@ -408,6 +408,14 @@ i.fa-google {
     overflow: hidden;
 }
 
+#btn-close-login:focus {
+    outline: 0;
+}
+
+.fa-times-circle:hover {
+    cursor: pointer
+}
+
 .fa-times-circle {
    /*order-left: 1px solid black;
     border-bottom: 1px solid black;*/
