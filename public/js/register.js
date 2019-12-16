@@ -44,3 +44,8 @@ document.getElementById('close-register').addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = '/';
 })
+
+document.addEventListener('ontouchmove', (e) => {
+    e.preventDefault();
+}
+
