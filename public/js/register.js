@@ -47,5 +47,4 @@ document.getElementById('close-register').addEventListener('click', (e) => {
 
 document.addEventListener('ontouchmove', (e) => {
     e.preventDefault();
-}
-
+});
