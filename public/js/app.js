@@ -102,9 +102,9 @@ Array.from($likesclassname).forEach( async (element) => {
 const loginByHashCode = async (hashcode) => {
     try {
         const response = await fetch('/users/confirm/' + hashcode)  
-        let username = await response.json()  
-        username = username.user.username
-        window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
+        let loginid = await response.json()  
+        loginid = loginid.user.loginid
+        window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
     } catch (e) {
         alert('The email link not working')
     }
@@ -117,10 +117,10 @@ const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
     loginByHashCode(code);
 }
 
-const {username} = Qs.parse(location.search, { ignoreQueryPrefix: true });
-if (username) {
+const {loginid} = Qs.parse(location.search, { ignoreQueryPrefix: true });
+if (loginid) {
 // logged in user
-    document.getElementById('username').textContent = username;
+    document.getElementById('loginid').textContent = loginid;
     document.getElementById('logout-btn').style.display = "block"; // display the logout button
     document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
 } else {

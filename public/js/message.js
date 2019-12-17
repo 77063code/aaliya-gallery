@@ -42,17 +42,21 @@ document.forms['message'].addEventListener('submit', async (event) => {
         })
         if (response.status === 350) {
             $errorMessage.textContent = 'Please enter your name';
+            $messageName.focus();
         } else if (response.status === 351) {
             $errorMessage.textContent = 'Please enter an email';
+            $messageEmail.focus();
         } else if (response.status === 352) {
             $errorMessage.textContent = 'Please enter a valid email';
+            $messageEmail.focus();
         } else if (response.status === 353) {
             $errorMessage.textContent = 'Please enter a message';
+            $messageMessage.focus();
         } else {
             $errorMessage.textContent = 'Your message was sent successfully';
             $errorMessage.style.color = 'green';
             const user = await getUserInfo();
-            user.user ? (window.location.href = '/?username=' + user.user.username) : (window.location.href = '/')        
+            user.user ? (window.location.href = '/?loginid=' + user.user.loginid) : (window.location.href = '/')        
         }       
         
     } catch (e) {
@@ -67,5 +71,10 @@ document.getElementById('close-message').addEventListener('click', async (e) => 
 // Close the form  and go back to the home page
     e.preventDefault();
     const user = await getUserInfo();
-    user.user ? (window.location.href = '/?username=' + user.user.username) : (window.location.href = '/')
+    user.user ? (window.location.href = '/?loginid=' + user.user.loginid) : (window.location.href = '/')
 })
+
+document.addEventListener('touchmove', (e) => {
+// To prevent the form from reloading on swipe motion on the screen
+    e.preventDefault();
+}, {passive: false});

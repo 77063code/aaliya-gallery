@@ -30,6 +30,9 @@ TO DO
 9. In registeriation form give them an option to be sent an email whn new paintings are posted
 10. The like error messages are not working with every size
 
+MSC - 
+1. When saw user interacting, the username confused them, so have to change that field to login id everywhere
+
 
 Aaliya's Art Website
 1. Installing md5 to create hash values 

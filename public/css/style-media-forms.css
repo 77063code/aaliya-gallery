@@ -1,0 +1,13 @@
+@media only screen and (max-width: 600px) {
+    
+.centered-form input {
+    margin-bottom: 1rem;
+    width: 100%;
+    border: .1rem solid #eeeeee;
+    padding: .5rem;
+    outline: none;
+    font-size: 1.8rem;
+    }   
+}
+
+

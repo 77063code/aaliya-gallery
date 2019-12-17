@@ -7,7 +7,7 @@ const likesSchema = new mongoose.Schema({
                 required: true,
                 trim: true
         },
-        username: { // user who liked this image
+        loginid: { // user who liked this image
                 type: String,
                 required: true,
                 trim: true
@@ -17,10 +17,10 @@ const likesSchema = new mongoose.Schema({
 
 
 // Authenticate the user
-likesSchema.statics.findByUserLike = async (username,img) => {
+likesSchema.statics.findByUserLike = async (loginid,img) => {
     
     try {
-        const like = await Likes.findOne({username,img});   
+        const like = await Likes.findOne({loginid,img});   
 
 	   return like;
     } catch(e) {

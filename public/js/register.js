@@ -16,22 +16,26 @@ document.forms['register'].addEventListener('submit', async (event) => {
         })
         if (response.status === 350) {
             $errorRegister.textContent = 'Please enter your name';
+            document.getElementById('name').focus();
         } else if(response.status === 351) {
-             $errorRegister.textContent = 'Please enter a username';
+             $errorRegister.textContent = 'Please enter a loginid';
         } else if(response.status === 352) {
-            $errorRegister.textContent = 'This username is already taken. Please enter a different username';
+            $errorRegister.textContent = 'This loginid is already taken. Please enter a different loginid';
         } else if(response.status === 353) {
             $errorRegister.textContent = 'Please enter an email';
+            document.getElementById('email').focus();
         } else if(response.status === 354) {
             $errorRegister.textContent = 'This email is already being used. Please enter a different email';
+            document.getElementById('email').focus();
         } else if(response.status === 355) {
             $errorRegister.textContent = 'Please enter a valid email';
+            document.getElementById('email').focus();
         } else if(response.status === 356) {
             $errorRegister.textContent = 'The password needs to be atleast 7 characters long';
         } else {
-             /*let username = await response.json()  
-            username = username.user.username
-            window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page */
+             /*let loginid = await response.json()  
+            loginid = loginid.user.loginid
+            window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page */
             $errorRegister.textContent = 'Please check your email for confirmation link'
         }
     } catch (e) {

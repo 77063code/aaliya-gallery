@@ -16,9 +16,9 @@ document.forms['login'].addEventListener('submit', async (event) => {
             $errorLogin.textContent = 'Please first confirm your registration via link in the email sent to you before logging in';
             $errorLogin.style.color = 'red';
         } else {
-            let username = await response.json()  
-            username = username.user.username
-            window.location.href = `/?username=${username}`; // If a user is found based on creds, pass the username to the home page
+            let loginid = await response.json()  
+            loginid = loginid.user.loginid
+            window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
         }
     } catch (e) {
         $errorLogin.textContent = 'Error logging in. Please try again';
@@ -37,3 +37,8 @@ document.getElementById('btn-close-login').addEventListener('click', (e) => {
     e.preventDefault();
     window.location.href = '/';
 })
+
+document.addEventListener('touchmove', (e) => {
+// To prevent the form from reloading on swipe motion on the screen
+    e.preventDefault();
+}, {passive: false});

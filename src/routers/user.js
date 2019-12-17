@@ -36,9 +36,9 @@ router.post('/users', async (req, res) => {
         let status = 400;       
         if (keys[0] === 'name') {
              status = 350
-        } else if (keys[0] === 'username' && e.errors[keys[0]].message.includes('required')) {
+        } else if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('required')) {
             status = 351
-        } else if (keys[0] === 'username' && e.errors[keys[0]].message.includes('unique')) {
+        } else if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('unique')) {
             status = 352
         } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('required')) {
             status = 353
@@ -57,7 +57,7 @@ router.post('/users', async (req, res) => {
 router.post('/users/login', async (req, res) => {
 // Check to see if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
-        const user = await User.findByCredentials(req.body.username, req.body.password);
+        const user = await User.findByCredentials(req.body.loginid, req.body.password);
         
         if (user.hashcode === '0') {
         // means the user has clicked on the confirmation email

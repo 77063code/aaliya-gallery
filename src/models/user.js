@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
                 required: true,
                 trim: true
         },
-        username: {
+        loginid: {
                 type: String,
                 required: true,
                 trim: true,
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
                         }
                 }},
         hashcode: {
-        // MD5 generated hash value based on username and email. This is filled in when the user
+        // MD5 generated hash value based on loginid and email. This is filled in when the user
         // registers and once the user clicks on the email confirmation link, it should be 
         // set to zero
                 type: String,
@@ -71,8 +71,8 @@ userSchema.methods.generateAuthToken = async function () {
 userSchema.methods.generateHashCode = async function () {
 // Generate a new hashcode and add it to the user instance
 	const user = this;
-    user.hashcode = md5(user.username + user.email + Math.floor(Math.random()*50000)); 
-    // Create a hash value using the username, email and a random number b/w 0 amd 50000
+    user.hashcode = md5(user.loginid + user.email + Math.floor(Math.random()*50000)); 
+    // Create a hash value using the loginid, email and a random number b/w 0 amd 50000
 	await user.save();
 };
 
@@ -94,10 +94,10 @@ userSchema.methods.toJSON = function () {
 	return userObject;
 };
 
-// Authenticate the user based on username and password
-userSchema.statics.findByCredentials = async (username,password) => {
+// Authenticate the user based on loginid and password
+userSchema.statics.findByCredentials = async (loginid,password) => {
     
-	const user = await User.findOne({username});
+	const user = await User.findOne({loginid});
     
 	if (!user) {
 		throw new Error('Unable to login');

@@ -15,14 +15,14 @@ router.get('/like/:img', auth, async (req, res) => {
 // if no then add a new record and send the new count
     
     const img = req.params.img;
-    const username = req.user.username;
+    const loginid = req.user.loginid;
     
     try {
-        const like = await Likes.findByUserLike(username,img)
+        const like = await Likes.findByUserLike(loginid,img)
                 
         if (!like) {
         // This user is liking this picture for the first time, so add an entry
-            const like = new Likes({img, username}); 
+            const like = new Likes({img, loginid}); 
             await like.save();
             const likes = await Likes.countDocuments({img}, (err, count) => {
                             return count;
