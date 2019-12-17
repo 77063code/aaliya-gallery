@@ -46,5 +46,16 @@ document.getElementById('close-register').addEventListener('click', (e) => {
 })
 
 document.addEventListener('touchmove', (e) => {
+// To prevent the form from reloading on swipe motion on the screen
     e.preventDefault();
+}, {passive: false});
+
+/* Was trying this solution to keep the forms working on a mobile phone, but its not working
+Keeping it here for right now
+document.getElementById('name').addEventListener('focus', () => {
+        console.log('Hello');
+        window.scrollTo(0,0);
+        document.body.scrollTop = 0;
 });
+*/
+
