@@ -21,10 +21,9 @@ TO RUN THE APPLICATION -
 
 
 TO DO
-1. Currently when the user types in the name om ,obile, it auto capitalizes the first letter
+1. Auto renew of certbot
 1. Tighten security on EC2
 2. Figure out how not to reload images
-3. The icon clicking not working on my phone and old ipad
 4. When filling out forms on the phone the keyboard hides the field being filled
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
 

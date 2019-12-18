@@ -8,7 +8,7 @@ const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
 const sendgridAPIKEY = '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'
 
-const port = process.env.AALIYAPORT || 3000;
+const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
 
 
@@ -24,9 +24,9 @@ router.post('/users', async (req, res) => {
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,
-            from: 'sgupt9999@gmail.com',
+            from: 'aaliyagallery@gmail.com',
             subject: 'aaliya-art login confirmation',
-            text: `Please click on following link to login http://${host}.com:${port}?code=${user.hashcode}`
+            text: `Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`
         })
         res.status(201).send();// The 201 is most routerropriate status code for a successful creation
     } catch (e) {
@@ -104,8 +104,8 @@ router.post('/users/message', async (req,res) => {
     } else {
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
-            to: 'sgupt9999@gmail.com',
-            from: 'sgupt9999@gmail.com',
+            to: 'aaliyagallery@gmail.com',
+            from: 'aaliyagallery@gmail.com',
             subject: 'aaliya-art',
             text: `${req.body.messageName} sent message - ${req.body.messageMessage} from ${req.body.messageEmail}`
         })

@@ -21,7 +21,6 @@ app.use(cookieParser());
 
 if (portHTTP !== 3000) {
     httpApp.use((req,res) => {
-            console.log('Hello');
             res.redirect('https://' + req.headers.host + req.url);
     });
 }
