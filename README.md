@@ -27,6 +27,10 @@ TO DO
 4. When filling out forms on the phone the keyboard hides the field being filled
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
 
+TO INSTALL LETSENCRYPT
+1. First install EPEL repo
+2. yum install certbot
+
 MSC - 
 1. When saw user interacting, the username confused them, so have to change that field to login id everywhere
 

@@ -9,7 +9,7 @@ const port = process.env.AALIYAPORT || 3000 // AALIYAPORT is defined in /etc/pro
 
 
 
-app.use(express.static('public'));
+app.use(express.static('public', {dotfiles: 'allow'})); // The dotfiles optiion is to allow lets encrypt challenge to go through
 app.use(express.json()); // This one line parses incoming data into a JSON object
 app.use(express.urlencoded({extended: false }));
 app.use(cookieParser());
