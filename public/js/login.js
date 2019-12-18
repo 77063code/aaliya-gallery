@@ -2,6 +2,8 @@
 
 $errorLogin = document.getElementById('error-login')
 
+document.getElementById('loginid').focus();
+
 document.forms['login'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again

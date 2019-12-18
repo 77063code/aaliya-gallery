@@ -137,23 +137,8 @@ i.fa-google {
 }
 
 
-#close-login, #close-register, #close-message {
-    border-left: .1rem solid black;
-    border-bottom: .1rem solid black;
-    border-right: .1rem solid black;
-    border-top: .1rem solid black;
-    border-radius: 3rem;
-    
-    cursor: pointer;
-    font-size: 1.6rem;
-    padding: .5rem;
-    margin: -.2rem;
-    background-color: blue;
-    color: white;
-    opacity: 0.5;
-}
 
-#btn-close-login {
+#btn-close-login, #btn-close-register, #btn-close-message {
     width: 9rem;
     opacity: 0.5;
     text-align: right;
@@ -162,19 +147,11 @@ i.fa-google {
     margin-top: -1rem;
     outline: none;
     overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
 }
 
-#btn-close-login:focus {
-    outline: 0;
-}
-
-.fa-times-circle:hover {
-    cursor: pointer
-}
 
 .fa-times-circle {
-   /*order-left: 1px solid black;
-    border-bottom: 1px solid black;*/
     color: black;
     cursor: pointer;
     font-size: 3.5rem;
@@ -183,6 +160,12 @@ i.fa-google {
     opacity: 0.7;
     
 }
+
+.fa-times-circle:hover {
+    cursor: pointer
+}
+
+
 
 /* Error messages on all the forms */
 #error-register, #error-login, #error-message {

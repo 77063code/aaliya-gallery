@@ -67,7 +67,7 @@ document.forms['message'].addEventListener('submit', async (event) => {
 
 
 
-document.getElementById('close-message').addEventListener('click', async (e) => {
+document.getElementById('btn-close-message').addEventListener('click', async (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     const user = await getUserInfo();

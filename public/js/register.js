@@ -2,6 +2,9 @@
 
 $errorRegister = document.getElementById('error-register');
 
+
+document.getElementById('name').focus();
+
 document.forms['register'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
@@ -43,7 +46,7 @@ document.forms['register'].addEventListener('submit', async (event) => {
     }
 });
 
-document.getElementById('close-register').addEventListener('click', (e) => {
+document.getElementById('btn-close-register').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
