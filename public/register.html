@@ -11,7 +11,8 @@
 
 <body>
     <div class="centered-form">
-        <div class="centered-form__box">
+        
+        <div class="centered-form__box" id="register-box">
                 <div class="img__back--close--container">
                     <button id="btn-close-register">
                             <i class="fa fa-times-circle" title="Close Form"></i>
@@ -26,10 +27,24 @@
                 <input <type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password" placeholder="Password(min 7 char)" />
                 <button type="submit">Create a new account</button>
             </form>
+            
+            
             <p id="error-register"><font color="blue"> User information is not shared with any 3rd party.</font></p>
-
-
         </div>
+        
+        <div class="centered-form__box" id="resend-email">
+                <div class="img__back--close--container">
+                    <button id="btn-close-resend-email">
+                            <i class="fa fa-times-circle" title="Close Form"></i>
+                    </button>
+                </div>
+                
+                <p id="email-confirm"></p>
+                <br><br>
+            
+                <button id="btn-resend-email">Send Email Again</button>
+        </div>
+        
     </div>
 
     <script src="./js/register.js"></script>
