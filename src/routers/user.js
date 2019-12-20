@@ -22,14 +22,19 @@ router.post('/users', async (req, res) => {
 
 
         sgMail.setApiKey(sendgridAPIKEY);
-        console.log('hello1')
         sgMail.send({
             to: user.email,
             from: 'aaliyagallery@gmail.com',
             subject: 'aaliya-art login confirmation',
             text: `Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`
         })
-        console.log('hello2')
+        sgMail.send({
+            to: 'aaliyagallery@gmail.com',
+            from: 'aaliyagallery@gmail.com',
+            subject: 'New User Account Created',
+            text: `Name: ${user.name}, Email: ${user.email}, Loginid: ${user.loginid}`
+        })
+        // Send a confirmation email to the new user, and a new user joining email to admin
         res.status(201).send();// The 201 is most routerropriate status code for a successful creation
     } catch (e) {
         // All these errors happen when the save is run
