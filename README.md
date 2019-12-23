@@ -26,7 +26,7 @@ TO DO
 1. Remove options for social media login
 1. Create the resend email screen on both registration and creating a new account
 1. at createddatetime filed to both colections
-1. Update the email subject when  a message is sent
+1. Update the email subject when  a message is sent - DONE
 
 
 2. Figure out how not to reload images

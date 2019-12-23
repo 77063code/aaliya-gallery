@@ -1,6 +1,8 @@
 // ELEMENT
 
 $errorRegister = document.getElementById('error-register');
+$emailConfirm = document.getElementById('email-confirm');
+$emailConfirmResend = document.getElementById('email-confirm-resend');
 
 
 document.getElementById('name').focus();
@@ -39,7 +41,13 @@ document.forms['register'].addEventListener('submit', async (event) => {
              /*let loginid = await response.json()  
             loginid = loginid.user.loginid
             window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page */
-            $errorRegister.textContent = 'Please check your email for confirmation link'
+            /*$errorRegister.textContent = 'Please check your email including the spam folder for confirmation link'*/
+            $emailConfirm.textContent = 'Please check your email including the spam folder for confirmation link'
+            $emailConfirmResend.textContent = "If you don't receive the confirmation email, please click on the 'Send Email Again' button"
+            document.getElementById('register-user').style.display = 'none';
+            document.getElementById('resend-email').style.display = 'block';
+            
+            
         }
     } catch (e) {
         $errorRegister.textContent = 'Error registering. Please try again';
@@ -50,6 +58,19 @@ document.getElementById('btn-close-register').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
+})
+
+
+document.getElementById('btn-close-resend-email').addEventListener('click', (e) => {
+// Close the form  and go back to the home page
+    e.preventDefault();
+    window.location.href = '/';
+})
+
+
+document.getElementById('btn-resend-email').addEventListener('click', (e) => {
+    e.preventDefault();
+    alert('hello');
 })
 
 document.addEventListener('touchmove', (e) => {

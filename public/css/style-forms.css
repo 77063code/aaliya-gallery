@@ -138,7 +138,7 @@ i.fa-google {
 
 
 
-#btn-close-login, #btn-close-register, #btn-close-message {
+#btn-close-login, #btn-close-register, #btn-close-message, #btn-close-resend-email {
     width: 9rem;
     opacity: 0.5;
     text-align: right;
@@ -173,5 +173,17 @@ i.fa-google {
     text-align: center;
     color: red;
     font-size: 1.6rem;
+}
+
+#email-confirm, #email-confirm-resend {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+}
+
+#resend-email {
+    display: none;
 }
 
