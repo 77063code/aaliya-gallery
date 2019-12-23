@@ -23,6 +23,12 @@ TO RUN THE APPLICATION -
 TO DO
 1. Auto renew of certbot
 1. Tighten security on EC2
+1. Remove options for social media login
+1. Create the resend email screen on both registration and creating a new account
+1. at createddatetime filed to both colections
+1. Update the email subject when  a message is sent
+
+
 2. Figure out how not to reload images
 4. When filling out forms on the phone the keyboard hides the field being filled
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
@@ -53,10 +59,11 @@ Aaliya's Art Website
 
 7. To upvote, the user has to be authenticated and should have voted on the same painting before - DONE
 
-8. Create a back screen for each painting
+8. Create a back screen for each painting - DONE 
 
-9. Create a screen for sending an email message
+9. Create a screen for sending an email message -  DONE 
+
 10. When the users register for the first time, how to confirm the email is legit
-11. To be able to authenticate using google, facebook and amazon
 
-2. 
+
+

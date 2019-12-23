@@ -113,7 +113,7 @@ router.post('/users/message', async (req,res) => {
         sgMail.send({
             to: 'aaliyagallery@gmail.com',
             from: 'aaliyagallery@gmail.com',
-            subject: 'aaliya-art',
+            subject: 'New Message',
             text: `${req.body.messageName} sent message - ${req.body.messageMessage} from ${req.body.messageEmail}`
         })
         status = 200;       
