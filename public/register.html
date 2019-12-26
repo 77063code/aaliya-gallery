@@ -19,9 +19,9 @@
                 </div>
             
             <form id="register" method="POST" action="users" autocomplete="off">
-                <input type="text" name="name" id="name" placeholder="Name" />                
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="email" id="email" placeholder="Email" />              
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="loginid" id="loginid" placeholder="Login Id" />
+                <input type="text" autocorrect="off" autocomplete="off" spellcheck="false" name="name" id="name" placeholder="Name" />                
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email" placeholder="Email" />              
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid" placeholder="Login Id" />
                 <!-- <label for="password"><span class="redAsterik">*</span> Password - <span class="passwordRequirement">(need to be at least 7 characters long)</span></label> -->
                 <input <type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password" placeholder="Password(min 7 char)" />
                 <button type="submit">Create a new account</button>
@@ -38,10 +38,9 @@
                     </button>
                 </div>
                     
-                    <p id="email-confirm"></p>
-                    <p id="email-confirm-resend"></p>
-                        
-                    <button id="btn-resend-email">Send Email Again</button>
+                <p id="email-confirm"></p>
+                <p id="email-confirm-resend"></p>                        
+                <button id="btn-resend-email">Resend Email</button>
                 
         </div>
         

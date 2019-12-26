@@ -23,42 +23,12 @@
  
 }
 
-.centered-form .social--auth {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-}
-
-i.fa-facebook,
-i.fa-amazon,
-i.fa-google {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    color: #fff;
-    background: lightblue;
-    margin: 2rem 0;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 3rem;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-}
-
-
 .centered-form label {
     display: block;
     font-size: 1.8rem;
     margin-bottom: .5rem;
     color: #777;
 }
-
 
 .centered-form button {
     width: 100%;
@@ -70,8 +40,12 @@ i.fa-google {
     font-size: 1.8rem;
     -webkit-transition: background .3s ease;
     transition: background .3s ease;
-    margin: 0 0 1rem 0;
-    
+    margin: 0 0 1rem 0;    
+}
+
+.centered-form button:disabled {
+    color: lightgrey;
+    opacity: 0.3;
 }
 
 .centered-form input {
@@ -136,8 +110,6 @@ i.fa-google {
             justify-content: flex-end;
 }
 
-
-
 #btn-close-login, #btn-close-register, #btn-close-message, #btn-close-resend-email {
     width: 9rem;
     opacity: 0.5;
@@ -149,7 +121,6 @@ i.fa-google {
     overflow: hidden;
     -webkit-tap-highlight-color: transparent;
 }
-
 
 .fa-times-circle {
     color: black;
@@ -165,8 +136,6 @@ i.fa-google {
     cursor: pointer
 }
 
-
-
 /* Error messages on all the forms */
 #error-register, #error-login, #error-message {
     width: 100%;
@@ -175,15 +144,53 @@ i.fa-google {
     font-size: 1.6rem;
 }
 
-#email-confirm, #email-confirm-resend {
+#email-confirm, #email-confirm-resend, #login-resend-email {
     width: 100%;
     text-align: center;
     color: red;
     font-size: 1.6rem;
     padding-bottom: 1rem;
+    padding-top: 1rem;
 }
 
 #resend-email {
     display: none;
 }
 
+#btn-login-resend-email {
+    display: none;
+}
+
+
+
+
+/* Not being used right now. Moving to the bottom 
+.centered-form .social--auth {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+i.fa-facebook,
+i.fa-amazon,
+i.fa-google {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    background: lightblue;
+    margin: 2rem 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 3rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+*/

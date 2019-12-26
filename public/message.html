@@ -20,9 +20,9 @@
                 </div>
     
             <form id="message" method="POST" action="users/message" autocomplete="off">     
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="messageName" id="messageName" placeholder="Name" />
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="messageEmail" id="messageEmail" placeholder="Email" />
-                <textarea name="messageMessage" id="messageMessage" placeholder="Your message"></textarea>
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="messageName" id="messageName" placeholder="Name" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="messageEmail" id="messageEmail" placeholder="Email" />
+                <textarea spellcheck="false" name="messageMessage" id="messageMessage" placeholder="Your message"></textarea>
                 <button type="submit">Send it!</button>
             </form>
             <p id="error-message"></p>

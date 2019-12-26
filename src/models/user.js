@@ -111,6 +111,19 @@ userSchema.statics.findByCredentials = async (loginid,password) => {
 	return user;
 };
 
+// Find user by loginid
+userSchema.statics.findByLoginId = async (loginid) => {
+    
+	const user = await User.findOne({loginid});
+    
+	if (!user) {
+        console.log('error');
+		throw new Error('Unable to login');
+	};
+    
+	return user;
+};
+
 // Find the user by hashcode
 userSchema.statics.findByHashCode = async (hashcode) => {
     const user = await User.findOne({hashcode});

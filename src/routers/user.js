@@ -149,8 +149,38 @@ router.get('/users/info', auth, async (req, res) => {
         const user = req.user;
         res.send({user});
     } catch (e) {
-        res.status(401).semd({error: 'Please authenticate'});
+        res.status(401).send({error: 'Please authenticate'});
     }
+})
+
+router.post('/users/resend/email', async (req,res) => {
+// This route is used to resend the confirmation email based on the 
+// loginid. First check if the user exists and then check if the hashcode
+// is different from zero
+    try {
+        const user = await User.findByLoginId(req.body.loginid);
+        
+        sgMail.setApiKey(sendgridAPIKEY);
+        sgMail.send({
+            to: user.email,
+            from: 'aaliyagallery@gmail.com',
+            subject: 'aaliya-art login confirmation',
+            text: `Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`
+        })
+        sgMail.send({
+            to: 'aaliyagallery@gmail.com',
+            from: 'aaliyagallery@gmail.com',
+            subject: 'New User Account Created',
+            text: `Name: ${user.name}, Email: ${user.email}, Loginid: ${user.loginid}`
+        })
+        // Send a confirmation email to the new user, and a new user joining email to admin
+        res.send();// 
+        }
+    catch {
+        res.status(401).send();
+        }
+
+    
 })
 
 module.exports = router;

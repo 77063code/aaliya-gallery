@@ -43,11 +43,10 @@ document.forms['register'].addEventListener('submit', async (event) => {
             window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page */
             /*$errorRegister.textContent = 'Please check your email including the spam folder for confirmation link'*/
             $emailConfirm.textContent = 'Please check your email including the spam folder for confirmation link'
-            $emailConfirmResend.textContent = "If you don't receive the confirmation email, please click on the 'Send Email Again' button"
+            $emailConfirmResend.textContent = "If you don't receive the confirmation email, please click on the 'Resend Email' button"
             document.getElementById('register-user').style.display = 'none';
             document.getElementById('resend-email').style.display = 'block';
-            
-            
+                    
         }
     } catch (e) {
         $errorRegister.textContent = 'Error registering. Please try again';
@@ -68,9 +67,32 @@ document.getElementById('btn-close-resend-email').addEventListener('click', (e) 
 })
 
 
-document.getElementById('btn-resend-email').addEventListener('click', (e) => {
+document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     e.preventDefault();
-    alert('hello');
+    const loginid = document.getElementById('register').elements['loginid'].value
+    const data = {loginid}
+    document.getElementById('btn-resend-email').disabled = true;
+    try {
+        const response = await fetch('/users/resend/email', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    if (response.status === 200) {
+        $emailConfirm.textContent = '';
+        $emailConfirmResend.textContent = 'Confirmation email resent. Please check your email including the spam folder';
+        }
+    else {
+        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        }
+    }
+    catch (e) {
+        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+    }
+    
+    // setTimeout(() => {window.location.href = '/'}, 2000)
 })
 
 document.addEventListener('touchmove', (e) => {
