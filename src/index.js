@@ -12,6 +12,8 @@ const app = express();
 const httpApp = express();
 const portHTTP = process.env.AALIYAPORTHTTP || 3000 // AALIYAPORTHTTP is defined in /etc/profile.d/custom.sh
 const portHTTPS = process.env.AALIYAPORTHTTPS || 3000 // AALIYAPORTHTTPS is defined in /etc/profile.d/custom.sh
+const host = process.env.AALIYAHOST || localhost
+
 
 
 
@@ -31,9 +33,9 @@ app.use(likesRouter);
 if (portHTTP !== 3000) {
     http.createServer(httpApp).listen(portHTTP);
     https.createServer({
-      key: fs.readFileSync('/etc/letsencrypt/live/aaliya-gallery.com/privkey.pem'),
-      cert: fs.readFileSync('/etc/letsencrypt/live/aaliya-gallery.com/cert.pem'),
-      ca: fs.readFileSync('/etc/letsencrypt/live/aaliya-gallery.com/chain.pem'),
+      key: fs.readFileSync(`/etc/letsencrypt/live/${host}.com/privkey.pem`),
+      cert: fs.readFileSync(`/etc/letsencrypt/live/${host}.com/cert.pem`),
+      ca: fs.readFileSync(`/etc/letsencrypt/live/${host}.com/chain.pem`),
     }, app).listen(portHTTPS, () => {
       console.log('Listening...')
     })
