@@ -27,6 +27,8 @@ TO DO
 2. Figure out how not to reload images
 4. When filling out forms on the phone the keyboard hides the field being filled
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
+7. On login in page, reset the messages when trying to login again from earlier emaill resent message
+8. Give a mesage when a user votes for the 1st time
 
 
 TO DO BIG
