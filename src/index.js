@@ -12,7 +12,7 @@ const app = express();
 const httpApp = express();
 const portHTTP = process.env.AALIYAPORTHTTP || 3000 // AALIYAPORTHTTP is defined in /etc/profile.d/custom.sh
 const portHTTPS = process.env.AALIYAPORTHTTPS || 3000 // AALIYAPORTHTTPS is defined in /etc/profile.d/custom.sh
-const host = process.env.AALIYAHOST || localhost
+const host = process.env.AALIYAHOST || 'localhost'
 
 
 

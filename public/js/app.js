@@ -10,31 +10,29 @@ Array.from($thumbsupclassname).forEach((element) => {
 // Create a separate click event for all the thumbs-up icons
 // All the authenticated users can give a thumbs up to a painting, but only once
     element.addEventListener('click', async () => {
-    //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
-    const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
-   
-   
-    const response = await fetch('/like/' + img)
-    
-    if (response.status === 401) {              element.parentElement.parentElement.nextElementSibling.textContent = 'Please login before using this feature'
-    } else if (response.status === 360) {        element.parentElement.parentElement.nextElementSibling.textContent = 'You can only click once per image';
-    }
-    else  {
-        let like = await response.json()
-        element.nextSibling.nextSibling.textContent = like.likes;  
-    }
+        //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
+        //const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
+        const img = element.parentElement.parentElement.parentElement.children[0].classList[1];   
+
+        const response = await fetch('/like/' + img);    
+        if (response.status === 401) {              
+            element.parentElement.parentElement.nextElementSibling.textContent = 'Please login before using this feature'
+        } else if (response.status === 360) {        
+            element.parentElement.parentElement.nextElementSibling.textContent = 'You can only click once per image';
+        }
+        else  {
+            const like = await response.json()
+            element.nextElementSibling.textContent = like.likes;  
+        }
     })   
 });
 
 Array.from($informationclassname).forEach((element) => {
 // Create a separate click event for all the information icons
 // When clicking on the information icons the back of the image which has all the image information will be displayed
-    element.addEventListener('click',  () => {
-    
-    const img = element.parentElement.parentElement.childNodes[1].classList[1]; 
-    
-    document.getElementById(element.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(180deg)"; // Rotate the front side 180deg so its not visible */
-    document.getElementById(element.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(0)"; // Rotate the back side to 0deg so it's visible */
+    element.addEventListener('click',  () => { 
+        document.getElementById(element.parentElement.parentElement.children[0].id).style.transform = "rotateY(180deg)"; // Rotate the front side 180deg so its not visible */
+        document.getElementById(element.parentElement.parentElement.children[1].id).style.transform = "rotateY(0)"; // Rotate the back side to 0deg so it's visible */
    })   
 });
 
@@ -44,57 +42,31 @@ Array.from($closeinformationclassname).forEach((element) => {
 // Create a separate click event for all back pages of the images
 // When clicking close of the back page, it should revert back to the image
     element.addEventListener('click',  () => {
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)"; /* Rotate the front side to 0deg so it's visible */
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)"; /* Rotate the back side 180deg so its not visible */
+        document.getElementById(element.parentElement.parentElement.parentElement.children[0].id).style.transform = "rotateY(0)"; // Rotate the front side to 0deg so it's visible
+        document.getElementById(element.parentElement.parentElement.parentElement.children[1].id).style.transform = "rotateY(180deg)"; // Rotate the back side 180deg so its not visible 
     })   
 });
-
-/*
-Array.from($imgbackclose).forEach((element) => {
-// Create a separate click event for all back pages of the images
-// When clicking close of the back page, it should revert back to the image
-    element.addEventListener('click',  () => {
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)"; 
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)"; 
-    })   
-});
-*/
-
-
-/*const element = document.getElementById("btn-close-information")
-element.addEventListener('click',  () => {
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[1].id).style.transform = "rotateY(0)"; 
-    document.getElementById(element.parentElement.parentElement.parentElement.childNodes[3].id).style.transform = "rotateY(180deg)";
-});*/
-
 
 
 document.forms['logout'].addEventListener('submit', async (event) => {
-// When the login form is successfully submitted, render the header of the home page with the correct 
-// template. If unsuccessful then give an alert with a message to try again
+// When logging out, delete the cookie from the current sessionand the database
     event.preventDefault();
-
     try {
         const response = await fetch(event.target.action, {
                 method: 'POST',
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
-
         location.href = '/' ; 
     } catch (e) {
-        alert('Error logging in. Please try again')
+        alert('Error logging out. Please try again')
     }
 });
 
 // When the home page is loaded initialize all the likes querying from the database
 Array.from($likesclassname).forEach( async (element) => {
-    //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
-    const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
-    
-    const response = await fetch('/likes/' + img)
-    
-    const likes = await response.json();
-   
+    const img = element.parentElement.parentElement.parentElement.children[0].classList[1];    
+    const response = await fetch('/likes/' + img)  
+    const likes = await response.json();   
     element.textContent = likes.likes;
     
 })
@@ -112,7 +84,7 @@ const loginByHashCode = async (hashcode) => {
 
 
 const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
-// This is he user confirming the creation of the account
+// This is the user confirming the creation of the account
  if (code) {     
     loginByHashCode(code);
 }
