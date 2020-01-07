@@ -133,12 +133,8 @@ router.get('/users/confirm/:code', async (req, res) => {
         const token = await user.generateAuthToken(); 
         
         res.cookie('auth_token', token);
-        res.send({
-            user,
-            token
-        });
-    } catch (e) {
-        
+        res.send(user);
+    } catch (e) {        
         res.status(400).send();
     }
 })

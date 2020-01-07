@@ -4,18 +4,19 @@ $messageName = document.getElementById('messageName');
 $messageEmail = document.getElementById('messageEmail');
 $messageMessage = document.getElementById('messageMessage');
 
+
 const getUserInfo = async () => {
-    
+// get user info based on the cookie stored
     try {
         const response = await fetch('/users/info/')
         const user = await response.json();
         return user;
     } catch {
         return undefined;
-    }
-    
+    }    
 }
-    
+     
+        
 const initializeForm = async () => {
 // If user is logged in, then add that information to form so the user doest have to type it again
     const user = await getUserInfo();
@@ -56,7 +57,8 @@ document.forms['message'].addEventListener('submit', async (event) => {
             $errorMessage.textContent = 'Your message was sent successfully';
             $errorMessage.style.color = 'green';
             const user = await getUserInfo();
-            user.user ? (window.location.href = '/?loginid=' + user.user.loginid) : (window.location.href = '/')        
+            //user.user ? (window.location.href = '/?loginid=' + user.user.loginid) : (window.location.href = '/')
+            setTimeout(() => {window.location.href = '/'}, 1000)
         }       
         
     } catch (e) {

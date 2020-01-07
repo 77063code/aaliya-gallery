@@ -71,7 +71,7 @@ Array.from($likesclassname).forEach( async (element) => {
     
 })
     
-const loginByHashCode = async (hashcode) => {
+/*const loginByHashCode = async (hashcode) => {
     try {
         const response = await fetch('/users/confirm/' + hashcode)  
         let loginid = await response.json()  
@@ -80,15 +80,52 @@ const loginByHashCode = async (hashcode) => {
     } catch (e) {
         alert('The email link not working')
     }
+}*/
+
+const loginByHashCode = async (hashcode) => {
+    try {
+        const response = await fetch('/users/confirm/' + hashcode)  
+        const user = await response.json()  
+        if (user) {
+            document.getElementById('loginid').textContent = user.loginid;
+            document.getElementById('logout-btn').style.display = "block"; // display the logout button
+            document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
+        }   
+    } catch (e) {
+        alert('The email link not working')
+    }
 }
 
 
 const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
-// This is the user confirming the creation of the account
- if (code) {     
+// This is the user confirming the creation of the account through the email link
+ if (code) { 
+    console.log(code);
     loginByHashCode(code);
 }
 
+const getUserInfo = async () => {    
+    try {
+        const response = await fetch('/users/info/')
+        const user = await response.json();
+        return user;
+    } catch {
+        return undefined;
+    }    
+}
+        
+const setupHeader = async () => {
+    const user = await getUserInfo();
+    if (user.user) {
+        document.getElementById('loginid').textContent = user.user.loginid;
+        document.getElementById('logout-btn').style.display = "block"; // display the logout button
+        document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
+    }
+}
+    
+setupHeader();
+
+/*
 const {loginid} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 if (loginid) {
 // logged in user
@@ -98,7 +135,7 @@ if (loginid) {
 } else {
     // Delete any existing cookies
     document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
+}*/
 
 
 
