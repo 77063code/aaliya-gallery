@@ -62,7 +62,7 @@ userSchema.plugin(uniqueValidator); // This is needed to check the uniqueness pr
 // Generate a new token and add it to the tokens array on the object
 userSchema.methods.generateAuthToken = async function () {
 	const user = this;
-	const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld');
+	const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld', { expiresIn: 60});
 	user.tokens = user.tokens.concat({token});
 	await user.save();
 	return token;

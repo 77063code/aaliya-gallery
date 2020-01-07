@@ -21,9 +21,10 @@ document.forms['login'].addEventListener('submit', async (event) => {
             $loginResendEmail.textContent = "If you didn't receive the confirmation email, please click on the 'Resend Email' button"
             $btnLoginResendEmail.style.display = 'block';
         } else {
-            let loginid = await response.json()  
+            /*let loginid = await response.json()  
             loginid = loginid.user.loginid
-            window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
+            window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page*/
+            window.location.href = '/';
         }
     } catch (e) {
         $errorLogin.textContent = 'Error logging in. Please try again';
