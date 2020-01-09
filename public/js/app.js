@@ -108,10 +108,12 @@ const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 const getUserInfo = async () => {    
     try {
         const response = await fetch('/users/info/')
-        console.log(response);
-        const user = await response.json();
-        console.log(user);
-        return user;
+        if (response.status !== 401 ) {
+            const user = await response.json();
+            return user;
+        } else {
+            return undefined;
+        }
     } catch (e) {
         return undefined;
     }    

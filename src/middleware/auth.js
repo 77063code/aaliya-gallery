@@ -18,7 +18,7 @@ const auth = async (req,res,next) => {
 		req.user = user; // A new property is being added to the req object so the route handler doesnt have to retrieve the user again
 		next();
 	} catch (e) {        
-		res.status(401).send(e);
+		res.status(401).send({error: 'Please authenticate'});
 	}
 };
 

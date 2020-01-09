@@ -9,8 +9,12 @@ const getUserInfo = async () => {
 // get user info based on the cookie stored
     try {
         const response = await fetch('/users/info/')
-        const user = await response.json();
-        return user;
+        if (response.status !== 401) {
+            const user = await response.json();
+            return user;
+        } else {
+            return undefined;
+        }
     } catch {
         return undefined;
     }    
