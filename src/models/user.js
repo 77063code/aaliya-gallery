@@ -59,10 +59,11 @@ const userSchema = new mongoose.Schema({
 userSchema.plugin(uniqueValidator); // This is needed to check the uniqueness property of a field
 
 
-// Generate a new token and add it to the tokens array on the object
+
 userSchema.methods.generateAuthToken = async function () {
+// Generate a new token and add it to the tokens array on the object
 	const user = this;
-	const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld', { expiresIn: 60});
+	const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld', { expiresIn: 60 * 60 * 24}); // expires in 24 hours
 	user.tokens = user.tokens.concat({token});
 	await user.save();
 	return token;
@@ -111,8 +112,8 @@ userSchema.statics.findByCredentials = async (loginid,password) => {
 	return user;
 };
 
-// Find user by loginid
 userSchema.statics.findByLoginId = async (loginid) => {
+// Find user by loginid
     
 	const user = await User.findOne({loginid});
     
@@ -124,8 +125,8 @@ userSchema.statics.findByLoginId = async (loginid) => {
 	return user;
 };
 
-// Find the user by hashcode
 userSchema.statics.findByHashCode = async (hashcode) => {
+// Find the user by hashcode
     const user = await User.findOne({hashcode});
     if (!user) {
         throw new Error('Cannot find the user');
