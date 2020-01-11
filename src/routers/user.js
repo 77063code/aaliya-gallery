@@ -133,12 +133,8 @@ router.get('/users/confirm/:code', async (req, res) => {
         const token = await user.generateAuthToken(); 
         
         res.cookie('auth_token', token);
-        res.send({
-            user,
-            token
-        });
-    } catch (e) {
-        
+        res.send(user);
+    } catch (e) {        
         res.status(400).send();
     }
 })
@@ -147,7 +143,7 @@ router.get('/users/info', auth, async (req, res) => {
 // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
     try {
         const user = req.user;
-        res.send({user});
+        res.send(user);
     } catch (e) {
         res.status(401).send({error: 'Please authenticate'});
     }
