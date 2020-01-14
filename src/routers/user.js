@@ -80,7 +80,7 @@ router.post('/users/login', async (req, res) => {
         
         res.status(350).send(user);
     } catch (e) {
-        res.status(400).send();
+        res.status(400).send({e});
 
     }
 });
@@ -145,7 +145,7 @@ router.get('/users/info', auth, async (req, res) => {
         const user = req.user;
         res.send({user});
     } catch (e) {
-        res.status(401).send({error: 'Please authenticate'});
+        res.status(401).send(e);
     }
 })
 

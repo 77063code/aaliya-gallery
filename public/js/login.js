@@ -20,13 +20,18 @@ document.forms['login'].addEventListener('submit', async (event) => {
             $errorLogin.style.color = 'red';
             $loginResendEmail.textContent = "If you didn't receive the confirmation email, please click on the 'Resend Email' button"
             $btnLoginResendEmail.style.display = 'block';
-        } else {
-            let loginid = await response.json()  
-            loginid = loginid.user.loginid
-            window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
+        } else if (response.status === 200) {
+            /*let loginid = await response.json()  
+            loginid = loginid.user.loginid*/
+            //window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
+            window.location.href='/';
+        }
+        else {
+            $errorLogin.textContent = 'Error logging in. Please try again';
         }
     } catch (e) {
         $errorLogin.textContent = 'Error logging in. Please try again';
+        //window.location.href = '/'
         // alert('Error logging in. Please try again')
     }
 });

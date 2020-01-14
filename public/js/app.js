@@ -49,13 +49,14 @@ Array.from($closeinformationclassname).forEach((element) => {
 
 
 document.forms['logout'].addEventListener('submit', async (event) => {
-// When logging out, delete the cookie from the current sessionand the database
+// When logging out, delete the cookie from the current session and the database
     event.preventDefault();
     try {
         const response = await fetch(event.target.action, {
                 method: 'POST',
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
+        document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'; // Expire the cookie from the browser
         location.href = '/' ; 
     } catch (e) {
         alert('Error logging out. Please try again')
@@ -108,8 +109,9 @@ const getUserInfo = async () => {
     try {
         const response = await fetch('/users/info/')
         const user = await response.json();
-        return user;
+        return user; // Note of there was no user found, then the body is returned as an object, but it doesnt have the user property
     } catch {
+        console.log('Error in getuserinfo');
         return undefined;
     }    
 }
@@ -117,6 +119,7 @@ const getUserInfo = async () => {
 const setupHeader = async () => {
     const user = await getUserInfo();
     if (user.user) {
+    // If the returned body has a user object
         document.getElementById('loginid').textContent = user.user.loginid;
         document.getElementById('logout-btn').style.display = "block"; // display the logout button
         document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
@@ -124,6 +127,8 @@ const setupHeader = async () => {
 }
     
 setupHeader();
+    
+//getUserInfo()
 
 /*
 const {loginid} = Qs.parse(location.search, { ignoreQueryPrefix: true });
