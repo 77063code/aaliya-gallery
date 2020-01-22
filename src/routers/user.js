@@ -134,6 +134,7 @@ router.get('/users/confirm/:code', async (req, res) => {
         const token = await user.generateAuthToken(); 
         
         res.cookie('auth_token', token);
+        res.send();
         
         // This endpoint should just send the cookie and then the page gets redirected to home page
         // which will get the user information based on the cokkie 
