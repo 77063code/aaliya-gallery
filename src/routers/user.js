@@ -34,6 +34,7 @@ router.post('/users', async (req, res) => {
             subject: 'New User Account Created',
             text: `Name: ${user.name}, Email: ${user.email}, Loginid: ${user.loginid}`
         })
+        console.log(`Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`)
         // Send a confirmation email to the new user, and a new user joining email to admin
         res.status(201).send();// The 201 is most routerropriate status code for a successful creation
     } catch (e) {
@@ -133,7 +134,10 @@ router.get('/users/confirm/:code', async (req, res) => {
         const token = await user.generateAuthToken(); 
         
         res.cookie('auth_token', token);
-        res.send(user);
+        
+        // This endpoint should just send the cookie and then the page gets redirected to home page
+        // which will get the user information based on the cokkie 
+        // res.send(user);
     } catch (e) {        
         res.status(400).send();
     }

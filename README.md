@@ -29,11 +29,29 @@ TO DO
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
 7. On login in page, reset the messages when trying to login again from earlier emaill resent message
 8. Give a mesage when a user votes for the 1st time
+9. The painting information should also have the canvas size
 
 
 TO DO BIG
-1. Finalize the process for taking photos, editing and displaying images
+1. When a new user is created the redirected page should have the code parameter removed
 2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
+3. On any of the forms, when you get an error, the error should disappear when ncorrecting the mistake
+
+TESTING STEPS
+EXISTING USERS
+1. Can an existing user login successfully
+2. Do error messages dissapear when correcting them
+2. After login, can the user click on thumbs-up and get the correct message
+3. When the user clicks on message does the correct information gets pre-populated to the message screen
+4. When clikcing closing the login and message screens, does the home page show the correct informaton
+NEW USERS
+1. When registering, do error messages for all fields work correctly
+2. Do error messages disappear when correcting them
+3. Does the confirmation email work and display the username correctly
+4. When cclosing the registeraition screen does it render the home page correctly
+NON-REGISTERED USERS
+1. When sending message do the user information field get populated correctly and does the message get sent and then does the redirection to home page happen correctly
+
 
 
 TO INSTALL LETSENCRYPT

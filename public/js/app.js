@@ -86,12 +86,16 @@ Array.from($likesclassname).forEach( async (element) => {
 const loginByHashCode = async (hashcode) => {
     try {
         const response = await fetch('/users/confirm/' + hashcode)  
-        const user = await response.json()  
+        /* const user = await response.json()  
         if (user) {
             document.getElementById('loginid').textContent = user.loginid;
             document.getElementById('logout-btn').style.display = "block"; // display the logout button
             document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
-        }   
+        }   */
+        if (response.status === 400) {
+            console.log('The email link not working')
+        }
+        window.location.href = '/';
     } catch (e) {
         alert('The email link not working')
     }
@@ -101,7 +105,6 @@ const loginByHashCode = async (hashcode) => {
 const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 // This is the user confirming the creation of the account through the email link
  if (code) { 
-    console.log(code);
     loginByHashCode(code);
 }
 
