@@ -40,10 +40,12 @@ TO DO BIG
 TESTING STEPS
 EXISTING USERS
 1. Can an existing user login successfully
+2. Is the correct error message shown when incorrect login information is entered
+3. Is redirection proper when the close button is clicked on the login screen?
 2. Do error messages dissapear when correcting them
 2. After login, can the user click on thumbs-up and get the correct message
 3. When the user clicks on message does the correct information gets pre-populated to the message screen
-4. When clikcing closing the login and message screens, does the home page show the correct informaton
+4. When clicking closing the login and message screens, does the home page show the correct informaton
 NEW USERS
 1. When registering, do error messages for all fields work correctly
 2. Do error messages disappear when correcting them

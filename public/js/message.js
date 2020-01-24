@@ -24,9 +24,9 @@ const getUserInfo = async () => {
 const initializeForm = async () => {
 // If user is logged in, then add that information to form so the user doest have to type it again
     const user = await getUserInfo();
-    if (user) {
-        $messageName.value = user.name;
-        $messageEmail.value = user.email
+    if (user.user) {
+        $messageName.value = user.user..name;
+        $messageEmail.value = user.user.email
         $messageMessage.focus();
     }
     else {
