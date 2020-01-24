@@ -57,6 +57,7 @@ document.forms['logout'].addEventListener('submit', async (event) => {
                 method: 'POST',
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
+        document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;'; // Expire the cookie from the browser
         location.href = '/' ; 
     } catch (e) {
         alert('Error logging out. Please try again')
@@ -86,13 +87,16 @@ Array.from($likesclassname).forEach( async (element) => {
 const loginByHashCode = async (hashcode) => {
     try {
         const response = await fetch('/users/confirm/' + hashcode)  
-        const user = await response.json()  
+        /* const user = await response.json()  
         if (user) {
             document.getElementById('loginid').textContent = user.loginid;
             document.getElementById('logout-btn').style.display = "block"; // display the logout button
-            document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button 
-            window.location.href = '/';
-        }   
+            document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
+        }   */
+        if (response.status === 400) {
+            console.log('The email link not working')
+        }
+        window.location.href = '/';
     } catch (e) {
         alert('The email link not working')
     }
@@ -108,13 +112,10 @@ const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
 const getUserInfo = async () => {    
     try {
         const response = await fetch('/users/info/')
-        if (response.status !== 401 ) {
-            const user = await response.json();
-            return user;
-        } else {
-            return undefined;
-        }
-    } catch (e) {
+        const user = await response.json();
+        return user; // Note of there was no user found, then the body is returned as an object, but it doesnt have the user property
+    } catch {
+        console.log('Error in getuserinfo');
         return undefined;
     }    
 }
@@ -122,14 +123,17 @@ const getUserInfo = async () => {
 const setupHeader = async () => {
 //Setup the home page header based on if a user is alread logged in
     const user = await getUserInfo();
-    if (user) {
-        document.getElementById('loginid').textContent = user.loginid;
+    if (user.user) {
+    // If the returned body has a user object
+        document.getElementById('loginid').textContent = user.user.loginid;
         document.getElementById('logout-btn').style.display = "block"; // display the logout button
         document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
     }
 }
     
 setupHeader();
+    
+//getUserInfo()
 
 /*
 const {loginid} = Qs.parse(location.search, { ignoreQueryPrefix: true });

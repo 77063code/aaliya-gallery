@@ -76,9 +76,9 @@ document.forms['message'].addEventListener('submit', async (event) => {
 document.getElementById('btn-close-message').addEventListener('click', async (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
-    window.location.href = '/'
     /*const user = await getUserInfo();
     user.user ? (window.location.href = '/?loginid=' + user.user.loginid) : (window.location.href = '/')*/
+    window.location.href = '/' // redirect to home page and based on cookie it will figure out what to do
 })
 
 document.addEventListener('touchmove', (e) => {
