@@ -8,6 +8,7 @@ FOR PRODUCTION -
     export AALIYAPORTHTTP=80
     export AALIYAPORTHTTPS=443
     export AALIYAHOST='aaliya-gallery'
+    export SENDGRIDAPIKEY='apikey'
 3. Login as root to run the src/index.js. This is needed to open port 80
 
 TO RUN THE APPLICATION -
@@ -53,6 +54,7 @@ NEW USERS
 4. When cclosing the registeraition screen does it render the home page correctly
 NON-REGISTERED USERS
 1. When sending message do the user information field get populated correctly and does the message get sent and then does the redirection to home page happen correctly
+2. When clicking on thumbs up, does it show the correct error message
 
 
 

@@ -6,8 +6,9 @@ const path = require('path');
 const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
-const sendgridAPIKEY = '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'
 
+
+const sendgridAPIKEY = process.env.SENDGRIDAPIKEY;
 const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
 
