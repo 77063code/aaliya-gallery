@@ -165,7 +165,7 @@ userSchema.pre('save', async function (next) {
 	   // This will be true when the user is first created and then again if the password is being changed
            user.password = await bcrypt.hash(user.password,8);
 	   }
-    catch (e) {
+    } catch (e) {
         console.log(e)
     }
 	next();
