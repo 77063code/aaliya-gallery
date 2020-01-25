@@ -46,12 +46,14 @@ EXISTING USERS
 2. Do error messages dissapear when correcting them
 2. After login, can the user click on thumbs-up and get the correct message
 3. When the user clicks on message does the correct information gets pre-populated to the message screen
+4. Does the message get sent correctly? and does the redirection happen correctly after the message is sent
 4. When clicking closing the login and message screens, does the home page show the correct informaton
 NEW USERS
 1. When registering, do error messages for all fields work correctly
 2. Do error messages disappear when correcting them
 3. Does the confirmation email work and display the username correctly
-4. When cclosing the registeraition screen does it render the home page correctly
+4. When closing the registeraition screen does it render the home page correctly
+5. When the email gets sent out does it show the correct website page
 NON-REGISTERED USERS
 1. When sending message do the user information field get populated correctly and does the message get sent and then does the redirection to home page happen correctly
 2. When clicking on thumbs up, does it show the correct error message

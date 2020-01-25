@@ -6,6 +6,54 @@ const $likesclassname = document.getElementsByClassName('total-likes');
 const $messageclass = document.getElementsByClassName('fa-envelope')
 const $closeinformationclassname = document.getElementsByClassName('btn-close-information');
 
+
+
+const loginByHashCode = async (hashcode) => {
+    try {
+        const response = await fetch('/users/confirm/' + hashcode)  
+        if (response.status === 400) {
+            console.log('The email link not working')
+        }
+        window.location.href = '/';
+    } catch (e) {
+        alert('The email link not working')
+    }
+}
+
+
+const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
+// This is the user confirming the creation of the account through the email link
+ if (code) { 
+    loginByHashCode(code);
+}
+
+const getUserInfo = async () => {    
+    try {
+        const response = await fetch('/users/info/')
+        const user = await response.json();
+        return user; // Note of there was no user found, then the body is returned as an object, but it doesnt have the user property
+    } catch {
+        console.log('Error in getuserinfo');
+        return undefined;
+    }    
+}
+        
+const setupHeader = async () => {
+//Setup the home page header based on if a user is alread logged in
+    const user = await getUserInfo();
+    if (user.user) {
+    // If the returned body has a user object
+        document.getElementById('loginid').textContent = user.user.loginid;
+        document.getElementById('logout-btn').style.display = "block"; // display the logout button
+        document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
+    }
+}
+    
+setupHeader();
+    
+
+
+
 Array.from($thumbsupclassname).forEach((element) => {
 // Create a separate click event for all the thumbs-up icons
 // All the authenticated users can give a thumbs up to a painting, but only once
@@ -73,82 +121,6 @@ Array.from($likesclassname).forEach( async (element) => {
     
 })
     
-/*const loginByHashCode = async (hashcode) => {
-    try {
-        const response = await fetch('/users/confirm/' + hashcode)  
-        let loginid = await response.json()  
-        loginid = loginid.user.loginid
-        window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
-    } catch (e) {
-        alert('The email link not working')
-    }
-}*/
-
-const loginByHashCode = async (hashcode) => {
-    try {
-        const response = await fetch('/users/confirm/' + hashcode)  
-        /* const user = await response.json()  
-        if (user) {
-            document.getElementById('loginid').textContent = user.loginid;
-            document.getElementById('logout-btn').style.display = "block"; // display the logout button
-            document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
-        }   */
-        if (response.status === 400) {
-            console.log('The email link not working')
-        }
-        window.location.href = '/';
-    } catch (e) {
-        alert('The email link not working')
-    }
-}
-
-
-const {code} = Qs.parse(location.search, { ignoreQueryPrefix: true });
-// This is the user confirming the creation of the account through the email link
- if (code) { 
-    loginByHashCode(code);
-}
-
-const getUserInfo = async () => {    
-    try {
-        const response = await fetch('/users/info/')
-        const user = await response.json();
-        return user; // Note of there was no user found, then the body is returned as an object, but it doesnt have the user property
-    } catch {
-        console.log('Error in getuserinfo');
-        return undefined;
-    }    
-}
-        
-const setupHeader = async () => {
-//Setup the home page header based on if a user is alread logged in
-    const user = await getUserInfo();
-    if (user.user) {
-    // If the returned body has a user object
-        document.getElementById('loginid').textContent = user.user.loginid;
-        document.getElementById('logout-btn').style.display = "block"; // display the logout button
-        document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
-    }
-}
-    
-setupHeader();
-    
-//getUserInfo()
-
-/*
-const {loginid} = Qs.parse(location.search, { ignoreQueryPrefix: true });
-if (loginid) {
-// logged in user
-    document.getElementById('loginid').textContent = loginid;
-    document.getElementById('logout-btn').style.display = "block"; // display the logout button
-    document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
-} else {
-    // Delete any existing cookies
-    document.cookie = 'auth_token' + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}*/
-
-
-
 
 
 
