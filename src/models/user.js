@@ -98,18 +98,22 @@ userSchema.methods.toJSON = function () {
 // Authenticate the user based on loginid and password
 userSchema.statics.findByCredentials = async (loginid,password) => {
     
-	const user = await User.findOne({loginid});
+	try {
+       const user = await User.findOne({loginid});
     
-	if (!user) {
-		throw new Error('Unable to login');
-	};
+	   if (!user) {
+		  throw new Error('Unable to login');
+	   };
     
-	const isMatch = await bcrypt.compare(password,user.password);   
+	   const isMatch = await bcrypt.compare(password,user.password);   
 
-	if (!isMatch) {
-		throw new Error('Unable to login');
-	}
-	return user;
+	   if (!isMatch) {
+           throw new Error('Unable to login');
+	   }
+	   return user;
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 userSchema.statics.findByLoginId = async (loginid) => {
