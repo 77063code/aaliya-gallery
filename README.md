@@ -1,7 +1,6 @@
 # aaliya-art
 
 FOR PRODUCTION -
-
 1. Create a file /etc/profile.d/custom.sh
 2. Add the following to this file -
     #!/bin/bash
@@ -9,7 +8,8 @@ FOR PRODUCTION -
     export AALIYAPORTHTTPS=443
     export AALIYAHOST='aaliya-gallery'
     export SENDGRIDAPIKEY='apikey'
-3. Login as root to run the src/index.js. This is needed to open port 80
+3. Install mongodb and mongodb backup as per the instructions
+
 
 TO RUN THE APPLICATION -
 1. Log-in as root
@@ -19,6 +19,11 @@ TO RUN THE APPLICATION -
 5. To find out the processes -
 6. netstat -tulpen | grep mongo
 7. netstat -tulpen | grep node
+
+
+TO MOVE A NEW VERSION TO PRODUCTION
+1. Make a backup of the db
+2. mongodump --archive="<date>-backup" --db="aaliya-art-api"
 
 
 TO DO
@@ -31,10 +36,11 @@ TO DO
 7. On login in page, reset the messages when trying to login again from earlier emaill resent message
 8. Give a mesage when a user votes for the 1st time
 9. The painting information should also have the canvas size
+10. On every screen the button needs to be disabled when they cannot be pressed again
+11. On the home header need to have a register button as well
 
 
 TO DO BIG
-1. When a new user is created the redirected page should have the code parameter removed
 2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
 3. On any of the forms, when you get an error, the error should disappear when ncorrecting the mistake
 
