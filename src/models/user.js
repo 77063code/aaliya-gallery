@@ -62,19 +62,27 @@ userSchema.plugin(uniqueValidator); // This is needed to check the uniqueness pr
 
 userSchema.methods.generateAuthToken = async function () {
 // Generate a new token and add it to the tokens array on the object
-	const user = this;
-	const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld', { expiresIn: 60 * 60 * 24}); // expires in 24 hours
-	user.tokens = user.tokens.concat({token});
-	await user.save();
-	return token;
+    try {
+	   const user = this;
+	   const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld', {    expiresIn: 60 * 60 * 24}); // expires in 24 hours
+	   user.tokens = user.tokens.concat({token});
+	   await user.save();
+	   return token;
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 userSchema.methods.generateHashCode = async function () {
 // Generate a new hashcode and add it to the user instance
-	const user = this;
-    user.hashcode = md5(user.loginid + user.email + Math.floor(Math.random()*50000)); 
-    // Create a hash value using the loginid, email and a random number b/w 0 amd 50000
-	await user.save();
+    try {
+	   const user = this;
+        user.hashcode = md5(user.loginid + user.email +         Math.floor(Math.random()*50000)); 
+        // Create a hash value using the loginid, email and a random number b/w 0 amd 50000
+	   await user.save();
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 
@@ -98,52 +106,68 @@ userSchema.methods.toJSON = function () {
 // Authenticate the user based on loginid and password
 userSchema.statics.findByCredentials = async (loginid,password) => {
     
-	const user = await User.findOne({loginid});
+	try {
+       const user = await User.findOne({loginid});
     
-	if (!user) {
-		throw new Error('Unable to login');
-	};
+	   if (!user) {
+		  throw new Error('Unable to login');
+	   };
     
-	const isMatch = await bcrypt.compare(password,user.password);   
+	   const isMatch = await bcrypt.compare(password,user.password);   
 
-	if (!isMatch) {
-		throw new Error('Unable to login');
-	}
-	return user;
+	   if (!isMatch) {
+           throw new Error('Unable to login');
+	   }
+	   return user;
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 userSchema.statics.findByLoginId = async (loginid) => {
 // Find user by loginid
     
-	const user = await User.findOne({loginid});
+    try {
+	   const user = await User.findOne({loginid});
     
-	if (!user) {
-        console.log('error');
-		throw new Error('Unable to login');
-	};
+	   if (!user) {
+           console.log('error');
+		  throw new Error('Unable to login');
+	   };
     
-	return user;
+	   return user;
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 userSchema.statics.findByHashCode = async (hashcode) => {
 // Find the user by hashcode
-    const user = await User.findOne({hashcode});
-    if (!user) {
-        throw new Error('Cannot find the user');
-    }    
-    return user;      
+    try {
+        const user = await User.findOne({hashcode});
+        if (!user) {
+            throw new Error('Cannot find the user');
+        }    
+        return user;
+    } catch (e) {
+        console.log(e);
+    }
 }
                                                     
 
 
 // Hash the plain text password before saving
 userSchema.pre('save', async function (next) {
-	const user = this;
+	try {
+       const user = this;
 
-	if (user.isModified('password')) {
-	// This will be true when the user is first created and then again if the password is being changed
-		user.password = await bcrypt.hash(user.password,8);
-	}    
+	   if (user.isModified('password')) {
+	   // This will be true when the user is first created and then again if the password is being changed
+           user.password = await bcrypt.hash(user.password,8);
+	   }
+    } catch (e) {
+        console.log(e)
+    }
 	next();
 });
 
