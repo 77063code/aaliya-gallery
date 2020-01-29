@@ -74,6 +74,37 @@ MSC -
 1. When saw user interacting, the username confused them, so have to change that field to login id everywhere
 
 
+WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
+1. Image name(internal)
+2. Image name(displayed)
+2. Year painted
+3. Artist Loginid
+4. Sale Price
+5. Type of painting - i.e. canvas
+6. Painting Length
+7. Painting width
+8. Orientation
+7. Formatted image
+8. Unformatted image
+9. Grade when paiting was done
+10. Already Sold - Y/N
+
+WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
+1. Artist Name
+2. School when paiting was done
+3. Grade when painting was done
+4. Email
+5. Parents Permission
+6. Art Teacher/Class Teacher's Name and Email
+
+FEATURES BRANCH
+1. Create the image database and enter all the information with an index on the image
+2. For right now just create a new .js file in admin and run the image model with hardcoded values
+3. Use Mustache templating system to render the home page, retrieving the information from the 
+database
+
+
+
 
 
 
