@@ -60,7 +60,7 @@ Array.from($thumbsupclassname).forEach((element) => {
     element.addEventListener('click', async () => {
         //const img = element.parentElement.parentElement.previousSibling.previousSibling.classList[1];
         //const img = element.parentElement.parentElement.parentElement.childNodes[1].classList[1];
-        const img = element.parentElement.parentElement.parentElement.children[0].classList[1];   
+        const img = element.parentElement.parentElement.parentElement.children[0].id;   
 
         const response = await fetch('/like/' + img);    
         if (response.status === 401) {              
@@ -114,7 +114,7 @@ document.forms['logout'].addEventListener('submit', async (event) => {
 
 // When the home page is loaded initialize all the likes querying from the database
 Array.from($likesclassname).forEach( async (element) => {
-    const img = element.parentElement.parentElement.parentElement.children[0].classList[1];    
+    const img = element.parentElement.parentElement.parentElement.children[0].id;    
     const response = await fetch('/likes/' + img)  
     const likes = await response.json();   
     element.textContent = likes.likes;
