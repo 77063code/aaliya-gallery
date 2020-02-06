@@ -4,7 +4,7 @@ const Image = require('../src/models/image');
 
 
 const imageInfo1 = {
-    name: 'aaliya-1.jpg',
+    name: 'aaliya1-1.jpg',
     loginid: 'aaliya1',
     displayname: 'Mountain & Lake',
     year: 2019,
@@ -18,7 +18,7 @@ const imageInfo1 = {
 }
 
 const imageInfo2 = {
-    name: 'aaliya-2.jpg',
+    name: 'aaliya1-2.jpg',
     loginid: 'aaliya1',
     displayname: 'Solitude',
     year: 2019,
@@ -33,7 +33,7 @@ const imageInfo2 = {
 
 
 const imageInfo3 = {
-    name: 'aaliya-3.jpg',
+    name: 'aaliya1-3.jpg',
     loginid: 'aaliya1',
     displayname: 'Butterfly',
     year: 2019,
@@ -48,7 +48,7 @@ const imageInfo3 = {
 
 
 const imageInfo4 = {
-    name: 'aaliya-4.jpg',
+    name: 'aaliya1-4.jpg',
     loginid: 'aaliya1',
     displayname: 'Rainbow Tree',
     year: 2017,
@@ -62,7 +62,7 @@ const imageInfo4 = {
 }
 
 const imageInfo5 = {
-    name: 'aaliya-5.jpg',
+    name: 'aaliya1-5.jpg',
     loginid: 'aaliya1',
     displayname: 'Venice',
     year: 2019,
@@ -76,7 +76,7 @@ const imageInfo5 = {
 }
 
 const imageInfo6 = {
-    name: 'aaliya-6.jpg',
+    name: 'aaliya1-6.jpg',
     loginid: 'aaliya1',
     displayname: 'Clueless Sally',
     year: 2019,
@@ -90,7 +90,7 @@ const imageInfo6 = {
 }
 
 const imageInfo7 = {
-    name: 'aaliya-7.jpg',
+    name: 'aaliya1-7.jpg',
     loginid: 'aaliya1',
     displayname: 'First Abstract',
     year: 2019,
@@ -105,7 +105,7 @@ const imageInfo7 = {
 
 
 const imageInfo8 = {
-    name: 'aaliya-8.jpg',
+    name: 'aaliya1-8.jpg',
     loginid: 'aaliya1',
     displayname: 'Surprised Sally',
     year: 2019,
@@ -120,7 +120,7 @@ const imageInfo8 = {
 
 
 const imageInfo9 = {
-    name: 'aaliya-9.jpg',
+    name: 'aaliya1-9.jpg',
     loginid: 'aaliya1',
     displayname: 'Confused Sally',
     year: 2019,
@@ -134,7 +134,7 @@ const imageInfo9 = {
 }
 
 const imageInfo10 = {
-    name: 'aaliya-10.jpg',
+    name: 'aaliya1-10.jpg',
     loginid: 'aaliya1',
     displayname: 'Shore',
     year: 2019,
@@ -148,7 +148,7 @@ const imageInfo10 = {
 }
 
 const imageInfo11 = {
-    name: 'aaliya-11.jpg',
+    name: 'aaliya1-11.jpg',
     loginid: 'aaliya1',
     displayname: 'Medley',
     year: 2019,

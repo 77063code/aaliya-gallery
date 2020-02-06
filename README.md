@@ -99,16 +99,23 @@ WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
 
 FEATURES BRANCH
 1. How to access image files directly from S3 and not on the server
-2. Get Rid of the class name from the images and change the functions in app.js to reference the ids to make sure the progrem works
-3. Changes the ids to the actual image name i.e with jpg or png or whatever extension
-4. Update the likes database to add the extension and also change the image name to aaliya1-1.jpg
-5. Create the image collection and make sure the name is the same as what's in the likes database
-6. Upload the images to S3 with the new names and change the src in index to reference the S3 files
-7. Once the changes are working at this level then work on creating a template and getting all the information from an end point. The end point should return an array of objects with all the information that needs to be displayed
-1. Create the image database and enter all the information with an index on the image
-2. For right now just create a new .js file in admin and run the image model with hardcoded values
-3. Use Mustache templating system to render the home page, retrieving the information from the 
-database
+    1. Get Rid of the class name from the images and change the functions in app.js to reference the ids 
+    2. Changes the ids to the actual image name i.e with jpg or png or whatever extension
+    3. This change will have to made at the same time as step 2 - Update the likes database to add the same extension to the image name
+    4. Create the image collection. The image names will have to be updated from aaliya to aaliya1
+    5. The same change will have to be made in the likes db and the index.html file
+    6. Delete the unwanted files from img folder and rename the others as per the new naming convention
+    7. Upload the images to S3 with the new names and change the src in index to reference the S3 files
+    8. Now test and this is the next verson that should be released to production
+    
+    
+    
+    7. Once the changes are working at this level then work on creating a template and getting all the information from an end point. The end point should return an array of objects with all the information that needs to be displayed
+    1. Create the image database and enter all the information with an index on the image
+    2. For right now just create a new .js file in admin and run the image model with hardcoded values
+    3. Use Mustache templating system to render the home page, retrieving the information from the 
+    database
+2. Create templates for images and pull the number, names ond info of images from an endpoint and then render the home page
 
 
 
