@@ -28,7 +28,7 @@
         
         
     </div>
-    <div class="gallery">
+    <div class="gallery" id="gallery">
         
         
         <div class="image">
@@ -333,8 +333,39 @@
     
     </div>
 
+    <script id="image-template" type="text/html">
+    <!-- Even though we are using script tags, this is not an actual JS script, but is more like a defacto technique for including templates in a page. Normally script tags block all processing when rendering a page. But here the template has a type="text/html", which effectively tricks the browser into not processing it like a normal JavaScript block -->
+        <div class="image">
+            <img class="img" id={{img_id}} src={{img_src}}>
+            <div class="img img__back" id={{img_back_id}}>
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>{{img_displayname}}</h2>
+                    <h2>Artist: {{img_artistid}}</h2>
+                    <h2>School: {{img_grade}}</h2>
+                    <h2>Painted: {{img_year}}</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">{{img_displayname}}</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+    </script>
+
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
     <script src="./js/app.js"></script>
    
 

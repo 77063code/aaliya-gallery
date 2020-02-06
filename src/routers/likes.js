@@ -43,9 +43,11 @@ router.get('/like/:img', auth, async (req, res) => {
 
 router.get('/likes/:img', async (req,res) => {
     const img = req.params.img
+    console.log('hello');
     
     const likes = await Likes.countDocuments({img}, (err, count) => {
        
+        console.log(count);
         return count;
     })
     res.send({likes});

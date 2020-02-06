@@ -50,6 +50,30 @@ const setupHeader = async () => {
 }
     
 setupHeader();
+
+const getImageInfo = async () => {
+    try {
+        const response = await fetch('/images/homepage')
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+getImageInfo();
+
+
+const renderHomePage = (img) => {
+    const gallery = document.querySelector('#gallery');
+    const imageTemplate = document.querySelector('#image-template').innerHTML;
+    const html = Mustache.render(imageTemplate,{
+        img_id: 'aaliya1-1.jpg'        
+    })
+    gallery.insertAdjacentHTML('beforeEnd',html);
+
+}
+
+renderHomePage();
     
 
 

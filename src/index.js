@@ -5,6 +5,7 @@ const express = require('express');
 require('./db/mongoose'); // This will make sure that the entire file runs
 const userRouter = require('./routers/user');
 const likesRouter = require('./routers/likes');
+const imageRouter = require('./routers/image');
 const cookieParser = require('cookie-parser');
 
 
@@ -29,6 +30,7 @@ if (portHTTP !== 3000) {
 }
 app.use(userRouter);
 app.use(likesRouter);
+app.use(imageRouter);
 
 if (portHTTP !== 3000) {
     http.createServer(httpApp).listen(portHTTP);
