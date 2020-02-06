@@ -48,18 +48,21 @@ const findImageCounts = () => {
 }
 
 const updateAllImageNames = () => {
-	updateImageNames('img1','aaliya-1');
-	updateImageNames('img2','aaliya-2');
-	updateImageNames('img3','aaliya-3');
-	updateImageNames('img4','aaliya-4');
-	updateImageNames('img5','aaliya-5');
-	updateImageNames('img6','aaliya-6');
-	updateImageNames('img7','aaliya-7');
-	updateImageNames('img8','aaliya-9');
+	updateImageNames('aaliya-1.jpg','aaliya1-1.jpg');
+	updateImageNames('aaliya-2.jpg','aaliya1-2.jpg');
+	updateImageNames('aaliya-3.jpg','aaliya1-3.jpg');
+	updateImageNames('aaliya-4.jpg','aaliya1-4.jpg');
+	updateImageNames('aaliya-5.jpg','aaliya1-5.jpg');
+	updateImageNames('aaliya-6.jpg','aaliya1-6.jpg');
+	updateImageNames('aaliya-7.jpg','aaliya1-7.jpg');
+	updateImageNames('aaliya-8.jpg','aaliya1-8.jpg');
+    updateImageNames('aaliya-9.jpg','aaliya1-9.jpg');
+	updateImageNames('aaliya-10.jpg','aaliya1-10.jpg');
+	updateImageNames('aaliya-11.jpg','aaliya1-11.jpg');
 }
 
 //findImageCounts();
-//updateAllImageNames();
+updateAllImageNames();
 //findImageCounts();
 //findAllLikes();
-deleteLikesByLogin('garfield1');
+//deleteLikesByLogin('garfield1');
