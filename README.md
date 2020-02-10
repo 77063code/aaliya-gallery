@@ -22,6 +22,9 @@ TO RUN THE APPLICATION -
 
 
 TO MOVE A NEW VERSION TO PRODUCTION
+3. Run user.js to find out how many images garfield3 has
+4. Delete all likes by garfield3
+5. Delete user garfield3. Now this can be used in testing
 1. Make a backup of the db
 2. mongodump --archive="<date>-backup" --db="aaliya-art-api"
 
