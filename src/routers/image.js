@@ -16,8 +16,8 @@ router.get('/images/homepage', async (req, res) => {
    
     
     try {
-        const images = Image.find();
-        res.send(images)
+        const images = await Image.find({});
+        res.send(images);
     } catch (e) {
         console.log(e);
         res.status(401).send();

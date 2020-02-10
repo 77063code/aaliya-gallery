@@ -11,7 +11,7 @@ const imageSchema = new mongoose.Schema({
                 trim: true,
                 unique: true
         },
-        loginid: {
+        artistid: {
                 type: String,
                 required: true,
                 trim: true                
@@ -62,6 +62,17 @@ const imageSchema = new mongoose.Schema({
                 type: String,
                 required: true,
                 lowercase: true
+        },
+        school: {
+            type: String
+        },
+        backside_id: {
+            type: String,
+            required: true
+        },
+        s3location: {
+            type: String,
+            lowercase: true
         }
         
 });

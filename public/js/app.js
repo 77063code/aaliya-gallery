@@ -53,27 +53,39 @@ setupHeader();
 
 const getImageInfo = async () => {
     try {
-        const response = await fetch('/images/homepage')
-        console.log(response);
+        let response = await fetch('/images/homepage')
+        response = await response.json();
+        return response;
     } catch (e) {
         console.log(e);
+        return undefined;
     }
 }
 
-getImageInfo();
+//getImageInfo();
 
 
-const renderHomePage = (img) => {
+const renderHomePage = async () => {
     const gallery = document.querySelector('#gallery');
-    const imageTemplate = document.querySelector('#image-template').innerHTML;
+    const images = await getImageInfo();
+    images.forEach((image) => {
+        const imageTemplate = document.querySelector('#image-template').innerHTML;
     const html = Mustache.render(imageTemplate,{
-        img_id: 'aaliya1-1.jpg'        
-    })
+        img_id: image.name,
+        img_src: image.s3location,
+        img_back_id: image.backside_id,
+        img_displayname: image.displayname,
+        img_artistid: image.artistid,
+        img_grade: image.grade,
+        img_year: image.year
+    })   
     gallery.insertAdjacentHTML('beforeEnd',html);
-
+    console.log('gello')
+    })
 }
 
 renderHomePage();
+console.log('hello');
     
 
 
@@ -103,6 +115,9 @@ Array.from($informationclassname).forEach((element) => {
 // Create a separate click event for all the information icons
 // When clicking on the information icons the back of the image which has all the image information will be displayed
     element.addEventListener('click',  () => { 
+       
+       console.log('Hello');
+       console.log(element.parentElement.parentElement);
         document.getElementById(element.parentElement.parentElement.children[0].id).style.transform = "rotateY(180deg)"; // Rotate the front side 180deg so its not visible */
         document.getElementById(element.parentElement.parentElement.children[1].id).style.transform = "rotateY(0)"; // Rotate the back side to 0deg so it's visible */
    })   
