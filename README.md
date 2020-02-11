@@ -116,15 +116,16 @@ FEATURES BRANCH
 2. Create templates for images and pull the number, names ond info of images from an endpoint and then render the home page
     1. Recreate images collection - Change loginid field to artistid
     2. The end point should return an array of objects with all the information that needs to be displayed
-    2. Use Mustache templating system to render the home page, retrieving the information from the 
+    3. Use Mustache templating system to render the home page, retrieving the information from the 
     database
+    4. A message shown when the user likes an image for the first time
+    5. To be able to src even the bg image from AWS
+    6. Delete index2, index3 and style2 and style3
+    7. Delete img subfolder in the public folder
     
 
 CLEANUP BRANCH
-1. To be able to src even the bg image from AWS
-2. Delete img subfolder in the public folder
 3. The old error messages to disappear when trying to correct the error
-4. A message shown when the user likes an image for the first time
 5. All usernames to be converted to lowercase
 6. Cleanup all unnecessary console.logs
 

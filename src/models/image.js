@@ -55,8 +55,7 @@ const imageSchema = new mongoose.Schema({
         grade: {
                 type: String,
                 required: true,
-                trim: true,
-                lowercase: true
+                trim: true
         },
         sold: {
                 type: String,

@@ -214,7 +214,7 @@ body {
 }
 .img__back {
     background-color: mintcream;
-    background-image: url('../img/bg.jpg');
+    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
 }
