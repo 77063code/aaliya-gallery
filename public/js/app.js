@@ -64,6 +64,16 @@ const getImageInfo = async () => {
 
 //getImageInfo();
 
+const getSignedURL = async () => {
+    try {
+        let response = await fetch('/images/signed-url-put-object')
+        console.log(response)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+getSignedURL();
 
 const renderHomePage = async () => {
     const gallery = document.querySelector('#gallery');

@@ -123,6 +123,13 @@ CLEANUP BRANCH
 9. There should be a register button on the home page
 
 
+UPLOAD BRANCH
+1 Create a form so artists can upload their images to S3
+2 The artist sub-folder is created when they register
+3 They should be able to upload upto 5 images, no more than 200kb each
+4 They should also be able to delete any image they want
+
+
 
 RELEASES
 V1.3
