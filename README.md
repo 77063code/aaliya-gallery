@@ -22,6 +22,9 @@ TO RUN THE APPLICATION -
 
 
 TO MOVE A NEW VERSION TO PRODUCTION
+3. Run user.js to find out how many images garfield3 has
+4. Delete all likes by garfield3
+5. Delete user garfield3. Now this can be used in testing
 1. Make a backup of the db
 2. mongodump --archive="<date>-backup" --db="aaliya-art-api"
 
@@ -110,12 +113,21 @@ FEATURES BRANCH
     
     
     
-    7. Once the changes are working at this level then work on creating a template and getting all the information from an end point. The end point should return an array of objects with all the information that needs to be displayed
-    1. Create the image database and enter all the information with an index on the image
-    2. For right now just create a new .js file in admin and run the image model with hardcoded values
+2. Create templates for images and pull the number, names ond info of images from an endpoint and then render the home page
+    1. Recreate images collection - Change loginid field to artistid
+    2. The end point should return an array of objects with all the information that needs to be displayed
     3. Use Mustache templating system to render the home page, retrieving the information from the 
     database
-2. Create templates for images and pull the number, names ond info of images from an endpoint and then render the home page
+    4. A message shown when the user likes an image for the first time
+    5. To be able to src even the bg image from AWS
+    6. Delete index2, index3 and style2 and style3
+    7. Delete img subfolder in the public folder
+    
+
+CLEANUP BRANCH
+3. The old error messages to disappear when trying to correct the error
+5. All usernames to be converted to lowercase
+6. Cleanup all unnecessary console.logs
 
 
 
