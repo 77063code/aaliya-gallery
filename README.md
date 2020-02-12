@@ -111,10 +111,24 @@ FEATURES BRANCH
     7. Upload the images to S3 with the new names and change the src in index to reference the S3 files
     8. Now test and this is the next verson that should be released to production
     
+
     
-    
-2. Create templates for images and pull the number, names ond info of images from an endpoint and then render the home page
-    1. Recreate images collection - Change loginid field to artistid
+
+CLEANUP BRANCH
+3. The old error messages to disappear when trying to correct the error
+5. All usernames to be converted to lowercase
+6. Cleanup all unnecessary console.logs
+7. Stats alignment is a bit messed up
+8. The message button needs to me made bigger
+9. There should be a register button on the home page
+
+
+
+RELEASES
+V1.3
+1. Date - 02/11/2020
+2. Features
+    1. Recreate images collection - Change loginid field to artistid and add other fields
     2. The end point should return an array of objects with all the information that needs to be displayed
     3. Use Mustache templating system to render the home page, retrieving the information from the 
     database
@@ -123,14 +137,6 @@ FEATURES BRANCH
     6. Delete index2, index3 and style2 and style3
     7. Delete img subfolder in the public folder
     
-
-CLEANUP BRANCH
-3. The old error messages to disappear when trying to correct the error
-5. All usernames to be converted to lowercase
-6. Cleanup all unnecessary console.logs
-
-
-
 
 
 
