@@ -33,7 +33,7 @@ router.get('/images/signed-url-put-object', async (req, res) => {
     signatureVersion: 'v4',
   });
   const params = {
-    Bucket: 'aaliya-galery',
+    Bucket: 'aaliya-gallery',
     Key: 'test.txt',
     Expires: 30 * 60, // 30 minutes
     ContentType: 'text/html'
@@ -51,9 +51,8 @@ router.get('/images/signed-url-put-object', async (req, res) => {
       }
       });
   }));
-  return res.json({
-    signedURL,
-  })
+    console.log(signedURL);
+  res.json(signedURL)
 })
 
 module.exports = router;
