@@ -64,34 +64,7 @@ const getImageInfo = async () => {
 
 //getImageInfo();
 
-const getSignedURL = async () => {
-    try {
-        let response = await fetch('/images/signed-url-put-object')
-        response = await response.json();
-        return response
-    } catch (e) {
-        console.log(e)
-    }
-}
 
-const uploadS3File = async () => {
-    const signedURL = getSignedURL();
-    console.log(signedURL);
-    const formData = new FormData();
-    const fileField = document.querySelector('input[type="file"]');
-     
-    formData.append( 'myFile', '/c/Users/Sanjay.Gupta2/Desktop/MINE/sgupt9999-js/aaliya-gallery/test.txt');
-    
-    let response = await fetch(signedURL, {
-        method: 'PUT',
-        body: formData
-    })
-    
-    response = await response.json();
-    console.log(response);
-}
-
-uploadS3File();
 
 const renderHomePage = async () => {
     const gallery = document.querySelector('#gallery');
