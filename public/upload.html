@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <link href="./css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='./css/style.css' />
+    <link rel='stylesheet' href='./css/style-forms.css' />
+    <link rel='stylesheet' href='./css/style-media-forms.css' />
+</head>
+
+<body>
+    <div class="centered-form">
+        
+        <div class="centered-form__box">
+    
+        <form>
+          <div>
+            Select file to upload:
+            <input id="uploadfile" type="file"><br>
+            Painting Name: 
+            <input type="text" id="Name"><br>
+            Year Painted:
+            <input type="number" id="year"><br>
+            Height(inch):
+            <input type="number" id="height"><br>
+            Width(inch):
+            <input type="number" id="width"><br>
+            Price(US$)
+            <input type="number" id="price"><br>
+            Type: 
+            <select id="type" name="type">
+              <option value="acrylic">Acrylic</option>
+              <option value="oil">Oil</option>
+              <option value="watercolor">Watercolor</option>
+              <option value="lithograph">Lithograph</option>
+            </select>
+          </div>
+          <button id="file" type="submit">Upload</button>
+        </form>
+
+         
+        
+    </div>
+
+ <script src="./js/upload.js"></script>
+
+</body>
+
+
+
+</html>

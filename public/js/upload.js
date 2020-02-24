@@ -1,4 +1,5 @@
 const getSignedURL = async () => {
+// Get signed URL from AWS to be able to upload to S3
     try {
         let response = await fetch('/images/signed-url-put-object')
         response = await response.json();
