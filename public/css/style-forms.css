@@ -23,12 +23,17 @@
  
 }
 
+
+
+
 .centered-form label {
     /*display: block;*/
     font-size: 1.8rem;
     margin-bottom: .5rem;
     color: #777;
 }
+
+
 
 .centered-form button {
     width: 100%;
@@ -160,6 +165,35 @@
 #btn-login-resend-email {
     display: none;
 }
+
+
+/* Styling for upload form */
+#uploadfile {
+    /* You don't wamt to make displya none or visibilty hidden as the input value willl not be sent to the server on form submit */
+    /* Width and height are not sset to 0, b/c setting to zero ends up throwing te element out of tab party in some browsers */
+    width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.centered-form + label {
+    font-size: 1.8rem;
+    color: #777;
+    background-color: black;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+
+}
+
+.centered-form:focus + label,
+.centered-form + label:hover {
+    background-color: red;
+}
+
+
 
 
 
