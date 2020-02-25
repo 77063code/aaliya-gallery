@@ -128,6 +128,8 @@ UPLOAD BRANCH
 2 The artist sub-folder is created when they register
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
+STEPS
+1. First rerun the admin/images.js to make sure the most recent data is uploaded
 
 
 

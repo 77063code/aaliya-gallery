@@ -16,18 +16,13 @@
     
         <form>
           <div>
-            Select file to upload:
-            <input id="uploadfile" type="file"><br>
-            Painting Name: 
-            <input type="text" id="Name"><br>
-            Year Painted:
-            <input type="number" id="year"><br>
-            Height(inch):
-            <input type="number" id="height"><br>
-            Width(inch):
-            <input type="number" id="width"><br>
-            Price(US$)
-            <input type="number" id="price"><br>
+            <label for="uploadfile">Select a file:</label>
+            <input id="uploadfile" type="file" name="uploadfile"><br> 
+            <input type="text" id="Name" placeholder="Painting Name"><br>
+            <input type="number" id="year" placeholder="Year Painted"><br>
+            <input type="number" id="height" placeholder="Height(inches)"><br>
+            <input type="number" id="width" placeholder="Width(inches)"><br>
+            <input type="number" id="price" placeholder="Price(US$)"><br>
             Type: 
             <select id="type" name="type">
               <option value="acrylic">Acrylic</option>

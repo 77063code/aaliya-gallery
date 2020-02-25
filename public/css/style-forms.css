@@ -24,7 +24,7 @@
 }
 
 .centered-form label {
-    display: block;
+    /*display: block;*/
     font-size: 1.8rem;
     margin-bottom: .5rem;
     color: #777;
