@@ -14,8 +14,7 @@
         
         <div class="centered-form__box">
     
-        <form>
-          <div>
+        <form id="upload">
             <label for="uploadfile">Select a file:</label>
                 <input id="uploadfile" type="file" name="uploadfile"><br> 
             <input type="text" id="Name" placeholder="Painting Name"><br>
@@ -25,12 +24,11 @@
             <input type="number" id="price" placeholder="Price(US$)"><br>
             Type: 
             <select id="type" name="type">
-              <option value="acrylic">Acrylic</option>
-              <option value="oil">Oil</option>
-              <option value="watercolor">Watercolor</option>
+              <option value="acrylic">Acrylic on Canvas</option>
+              <option value="oil">Oil on Canvas</option>
+              <option value="watercolor">Watercolor on Canvas</option>
               <option value="lithograph">Lithograph</option>
             </select>
-          </div>
           <button id="file" type="submit">Upload</button>
         </form>
 

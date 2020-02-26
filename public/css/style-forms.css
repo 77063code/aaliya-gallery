@@ -62,7 +62,7 @@
     font-size: 1.8rem;
 }
 
-.centered-form input:focus,textarea:focus {
+.centered-form input:focus,textarea:focus,select:focus {
     background-color: lightblue;
 }
 
@@ -168,7 +168,7 @@
 
 
 /* Styling for upload form */
-#uploadfile {
+#uploadfile2 {
     /* You don't wamt to make displya none or visibilty hidden as the input value willl not be sent to the server on form submit */
     /* Width and height are not sset to 0, b/c setting to zero ends up throwing te element out of tab party in some browsers */
     width: 0.1px;
@@ -179,18 +179,37 @@
 	z-index: -1;
 }
 
-.centered-form + label {
+#upload input[type='file']::-webkit-file-upload-button {
+    margin-bottom: 1.6rem;
+    width: 65%;
+    border: .1rem solid #eeeeee;
+    padding: 1.2rem;
+    outline: none;
     font-size: 1.8rem;
-    color: #777;
-    background-color: black;
-    display: inline-block;
-    margin-bottom: 1.5rem;
-
+    background-color: #fff;
 }
 
-.centered-form:focus + label,
-.centered-form + label:hover {
-    background-color: red;
+#upload input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+/* This is to prevent the incease/decrease arrow that gets added by default where the input type is number */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#upload select {
+    margin-bottom: 1.6rem;
+    width: 100%;
+    border: .1rem solid #eeeeee;
+    padding: 1.2rem;
+    outline: none;
+    font-size: 1.8rem;
+    background-color: #fff;
+}
+
+#upload input {
+   appearance: none;
+    -webkit-appearance: none;
 }
 
 
