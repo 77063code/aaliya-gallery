@@ -26,12 +26,11 @@
 
 
 
-.centered-form label {
-    /*display: block;*/
+/*.centered-form label {
     font-size: 1.8rem;
     margin-bottom: .5rem;
     color: #777;
-}
+}*/
 
 
 
@@ -168,7 +167,7 @@
 
 
 /* Styling for upload form */
-#uploadfile2 {
+#uploadfile {
     /* You don't wamt to make displya none or visibilty hidden as the input value willl not be sent to the server on form submit */
     /* Width and height are not sset to 0, b/c setting to zero ends up throwing te element out of tab party in some browsers */
     width: 0.1px;
@@ -179,7 +178,27 @@
 	z-index: -1;
 }
 
-#upload input[type='file']::-webkit-file-upload-button {
+label[for="uploadfile"] {    
+    background-color: #fff;
+    display: inline-block;    
+    font-size: 1.8rem;
+    margin-bottom: .5rem;
+    cursor: pointer;
+    border: .1rem solid #eeeeee;
+    padding: 1.2rem;
+    outline: none;
+    width: 100%;
+    
+}
+
+label[for="uploadfile"]:hover {
+    background-color: lightblue;  
+    outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+/*#upload input[type='file']::-webkit-file-upload-button {*/
+upload input[type='file'] {
     margin-bottom: 1.6rem;
     width: 65%;
     border: .1rem solid #eeeeee;
