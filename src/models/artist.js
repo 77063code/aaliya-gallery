@@ -5,13 +5,15 @@ const jwt = require('jsonwebtoken');
 const uniqueValidator = require('mongoose-unique-validator');
 const md5 = require('md5');
 
-const userSchema = new mongoose.Schema({
+
+
+const artistSchema = new mongoose.Schema({
         name: {
                 type: String,
                 required: true,
                 trim: true
         },
-        loginid: {
+        artistid: {
                 type: String,
                 required: true,
                 trim: true,
@@ -28,7 +30,42 @@ const userSchema = new mongoose.Schema({
                                 throw new Error('Email is invalid');
                             
                         }
-                }},
+        }},
+        school: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        grade: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        teachername: {
+                type: String,
+                required: true,
+                trim: true
+        },
+        teacheremail: {
+            type: String,
+            required: true,
+            trim: true,
+            lowercase: true,
+            validate(value) {
+                if (!validator.isEmail(value)) {
+                    throw new Error('Email is invalid');
+                            
+                }
+        }},
+        numberOfPaintings: { // How many paintings have been uploaded
+            type: Number,
+            required: true
+        },
+        indexOfLastPainting: { // What was the AWS bucket index of the last image uploaded
+            type: Number,
+            required: true
+        }
+        
         hashcode: {
         // MD5 generated hash value based on loginid and email. This is filled in when the user
         // registers and once the user clicks on the email confirmation link, it should be 
@@ -54,28 +91,28 @@ const userSchema = new mongoose.Schema({
 		}]
 });
 
-userSchema.plugin(uniqueValidator); // This is needed to check the uniqueness property of a field
+artistSchema.plugin(uniqueValidator); // This is needed to check the uniqueness property of a field
 
 
 
-userSchema.methods.generateAuthToken = async function () {
+artistSchema.methods.generateAuthToken = async function () {
 // Generate a new token and add it to the tokens array on the object
     try {
-	   const user = this;
-	   const token = jwt.sign({ _id: user._id.toString() }, 'HelloWorld', {    expiresIn: 60 * 60 * 24}); // expires in 24 hours
-	   user.tokens = user.tokens.concat({token});
-	   await user.save();
+	   const artist = this;
+	   const token = jwt.sign({ _id: artist._id.toString() }, 'HelloWorld', {    expiresIn: 60 * 60 * 24}); // expires in 24 hours
+	   artist.tokens = artist.tokens.concat({token});
+	   await artist.save();
 	   return token;
     } catch (e) {
         console.log(e);
     }
 };
 
-userSchema.methods.generateHashCode = async function () {
+artistSchema.methods.generateHashCode = async function () {
 // Generate a new hashcode and add it to the user instance
     try {
-	   const user = this;
-        user.hashcode = md5(user.loginid + user.email +         Math.floor(Math.random()*50000)); 
+	   const artist = this;
+        user.hashcode = md5(artist.artistid + artist.email + Math.floor(Math.random()*50000)); 
         // Create a hash value using the loginid, email and a random number b/w 0 amd 50000
 	   await user.save();
     } catch (e) {
@@ -84,69 +121,69 @@ userSchema.methods.generateHashCode = async function () {
 };
 
 
-userSchema.methods.toJSON = function () {
+artistSchema.methods.toJSON = function () {
 // We dont want to expose password and tokens when we send the user data back to the client
 // This method(toJSON) is called whenever stringify is called on the object and stringify is
 // called whenever we do res.send
-	const user = this;
-	const userObject = user.toObject(); // This method is provided by mongoose to remove some metadata and properties can be deleted from the object
+	const artist = this;
+	const artistObject = artist.toObject(); // This method is provided by mongoose to remove some metadata and properties can be deleted from the object
 
-	delete userObject.password;
-	delete userObject.tokens;
+	delete artistObject.password;
+	delete artistObject.tokens;
     /* Need both these fields for the message form
     delete userObject.name;
     delete userObject.email;
     */
 
-	return userObject;
+	return artistObject;
 };
 
 // Authenticate the user based on loginid and password
-userSchema.statics.findByCredentials = async (loginid,password) => {
+artistSchema.statics.findByCredentials = async (artistid,password) => {
     
 	try {
-       const user = await User.findOne({loginid});
+       const artist = await Artist.findOne({artistid});
     
-	   if (!user) {
+	   if (!artist) {
 		  throw new Error('Unable to login');
 	   };
     
-	   const isMatch = await bcrypt.compare(password,user.password);   
+	   const isMatch = await bcrypt.compare(password,artist.password);   
 
 	   if (!isMatch) {
            throw new Error('Unable to login');
 	   }
-	   return user;
+	   return artist;
     } catch (e) {
         console.log(e);
     }
 };
 
-userSchema.statics.findByLoginId = async (loginid) => {
+artistSchema.statics.findByArtistId = async (artistid) => {
 // Find user by loginid
     
     try {
-	   const user = await User.findOne({loginid});
+	   const artist = await User.findOne({artistid});
     
-	   if (!user) {
+	   if (!artist) {
            console.log('error');
 		  throw new Error('Unable to login');
 	   };
     
-	   return user;
+	   return artist;
     } catch (e) {
         console.log(e);
     }
 };
 
-userSchema.statics.findByHashCode = async (hashcode) => {
+artistSchema.statics.findByHashCode = async (hashcode) => {
 // Find the user by hashcode
     try {
-        const user = await User.findOne({hashcode});
-        if (!user) {
-            throw new Error('Cannot find the user');
+        const artist = await Artist.findOne({hashcode});
+        if (!artist) {
+            throw new Error('Cannot find the artist');
         }    
-        return user;
+        return artist;
     } catch (e) {
         console.log(e);
     }
@@ -157,11 +194,11 @@ userSchema.statics.findByHashCode = async (hashcode) => {
 // Hash the plain text password before saving
 userSchema.pre('save', async function (next) {
 	try {
-       const user = this;
+       const artist = this;
 
-	   if (user.isModified('password')) {
+	   if (artist.isModified('password')) {
 	   // This will be true when the user is first created and then again if the password is being changed
-           user.password = await bcrypt.hash(user.password,8);
+           artist.password = await bcrypt.hash(artist.password,8);
 	   }
     } catch (e) {
         console.log(e)
@@ -169,5 +206,5 @@ userSchema.pre('save', async function (next) {
 	next();
 });
 
-const User = mongoose.model('User',userSchema);
-module.exports = User;
+const Artist = mongoose.model('Artist',artistSchema);
+module.exports = Artist;

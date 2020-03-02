@@ -168,7 +168,17 @@
 
 /* Styling for upload form */
 #uploadfile {
-    /* You don't wamt to make displya none or visibilty hidden as the input value willl not be sent to the server on form submit */
+    /* You don't wamt to make
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    displya none or visibilty hidden as the input value willl not be sent to the server on form submit */
     /* Width and height are not sset to 0, b/c setting to zero ends up throwing te element out of tab party in some browsers */
     width: 0.1px;
 	height: 0.1px;

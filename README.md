@@ -94,11 +94,15 @@ WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 
 WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
 1. Artist Name
-2. School when paiting was done
-3. Grade when painting was done
+2. School currently attending
+3. Grade currently attending
 4. Email
 5. Parents Permission
 6. Art Teacher/Class Teacher's Name and Email
+7. Number of paintings uploaded
+8. Artist Loginid
+9. Index of the last file uploaded
+10. AWS BucketName
 
 FEATURES BRANCH
 1. How to access image files directly from S3 and not on the server
@@ -121,6 +125,7 @@ CLEANUP BRANCH
 7. Stats alignment is a bit messed up
 8. The message button needs to me made bigger
 9. There should be a register button on the home page
+10. the loginids need to be of correct format to align with bucket names
 
 
 UPLOAD BRANCH
@@ -130,6 +135,7 @@ UPLOAD BRANCH
 4 They should also be able to delete any image they want
 STEPS
 1. First rerun the admin/images.js to make sure the most recent data is uploaded
+2. Move accessKeyId, secretAccessKey, bucket and region to the config file
 
 
 
