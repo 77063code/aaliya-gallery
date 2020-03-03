@@ -134,6 +134,7 @@ UPLOAD BRANCH
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
 STEPS
+1. Also need to add a new field to image collection s3location-uploaded. This will be the location of the unformatted file that is uploaded
 1. First rerun the admin/images.js to make sure the most recent data is uploaded
 2. Move accessKeyId, secretAccessKey, bucket and region to the config file
 

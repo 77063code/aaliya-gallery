@@ -10,7 +10,7 @@ const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
 const AWSKey = process.env.AWSKEY;
 const AWSSecret = process.env.AWSSECRET;
-const AWSRegion = proces.env.AWSREGION || 'us-west-2';
+const AWSRegion = process.env.AWSREGION || 'us-west-2';
 const AWSBucket = process.env.AWSBUCKET
 
 

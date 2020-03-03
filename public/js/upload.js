@@ -11,6 +11,11 @@ const getSignedURL = async () => {
 
 document.getElementById('file').addEventListener('click', async (e) => {
     e.preventDefault();
+    const price = document.getElementById('price').value;
+    if( price === "") {
+        alert('Please enter a price')
+    }
+    console.log(price);
     uploadfile = document.getElementById('uploadfile')    
     try {
         const signedURL =  await getSignedURL();
