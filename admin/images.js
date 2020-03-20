@@ -194,6 +194,60 @@ const imageInfo11 = {
     s3location: 'https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-11.jpg'
 }
 
+const imageInfo12 = {
+    name: 'aaliya1-12.jpg',
+    artistid: 'aaliya1',
+    displayname: 'Lady with Roosters',
+    year: 2020,
+    price: 100,
+    type: 'Arcylic on Canvas',
+    length: 20,
+    width: 16,
+    orientation: 'Portrait',
+    grade: 'Elementary',
+    sold: 'n',
+    school: 'Walker Station Elementary',
+    backside_id: 'aaliya1-12__back',
+    s3location: 'https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-12.jpg'
+}
+
+
+const imageInfo13 = {
+    name: 'aaliya1-13.jpg',
+    artistid: 'aaliya1',
+    displayname: 'Farm',
+    year: 2020,
+    price: 100,
+    type: 'Acrylic on Canvas',
+    length: 16,
+    width: 20,
+    orientation: 'Landscape',
+    grade: 'Elementary',
+    sold: 'n',
+    school: 'Walker Station Elementary',
+    backside_id: 'aaliya1-13__back',
+    s3location: 'https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-13.jpg'
+}
+
+
+const imageInfo14 = {
+    name: 'aaliya1-14.jpg',
+    artistid: 'aaliya1',
+    displayname: 'Reaching for sky',
+    year: 2020,
+    price: 100,
+    type: 'Acrylic on Canvas',
+    length: 16,
+    width: 12,
+    orientation: 'Portrait',
+    grade: 'Elementary',
+    sold: 'n',
+    school: 'Walker Station Elementary',
+    backside_id: 'aaliya1-14__back',
+    s3location: 'https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-14.jpg'
+}
+
+
 
 const saveImageInfo = async (imageInfo) => {
     const image = new Image(imageInfo);
@@ -205,14 +259,6 @@ const saveImageInfo = async (imageInfo) => {
     }
 }
 
-saveImageInfo(imageInfo1);
-saveImageInfo(imageInfo2);
-saveImageInfo(imageInfo3);
-saveImageInfo(imageInfo4);
-saveImageInfo(imageInfo5);
-saveImageInfo(imageInfo6);
-saveImageInfo(imageInfo7);
-saveImageInfo(imageInfo8);
-saveImageInfo(imageInfo9);
-saveImageInfo(imageInfo10);
-saveImageInfo(imageInfo11);
+saveImageInfo(imageInfo12);
+saveImageInfo(imageInfo13);
+saveImageInfo(imageInfo14);

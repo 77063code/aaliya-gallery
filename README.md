@@ -94,11 +94,15 @@ WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 
 WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
 1. Artist Name
-2. School when paiting was done
-3. Grade when painting was done
+2. School currently attending
+3. Grade currently attending
 4. Email
 5. Parents Permission
 6. Art Teacher/Class Teacher's Name and Email
+7. Number of paintings uploaded
+8. Artist Loginid
+9. Index of the last file uploaded
+10. AWS BucketName
 
 FEATURES BRANCH
 1. How to access image files directly from S3 and not on the server
@@ -111,25 +115,50 @@ FEATURES BRANCH
     7. Upload the images to S3 with the new names and change the src in index to reference the S3 files
     8. Now test and this is the next verson that should be released to production
     
-    
-    
-2. Create templates for images and pull the number, names ond info of images from an endpoint and then render the home page
-    1. Recreate images collection - Change loginid field to artistid
-    2. The end point should return an array of objects with all the information that needs to be displayed
-    3. Use Mustache templating system to render the home page, retrieving the information from the 
-    database
-    4. A message shown when the user likes an image for the first time
-    5. To be able to src even the bg image from AWS
-    6. Delete index2, index3 and style2 and style3
-    7. Delete img subfolder in the public folder
-    
+
 
 CLEANUP BRANCH
 3. The old error messages to disappear when trying to correct the error
 5. All usernames to be converted to lowercase
 6. Cleanup all unnecessary console.logs
+7. Stats alignment is a bit messed up
+8. The message button needs to me made bigger
+9. There should be a register button on the home page
+10. the loginids need to be of correct format to align with bucket names
 
 
+UPLOAD BRANCH
+1 Create a form so artists can upload their images to S3
+2 The artist sub-folder is created when they register
+3 They should be able to upload upto 5 images, no more than 200kb each
+4 They should also be able to delete any image they want
+STEPS
+1. Also need to add a new field to image collection s3location-uploaded. This will be the location of the unformatted file that is uploaded
+1. First rerun the admin/images.js to make sure the most recent data is uploaded
+2. Move accessKeyId, secretAccessKey, bucket and region to the config file
+
+
+
+RELEASES
+V1.3
+1. Date - 02/11/2020
+2. Features
+    1. Recreate images collection - Change loginid field to artistid and add other fields
+    2. The end point should return an array of objects with all the information that needs to be displayed
+    3. Use Mustache templating system to render the home page, retrieving the information from the
+    database
+    4. A message shown when the user likes an image for the first time
+    5. To be able to src even the bg image from AWS
+    6. Delete index2, index3 and style2 and style3
+    7. Delete img subfolder in the public folder
+
+V1.4
+1. Branch - images
+2. Date - 03/21/2020
+3. Features    
+	1. Add 3 more images by aaliya1 to AWS S3
+	2. Change the images.js script in admin directory to upload information about the 3 images
+    
 
 
 
