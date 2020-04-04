@@ -137,7 +137,10 @@ STEPS
 1. First rerun the admin/images.js to make sure the most recent data is uploaded
 2. Move accessKeyId, secretAccessKey, bucket and region to the config file
 
-
+UPLOAD-IMAGE BRANCH
+1. Right now just creating a form to upload one file and save it as test.txt
+STEPS
+1. Install aws-sdk
 
 RELEASES
 V1.3
