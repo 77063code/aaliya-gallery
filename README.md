@@ -118,6 +118,7 @@ FEATURES BRANCH
 
 
 CLEANUP BRANCH
+1. Port 27017 should be closed to public and only accessible from host machine
 3. The old error messages to disappear when trying to correct the error
 5. All usernames to be converted to lowercase
 6. Cleanup all unnecessary console.logs

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <link href="./css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='./css/style.css' />
+    <link rel='stylesheet' href='./css/style-forms.css' />
+    <link rel='stylesheet' href='./css/style-media-forms.css' />
+</head>
+
+<body>
+    <div class="centered-form">
+        <div class="centered-form__box" id="register-artist">
+                <div class="img__back--close--container">
+                    <button id="btn-close-register-artist">
+                            <i class="fa fa-times-circle" title="Close Form"></i>
+                    </button>
+                </div>
+            
+            <form id="register-artist" method="POST" action="users" autocomplete="off">
+                <input type="text" autocorrect="off" autocomplete="off" spellcheck="false" name="name" id="name-artist" placeholder="Name" autofocus />                
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email-artist" placeholder="Email" />              
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid-artist" placeholder="Login Id" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password-artist" placeholder="Password(min 7 char)" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="school" id="school-artist" placeholder="School" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="grade" id="grade-artist" placeholder="Grade" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="teachername" id="teachername-artist" placeholder="Teacher's Name" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="teacheremail" id="teacheremail-artist" placeholder="Teacher's Official Email" />
+                <button type="submit">Create a new account</button>
+            </form>
+            <p id="error-register-artist"><font color="blue"> User information is not shared with any 3rd party.</font></p>
+
+
+        </div>
+        
+       <div class="centered-form__box" id="resend-email">
+                <div class="img__back--close--container">
+                    <button id="btn-close-resend-email">
+                            <i class="fa fa-times-circle" title="Close Form"></i>
+                    </button>
+                </div>
+                    
+                <p id="email-confirm"></p>
+                <p id="email-confirm-resend"></p>                        
+                <button id="btn-resend-email">Resend Email</button>
+                
+        </div>
+        
+    </div>
+
+    <script src="./js/register-artist.js"></script>
+
+</body>
+
+
+
+</html>

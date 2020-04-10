@@ -52,7 +52,7 @@
     margin-bottom: 1.6rem;
     width: 100%;
     border: .1rem solid #eeeeee;
-    padding: 1.2rem;
+    padding: 0.7rem;
     outline: none;
     font-size: 1.8rem;
 }
@@ -110,7 +110,7 @@
             justify-content: flex-end;
 }
 
-#btn-close-login, #btn-close-register, #btn-close-message, #btn-close-resend-email {
+#btn-close-login, #btn-close-register, #btn-close-message, #btn-close-resend-email, #btn-close-register-artist {
     width: 9rem;
     opacity: 0.5;
     text-align: right;
@@ -137,7 +137,7 @@
 }
 
 /* Error messages on all the forms */
-#error-register, #error-login, #error-message {
+#error-register, #error-login, #error-message, #error-register-artist {
     width: 100%;
     text-align: center;
     color: red;

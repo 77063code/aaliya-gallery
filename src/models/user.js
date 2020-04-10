@@ -48,6 +48,29 @@ const userSchema = new mongoose.Schema({
                         }
                 }
         },
+        school: {
+            type: String,
+            trim: true
+        },
+        grade: {
+            type: String,
+            trim:true
+        },
+        teacherName: {
+            type: String,
+            trim: true
+        },
+        teacherEmail: {
+            type: String,
+            trim: true,
+            lowercase: true
+        },
+        artist: {
+            type: Boolean
+        },
+        imagesUploaded: {
+            type: Number // Number of images ever uploaded by the user if artist
+        },
 	tokens: [{
 		token: {
 			type: String,
