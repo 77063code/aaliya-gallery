@@ -25,6 +25,7 @@ if ("maxTouchPoints" in navigator) {
 }
 
 console.log(hasTouchScreen);
+alert(hasTouchScreen);
 
 //document.getElementById('loginid').focus();
 document.getElementById('artist-account').addEventListener("click", () => {
