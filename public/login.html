@@ -30,16 +30,14 @@
             -->
 
             <form id="login" method="POST" action="users/login" autocomplete="off">              
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid" placeholder="Login Id" />            
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid" placeholder="Login Id" autofocus />            
                 <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="password" id="password" placeholder="Password" />
                 <button type="submit">Login</button>
             </form>
-            <form action="register-artist.html">
-                <button>Create artist account</button>
-            </form>
-            <form action="register.html">
-                <button>Create browser/buyer account</button>
-            </form>
+            
+            <button id="artist-account">Create artist account</button>
+            <button id="browser-account">Create browser/buyer account</button>
+          
             <p id="error-login"></p>
             
             <p id="login-resend-email"></p>
