@@ -31,7 +31,7 @@ document.forms['register-artist'].addEventListener('submit', async (event) => {
             document.getElementById('email-artist').focus();
     }
     else if(!emailIsValid(email)) {
-            $errorRegisterArtist.textContent = 'Please enter correct email';
+            $errorRegisterArtist.textContent = 'Please enter a valid email';
             document.getElementById('email-artist').focus();
     }
      else if(!loginid) {

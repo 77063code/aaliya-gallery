@@ -23,6 +23,14 @@
  
 }
 
+.centered-form p#register-page {
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 1.6rem;
+    padding: 1rem;
+}
+
 .centered-form label {
     display: block;
     font-size: 1.8rem;
@@ -41,6 +49,28 @@
     -webkit-transition: background .3s ease;
     transition: background .3s ease;
     margin: 0 0 1rem 0;    
+}
+
+.centered-form button.btn-next {
+    width: 40%;
+    background: lightblue;
+    color: black;
+    margin-left: 60%;
+    text-align: right;
+    padding: 0.8rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+.centered-form button.btn-previous {
+    width: 55%;
+    background: lightblue;
+    color: black;
+    margin-right: 45%;
+    text-align: left;
+    padding: 0.8rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
 }
 
 .centered-form button:disabled {
@@ -160,6 +190,7 @@
 #btn-login-resend-email {
     display: none;
 }
+
 
 
 

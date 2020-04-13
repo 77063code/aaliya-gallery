@@ -3,6 +3,9 @@ $errorLogin = document.getElementById('error-login');
 $loginResendEmail = document.getElementById('login-resend-email');
 $btnLoginResendEmail = document.getElementById('btn-login-resend-email');
 
+
+// Check if the calling device has a touch screen. Using that as a proxy
+// to find out if the device will have a virtual keyboard
 let hasTouchScreen = false;
 if ("maxTouchPoints" in navigator) { 
     hasTouchScreen = navigator.maxTouchPoints > 0;
@@ -24,21 +27,15 @@ if ("maxTouchPoints" in navigator) {
     }
 }
 
-console.log(hasTouchScreen);
-alert(hasTouchScreen);
+//console.log(hasTouchScreen);
+//alert(hasTouchScreen);
 
 //document.getElementById('loginid').focus();
 document.getElementById('artist-account').addEventListener("click", () => {
-    const height = screen.height;
-    console.log(height);
-    const availHeight = screen.availHeight;
-    console.log(availHeight);
-    const innerHeight = window.innerHeight;
-    console.log(innerHeight);
-    //window.location.href='/register-artist.html'
+    window.location.href='/register-artist.html'
 })
 document.getElementById('browser-account').addEventListener("click", () => {
-    window.location.href='/register.html'
+    window.location.href='/register-browser-mobile.html'
 })
 
 

@@ -37,27 +37,20 @@ router.post('/users', async (req, res) => {
         })
         console.log(`Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`)
         // Send a confirmation email to the new user, and a new user joining email to admin
-        res.status(201).send();// The 201 is most routerropriate status code for a successful creation
+        res.status(201).send();// The 201 is most route appropriate status code for a successful creation
     } catch (e) {
-        // All these errors happen when the save is run
         
+        // All these errors happen when the save is run        
         const keys = Object.keys(e.errors);
         let status = 400;       
-        if (keys[0] === 'name') {
-             status = 350
-        } else if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('required')) {
+        if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('unique')) {
             status = 351
-        } else if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('unique')) {
-            status = 352
-        } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('required')) {
-            status = 353
         } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('unique')) {
-            status = 354
-        } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('invalid')) {
-            status = 355
-        } else if (keys[0] === 'password' && e.errors[keys[0]].message.includes('characters')) {
-            status = 356
+            status = 352
         } 
+        
+        
+        
         res.status(status).send(e.errors[keys[0]].message); // To send a non-standard status code
     }
 });

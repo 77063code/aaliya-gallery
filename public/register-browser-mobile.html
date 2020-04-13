@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <link href="./css/all.css" rel="stylesheet">
+    <link rel='stylesheet' href='./css/style.css' />
+    <link rel='stylesheet' href='./css/style-forms.css' />
+    <link rel='stylesheet' href='./css/style-media-forms.css' />
+</head>
+
+<body>
+    <div class="centered-form">
+        <div class="centered-form__box" id="register-user">
+                <div class="img__back--close--container">
+                    <button id="btn-close-register">
+                            <i class="fa fa-times-circle" title="Close Form"></i>
+                    </button>
+                </div>
+            
+            <p id="register-page">Personal Information</p>
+            <form id="register" method="POST" action="users" autocomplete="off" autocorrect="off" spellcheck="false">
+                <input type="text" name="name" id="name-browser-mobile" placeholder="Name" autofocus />                
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email-browser-mobile" placeholder="Email" />              
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid-browser-mobile" placeholder="Login Id" />
+                <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password-browser-mobile" placeholder="Password(min 7 char)" />
+                
+                
+                    
+                    <button class="btn-previous" type="button" id="btn-previous-register-browser-mobile">< Previous</button>
+                    
+                    <button class="btn-next" type="button" id="btn-next-register-browser-mobile">Next ></button>
+                    
+                
+                
+                <button type="submit" id="btn-submit-register-browser-mobile">Create a new account</button>
+            </form>
+            
+            
+            <p id="error-register"></p>
+
+
+        </div>
+        
+       <div class="centered-form__box" id="resend-email">
+                <div class="img__back--close--container">
+                    <button id="btn-close-resend-email">
+                            <i class="fa fa-times-circle" title="Close Form"></i>
+                    </button>
+                </div>
+                    
+                <p id="email-confirm"></p>
+                <p id="email-confirm-resend"></p>                        
+                <button id="btn-resend-email">Resend Email</button>
+                
+        </div>
+        
+    </div>
+
+    <script src="./js/common.js"></script>
+    <script src="./js/register-browser-mobile.js"></script>
+
+</body>
+
+
+
+</html>
