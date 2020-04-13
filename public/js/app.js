@@ -45,7 +45,8 @@ const setupHeader = async () => {
     // If the returned body has a user object
         document.getElementById('loginid').textContent = user.user.loginid;
         document.getElementById('logout-btn').style.display = "block"; // display the logout button
-        document.getElementById('login-label').style.display = "none"; // Once logged in hide te log in button    
+        document.getElementById('login-label').style.display = "none"; // Once logged in hide the log in button   
+        document.getElementById('register-label').style.display = "none"; // Once logged in hide register button
     }
 }
     
