@@ -9,6 +9,8 @@ $emailConfirmResend = document.getElementById('email-confirm-resend');
 // This is a 2 page form
 document.getElementById('loginid-browser-mobile').style.display = "none";
 document.getElementById('password-browser-mobile').style.display = "none";
+document.getElementById('label-loginid-browser-mobile').style.display = "none";
+document.getElementById('label-password-browser-mobile').style.display = "none";
 document.getElementById('btn-previous-register-browser-mobile').style.display = "none";
 document.getElementById('btn-submit-register-browser-mobile').style.display = "none";
 
@@ -32,8 +34,12 @@ document.getElementById('btn-next-register-browser-mobile').addEventListener('cl
     else {
         document.getElementById('name-browser-mobile').style.display = "none";
         document.getElementById('email-browser-mobile').style.display = "none";
+        document.getElementById('label-name-browser-mobile').style.display = "none";
+        document.getElementById('label-email-browser-mobile').style.display = "none";
         document.getElementById('loginid-browser-mobile').style.display = "block";
         document.getElementById('password-browser-mobile').style.display = "block";
+        document.getElementById('label-loginid-browser-mobile').style.display = "block";
+        document.getElementById('label-password-browser-mobile').style.display = "block";
         document.getElementById('loginid-browser-mobile').focus();
         document.getElementById('btn-next-register-browser-mobile').style.display = "none";
         document.getElementById('btn-previous-register-browser-mobile').style.display = "block";
@@ -47,8 +53,12 @@ document.getElementById('btn-previous-register-browser-mobile').addEventListener
 
     document.getElementById('name-browser-mobile').style.display = "block";
     document.getElementById('email-browser-mobile').style.display = "block";
+    document.getElementById('label-name-browser-mobile').style.display = "block";
+    document.getElementById('label-email-browser-mobile').style.display = "block";
     document.getElementById('loginid-browser-mobile').style.display = "none";
     document.getElementById('password-browser-mobile').style.display = "none";
+    document.getElementById('label-loginid-browser-mobile').style.display = "none";
+    document.getElementById('label-password-browser-mobile').style.display = "none";
     document.getElementById('name-browser-mobile').focus();
     document.getElementById('btn-next-register-browser-mobile').style.display = "block";
     document.getElementById('btn-previous-register-browser-mobile').style.display = "none";

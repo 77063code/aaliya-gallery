@@ -24,13 +24,8 @@ const userSchema = new mongoose.Schema({
                 required: true,
                 trim: true,
                 lowercase: true,
-		        unique: true,
-                validate(value) {
-                        if (!validator.isEmail(value)) {
-                                throw new Error('Email is invalid');
-                            
-                        }
-                }},
+	        unique: true
+                },
         hashcode: {
         // MD5 generated hash value based on loginid and email. This is filled in when the user
         // registers and once the user clicks on the email confirmation link, it should be 
@@ -40,13 +35,7 @@ const userSchema = new mongoose.Schema({
         },
         password: {
                 type: String,
-                trim: true,
-                validate(value) {
-                        if (value.length <= 6) {
-                                //throw new Error('The passwords needs to be more than 6 characters');
-                            throw new Error('The password needs to more than 6 characters')
-                        }
-                }
+                trim: true
         },
         school: {
             type: String,
@@ -54,7 +43,7 @@ const userSchema = new mongoose.Schema({
         },
         grade: {
             type: String,
-            trim:true
+            trim: true
         },
         teacherName: {
             type: String,
@@ -65,8 +54,8 @@ const userSchema = new mongoose.Schema({
             trim: true,
             lowercase: true
         },
-        artist: {
-            type: Boolean
+        artist: { 
+            type: Boolean // If registered as an artist, then this is true
         },
         imagesUploaded: {
             type: Number // Number of images ever uploaded by the user if artist
