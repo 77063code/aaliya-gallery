@@ -4,7 +4,6 @@
     }
     .gallery {
         -webkit-box-pack: center;
-            -ms-flex-pack: center;
                 justify-content: center;
     }    
     .image {
@@ -27,7 +26,6 @@
 @media only screen and (min-width: 601px) and (max-width:959px) {    
     .gallery {
         -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
                 justify-content: space-between;
     }    
     .image {
@@ -47,7 +45,6 @@
 @media only screen and (min-width: 960px) {
     .gallery {
         -webkit-box-pack: justify;
-            -ms-flex-pack: justify;
                 justify-content: space-between;
     }
 

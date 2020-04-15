@@ -1,8 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 html {
@@ -20,10 +19,8 @@ body {
     width: 100%;
     height: 20%;
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
             justify-content: space-between;
 }
 
@@ -35,12 +32,9 @@ body {
 
 #logging {
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
     padding: 0 2rem;
     font-size: 1.8rem;
@@ -52,13 +46,10 @@ body {
 
 #logging a {
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
     margin: 0 .5rem;
     text-decoration: none;
@@ -89,12 +80,9 @@ body {
 
 .gallery {
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
             justify-content: space-between;
 }
 
@@ -128,14 +116,11 @@ body {
     height: calc(20% - 1.3rem);
     padding-top: 0.5rem;
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-align: start;
-        -ms-flex-align: start;
             align-items: flex-start;
     margin: 0 1rem;
     -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
             justify-content: space-between;
     position:absolute;
     top: calc(80% + 1.3rem);
@@ -157,10 +142,8 @@ body {
 
 .likes {
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: start;
-        -ms-flex-pack: start;
             justify-content: flex-start;
 }
 .total-likes {
@@ -189,10 +172,8 @@ body {
 .likes__error--message {
     width: calc(95% - .3rem);
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
             justify-content: center;
     position:absolute;
     top: calc(100% - 1.3rem);
@@ -224,10 +205,8 @@ body {
     margin:0px;
     width: 100%;
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: end;
-        -ms-flex-pack: end;
             justify-content: flex-end;
 }
 

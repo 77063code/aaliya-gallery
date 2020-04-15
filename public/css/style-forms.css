@@ -4,19 +4,15 @@
     width: 100vw;
     height: 100vh;
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
 }
 
 .centered-form__box {
-    -webkit-box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
-            box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
+    box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
     background: #F7F7FA;
     padding: 0 2.4rem 2.4rem 2.4rem;
     width: 25rem;
@@ -121,6 +117,10 @@
     opacity: 0.5;
 }
 
+::-moz-placeholder {
+    opacity: 0.5;
+}
+
 ::placeholder {
     opacity: 0.5;
 }
@@ -134,10 +134,8 @@
     /*background-color: #F7F7FA;*/
     width: 22.6rem;
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: end;
-        -ms-flex-pack: end;
             justify-content: flex-end;
 }
 

@@ -44,7 +44,6 @@ document.getElementById('btn-next-register-browser-mobile').addEventListener('cl
         document.getElementById('btn-next-register-browser-mobile').style.display = "none";
         document.getElementById('btn-previous-register-browser-mobile').style.display = "block";
         document.getElementById('btn-submit-register-browser-mobile').style.display = "block";
-        document.getElementById('register-page').textContent = "Login Information";
         $errorRegister.textContent = '';
     }
 })
@@ -63,7 +62,6 @@ document.getElementById('btn-previous-register-browser-mobile').addEventListener
     document.getElementById('btn-next-register-browser-mobile').style.display = "block";
     document.getElementById('btn-previous-register-browser-mobile').style.display = "none";
     document.getElementById('btn-submit-register-browser-mobile').style.display = "none";
-    document.getElementById('register-page').textContent = "Personal Information";
     $errorRegister.textContent = '';
     
 })
