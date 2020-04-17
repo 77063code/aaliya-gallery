@@ -7,6 +7,18 @@
     display: flex;
     -webkit-box-pack: center;
             justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+}
+
+.centered-form.centered-form-mobile {
+    background: #333744;
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
     -webkit-box-align: flex-start;
             align-items: flex-start;
 }
@@ -16,8 +28,14 @@
     background: #F7F7FA;
     padding: 0 2.4rem 2.4rem 2.4rem;
     width: 25rem;
-    margin: 1rem;
- 
+}
+
+.centered-form__box.centered-form-mobile__box {
+    box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
+    background: #F7F7FA;
+    padding: 0 2.4rem 2.4rem 2.4rem;
+    width: 25rem;
+    margin-top: 1rem;
 }
 
 .centered-form p#register-page, .centered-form p.description {
@@ -98,14 +116,6 @@
     font-size: 1.8rem;
 }
 
-.redAsterik {
-    color: red;
-}
-
-.passwordRequirement {
-    font-size: 1.2rem
-}
-
 ::-webkit-input-placeholder {
     opacity: 0.5;
 }
@@ -167,6 +177,7 @@
 }
 
 /* Error messages on all the forms */
+/*
 #error-register, #error-login, #error-message, #error-register-artist {
     width: 100%;
     text-align: center;
@@ -174,6 +185,7 @@
     font-size: 1.6rem;
     margin-bottom: .5rem;
 }
+*/
 
 .error-msg {
     width: 100%;
