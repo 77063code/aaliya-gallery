@@ -1,6 +1,10 @@
 // ELEMENT
 
 $errorRegister = document.getElementById('error-register');
+$errorName = document.getElementById('error-register-browser-mobile-name');
+$errorEmail = document.getElementById('error-register-browser-mobile-email');
+$errorLoginid = document.getElementById('error-register-browser-mobile-loginid');
+$errorPassword = document.getElementById('error-register-browser-mobile-password');
 $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
@@ -19,16 +23,19 @@ document.getElementById('btn-next-register-browser-mobile').addEventListener('cl
     const name = document.getElementById('name-browser-mobile').value;
     const email = document.getElementById('email-browser-mobile').value;
     
+    $errorName.textContent = '';
+    $errorEmail.textContent = '';
+    
     if (!name) {
-        $errorRegister.textContent = 'Please enter your name';
+        $errorName.textContent = 'Please enter your name';
         document.getElementById('name-browser-mobile').focus();
     }
     else if (!email) {
-        $errorRegister.textContent = 'Please enter your email';
+        $errorEmail.textContent = 'Please enter your email';
         document.getElementById('email-browser-mobile').focus();
     }
     else if (!emailIsValid(email)) {
-        $errorRegister.textContent = 'Please enter a valid email';
+        $errorEmail.textContent = 'Please enter a valid email';
         document.getElementById('email-browser-mobile').focus();
     }
     else {
@@ -44,7 +51,8 @@ document.getElementById('btn-next-register-browser-mobile').addEventListener('cl
         document.getElementById('btn-next-register-browser-mobile').style.display = "none";
         document.getElementById('btn-previous-register-browser-mobile').style.display = "block";
         document.getElementById('btn-submit-register-browser-mobile').style.display = "block";
-        $errorRegister.textContent = '';
+        $errorName.textContent = '';
+        $errorEmail.textContent = '';
     }
 })
 
@@ -62,6 +70,8 @@ document.getElementById('btn-previous-register-browser-mobile').addEventListener
     document.getElementById('btn-next-register-browser-mobile').style.display = "block";
     document.getElementById('btn-previous-register-browser-mobile').style.display = "none";
     document.getElementById('btn-submit-register-browser-mobile').style.display = "none";
+    $errorLoginid.style.display = "none";
+    $errorPassword.style.display = "none";
     $errorRegister.textContent = '';
     
 })
@@ -71,21 +81,28 @@ document.forms['register'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
-    $errorRegister.textContent = "";
+    $errorLoginid.textContent = "";
+    $errorPassword.textContent = "";
     
     const loginid = document.getElementById('loginid-browser-mobile').value;
     const password = document.getElementById('password-browser-mobile').value;
+    // You don't care for name and email b/c they have already been validated when next was pressed
     
     if (!loginid) {
-        $errorRegister.textContent = 'Please enter a login';
+        $errorLoginid.style.display = "block";
+        $errorLoginid.textContent = 'Please enter a login';
         document.getElementById('loginid-browser-mobile').focus();
     }
     else if (!password) {
-        $errorRegister.textContent = 'Please enter your password';
+        $errorLoginid.style.display = "none";
+        $errorPassword.style.display = "block";
+        $errorPassword.textContent = 'Please enter your password';
         document.getElementById('password-browser-mobile').focus();
     }
     else if(password.length < 7) {
-            $errorRegister.textContent = 'Password needs to be atleast 7 characters';
+            $errorLoginid.style.display = "none";
+            $errorPassword.style.display = "block";
+            $errorPassword.textContent = 'Password needs to be atleast 7 characters';
             document.getElementById('password-browser-mobile').focus();
     }
     else {
@@ -99,10 +116,10 @@ document.forms['register'].addEventListener('submit', async (event) => {
                 console.log(response);
                 console.log(response.status);
                 if(response.status === 351) {
-                    $errorRegister.textContent = 'This loginid is already taken. Please enter a different loginid';
+                    $errorLoginid.textContent = 'This loginid is already taken. Please enter a different loginid';
                 } 
                 else if(response.status === 352) {
-                    $errorRegister.textContent = 'This email is already being used. Please enter a different email';
+                    $errorPassword.textContent = 'This email is already being used. Please enter a different email';
                     //document.getElementById('email').focus();
                 } 
                 else {

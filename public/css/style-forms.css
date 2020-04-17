@@ -7,8 +7,8 @@
     display: flex;
     -webkit-box-pack: center;
             justify-content: center;
-    -webkit-box-align: center;
-            align-items: center;
+    -webkit-box-align: flex-start;
+            align-items: flex-start;
 }
 
 .centered-form__box {
@@ -16,6 +16,7 @@
     background: #F7F7FA;
     padding: 0 2.4rem 2.4rem 2.4rem;
     width: 25rem;
+    margin: 1rem;
  
 }
 
@@ -171,7 +172,17 @@
     text-align: center;
     color: red;
     font-size: 1.6rem;
+    margin-bottom: .5rem;
 }
+
+.error-msg {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    margin-bottom: .5rem;
+}
+   
 
 #email-confirm, #email-confirm-resend, #login-resend-email {
     width: 100%;
