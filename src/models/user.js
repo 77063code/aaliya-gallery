@@ -9,23 +9,23 @@ const md5 = require('md5');
 
 const userSchema = new mongoose.Schema({
         name: {
-                type: String,
-                required: true,
-                trim: true
-        },
-        loginid: {
-                type: String,
-                required: true,
-                trim: true,
-                unique: true
+            type: String,
+            required: true,
+            trim: true
         },
         email: {
-                type: String,
-                required: true,
-                trim: true,
-                lowercase: true,
+            type: String,
+            required: true,
+            trim: true,
+            lowercase: true,
 	        unique: true
-                },
+        },
+        loginid: {
+            type: String,
+            required: true,
+            trim: true,
+            unique: true
+        },
         hashcode: {
         // MD5 generated hash value based on loginid and email. This is filled in when the user
         // registers and once the user clicks on the email confirmation link, it should be 

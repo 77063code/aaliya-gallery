@@ -43,14 +43,14 @@ router.post('/users', async (req, res) => {
         // All these errors happen when the save is run        
         const keys = Object.keys(e.errors);
         let status = 400;       
-        if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('unique')) {
-            status = 351
-        } else if (keys[0] === 'email' && e.errors[keys[0]].message.includes('unique')) {
+        if (keys[0] === 'email' && e.errors[keys[0]].message.includes('unique')) {
+        // Check if an existing account doesn't use the same email
             status = 352
         } 
-        
-        
-        
+        else if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('unique')) {
+        // check if an existing account doesn't use the same loginid
+            status = 351
+        }       
         res.status(status).send(e.errors[keys[0]].message); // To send a non-standard status code
     }
 });

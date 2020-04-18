@@ -1,13 +1,66 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-height: 400px) {
+    
+.centered-form.centered-form-mobile {
+   font-size: calc(100vh / 40);     
+   }
+    
+.img__back--close--container {
+    padding:0px;
+    margin-bottom:-4em;
+    width: 100%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
+}
+
+
+.centered-form__box.centered-form-mobile__box {
+    box-shadow: 0px 0px 1.7em .1em #1D1F26;
+    background: #F7F7FA;
+    padding: 0 2.4em 2.4em 2.4em;
+    width: 60vw;
+    margin-top: 1em;
+}
     
 .centered-form input {
-    margin-bottom: 1rem;
+    margin-bottom: 1em;
     width: 100%;
-    border: .1rem solid #eeeeee;
-    padding: .5rem;
+    border: .1em solid #eeeeee;
+    padding: .3em;
     outline: none;
-    font-size: 1.8rem;
+    font-size: 1.8em;
+    } 
+    
+.centered-form label {
+    display: block;
+    font-size: 1.8em;
+    margin-bottom: .5em;
+    color: #777;
+    padding-left: .5em;
+}
+    
+.centered-form button {
+    width: 100%;
+    cursor: pointer;
+    padding: 1.2em;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-size: 1.8em;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+    margin: 0 0 1em 0;    
+}
+    
+ .error-msg {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6em;
+    margin-bottom: .5em;
     }   
+    
 }
 
 

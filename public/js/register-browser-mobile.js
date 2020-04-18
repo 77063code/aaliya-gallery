@@ -1,5 +1,4 @@
 // ELEMENT
-
 $errorRegister = document.getElementById('error-register');
 $errorName = document.getElementById('error-register-browser-mobile-name');
 $errorEmail = document.getElementById('error-register-browser-mobile-email');
@@ -9,75 +8,83 @@ $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
 
-//document.getElementById('name').focus();
-// This is a 2 page form
-document.getElementById('loginid-browser-mobile').style.display = "none";
-document.getElementById('password-browser-mobile').style.display = "none";
-document.getElementById('label-loginid-browser-mobile').style.display = "none";
-document.getElementById('label-password-browser-mobile').style.display = "none";
-document.getElementById('btn-previous-register-browser-mobile').style.display = "none";
-document.getElementById('btn-submit-register-browser-mobile').style.display = "none";
+const displayFirstPage = () => {
+// This is a 2 page form. Display the 1st page and hide the 2nd page
+        document.getElementById('label-name-browser-mobile').style.display = "block";
+        document.getElementById('label-email-browser-mobile').style.display = "block";    
+        document.getElementById('name-browser-mobile').style.display = "block";
+        document.getElementById('email-browser-mobile').style.display = "block";
+        $errorName.style.display = "block"
+        $errorEmail.style.display = "block"
+        $errorName.textContent = '';
+        $errorEmail.textContent = '';
+        document.getElementById('btn-next-register-browser-mobile').style.display = "block";
+ 
+    
+        document.getElementById('label-loginid-browser-mobile').style.display = "none";
+        document.getElementById('label-password-browser-mobile').style.display = "none";
+        document.getElementById('loginid-browser-mobile').style.display = "none";
+        document.getElementById('password-browser-mobile').style.display = "none";
+        $errorLoginid.style.display = "none"
+        $errorPassword.style.display = "none"
+        document.getElementById('btn-previous-register-browser-mobile').style.display = "none";
+        document.getElementById('btn-submit-register-browser-mobile').style.display = "none";  
+}
 
+const displaySecondPage = () => {
+// This is a 2 page form. Display the 2nd page and hide the 1st page
+        document.getElementById('label-name-browser-mobile').style.display = "none";
+        document.getElementById('label-email-browser-mobile').style.display = "none";    
+        document.getElementById('name-browser-mobile').style.display = "none";
+        document.getElementById('email-browser-mobile').style.display = "none";
+        $errorName.style.display = "none"
+        $errorEmail.style.display = "none"
+        document.getElementById('btn-next-register-browser-mobile').style.display = "none";
+ 
+    
+        document.getElementById('label-loginid-browser-mobile').style.display = "block";
+        document.getElementById('label-password-browser-mobile').style.display = "block";
+        document.getElementById('loginid-browser-mobile').style.display = "block";
+        document.getElementById('password-browser-mobile').style.display = "block";
+        $errorLoginid.style.display = "block"
+        $errorPassword.style.display = "block"
+        $errorLoginid.textContent = ""
+        $errorPassword.textContent = ""
+        document.getElementById('btn-previous-register-browser-mobile').style.display = "block";
+        document.getElementById('btn-submit-register-browser-mobile').style.display = "block";  
+}
+
+displayFirstPage();
 
 document.getElementById('btn-next-register-browser-mobile').addEventListener('click', () => {
     const name = document.getElementById('name-browser-mobile').value;
     const email = document.getElementById('email-browser-mobile').value;
-    
-    $errorName.textContent = '';
-    $errorEmail.textContent = '';
     
     if (!name) {
         $errorName.textContent = 'Please enter your name';
         document.getElementById('name-browser-mobile').focus();
     }
     else if (!email) {
+        $errorName.textContent = "";
         $errorEmail.textContent = 'Please enter your email';
         document.getElementById('email-browser-mobile').focus();
     }
     else if (!emailIsValid(email)) {
+        $errorName.textContent = "";
         $errorEmail.textContent = 'Please enter a valid email';
         document.getElementById('email-browser-mobile').focus();
     }
     else {
-        document.getElementById('name-browser-mobile').style.display = "none";
-        document.getElementById('email-browser-mobile').style.display = "none";
-        document.getElementById('label-name-browser-mobile').style.display = "none";
-        document.getElementById('label-email-browser-mobile').style.display = "none";
-        document.getElementById('loginid-browser-mobile').style.display = "block";
-        document.getElementById('password-browser-mobile').style.display = "block";
-        document.getElementById('label-loginid-browser-mobile').style.display = "block";
-        document.getElementById('label-password-browser-mobile').style.display = "block";
-        document.getElementById('loginid-browser-mobile').focus();
-        document.getElementById('btn-next-register-browser-mobile').style.display = "none";
-        document.getElementById('btn-previous-register-browser-mobile').style.display = "block";
-        document.getElementById('btn-submit-register-browser-mobile').style.display = "block";
-        $errorName.textContent = '';
-        $errorEmail.textContent = '';
+        displaySecondPage();
     }
 })
 
 document.getElementById('btn-previous-register-browser-mobile').addEventListener('click', () => {
-
-    document.getElementById('name-browser-mobile').style.display = "block";
-    document.getElementById('email-browser-mobile').style.display = "block";
-    document.getElementById('label-name-browser-mobile').style.display = "block";
-    document.getElementById('label-email-browser-mobile').style.display = "block";
-    document.getElementById('loginid-browser-mobile').style.display = "none";
-    document.getElementById('password-browser-mobile').style.display = "none";
-    document.getElementById('label-loginid-browser-mobile').style.display = "none";
-    document.getElementById('label-password-browser-mobile').style.display = "none";
-    document.getElementById('name-browser-mobile').focus();
-    document.getElementById('btn-next-register-browser-mobile').style.display = "block";
-    document.getElementById('btn-previous-register-browser-mobile').style.display = "none";
-    document.getElementById('btn-submit-register-browser-mobile').style.display = "none";
-    $errorLoginid.style.display = "none";
-    $errorPassword.style.display = "none";
-    $errorRegister.textContent = '';
-    
+    displayFirstPage();
 })
 
 
-document.forms['register'].addEventListener('submit', async (event) => {
+document.forms['register-browser-mobile'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
@@ -115,12 +122,15 @@ document.forms['register'].addEventListener('submit', async (event) => {
                 })
                 console.log(response);
                 console.log(response.status);
-                if(response.status === 351) {
-                    $errorLoginid.textContent = 'This loginid is already taken. Please enter a different loginid';
+                if(response.status === 352) {
+                    displayFirstPage();
+                    $errorEmail.textContent = 'This email is already being used. Please enter a different email';
+                    document.getElementById('email-browser-mobile').focus();
                 } 
-                else if(response.status === 352) {
-                    $errorPassword.textContent = 'This email is already being used. Please enter a different email';
-                    //document.getElementById('email').focus();
+                else if(response.status === 351) {
+                    $errorLoginid.style.display = "block";
+                    $errorPassword.style.display = "none";
+                    $errorLoginid.textContent = 'This loginid is already taken. Please enter a different loginid';
                 } 
                 else {
                     $emailConfirm.textContent = 'Please check your email including the spam folder for confirmation link'
@@ -150,7 +160,7 @@ document.getElementById('btn-close-resend-email').addEventListener('click', (e) 
 
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     e.preventDefault();
-    const loginid = document.getElementById('register').elements['loginid'].value
+    const loginid = document.getElementById('register-browser-mobile').elements['loginid'].value
     const data = {loginid}
     document.getElementById('btn-resend-email').disabled = true;
     try {
