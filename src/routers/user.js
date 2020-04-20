@@ -21,7 +21,7 @@ router.post('/users', async (req, res) => {
         await user.save()       
         await user.generateHashCode();
 
-
+        // Send a confirmation email to the new user, and a new user joining email to admin
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,
@@ -35,10 +35,15 @@ router.post('/users', async (req, res) => {
             subject: 'New User Account Created',
             text: `Name: ${user.name}, Email: ${user.email}, Loginid: ${user.loginid}`
         })
-        console.log(`Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`)
-        // Send a confirmation email to the new user, and a new user joining email to admin
+        //DEBUG
+        //console.log(`Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`)
+        //DEBUG
         res.status(201).send();// The 201 is most route appropriate status code for a successful creation
     } catch (e) {
+        
+        //DEBUG
+        //console.log(e)
+        //DEBUG
         
         // All these errors happen when the save is run        
         const keys = Object.keys(e.errors);

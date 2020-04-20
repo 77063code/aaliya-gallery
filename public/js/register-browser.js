@@ -7,7 +7,7 @@ $emailConfirmResend = document.getElementById('email-confirm-resend');
 
 //document.getElementById('name').focus();
 
-document.forms['register-browser'].addEventListener('submit', async (event) => {
+document.forms['register-browser-form'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
@@ -57,9 +57,9 @@ document.forms['register-browser'].addEventListener('submit', async (event) => {
                 document.getElementById('loginid-browser').focus();
             } 
             else {
-                $emailConfirm.textContent = 'Before you can use your account, please click on the link in your email'
-                $emailConfirmResend.textContent = "If you don't receive the confirmation email, please click on the 'Resend Email' button"
-                document.getElementById('register-user').style.display = 'none';
+                $emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
+                $emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
+                document.getElementById('register-browser').style.display = 'none';
                 document.getElementById('resend-email').style.display = 'block';
             }
         } catch (e) {
@@ -84,7 +84,7 @@ document.getElementById('btn-close-resend-email').addEventListener('click', (e) 
 
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     e.preventDefault();
-    const loginid = document.getElementById('register-browser').elements['loginid'].value
+    const loginid = document.getElementById('register-browser-form').elements['loginid'].value
     const data = {loginid}
     document.getElementById('btn-resend-email').disabled = true;
     try {
@@ -97,14 +97,14 @@ document.getElementById('btn-resend-email').addEventListener('click', async (e) 
         })
     if (response.status === 200) {
         $emailConfirm.textContent = '';
-        $emailConfirmResend.textContent = 'Confirmation email resent. Please check your email including the spam folder';
+        $emailConfirmResend.textContent = 'Activation email resent. Please check your email including the spam folder';
         }
     else {
-        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        $emailConfirmResend.textContent = 'Error sending activation email. Please send us a message';
         }
     }
     catch (e) {
-        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        $emailConfirmResend.textContent = 'Error sending activation email. Please send us a message';
     }
     
     // setTimeout(() => {window.location.href = '/'}, 2000)

@@ -8,7 +8,7 @@ $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
 
-const displayFirstPage = () => {
+const displayBrowserFirstPage = () => {
 // This is a 2 page form. Display the 1st page and hide the 2nd page
         document.getElementById('label-name-browser-mobile').style.display = "block";
         document.getElementById('label-email-browser-mobile').style.display = "block";    
@@ -31,7 +31,7 @@ const displayFirstPage = () => {
         document.getElementById('btn-submit-register-browser-mobile').style.display = "none";  
 }
 
-const displaySecondPage = () => {
+const displayBrowserSecondPage = () => {
 // This is a 2 page form. Display the 2nd page and hide the 1st page
         document.getElementById('label-name-browser-mobile').style.display = "none";
         document.getElementById('label-email-browser-mobile').style.display = "none";    
@@ -54,7 +54,7 @@ const displaySecondPage = () => {
         document.getElementById('btn-submit-register-browser-mobile').style.display = "block";  
 }
 
-displayFirstPage();
+displayBrowserFirstPage();
 
 document.getElementById('btn-next-register-browser-mobile').addEventListener('click', () => {
     const name = document.getElementById('name-browser-mobile').value;
@@ -75,16 +75,16 @@ document.getElementById('btn-next-register-browser-mobile').addEventListener('cl
         document.getElementById('email-browser-mobile').focus();
     }
     else {
-        displaySecondPage();
+        displayBrowserSecondPage();
     }
 })
 
 document.getElementById('btn-previous-register-browser-mobile').addEventListener('click', () => {
-    displayFirstPage();
+    displayBrowserFirstPage();
 })
 
 
-document.forms['register-browser-mobile'].addEventListener('submit', async (event) => {
+document.forms['register-browser-mobile-form'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
@@ -123,7 +123,7 @@ document.forms['register-browser-mobile'].addEventListener('submit', async (even
                 console.log(response);
                 console.log(response.status);
                 if(response.status === 352) {
-                    displayFirstPage();
+                    displayBrowserFirstPage();
                     $errorEmail.textContent = 'This email is already being used. Please enter a different email';
                     document.getElementById('email-browser-mobile').focus();
                 } 
@@ -133,9 +133,9 @@ document.forms['register-browser-mobile'].addEventListener('submit', async (even
                     $errorLoginid.textContent = 'This loginid is already taken. Please enter a different loginid';
                 } 
                 else {
-                    $emailConfirm.textContent = 'Please check your email including the spam folder for confirmation link'
-                    $emailConfirmResend.textContent = "If you don't receive the confirmation email, please click on the 'Resend Email' button"
-                    document.getElementById('register-user').style.display = 'none';
+                    $emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
+                    $emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
+                    document.getElementById('register-browser-mobile').style.display = 'none';
                     document.getElementById('resend-email').style.display = 'block';                    
                 }
             } catch (e) {
@@ -160,7 +160,7 @@ document.getElementById('btn-close-resend-email').addEventListener('click', (e) 
 
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     e.preventDefault();
-    const loginid = document.getElementById('register-browser-mobile').elements['loginid'].value
+    const loginid = document.getElementById('register-browser-mobile-form').elements['loginid'].value
     const data = {loginid}
     document.getElementById('btn-resend-email').disabled = true;
     try {
@@ -173,14 +173,14 @@ document.getElementById('btn-resend-email').addEventListener('click', async (e) 
         })
     if (response.status === 200) {
         $emailConfirm.textContent = '';
-        $emailConfirmResend.textContent = 'Confirmation email resent. Please check your email including the spam folder';
+        $emailConfirmResend.textContent = 'Activation email resent. Please check your email including the spam folder';
         }
     else {
-        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        $emailConfirmResend.textContent = 'Error sending activation email. Please send us a message';
         }
     }
     catch (e) {
-        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        $emailConfirmResend.textContent = 'Error sending activation email. Please send us a message';
     }
     
     // setTimeout(() => {window.location.href = '/'}, 2000)

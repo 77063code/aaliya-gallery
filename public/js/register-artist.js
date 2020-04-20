@@ -4,11 +4,7 @@ $errorRegisterArtist = document.getElementById('error-register-artist');
 $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
-
-emailIsValid = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-// Check if an email address is in a valid format
-
-document.forms['register-artist'].addEventListener('submit', async (event) => {
+document.forms['register-artist-form'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
@@ -66,45 +62,39 @@ document.forms['register-artist'].addEventListener('submit', async (event) => {
             $errorRegisterArtist.textContent = "Please enter a valid teacher's email";
             document.getElementById('teacheremail-artist').focus();
     }
-    
-    
-
-    /*
-    try {
-        const response = await fetch(event.target.action, {
-                method: 'POST',
-                body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    else {
+        try {
+            //DEBUG
+            const e = document.getElementById('grade-artist');
+            const str = e.options[e.selectedIndex].value;
+            console.log(str);
+            //DEBUG
             
-        })
-        if (response.status === 350) {
-            $errorRegister.textContent = 'Please enter your name';
-            document.getElementById('name').focus();
-        } else if(response.status === 351) {
-             $errorRegister.textContent = 'Please enter a loginid';
-        } else if(response.status === 352) {
-            $errorRegister.textContent = 'This loginid is already taken. Please enter a different loginid';
-        } else if(response.status === 353) {
-            $errorRegister.textContent = 'Please enter an email';
-            document.getElementById('email').focus();
-        } else if(response.status === 354) {
-            $errorRegister.textContent = 'This email is already being used. Please enter a different email';
-            document.getElementById('email').focus();
-        } else if(response.status === 355) {
-            $errorRegister.textContent = 'Please enter a valid email';
-            document.getElementById('email').focus();
-        } else if(response.status === 356) {
-            $errorRegister.textContent = 'The password needs to be atleast 7 characters long';
-        } else {
-             
-            $emailConfirm.textContent = 'Please check your email including the spam folder for confirmation link'
-            $emailConfirmResend.textContent = "If you don't receive the confirmation email, please click on the 'Resend Email' button"
-            document.getElementById('register-user').style.display = 'none';
-            document.getElementById('resend-email').style.display = 'block';
-                    
-        }
-    } catch (e) {
-        $errorRegister.textContent = 'Error registering. Please try again';
-    } */
+            const response = await fetch(event.target.action, {
+                    method: 'POST',
+                    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+
+                })            
+            console.log(response);
+           if(response.status === 352) {
+                $errorRegisterArtist.textContent = 'This email is already being used. Please enter a different email';
+                document.getElementById('email-artist').focus();
+            } 
+            else if(response.status === 351) {
+                $errorRegisterArtist.textContent = 'This loginid is already taken. Please enter a different loginid';
+                document.getElementById('loginid-artist').focus();
+            } 
+            else {
+                $emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
+                $emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
+                document.getElementById('register-artist').style.display = 'none';
+                document.getElementById('resend-email').style.display = 'block';
+            }
+        }    
+        catch (e) {
+            $errorRegisterArtist.textContent = 'Error registering. Please try again';
+        } 
+    } 
 });
 
 document.getElementById('btn-close-register-artist').addEventListener('click', (e) => {
@@ -113,7 +103,7 @@ document.getElementById('btn-close-register-artist').addEventListener('click', (
     window.location.href = '/';
 })
 
-/*
+
 document.getElementById('btn-close-resend-email').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
@@ -123,7 +113,7 @@ document.getElementById('btn-close-resend-email').addEventListener('click', (e) 
 
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     e.preventDefault();
-    const loginid = document.getElementById('register').elements['loginid'].value
+    const loginid = document.getElementById('register-artist-form').elements['loginid'].value
     const data = {loginid}
     document.getElementById('btn-resend-email').disabled = true;
     try {
@@ -136,19 +126,19 @@ document.getElementById('btn-resend-email').addEventListener('click', async (e) 
         })
     if (response.status === 200) {
         $emailConfirm.textContent = '';
-        $emailConfirmResend.textContent = 'Confirmation email resent. Please check your email including the spam folder';
+        $emailConfirmResend.textContent = 'Activation email resent. Please check your email including the spam folder';
         }
     else {
-        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        $emailConfirmResend.textContent = 'Error sending activation email. Please send us a message';
         }
     }
     catch (e) {
-        $emailConfirmResend.textContent = 'Error sending confirmation email. Please send us a message';
+        $emailConfirmResend.textContent = 'Error sending activation email. Please send us a message';
     }
     
     // setTimeout(() => {window.location.href = '/'}, 2000)
 })
-*/
+
 
 document.addEventListener('touchmove', (e) => {
 // To prevent the form from reloading on swipe motion on the screen
