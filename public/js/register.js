@@ -26,7 +26,7 @@ document.getElementById('artist-account').addEventListener("click", () => {
         window.location.href='/register-artist-mobile.html'
     }
     else {
-        window.location.href='/register-artist.html'
+        window.location.href='/register-artist-mobile.html'
     }
 })
 document.getElementById('browser-account').addEventListener("click", () => {

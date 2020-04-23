@@ -74,6 +74,7 @@
     margin-left: 60%;
     text-align: right;
     padding: 0.8rem;
+    border-radius: 0.5rem;
     -webkit-transition: background .3s ease;
     transition: background .3s ease;
 }
@@ -85,9 +86,37 @@
     margin-right: 45%;
     text-align: left;
     padding: 0.8rem;
+    border-radius: 0.5rem;
     -webkit-transition: background .3s ease;
     transition: background .3s ease;
 }
+
+
+.centered-form button.btn-next-group {
+/* When placing the buttons side by side */
+    width: 38%;
+    background: lightblue;
+    color: black;
+    margin-left: 5%;
+    text-align: right;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+.centered-form button.btn-previous-group {
+/* When placing the buttons side by side */
+    width: 55%;
+    background: lightblue;
+    color: black;
+    text-align: left;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
 
 .centered-form button:disabled {
     color: lightgrey;
