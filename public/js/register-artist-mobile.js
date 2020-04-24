@@ -190,7 +190,7 @@ const displayArtistFourthPage = () => {
 displayArtistFirstPage();
 
 
-document.getElementById('btn-next-register-artist-mobile-two').addEventListener('click', () => {
+document.getElementById('btn-next-register-artist-mobile-two').addEventListener('click', async () => {
 // Click the next buton on the 1st page of the 4 page form
     const name = document.getElementById('name-artist-mobile').value;
     const email = document.getElementById('email-artist-mobile').value;
@@ -210,7 +210,19 @@ document.getElementById('btn-next-register-artist-mobile-two').addEventListener(
         document.getElementById('email-artist-mobile').focus();
     }
     else {
-        displayArtistSecondPage();
+        try {
+            const response = await fetch('/users/info/email/' + email)
+            if (response.status !== 200) {
+                displayArtistSecondPage();
+            } 
+            else {
+                $errorName.textContent = "";
+                $errorEmail.textContent = 'This email is already being used. Please enter a different email';
+                document.getElementById('email-artist-mobile').focus();
+            }
+        } catch {
+            displayArtistSecondPage();
+        }
     }
 })
 
@@ -219,7 +231,7 @@ document.getElementById('btn-previous-register-artist-mobile-one').addEventListe
     displayArtistFirstPage();
 })
 
-document.getElementById('btn-next-register-artist-mobile-three').addEventListener('click', () => {
+document.getElementById('btn-next-register-artist-mobile-three').addEventListener('click', async () => {
 // Click the next buton on the 1st page of the 4 page form
     const loginid = document.getElementById('loginid-artist-mobile').value;
     const password = document.getElementById('password-artist-mobile').value;
@@ -228,18 +240,44 @@ document.getElementById('btn-next-register-artist-mobile-three').addEventListene
         $errorLoginid.textContent = 'Please select a loginid';
         document.getElementById('loginid-artist-mobile').focus();
     }
-    else if (!password) {
-        $errorLoginid.textContent = "";
-        $errorPassword.textContent = 'Please enter a password';
-        document.getElementById('password-artist-mobile').focus();
-    }
-    else if(password.length < 7) {
-            $errorLoginid.textContent = "";
-            $errorPassword.textContent = 'Password needs to be atleast 7 characters';
-            document.getElementById('password-artist-mobile').focus();
-    }
     else {
-        displayArtistThirdPage();
+        try {
+            const response = await fetch('/users/info/loginid/' + loginid)
+            if (response.status !== 200) {
+            //Login id not found in the system. Move on to checking the password
+                if (!password) {
+                    $errorLoginid.textContent = "";
+                    $errorPassword.textContent = 'Please enter a password';
+                    document.getElementById('password-artist-mobile').focus();
+                }
+                else if(password.length < 7) {
+                        $errorLoginid.textContent = "";
+                        $errorPassword.textContent = 'Password needs to be atleast 7 characters';
+                        document.getElementById('password-artist-mobile').focus();
+                }
+                else {
+                    displayArtistThirdPage();
+                }
+            } 
+            else {
+                $errorLoginid.textContent = 'This loginid is already taken. Please enter a different loginid';
+                document.getElementById('loginid-artist-mobile').focus();
+            }
+        } catch {
+            if (!password) {
+                    $errorLoginid.textContent = "";
+                    $errorPassword.textContent = 'Please enter a password';
+                    document.getElementById('password-artist-mobile').focus();
+                }
+                else if(password.length < 7) {
+                        $errorLoginid.textContent = "";
+                        $errorPassword.textContent = 'Password needs to be atleast 7 characters';
+                        document.getElementById('password-artist-mobile').focus();
+                }
+                else {
+                    displayArtistThirdPage();
+                }
+        }
     }
 })
 

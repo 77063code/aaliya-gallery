@@ -143,6 +143,43 @@ router.get('/users/confirm/:code', async (req, res) => {
     }
 })
 
+router.get('/users/info/email/:email', async (req, res) => {
+// This route is uased to check if an email already exists in the system
+    const email = req.params.email;
+    try {
+        const user = await User.findByEmail(email);
+        if (user) {
+            res.status(200).send();
+        }
+        else {
+            res.status(204).send();
+            // This code is for not found and is not really an error
+            // This status code will prevent it from showing up in chrome devtools
+        }
+    } catch (e) {
+        res.status(404).send();
+    }
+})
+
+router.get('/users/info/loginid/:loginid', async (req, res) => {
+// This route is uased to check if a login id already exists in the system
+    const loginid = req.params.loginid;
+    try {
+        const user = await User.findByLoginId(loginid);
+        if (user) {
+            res.status(200).send();
+        }
+        else {
+            res.status(204).send();
+            // This code is for not found and is not really an error
+            // This sttaus code will prevent it from showing up in chrome devtools
+        }
+    } catch (e) {
+        res.status(404).send();
+    }
+})
+	
+
 router.get('/users/info', auth, async (req, res) => {
 // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
     try {

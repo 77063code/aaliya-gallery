@@ -26,7 +26,8 @@ document.getElementById('artist-account').addEventListener("click", () => {
         window.location.href='/register-artist-mobile.html'
     }
     else {
-        window.location.href='/register-artist-mobile.html'
+       //window.location.href='/register-artist-mobile.html'
+        window.location.href='/register-artist.html'
     }
 })
 document.getElementById('browser-account').addEventListener("click", () => {
@@ -35,6 +36,7 @@ document.getElementById('browser-account').addEventListener("click", () => {
     }
     else {
         window.location.href='/register-browser.html'
+        //window.location.href='/register-browser-mobile.html'
     }
 })
 

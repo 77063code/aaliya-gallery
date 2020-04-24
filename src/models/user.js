@@ -143,10 +143,23 @@ userSchema.statics.findByLoginId = async (loginid) => {
 	   const user = await User.findOne({loginid});
     
 	   if (!user) {
-           console.log('error');
-		  throw new Error('Unable to login');
-	   };
+           console.log('Loginid not found in db');
+	   };    
+	   return user;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+userSchema.statics.findByEmail = async (email) => {
+// Find user by email
     
+    try {
+	   const user = await User.findOne({email});
+    
+	   if (!user) {
+          console.log('Email not found in db');
+	   };    
 	   return user;
     } catch (e) {
         console.log(e);

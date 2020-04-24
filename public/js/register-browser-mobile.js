@@ -56,7 +56,7 @@ const displayBrowserSecondPage = () => {
 
 displayBrowserFirstPage();
 
-document.getElementById('btn-next-register-browser-mobile').addEventListener('click', () => {
+document.getElementById('btn-next-register-browser-mobile').addEventListener('click', async () => {
     const name = document.getElementById('name-browser-mobile').value;
     const email = document.getElementById('email-browser-mobile').value;
     
@@ -75,7 +75,19 @@ document.getElementById('btn-next-register-browser-mobile').addEventListener('cl
         document.getElementById('email-browser-mobile').focus();
     }
     else {
-        displayBrowserSecondPage();
+        try {
+            const response = await fetch('/users/info/email/' + email)
+            if (response.status !== 200) {
+                displayBrowserSecondPage();
+            } 
+            else {
+                $errorName.textContent = "";
+                $errorEmail.textContent = 'This email is already being used. Please enter a different email';
+                document.getElementById('email-browser-mobile').focus();
+            }
+        } catch {
+            displayBrowserSecondPage();
+        }
     }
 })
 

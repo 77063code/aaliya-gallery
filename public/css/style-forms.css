@@ -9,6 +9,7 @@
             justify-content: center;
     -webkit-box-align: center;
             align-items: center;
+    overflow-y: auto;
 }
 
 .centered-form.centered-form-mobile {
@@ -21,6 +22,7 @@
             justify-content: center;
     -webkit-box-align: flex-start;
             align-items: flex-start;
+    overflow-y: auto;
 }
 
 .centered-form__box {
