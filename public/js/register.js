@@ -23,11 +23,14 @@ if ("maxTouchPoints" in navigator) {
 
 document.getElementById('artist-account').addEventListener("click", () => {
     if (hasTouchScreen) {
-        window.location.href='/register-artist-mobile.html'
+        //window.location.href='/register-artist-mobile.html'
+        window.location.href='/register-artist.html'
+        //window.location.href='/test.html'
     }
     else {
        //window.location.href='/register-artist-mobile.html'
         window.location.href='/register-artist.html'
+        //window.location.href='/test.html'
     }
 })
 document.getElementById('browser-account').addEventListener("click", () => {

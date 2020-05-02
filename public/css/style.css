@@ -200,6 +200,7 @@ body {
             transform: rotateY(180deg);
 }
 
+/*
 .img__back--close--container {
     padding:0px;
     margin:0px;
@@ -211,8 +212,7 @@ body {
 }
 
 .fa-arrow-circle-left {
-   /*order-left: 1px solid black;
-    border-bottom: 1px solid black;*/
+
     color: black;
     cursor: pointer;
     font-size: 1.8rem;
@@ -220,3 +220,4 @@ body {
     margin: 0px;
 }
 
+*/

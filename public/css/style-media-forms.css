@@ -63,4 +63,36 @@
     
 }
 
+/*
+#register-artist-form input {
+    margin-bottom: 1em;
+    width: 50%;
+    border: .1em solid #eeeeee;
+    padding: 1.3em;
+    outline: none;
+    font-size: 1.8em;
+    text-align: center;
+    } 
+    
+#register-artist-form label {
+    display: block;
+    font-size: 1.8em;
+    margin-bottom: .5em;
+    color: #777;
+    padding-left: .5em;
+}
+    
+#register-artist-form button {
+    width: 100%;
+    cursor: pointer;
+    padding: 1.2em;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-size: 1.8em;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+    margin: 0 0 1em 0;    
+}
 
+*/
