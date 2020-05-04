@@ -4,33 +4,49 @@
 <head>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <link href="./css/all.css" rel="stylesheet">
-        <link rel='stylesheet' href='./css/style.css' />
     <link rel='stylesheet' href='./css/style-forms.css' />
-    <link rel='stylesheet' href='./css/style-media-forms.css' />
 </head>
 
-<body>
-    <div class="centered-form">
-        
-        <div class="centered-form__box">
-                <div class="img__back--close--container">
-                    <button id="btn-close-message">
-                            <i class="fa fa-times-circle" title="Close Form"></i>
-                    </button>
-                </div>
-    
-            <form id="message" method="POST" action="users/message" autocomplete="off">     
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="messageName" id="messageName" placeholder="Name" />
-                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="messageEmail" id="messageEmail" placeholder="Email" />
-                <textarea spellcheck="false" name="messageMessage" id="messageMessage" placeholder="Your message"></textarea>
-                <button type="submit">Send it!</button>
-            </form>
+<body class="forms-page">
+
+
+    <form id="message-form" method="POST" action="users/message" autocomplete="off">
+
+        <div class="form-component">
+            <button type="button" id="btn-close-message-form">
+                <i class="fa fa-times-circle" title="Close Form"></i>
+            </button>
+        </div>
+
+        <div class="form-component">
+            <h2>Send a Message</h2>
+            <h4>(All fields required)</h4>
+        </div>
+
+        <div class="form-component">
+            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="name" id="name-message" />
+        </div>
+
+        <div class="form-component">
+            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email-message" />
+        </div>
+
+        <div class="form-component">
+            <textarea spellcheck="false" name="content" id="content-message"></textarea>
+        </div>
+
+
+        <div class="form-component">
+            <button type="submit">Send it!</button>
+        </div>
+
+        <div class="form-component">
             <p class="error-msg" id="error-message"></p>
         </div>
-    </div>  
+        
+    </form>
 
-    
-     <script src="./js/message.js"></script>
+    <script src="./js/message.js"></script>
 
 
 </body>

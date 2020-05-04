@@ -216,9 +216,6 @@
     
 }
 
-.fa-times-circle:hover {
-    cursor: pointer
-}
 
 /* Error messages on all the forms */
 /*
@@ -252,13 +249,6 @@
 #resend-email {
     display: none;
 }
-
-#btn-login-resend-email {
-    display: none;
-}
-
-
-
 
 
 /* Not being used right now. Moving to the bottom 
@@ -319,6 +309,8 @@ html {
 
 .forms-page {
     background: #333744;
+    background-color: mintcream;
+    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
     display: flex;
     -webkit-box-pack: center;
             justify-content: center;
@@ -350,11 +342,6 @@ html {
 .forms-page .form-component h2 {
     font-size: 2.1em;
     font-weight: 90;
-}
-
-.forms-page.img__back--close--container {
-    width: 99%;
-    background-color: white;
 }
 
 .forms-page .form-component label {
@@ -436,7 +423,7 @@ html {
 }
 
 
-#btn-close-register-artist, #btn-close-resend-email {
+#btn-close-register-form, #btn-close-register-artist, #btn-close-register-browser, #btn-close-resend-email, #btn-close-login-form {
     width: 9em;
     opacity: 0.5;
     text-align: right;
@@ -459,7 +446,7 @@ html {
     background-color: white;
 }
 
-.forms-page #register-artist-complete-page {
+.forms-page #register-artist-complete-page, .forms-page #register-browser-complete-page {
     display: none;
 }
 

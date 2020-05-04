@@ -3,10 +3,10 @@
 $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
-document.getElementById('register-artist-form').style.display = 'none';
-document.getElementById('register-artist-complete-page').style.display = 'block';
-$emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
-$emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
+//document.getElementById('register-artist-form').style.display = 'none';
+//document.getElementById('register-artist-complete-page').style.display = 'block';
+//$emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
+//$emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
 
 
 
@@ -202,17 +202,15 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
             console.log(response);
             console.log(response.status);
             if (response.status === 352) {
-                displayArtistFirstPage();
-                $errorEmail.textContent = 'This email is already being used. Please enter a different email';
-                document.getElementById('email-artist-mobile').focus();
+                document.getElementById('forms-error-email-artist').textContent = 'This email is already being used. Please enter a different email';
+                document.getElementById('email-artist').focus();
             } else if (response.status === 351) {
-                displayArtistSecondPage();
-                $errorLoginid.textContent = 'This loginid is already taken. Please enter a different loginid';
-                document.getElementById('loginid-artist-mobile').focus();
+                document.getElementById('forms-error-loginid-artist').textContent = 'This loginid is already taken. Please enter a different loginid';
+                document.getElementById('loginid-artist').focus();
             } else {
                 document.getElementById('register-artist-form').style.display = 'none';
                 document.getElementById('register-artist-complete-page').style.display = 'block';
-                $emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
+                $emailConfirm.textContent = 'Before your account can be activated, please click on the link sent to your email'
                 $emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
             }
         } catch (e) {

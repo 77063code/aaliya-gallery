@@ -4,28 +4,39 @@
 <head>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <link href="./css/all.css" rel="stylesheet">
-    <link rel='stylesheet' href='./css/style.css' />
     <link rel='stylesheet' href='./css/style-forms.css' />
-    <link rel='stylesheet' href='./css/style-media-forms.css' />
 </head>
 
-<body>
-   <div class="centered-form">
-        <div class="centered-form__box"> 
-            
-            <div class="img__back--close--container">
-                <button id="btn-close-login">
-                    <i class="fa fa-times-circle" title="Close Form"></i>
-                </button>
-            </div>
-            
-            <p class="description">Create this account if you are a student artist and want to display/sell your art</p>
-            <button id="artist-account">Create artist account</button>
-            
-            <p class="description">Create this account if you  want to buy or vote on art</p>
-            <button id="browser-account">Create browser/buyer account</button>
+<body class="forms-page">
+
+    <form id="register-form">
+
+        <div class="form-component">
+            <button type="button" id="btn-close-register-form">
+                <i class="fa fa-times-circle" title="Close Form"></i>
+            </button>
         </div>
-    </div>    
-     <script src="./js/register.js"></script>
+
+        <div class="form-component">
+            <p class="description">Create this account if you are a student artist and want to display/sell your art</p>
+        </div>
+
+        <div class="form-component">
+            <button id="register-artist-account" type="button">Create artist account</button>
+        </div>
+
+        <div class="form-component">
+            <p class="description">Create this account if you want to buy or vote on art</p>
+        </div>
+
+        <div class="form-component">
+            <button id="register-browser-account" type="button">Create browser/buyer account</button>
+        </div>
+
+    </form>
+
+    <script src="./js/register.js"></script>
+
 </body>
+
 </html>

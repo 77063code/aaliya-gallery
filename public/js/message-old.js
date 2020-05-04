@@ -1,8 +1,8 @@
 // ELEMENT
 $errorMessage = document.getElementById('error-message');
-$messageName = document.getElementById('name-message');
-$messageEmail = document.getElementById('email-message');
-$messageContent = document.getElementById('content-message');
+$messageName = document.getElementById('messageName');
+$messageEmail = document.getElementById('messageEmail');
+$messageMessage = document.getElementById('messageMessage');
 
 
 const getUserInfo = async () => {
@@ -27,7 +27,7 @@ const initializeForm = async () => {
     if (user.user) {
         $messageName.value = user.user.name;
         $messageEmail.value = user.user.email
-        $messageContent.focus();
+        $messageMessage.focus();
     }
     else {
         $messageName.focus();
@@ -36,7 +36,7 @@ const initializeForm = async () => {
 
 initializeForm();
 
-document.forms['message-form'].addEventListener('submit', async (event) => {
+document.forms['message'].addEventListener('submit', async (event) => {
 // user can send a message to the administrator of the site
     event.preventDefault();
     

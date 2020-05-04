@@ -9,20 +9,11 @@ document.getElementById('register-account').addEventListener("click", () => {
     window.location.href='/register.html'
 })
 
-const displayErrors = (hide) => {
-    $errorLogin.style.display = hide;
-    $loginResendEmail.style.display = hide;
-    $btnLoginResendEmail.style.display = hide;
-}
 
-displayErrors("none");
-
-
-document.forms['login-form'].addEventListener('submit', async (event) => {
+document.forms['login'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
-    displayErrors("none");
 
     try {
         const response = await fetch(event.target.action, {
@@ -30,27 +21,35 @@ document.forms['login-form'].addEventListener('submit', async (event) => {
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         })
         if (response.status === 350) {
-            displayErrors("block");
             $errorLogin.textContent = 'Please check your email for confirmation link before logging in';
             $errorLogin.style.color = 'red';
             $loginResendEmail.textContent = "If you didn't receive the confirmation email, please click on the 'Resend Email' button"
+            $btnLoginResendEmail.style.display = 'block';
         } else if (response.status === 200) {
+            /*let loginid = await response.json()  
+            loginid = loginid.user.loginid*/
+            //window.location.href = `/?loginid=${loginid}`; // If a user is found based on creds, pass the loginid to the home page
             window.location.href='/';
         }
         else {
-            $errorLogin.style.display = "block";
             $errorLogin.textContent = 'Error logging in. Please try again';
         }
     } catch (e) {
-        $errorLogin.style.display = "block";
         $errorLogin.textContent = 'Error logging in. Please try again';
+        //window.location.href = '/'
+        // alert('Error logging in. Please try again')
     }
 });
 
+/*document.getElementById('close-login').addEventListener('click', (e) => {
+// Close the form  and go back to the home page
+    e.preventDefault();
+    window.location.href = '/';
+})*/
 
 $btnLoginResendEmail.addEventListener('click', async (e) => {
     e.preventDefault();
-    const loginid = document.getElementById('login-form').elements['loginid'].value
+    const loginid = document.getElementById('login').elements['loginid'].value
     const data = {loginid}
     $btnLoginResendEmail.disabled = true;
     try {
@@ -72,18 +71,17 @@ $btnLoginResendEmail.addEventListener('click', async (e) => {
     catch (e) {
         $loginResendEmail.textContent = 'Error sending confirmation email. Please send us a message';
     }
-
+    
+    // setTimeout(() => {window.location.href = '/'}, 2000)
 })
 
-document.getElementById('btn-close-login-form').addEventListener('click', (e) => {
+document.getElementById('btn-close-login').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
 })
 
-/*
 document.addEventListener('touchmove', (e) => {
 // To prevent the form from reloading on swipe motion on the screen
     e.preventDefault();
 }, {passive: false});
-*/
