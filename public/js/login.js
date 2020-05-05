@@ -1,22 +1,28 @@
 // ELEMENT
 $errorLogin = document.getElementById('error-login');
+$confirmationEmail = document.getElementById('confirmation-email');
 $loginResendEmail = document.getElementById('login-resend-email');
 $btnLoginResendEmail = document.getElementById('btn-login-resend-email');
 
 
-
+/*
 document.getElementById('register-account').addEventListener("click", () => {
     window.location.href='/register.html'
-})
+})*/
+
 
 const displayErrors = (hide) => {
-    $errorLogin.style.display = hide;
-    $loginResendEmail.style.display = hide;
+    
+    const errMessages = document.getElementsByClassName('forms-error-msg');
+    
+    for (var i = 0; i < errMessages.length; i++) {
+        errMessages.item(i).style.display = hide;
+        errMessages.item(i).textContent = '';
+    }   
     $btnLoginResendEmail.style.display = hide;
 }
 
 displayErrors("none");
-
 
 document.forms['login-form'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
@@ -31,8 +37,7 @@ document.forms['login-form'].addEventListener('submit', async (event) => {
         })
         if (response.status === 350) {
             displayErrors("block");
-            $errorLogin.textContent = 'Please check your email for confirmation link before logging in';
-            $errorLogin.style.color = 'red';
+            $confirmationEmail.textContent = 'Please check your email for confirmation link before logging in';
             $loginResendEmail.textContent = "If you didn't receive the confirmation email, please click on the 'Resend Email' button"
         } else if (response.status === 200) {
             window.location.href='/';

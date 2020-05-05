@@ -36,19 +36,26 @@
             
         <div class="form-component">
             <label for="password">Password</label>
-            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="password" id="password"  />
+            <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="password" id="password"  />
         </div>
+
             
+        <div class="form-component">
+            <p class="error-msg" id="error-login"></p>
+        </div>
+        
         <div class="form-component">
             <button type="submit">Login</button>
         </div>
         
+    
         <div class="form-component">
-            <button id="register-account" type="button">Register</button>
+            <p class="error-msg" id="confirmation-email"></p>
         </div>
         
-        <p class="error-msg" id="error-login"></p>
-        <p id="login-resend-email"></p>
+        <div class="form-component">
+            <p class="error-msg" id="login-resend-email"></p>
+        </div>
         
         <div class="form-component">
             <button id="btn-login-resend-email" type="button">Resend Email</button>

@@ -12,7 +12,7 @@
     <form id="register-browser-form" method="POST" action="users" autocomplete="off">
 
         <div class="form-component">
-            <button type="button" id="btn-close-register-browser">
+            <button type="button" id="btn-close-register-browser-form">
                 <i class="fa fa-times-circle" title="Close Form"></i>
             </button>
         </div>
@@ -42,7 +42,7 @@
 
         <div class="form-component">
             <label for="password">Password</label>
-            <input type="password" autocorrect="off" autocapitalize="none" name="password" id="password-browser" onBlur="passwordBrowserPostFocus()"/>
+            <input type="password" autocorrect="off" autocapitalize="none" name="password" id="password-browser" onBlur="passwordBrowserPostFocus()" />
             <p class="forms-error-msg" id="forms-error-password-browser"></p>
         </div>
 
@@ -51,26 +51,32 @@
         <div class="form-component">
             <button type="submit">Create a new account</button>
         </div>
-        
+
     </form>
 
     <div class="register-complete-page" id="register-browser-complete-page">
 
         <div class="form-component">
-            <button id="btn-close-resend-email">
+            <button id="btn-close-resend-email-form">
                 <i class="fa fa-times-circle" title="Close Form"></i>
             </button>
         </div>
 
-
-        <p id="email-confirm"></p>
-        <p id="email-confirm-resend"></p>
+        <div class="form-component">
+            <p id="email-confirm"></p>
+        </div>
+        
+        <div class="form-component">
+            <p id="email-confirm-resend"></p>
+        </div>
+        
         <div class="form-component">
             <button id="btn-resend-email">Resend Email</button>
         </div>
+        
     </div>
 
-    <p class="error-msg" id="error-browser-artist"></p>
+   
 
     <script src="./js/common.js"></script>
     <script src="./js/register-browser.js"></script>

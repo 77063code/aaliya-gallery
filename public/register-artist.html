@@ -4,8 +4,6 @@
 <head>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
     <link href="./css/all.css" rel="stylesheet">
-    <!-- <link rel='stylesheet' href='./css/style.css' />
-    <link rel='stylesheet' href='./css/style-media-forms.css' /> -->
     <link rel='stylesheet' href='./css/style-forms.css' />
 </head>
 
@@ -14,7 +12,7 @@
     <form id="register-artist-form" method="POST" action="users">
 
         <div class="form-component">
-            <button type="button" id="btn-close-register-artist">
+            <button type="button" id="btn-close-register-artist-form">
                 <i class="fa fa-times-circle" title="Close Form"></i>
             </button>
         </div>
@@ -50,7 +48,7 @@
 
         <div class="form-component">
             <label class="forms-label">School</label>
-            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="school" id="school-artist"  />
+            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="school" id="school-artist" />
             <p class="forms-error-msg" id="forms-error-school-artist"></p>
         </div>
 
@@ -95,22 +93,27 @@
 
 
     <div class="register-complete-page" id="register-artist-complete-page">
-        
+
         <div class="form-component">
-            <button id="btn-close-resend-email">
+            <button id="btn-close-resend-email-form">
                 <i class="fa fa-times-circle" title="Close Form"></i>
             </button>
         </div>
-        
 
-        <p id="email-confirm"></p>
-        <p id="email-confirm-resend"></p>
+        <div class="form-component">
+
+            <p id="email-confirm"></p>
+        </div>
+
+        <div class="form-component">
+            <p id="email-confirm-resend"></p>
+        </div>
+
         <div class="form-component">
             <button id="btn-resend-email">Resend Email</button>
         </div>
+        
     </div>
-
-    <p class="error-msg" id="error-register-artist"></p>
 
     <script src="./js/common.js"></script>
     <script src="./js/register-artist.js"></script>

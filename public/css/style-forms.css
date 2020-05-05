@@ -206,17 +206,6 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-.fa-times-circle {
-    color: black;
-    cursor: pointer;
-    font-size: 3.5rem;
-    margin-right: -2.4rem;
-    margin-top: -.5rem;
-    opacity: 0.7;
-    
-}
-
-
 /* Error messages on all the forms */
 /*
 #error-register, #error-login, #error-message, #error-register-artist {
@@ -341,7 +330,6 @@ html {
 
 .forms-page .form-component h2 {
     font-size: 2.1em;
-    font-weight: 90;
 }
 
 .forms-page .form-component label {
@@ -379,6 +367,19 @@ html {
     background-color: white;
 }
 
+.forms-page .form-component textarea {
+    
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1em solid lightblue;
+    border-radius: 1em;
+    padding: 0.7em;
+    outline: none;
+    font-size: 1.8em;
+}
+
+
 .forms-page .form-component button {
     width: 90%;
     margin-left: auto;
@@ -408,22 +409,12 @@ html {
     margin-top: .5em;
 }
    
-
-.forms-page textarea {
-    margin-bottom: 1.6em;
-    width: 100%;
-    border: .1em solid #eeeeee;
-    padding: 1.2em;
-    outline: none;
-    font-size: 1.8em;
-}
-
 .forms-page input:focus,textarea:focus,select:focus {
     background-color: lightblue;
 }
 
 
-#btn-close-register-form, #btn-close-register-artist, #btn-close-register-browser, #btn-close-resend-email, #btn-close-login-form {
+#btn-close-register-form, #btn-close-register-artist-form, #btn-close-register-browser-form, #btn-close-resend-email-form, #btn-close-login-form, #btn-close-message-form {
     width: 9em;
     opacity: 0.5;
     text-align: right;
@@ -435,21 +426,18 @@ html {
     -webkit-tap-highlight-color: transparent;
 }
 
-
-
 .forms-page .register-complete-page {
-    width: 15em;
+     border: .1em solid;
+    width: 30em;
     margin: auto;
-    height: 22em;
-    margin-top: 11rem;
-    border: .1em solid #eeeeee;
+    margin-top: 5em;
+    margin-bottom: 5em;
     background-color: white;
 }
 
 .forms-page #register-artist-complete-page, .forms-page #register-browser-complete-page {
     display: none;
 }
-
 
 .fa-times-circle {
     color: black;
@@ -462,17 +450,4 @@ html {
 
 .fa-times-circle:hover {
     cursor: pointer
-}
-
-.forms-page .form-component #btn-resend-email {
-    font-size: 1em;
-}
-
-
-#email-confirm, #email-confirm-resend{
-    width: 100%;
-    text-align: center;
-    color: red;
-    font-size: 1em;
-    padding-bottom: 1.3em;
 }

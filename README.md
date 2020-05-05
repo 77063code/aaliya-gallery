@@ -8,6 +8,11 @@ FOR PRODUCTION -
     export AALIYAPORTHTTPS=443
     export AALIYAHOST='aaliya-gallery'
     export SENDGRIDAPIKEY='apikey'
+    export AWSKEY=''
+    export AWSSECRET=''
+    export AWSREGION='us-west-2'
+    export AWSBUCKET='aaliya-gallery'
+
 3. Install mongodb and mongodb backup as per the instructions
 
 
@@ -31,16 +36,13 @@ TO MOVE A NEW VERSION TO PRODUCTION
 
 TO DO
 1. Auto renew of certbot
-1. Tighten security on EC2
 1. at createddatetime filed to both colections
 2. Figure out how not to reload images
-4. When filling out forms on the phone the keyboard hides the field being filled
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
 7. On login in page, reset the messages when trying to login again from earlier emaill resent message
 8. Give a mesage when a user votes for the 1st time
 9. The painting information should also have the canvas size
 10. On every screen the button needs to be disabled when they cannot be pressed again
-11. On the home header need to have a register button as well
 
 
 TO DO BIG
@@ -118,14 +120,13 @@ FEATURES BRANCH
 
 
 CLEANUP BRANCH
-1. Port 27017 should be closed to public and only accessible from host machine
 3. The old error messages to disappear when trying to correct the error
 5. All usernames to be converted to lowercase
 6. Cleanup all unnecessary console.logs
 7. Stats alignment is a bit messed up
 8. The message button needs to me made bigger
-9. There should be a register button on the home page
 10. the loginids need to be of correct format to align with bucket names
+11. The email and the key should not be hard-coded
 
 
 UPLOAD BRANCH
@@ -140,6 +141,8 @@ STEPS
 
 UPLOAD-IMAGE BRANCH
 1. Right now just creating a form to upload one file and save it as test.txt
+2. Reformatting all form pages to be able to work on mobile 
+3. Recreating a new form structure
 STEPS
 1. Install aws-sdk
 

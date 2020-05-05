@@ -1,5 +1,4 @@
 // ELEMENTS
-
 $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
@@ -69,7 +68,7 @@ const loginidBrowserPostFocus = async() => {
                 document.getElementById('password-browser').focus();
             } else {
                 errMsg.style.display = "block";
-                errMsg.textContent = 'This loginid is already being used. Please enter a different loginid';
+                errMsg.textContent = 'This loginid is already taken. Please enter a different loginid';
                 document.getElementById('loginid-browser').focus();
             }
         } catch {
@@ -111,8 +110,9 @@ const passwordBrowserPostFocus = () => {
 
 
 document.forms['register-browser-form'].addEventListener('submit', async(event) => {
-    // When the login form is successfully submitted, render the header of the home page with the correct 
-    // template. If unsuccessful then give an alert with a message to try again
+// When the login form is successfully submitted, render the header of the home page with the correct 
+// template. If unsuccessful then give an alert with a message to try again
+    
     event.preventDefault();
 
     const errMessages = document.getElementsByClassName('forms-error-msg');
@@ -136,13 +136,24 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
         document.getElementById('forms-error-email-browser').style.display = "block";
         document.getElementById('forms-error-email-browser').textContent = "Please enter your email";
         document.getElementById('email-browser').focus();
+    } else if (!emailIsValid(email)) {
+        document.getElementById('forms-error-email-browser').style.display = "block";
+        document.getElementById('forms-error-email-browser').textContent = "Please enter a valid email";
+        document.getElementById('email-browser').focus();
     } else if (!loginid) {
         document.getElementById('forms-error-loginid-browser').style.display = "block";
-        document.getElementById('forms-error-loginid-browser').textContent = "Please enter your loginid";
+        document.getElementById('forms-error-loginid-browser').textContent = "Please enter a loginid";
         document.getElementById('loginid-browser').focus();
     } else if (!password) {
+        alert('password missing');
         document.getElementById('forms-error-password-browser').style.display = "block";
-        document.getElementById('forms-error-password-browser').textContent = "Please enter a password";
+         alert('password missing2');
+        document.getElementById('forms-error-password-browser').textContent = 'Please enter a password';
+         alert('password missing3');
+        document.getElementById('password-browser').focus();
+    } else if (password.length < 7) {
+        document.getElementById('forms-error-password-browser').style.display = "block";
+        document.getElementById('forms-error-password-browser').textContent = 'Password needs to be atleast 7 characters';
         document.getElementById('password-browser').focus();
     } else {
 
@@ -152,17 +163,19 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
 
             })
-
             if (response.status === 352) {
+                document.getElementById('forms-error-email-browser').style.display = "block";
                 document.getElementById('forms-error-email-browser').textContent = 'This email is already being used. Please enter a different email';
                 document.getElementById('email-browser').focus();
             } else if (response.status === 351) {
+                document.getElementById('forms-error-loginid-browser').style.display = "block";
                 document.getElementById('forms-error-loginid-browser').textContent = 'This loginid is already taken. Please enter a different loginid';
                 document.getElementById('loginid-browser').focus();
             } else {
+              // New user successfully created
                 document.getElementById('register-browser-form').style.display = 'none';
                 document.getElementById('register-browser-complete-page').style.display = 'block';
-                $emailConfirm.textContent = 'Before your account can be activated, please click on the link sent to your email'
+                $emailConfirm.textContent = 'Before your account can be activated, please click on the link sent to your email including the spam folder'
                 $emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
             }
         } catch (e) {
@@ -172,25 +185,25 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
 });
 
 
-document.getElementById('btn-close-register-browser').addEventListener('click', (e) => {
+document.getElementById('btn-close-register-browser-form').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
 })
 
-document.getElementById('btn-close-resend-email').addEventListener('click', (e) => {
+document.getElementById('btn-close-resend-email-form').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
 })
 
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
+    
     e.preventDefault();
     const loginid = document.getElementById('register-browser-form').elements['loginid'].value
     const data = {loginid}
     document.getElementById('btn-resend-email').disabled = true;
     $emailConfirm.textContent = '';
-    document.getElementById('register-browser-complete-page').style.height = "14rem";
     try {
         const response = await fetch('/users/resend/email', {
             method: 'POST',

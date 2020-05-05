@@ -165,6 +165,10 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-email-artist').style.display = "block";
         document.getElementById('forms-error-email-artist').textContent = "Please enter your email";
         document.getElementById('email-artist').focus();
+    } else if (!emailIsValid(email)) {
+        document.getElementById('forms-error-email-artist').style.display = "block";
+        document.getElementById('forms-error-email-artist').textContent = "Please enter a valid email";
+        document.getElementById('email-artist').focus();
     } else if (!loginid) {
         document.getElementById('forms-error-loginid-artist').style.display = "block";
         document.getElementById('forms-error-loginid-artist').textContent = "Please enter your loginid";
@@ -173,7 +177,12 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-password-artist').style.display = "block";
         document.getElementById('forms-error-password-artist').textContent = "Please enter a password";
         document.getElementById('password-artist').focus();
-    } else if (!school) {
+    } else if (password.length < 7) {
+        document.getElementById('forms-error-password-artist').style.display = "block";
+        document.getElementById('forms-error-password-artist').textContent = 'Password needs to be atleast 7 characters';
+        document.getElementById('password-artist').focus();
+    } 
+    else if (!school) {
         document.getElementById('forms-error-school-artist').style.display = "block";
         document.getElementById('forms-error-school-artist').textContent = "Please enter your school's name";
         document.getElementById('school-artist').focus();
@@ -220,25 +229,26 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
 });
 
 
-document.getElementById('btn-close-register-artist').addEventListener('click', (e) => {
+document.getElementById('btn-close-register-artist-form').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
 })
 
-document.getElementById('btn-close-resend-email').addEventListener('click', (e) => {
+document.getElementById('btn-close-resend-email-form').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
     e.preventDefault();
     window.location.href = '/';
 })
 
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
+    
     e.preventDefault();
     const loginid = document.getElementById('register-artist-form').elements['loginid'].value
     const data = {loginid}
     document.getElementById('btn-resend-email').disabled = true;
     $emailConfirm.textContent = '';
-    document.getElementById('register-artist-complete-page').style.height = "14rem";
+    
     try {
         const response = await fetch('/users/resend/email', {
             method: 'POST',

@@ -24,15 +24,21 @@
         </div>
 
         <div class="form-component">
+            <label for="name">Name</label>
             <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="name" id="name-message" />
+            <p class="forms-error-msg" id="forms-error-name-message"></p>
         </div>
 
         <div class="form-component">
-            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email-message" />
+            <label for="email">Email</label>
+            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email-message" onBlur="emailMessagePostFocus()"/>
+            <p class="forms-error-msg" id="forms-error-email-message"></p>
         </div>
 
         <div class="form-component">
+            <label for="content">Message</label>
             <textarea spellcheck="false" name="content" id="content-message"></textarea>
+            <p class="forms-error-msg" id="forms-error-content-message"></p>
         </div>
 
 
@@ -40,12 +46,10 @@
             <button type="submit">Send it!</button>
         </div>
 
-        <div class="form-component">
-            <p class="error-msg" id="error-message"></p>
-        </div>
         
     </form>
 
+    <script src="./js/common.js"></script>
     <script src="./js/message.js"></script>
 
 
