@@ -14,7 +14,7 @@ const host = process.env.AALIYAHOST || 'localhost';
 
 
 router.post('/users', async(req, res) => {
-    // Register a new user  
+// Register a new user  
     const user = new User(req.body);
 
     try {
@@ -52,7 +52,8 @@ router.post('/users', async(req, res) => {
             // Check if an existing account doesn't use the same email
             status = 352
         } else if (keys[0] === 'loginid' && e.errors[keys[0]].message.includes('unique')) {
-            // check if an existing account doesn't use the same loginid
+            // check if an existi
+            ng account doesn't use the same loginid
             status = 351
         }
         res.status(status).send(e.errors[keys[0]].message); // To send a non-standard status code
@@ -61,27 +62,27 @@ router.post('/users', async(req, res) => {
 
 
 router.post('/users/login', async(req, res) => {
-    // Check to see if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
+// Check to see a user exists
+// If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
         const user = await User.findByCredentials(req.body.loginid, req.body.password);
-
-        if (user.hashcode === '0') {
+        if (!user) {
+            res.status(404).send();
+        }
+        else if (user.hashcode === '0') {
             // means the user has clicked on the confirmation email
-            const token = await user.generateAuthToken(); // Note this method is on instance user and not the model User
+            const token = await user.generateAuthToken(); 
+            // Note this method is on instance user and not the model User
 
             res.cookie('auth_token', token);
             /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
-            res.send({
-                user,
-                token
-            });
+            res.status(200).send({user,token});
         }
-
-        res.status(350).send(user);
+        else {
+            res.status(350).send(user);
+        }
     } catch (e) {
-        res.status(400).send({
-            e
-        });
+        res.status(400).send({e});
 
     }
 });

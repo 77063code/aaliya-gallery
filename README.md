@@ -95,14 +95,8 @@ WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 10. Already Sold - Y/N
 
 WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
-1. Artist Name
-2. School currently attending
-3. Grade currently attending
-4. Email
 5. Parents Permission
-6. Art Teacher/Class Teacher's Name and Email
 7. Number of paintings uploaded
-8. Artist Loginid
 9. Index of the last file uploaded
 10. AWS BucketName
 

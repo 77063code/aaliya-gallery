@@ -28,41 +28,52 @@
             <div class="google"><i class="fa-border fa fa-google fa-lg"></i></div>
         </div>
         -->
-        
+
         <div class="form-component">
             <label for="loginid">Loginid</label>
             <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid" autofocus />
         </div>
-            
+
         <div class="form-component">
             <label for="password">Password</label>
-            <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="password" id="password"  />
+            <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="password" id="password" />
         </div>
 
-            
+
         <div class="form-component">
             <p class="error-msg" id="error-login"></p>
         </div>
-        
+
         <div class="form-component">
             <button type="submit">Login</button>
         </div>
+
+
+    </form>
+
+
+    <div id="confirm-email-page">
         
-    
+        <div class="form-component">
+            <button type="button" id="btn-close-confirm-email-form">
+                <i class="fa fa-times-circle" title="Close Form"></i>
+            </button>
+        </div>
+        
+        
         <div class="form-component">
             <p class="error-msg" id="confirmation-email"></p>
         </div>
-        
+
         <div class="form-component">
             <p class="error-msg" id="login-resend-email"></p>
         </div>
-        
+
         <div class="form-component">
             <button id="btn-login-resend-email" type="button">Resend Email</button>
         </div>
-        
-    </form>
-    
+    </div>
+
     <script src="./js/login.js"></script>
 
 

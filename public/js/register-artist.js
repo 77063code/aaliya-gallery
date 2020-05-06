@@ -58,26 +58,32 @@ const loginidArtistPostFocus = async() => {
 
 
     if (loginid) {
-        try {
-            const response = await fetch('/users/info/loginid/' + loginid)
-            console.log(response.status);
-            if (response.status !== 200) {
+        if (!stringIsAlphaNumeric(loginid)) {
+            errMsg.style.display = "block";
+                errMsg.textContent = 'Only alphabets and numbers allowed. Please enter a different loginid';
+                document.getElementById('loginid-artist').focus();
+        } else {
+            try {
+                const response = await fetch('/users/info/loginid/' + loginid)
+                console.log(response.status);
+                if (response.status !== 200) {
+                    for (var i = 0; i < errMessages.length; i++) {
+                        errMessages.item(i).style.display = "none";
+                        errMessages.item(i).textContent = '';
+                    }
+                    document.getElementById('password-artist').focus();
+                } else {
+                    errMsg.style.display = "block";
+                    errMsg.textContent = 'This loginid is already being used. Please enter a different loginid';
+                    document.getElementById('loginid-artist').focus();
+                }
+            } catch {
                 for (var i = 0; i < errMessages.length; i++) {
                     errMessages.item(i).style.display = "none";
                     errMessages.item(i).textContent = '';
                 }
-                document.getElementById('password-artist').focus();
-            } else {
-                errMsg.style.display = "block";
-                errMsg.textContent = 'This loginid is already being used. Please enter a different loginid';
-                document.getElementById('loginid-artist').focus();
-            }
-        } catch {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
 
+            }
         }
     }
 }
@@ -173,7 +179,12 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-loginid-artist').style.display = "block";
         document.getElementById('forms-error-loginid-artist').textContent = "Please enter your loginid";
         document.getElementById('loginid-artist').focus();
-    } else if (!password) {
+    } else if (!stringIsAlphaNumeric(loginid)) {
+        document.getElementById('forms-error-loginid-artist').style.display = "block";
+        document.getElementById('forms-error-loginid-artist').textContent = "Only alphabets and numbers allowed. Please enter a different loginid";
+        document.getElementById('loginid-artist').focus();
+    }  
+    else if (!password) {
         document.getElementById('forms-error-password-artist').style.display = "block";
         document.getElementById('forms-error-password-artist').textContent = "Please enter a password";
         document.getElementById('password-artist').focus();

@@ -133,6 +133,7 @@ userSchema.statics.findByCredentials = async (loginid,password) => {
 	   return user;
     } catch (e) {
         console.log(e);
+	return undefined;
     }
 };
 

@@ -36,13 +36,14 @@
 
         <div class="form-component">
             <label class="forms-label">Loginid</label>
-            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid-artist" onBlur="loginidArtistPostFocus()" />
+            <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="loginid" id="loginid-artist" onBlur="loginidArtistPostFocus()" placeholder="Only alphabets and numbers"
+                   />
             <p class="forms-error-msg" id="forms-error-loginid-artist"></p>
         </div>
 
         <div class="form-component">
             <label class="forms-label">Password(min 7 char)</label>
-            <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password-artist" onBlur="passwordArtistPostFocus()" />
+            <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password-artist" onBlur="passwordArtistPostFocus()" placeholder="Min 7 characters" />
             <p class="forms-error-msg" id="forms-error-password-artist"></p>
         </div>
 

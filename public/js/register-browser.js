@@ -29,10 +29,12 @@ const emailBrowserPostFocus = async() => {
             try {
                 const response = await fetch('/users/info/email/' + email)
                 if (response.status !== 200) {
-                    for (var i = 0; i < errMessages.length; i++) {
+                    /*for (var i = 0; i < errMessages.length; i++) {
                         errMessages.item(i).style.display = "none";
                         errMessages.item(i).textContent = '';
-                    }
+                    }*/
+                    errMsg.style.display = "none";
+                    errMsg.textContent = "";
                     document.getElementById('loginid-browser').focus();
                 } else {
                     errMsg.style.display = "block";
@@ -57,26 +59,34 @@ const loginidBrowserPostFocus = async() => {
 
 
     if (loginid) {
-        try {
-            const response = await fetch('/users/info/loginid/' + loginid)
-            console.log(response.status);
-            if (response.status !== 200) {
+        if (!stringIsAlphaNumeric(loginid)) {
+            errMsg.style.display = "block";
+                errMsg.textContent = 'Only alphabets and numbers allowed. Please enter a different loginid';
+                document.getElementById('loginid-browser').focus();
+        } else {
+            try {
+                const response = await fetch('/users/info/loginid/' + loginid)
+                console.log(response.status);
+                if (response.status !== 200) {
+                    /*for (var i = 0; i < errMessages.length; i++) {
+                        errMessages.item(i).style.display = "none";
+                        errMessages.item(i).textContent = '';
+                    }*/
+                    errMsg.style.display = "none";
+                    errMsg.textContent = "";
+                    document.getElementById('password-browser').focus();
+                } else {
+                    errMsg.style.display = "block";
+                    errMsg.textContent = 'This loginid is already taken. Please enter a different loginid';
+                    document.getElementById('loginid-browser').focus();
+                }
+            } catch {
                 for (var i = 0; i < errMessages.length; i++) {
                     errMessages.item(i).style.display = "none";
                     errMessages.item(i).textContent = '';
                 }
-                document.getElementById('password-browser').focus();
-            } else {
-                errMsg.style.display = "block";
-                errMsg.textContent = 'This loginid is already taken. Please enter a different loginid';
-                document.getElementById('loginid-browser').focus();
-            }
-        } catch {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
 
+            }
         }
     }
 }
@@ -144,12 +154,13 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
         document.getElementById('forms-error-loginid-browser').style.display = "block";
         document.getElementById('forms-error-loginid-browser').textContent = "Please enter a loginid";
         document.getElementById('loginid-browser').focus();
+    } else if (!stringIsAlphaNumeric(loginid)) {
+        document.getElementById('forms-error-loginid-browser').style.display = "block";
+        document.getElementById('forms-error-loginid-browser').textContent = "Only alphabets and numbers allowed. Please enter a different loginid";
+        document.getElementById('loginid-browser').focus();
     } else if (!password) {
-        alert('password missing');
         document.getElementById('forms-error-password-browser').style.display = "block";
-         alert('password missing2');
         document.getElementById('forms-error-password-browser').textContent = 'Please enter a password';
-         alert('password missing3');
         document.getElementById('password-browser').focus();
     } else if (password.length < 7) {
         document.getElementById('forms-error-password-browser').style.display = "block";
