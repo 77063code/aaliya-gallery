@@ -42,8 +42,8 @@ document.forms['login-form'].addEventListener('submit', async (event) => {
         // loginid and password math, but accont hasn't been activated through the email
             document.getElementById('login-form').style.display = "none";
             document.getElementById('confirm-email-page').style.display = "block";
-            document.getElementById('confirmation-email').textContent = 'Please check your email for confirmation link before logging in';
-            document.getElementById('login-resend-email').textContent = "If you didn't receive the confirmation email, please click on the 'Resend Email' button"
+            document.getElementById('confirmation-email').textContent = 'Before your account can be activated, please click on the link sent to your email';
+            document.getElementById('login-resend-email').textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
         } else {
             //document.getElementById('error-login').style.display = "block";
             document.getElementById('error-login').textContent = 'Error logging in. Please try again';
@@ -72,14 +72,14 @@ document.getElementById('btn-login-resend-email').addEventListener('click', asyn
         
         
     if (response.status === 200) {
-        document.getElementById('login-resend-email').textContent = 'Confirmation email resent. Please check your email including the spam folder';
+        document.getElementById('login-resend-email').textContent = 'Activation email resent. Please check your email including the spam folder';
         }
     else {
-        document.getElementById('login-resend-email').textContent = 'Error sending confirmation email. Please send us a message';
+        document.getElementById('login-resend-email').textContent = 'Error sending activation email. Please send us a message';
         }
     }
     catch (e) {
-       document.getElementById('login-resend-email').textContent = 'Error sending confirmation email. Please send us a message';
+       document.getElementById('login-resend-email').textContent = 'Error sending activation email. Please send us a message';
     }
 
 })

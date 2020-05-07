@@ -2,10 +2,12 @@
 $emailConfirm = document.getElementById('email-confirm');
 $emailConfirmResend = document.getElementById('email-confirm-resend');
 
+//DEBUG
 //document.getElementById('register-artist-form').style.display = 'none';
 //document.getElementById('register-artist-complete-page').style.display = 'block';
 //$emailConfirm.textContent = 'Before your account can be activated, please click on the link in your email'
 //$emailConfirmResend.textContent = "If you don't receive the activation email, please click on the 'Resend Email' button"
+//DEBUG
 
 
 
@@ -28,11 +30,8 @@ const emailBrowserPostFocus = async() => {
         } else {
             try {
                 const response = await fetch('/users/info/email/' + email)
+                // Check if the email is already being used for another account
                 if (response.status !== 200) {
-                    /*for (var i = 0; i < errMessages.length; i++) {
-                        errMessages.item(i).style.display = "none";
-                        errMessages.item(i).textContent = '';
-                    }*/
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
                     document.getElementById('loginid-browser').focus();
@@ -68,10 +67,6 @@ const loginidBrowserPostFocus = async() => {
                 const response = await fetch('/users/info/loginid/' + loginid)
                 console.log(response.status);
                 if (response.status !== 200) {
-                    /*for (var i = 0; i < errMessages.length; i++) {
-                        errMessages.item(i).style.display = "none";
-                        errMessages.item(i).textContent = '';
-                    }*/
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
                     document.getElementById('password-browser').focus();

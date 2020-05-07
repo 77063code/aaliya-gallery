@@ -115,11 +115,11 @@ FEATURES BRANCH
 
 CLEANUP BRANCH
 3. The old error messages to disappear when trying to correct the error
-5. All usernames to be converted to lowercase
 6. Cleanup all unnecessary console.logs
 7. Stats alignment is a bit messed up
 8. The message button needs to me made bigger
-10. the loginids need to be of correct format to align with bucket names
+10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
+Just limit it to alpha-numeric less than 64 characters
 11. The email and the key should not be hard-coded
 
 

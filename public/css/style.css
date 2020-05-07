@@ -55,6 +55,12 @@ body {
     text-decoration: none;
 }
 
+#logging .fa {
+/* This is the increase the clickable area of the message button */
+	font-size: 2.5rem;
+	padding: 0.5rem;
+}
+
 #logging a:link{
     color: black;
 }
