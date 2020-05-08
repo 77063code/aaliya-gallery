@@ -66,8 +66,7 @@ document.forms['message-form'].addEventListener('submit', async (event) => {
     const email = document.getElementById('email-message').value;
     const content = document.getElementById('content-message').value;
     
-    alert('hello World');
-    
+
     for (var i = 0; i < errMessages.length; i++) {
         // Clear all the error messages
         errMessages.item(i).style.display = "none";
