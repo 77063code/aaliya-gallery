@@ -202,7 +202,7 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
 
     } else if (!teacherEmail) {
         document.getElementById('forms-error-teacheremail-artist').style.display = "block";
-        document.getElementById('forms-error-teacheremail-artist').textContent = "Please enter your teacher's name";
+        document.getElementById('forms-error-teacheremail-artist').textContent = "Please enter your teacher's email";
         document.getElementById('teacheremail-artist').focus();
 
     } else if (!emailIsValid(teacherEmail)) {
