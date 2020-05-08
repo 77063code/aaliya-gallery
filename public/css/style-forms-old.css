@@ -1,0 +1,293 @@
+/** Login, Create and Message forms **/
+.centered-form {
+    background: #333744;
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    overflow-y: auto;
+}
+
+.centered-form.centered-form-mobile {
+    background: #333744;
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: flex-start;
+            align-items: flex-start;
+    overflow-y: auto;
+}
+
+.centered-form__box {
+    box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
+    background: #F7F7FA;
+    padding: 0 2.4rem 2.4rem 2.4rem;
+    width: 25rem;
+     overflow-y: auto;
+}
+
+.centered-form__box.centered-form-mobile__box {
+    box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
+    background: #F7F7FA;
+    padding: 0 2.4rem 2.4rem 2.4rem;
+    width: 25rem;
+    margin-top: 1rem;
+     overflow-y: auto;
+}
+
+.centered-form p#register-page, .centered-form p.description {
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 1.2rem;
+    padding: 1rem;
+}
+
+.centered-form label {
+    display: block;
+    font-size: 1.8rem;
+    margin-bottom: .5rem;
+    color: #777;
+    padding-left: .5rem;
+}
+
+.centered-form button {
+    width: 100%;
+    cursor: pointer;
+    padding: 1.2rem;
+    background-color: blue;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+    margin: 0 0 1rem 0;    
+}
+
+.centered-form button.btn-next {
+    width: 40%;
+    background: lightblue;
+    color: black;
+    margin-left: 60%;
+    text-align: right;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+.centered-form button.btn-previous {
+    width: 55%;
+    background: lightblue;
+    color: black;
+    margin-right: 45%;
+    text-align: left;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+
+.centered-form button.btn-next-group {
+/* When placing the buttons side by side */
+    width: 38%;
+    background: lightblue;
+    color: black;
+    margin-left: 5%;
+    text-align: right;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+.centered-form button.btn-previous-group {
+/* When placing the buttons side by side */
+    width: 55%;
+    background: lightblue;
+    color: black;
+    text-align: left;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+
+.centered-form button:disabled {
+    color: lightgrey;
+    opacity: 0.3;
+}
+
+.centered-form input {
+    margin-bottom: 1.6rem;
+    width: 100%;
+    border: .1rem solid #eeeeee;
+    padding: 0.7rem;
+    outline: none;
+    font-size: 1.8rem;
+}
+
+.centered-form textarea {
+    margin-bottom: 1.6rem;
+    width: 100%;
+    border: .1rem solid #eeeeee;
+    padding: 1.2rem;
+    outline: none;
+    font-size: 1.8rem;
+}
+
+.centered-form select {
+    display: block;
+    width: 100%;
+    margin-bottom: 1.6rem;
+    border: .1rem solid #eeeeee;
+    padding: 0.7rem;
+    font-size: 1.8rem;
+    outline: none;
+    background-color: white;
+}
+
+.centered-form input:focus,textarea:focus,select:focus {
+    background-color: lightblue;
+}
+
+::-webkit-input-placeholder {
+    opacity: 0.5;
+}
+
+:-ms-input-placeholder {
+    opacity: 0.5;
+}
+
+::-ms-input-placeholder {
+    opacity: 0.5;
+}
+
+::-moz-placeholder {
+    opacity: 0.5;
+}
+
+::placeholder {
+    opacity: 0.5;
+}
+
+
+
+/* Closing all forms */
+.close {
+    padding:0px;
+    margin:0px;
+    /*background-color: #F7F7FA;*/
+    width: 22.6rem;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: end;
+            justify-content: flex-end;
+}
+
+#btn-close-login, #btn-close-register, #btn-close-message, #btn-close-resend-email {
+    width: 9rem;
+    opacity: 0.5;
+    text-align: right;
+    background-color: transparent;
+    margin-right: -3.2rem;
+    margin-top: -1rem;
+    outline: none;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fa-times-circle {
+    color: black;
+    cursor: pointer;
+    font-size: 3.5rem;
+    margin-right: -2.4rem;
+    margin-top: -.5rem;
+    opacity: 0.7;
+    
+}
+
+.fa-times-circle:hover {
+    cursor: pointer
+}
+
+/* Error messages on all the forms */
+/*
+#error-register, #error-login, #error-message, #error-register-artist {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    margin-bottom: .5rem;
+}
+*/
+
+.error-msg {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    margin-bottom: .5rem;
+}
+   
+
+#email-confirm, #email-confirm-resend, #login-resend-email {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+}
+
+#resend-email {
+    display: none;
+}
+
+#btn-login-resend-email {
+    display: none;
+}
+
+
+
+
+
+/* Not being used right now. Moving to the bottom 
+.centered-form .social--auth {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+i.fa-facebook,
+i.fa-amazon,
+i.fa-google {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    background: lightblue;
+    margin: 2rem 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 3rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+*/

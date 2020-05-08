@@ -1,122 +1,159 @@
 /** Login, Create and Message forms **/
-.centered-form {
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: calc(100vh / 40);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+.forms-page {
+    font-size: calc(100vw / 40); 
+    }
+}
+
+@media only screen and (min-width: 601px) {
+.forms-page {
+    font-size: 16px; 
+    }
+}
+
+.forms-page {
     background: #333744;
-    width: 100vw;
-    height: 100vh;
+    background-color: mintcream;
+    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
     display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     -webkit-box-pack: center;
-        -ms-flex-pack: center;
             justify-content: center;
     -webkit-box-align: center;
-        -ms-flex-align: center;
             align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
 }
 
-.centered-form__box {
-    -webkit-box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
-            box-shadow: 0px 0px 1.7rem .1rem #1D1F26;
-    background: #F7F7FA;
-    padding: 0 2.4rem 2.4rem 2.4rem;
-    width: 25rem;
- 
+.forms-page form, .forms-page .register-complete-page, .forms-page #confirm-email-page {
+    border: .1em solid;
+    width: 30em;
+    margin: auto;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    background-color: white;
 }
 
-.centered-form label {
-    display: block;
-    font-size: 1.8rem;
-    margin-bottom: .5rem;
-    color: #777;
-}
-
-.centered-form button {
+.forms-page .form-component{
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+            flex-direction: column;
     width: 100%;
+    margin-bottom: 1.6em;    
+}
+
+.forms-page .form-component h2 {
+    font-size: 2.1em;
+}
+
+.forms-page .form-component label {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333744;
+    padding-left: 0.8em;
+}
+
+.forms-page .form-component input {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1em solid lightblue;
+    border-radius: 1em;
+    padding: 0.7em;
+    outline: none;
+    font-size: 1.8em;
+}
+
+.forms-page .form-component select {
+    width:90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1em solid lightblue;
+    border-radius: 1em;
+    padding: 0.7em;
+    font-size: 1.8em;
+    outline: none;
+    background-color: white;
+}
+
+.forms-page .form-component textarea {
+    
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1em solid lightblue;
+    border-radius: 1em;
+    padding: 0.7em;
+    outline: none;
+    font-size: 1.8em;
+}
+
+
+.forms-page .form-component button {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
     cursor: pointer;
-    padding: 1.2rem;
+    padding: 1.2em;
     background-color: blue;
     border: none;
+    border-radius: 1em;
     color: white;
-    font-size: 1.8rem;
+    font-size: 1.8em;
     -webkit-transition: background .3s ease;
-    transition: background .3s ease;
-    margin: 0 0 1rem 0;    
+    transition: background .3s ease;    
 }
 
-.centered-form button:disabled {
+.forms-page .form-component button:disabled {
     color: lightgrey;
     opacity: 0.3;
 }
 
-.centered-form input {
-    margin-bottom: 1.6rem;
+.forms-page  .form-component p {
     width: 100%;
-    border: .1rem solid #eeeeee;
-    padding: 1.2rem;
-    outline: none;
-    font-size: 1.8rem;
+    text-align: center;
+    color: red;
+    font-size: 1.6em;
+    margin-top: .5em;
 }
-
-.centered-form input:focus,textarea:focus {
+   
+.forms-page input:focus,textarea:focus,select:focus {
     background-color: lightblue;
 }
 
-.centered-form textarea {
-    margin-bottom: 1.6rem;
-    width: 100%;
-    border: .1rem solid #eeeeee;
-    padding: 1.2rem;
-    outline: none;
-    font-size: 1.8rem;
-}
 
-.redAsterik {
-    color: red;
-}
-
-.passwordRequirement {
-    font-size: 1.2rem
-}
-
-::-webkit-input-placeholder {
-    opacity: 0.5;
-}
-
-:-ms-input-placeholder {
-    opacity: 0.5;
-}
-
-::-ms-input-placeholder {
-    opacity: 0.5;
-}
-
-::placeholder {
-    opacity: 0.5;
-}
-
-
-
-/* Closing all forms */
-.close {
-    padding:0px;
-    margin:0px;
-    /*background-color: #F7F7FA;*/
-    width: 22.6rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-}
-
-#btn-close-login, #btn-close-register, #btn-close-message, #btn-close-resend-email {
-    width: 9rem;
+#btn-close-register-form, #btn-close-register-artist-form, #btn-close-register-browser-form, #btn-close-resend-email-form, #btn-close-login-form, #btn-close-message-form, #btn-close-confirm-email-form {
+    width: 9em;
     opacity: 0.5;
     text-align: right;
     background-color: transparent;
-    margin-right: -3.2rem;
-    margin-top: -1rem;
+    margin-right: -3.2em;
+    margin-top: -1em;
     outline: none;
     overflow: hidden;
     -webkit-tap-highlight-color: transparent;
@@ -125,43 +162,25 @@
 .fa-times-circle {
     color: black;
     cursor: pointer;
-    font-size: 3.5rem;
-    margin-right: -.4rem;
-    margin-top: -.5rem;
+    font-size: 1.6em;
+    margin-right: 1.22em;
+    margin-top: -0.15em;
     opacity: 0.7;
-    
 }
 
 .fa-times-circle:hover {
     cursor: pointer
 }
 
-/* Error messages on all the forms */
-#error-register, #error-login, #error-message {
-    width: 100%;
-    text-align: center;
-    color: red;
-    font-size: 1.6rem;
-}
 
-#email-confirm, #email-confirm-resend, #login-resend-email {
-    width: 100%;
-    text-align: center;
-    color: red;
-    font-size: 1.6rem;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-}
-
-#resend-email {
+/* Completion page for register forms. Initially hidden */
+.forms-page #register-artist-complete-page, .forms-page #register-browser-complete-page {
     display: none;
 }
 
-#btn-login-resend-email {
-    display: none;
+.forms-page #confirm-email-page {
+	display: none;
 }
-
-
 
 
 /* Not being used right now. Moving to the bottom 

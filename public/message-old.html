@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <link href="./css/all.css" rel="stylesheet">
+        <link rel='stylesheet' href='./css/style.css' />
+    <link rel='stylesheet' href='./css/style-forms.css' />
+    <link rel='stylesheet' href='./css/style-media-forms.css' />
+</head>
+
+<body>
+    <div class="centered-form">
+        
+        <div class="centered-form__box">
+                <div class="img__back--close--container">
+                    <button id="btn-close-message">
+                            <i class="fa fa-times-circle" title="Close Form"></i>
+                    </button>
+                </div>
+    
+            <form id="message" method="POST" action="users/message" autocomplete="off">     
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="messageName" id="messageName" placeholder="Name" />
+                <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="messageEmail" id="messageEmail" placeholder="Email" />
+                <textarea spellcheck="false" name="messageMessage" id="messageMessage" placeholder="Your message"></textarea>
+                <button type="submit">Send it!</button>
+            </form>
+            <p class="error-msg" id="error-message"></p>
+        </div>
+    </div>  
+
+    
+     <script src="./js/message.js"></script>
+
+
+</body>
+
+
+
+</html>

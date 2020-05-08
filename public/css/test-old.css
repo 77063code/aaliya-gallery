@@ -1,0 +1,140 @@
+/** Login, Create and Message forms **/
+.forms-page {
+    background: #333744;
+    font-size: calc(100vw / 40); 
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    flex-direction: column;
+}
+
+#info-page {
+    width: 30em;
+    height: 20em;
+    align-self: center;
+    border: .1em solid #eeeeee;
+    background-color: white;
+}
+.forms-page form {
+    border: .1em solid;
+    width: 30em;
+    margin: auto;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    background-color: white;
+}
+
+.forms-page div{
+    display: flex;
+    -webkit-box-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+            align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1.6em;
+    
+}
+
+.forms-page.img__back--close--container {
+    width: 99%;
+    background-color: white;
+}
+
+.forms-page label {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2.3rem;
+    color: #333744;
+    padding-left: 1.5rem;
+}
+
+.forms-page input {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1em solid #eeeeee;
+    border-radius: 1em;
+    padding: 0.7em;
+    outline: none;
+    font-size: 1.8em;
+}
+
+.forms-page select {
+    width:90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1em solid #eeeeee;
+    border-radius: 1em;
+    padding: 0.7em;
+    font-size: 1.8em;
+    outline: none;
+    background-color: white;
+}
+
+.forms-page button {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    cursor: pointer;
+    padding: 1.2rem;
+    background-color: blue;
+    border: none;
+    border-radius: 1em;
+    color: white;
+    font-size: 1.8rem;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+    
+}
+
+.forms-page p {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6em;
+    margin-top: .5em;
+}
+   
+
+.forms-page textarea {
+    margin-bottom: 1.6rem;
+    width: 100%;
+    border: .1rem solid #eeeeee;
+    padding: 1.2rem;
+    outline: none;
+    font-size: 1.8rem;
+}
+
+#btn-close-register-artist {
+    width: 9em;
+    opacity: 0.5;
+    text-align: right;
+    background-color: transparent;
+    margin-right: -3.2em;
+    margin-top: -1em;
+    outline: none;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+
+}
+
+.fa-times-circle {
+    color: black;
+    cursor: pointer;
+    font-size: 2em;
+    margin-right: 1.2em;
+    margin-top: 0.1em;
+    opacity: 0.7;
+    
+}
+
+.fa-times-circle:hover {
+    cursor: pointer
+}

@@ -8,6 +8,11 @@ FOR PRODUCTION -
     export AALIYAPORTHTTPS=443
     export AALIYAHOST='aaliya-gallery'
     export SENDGRIDAPIKEY='apikey'
+    export AWSKEY=''
+    export AWSSECRET=''
+    export AWSREGION='us-west-2'
+    export AWSBUCKET='aaliya-gallery'
+
 3. Install mongodb and mongodb backup as per the instructions
 
 
@@ -31,21 +36,17 @@ TO MOVE A NEW VERSION TO PRODUCTION
 
 TO DO
 1. Auto renew of certbot
-1. Tighten security on EC2
 1. at createddatetime filed to both colections
 2. Figure out how not to reload images
-4. When filling out forms on the phone the keyboard hides the field being filled
 6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
 7. On login in page, reset the messages when trying to login again from earlier emaill resent message
 8. Give a mesage when a user votes for the 1st time
 9. The painting information should also have the canvas size
 10. On every screen the button needs to be disabled when they cannot be pressed again
-11. On the home header need to have a register button as well
 
 
 TO DO BIG
 2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
-3. On any of the forms, when you get an error, the error should disappear when ncorrecting the mistake
 
 TESTING STEPS
 EXISTING USERS
@@ -93,14 +94,8 @@ WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 10. Already Sold - Y/N
 
 WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
-1. Artist Name
-2. School currently attending
-3. Grade currently attending
-4. Email
 5. Parents Permission
-6. Art Teacher/Class Teacher's Name and Email
 7. Number of paintings uploaded
-8. Artist Loginid
 9. Index of the last file uploaded
 10. AWS BucketName
 
@@ -119,12 +114,12 @@ FEATURES BRANCH
 
 CLEANUP BRANCH
 3. The old error messages to disappear when trying to correct the error
-5. All usernames to be converted to lowercase
 6. Cleanup all unnecessary console.logs
 7. Stats alignment is a bit messed up
-8. The message button needs to me made bigger
-9. There should be a register button on the home page
-10. the loginids need to be of correct format to align with bucket names
+10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
+Just limit it to alpha-numeric less than 64 characters
+11. The email and the key should not be hard-coded
+12. Put a banner on all the form pges including the header which deosnt move
 
 
 UPLOAD BRANCH
@@ -137,7 +132,12 @@ STEPS
 1. First rerun the admin/images.js to make sure the most recent data is uploaded
 2. Move accessKeyId, secretAccessKey, bucket and region to the config file
 
-
+UPLOAD-IMAGE BRANCH
+1. Right now just creating a form to upload one file and save it as test.txt
+2. Reformatting all form pages to be able to work on mobile 
+3. Recreating a new form structure
+STEPS
+1. Install aws-sdk
 
 RELEASES
 V1.3
@@ -159,7 +159,15 @@ V1.4
 	1. Add 3 more images by aaliya1 to AWS S3
 	2. Change the images.js script in admin directory to upload information about the 3 images
     
-
+V1.5
+1. Branch - upload-image
+2. Date - 05/07/2020
+3. Features
+	1. Created a new structure for all the forms to make them scrollable on mobile devices
+	2. Added a background pix to all the forms
+	3. Made the message icon a little bigger so easier to click
+	4. There is upload file as part of this version, but hasnt been tested 
+	5. Register button added to the home page 
 
 
 

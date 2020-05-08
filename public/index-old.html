@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport'  content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link href="./css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet"> 
+    <link rel='stylesheet' href='./css/style.css' />
+    <link rel='stylesheet' href='./css/style-forms.css' />
+    <link rel='stylesheet' href='./css/style-media.css' />
+</head>
+
+<body>
+    <div class="header">
+        <h1>Aaliya's Art Gallery</h1>
+        <div id="logging">
+            
+            
+            <h4 id="loginid"></h4>
+            <a id="login-label" href="login.html">Login</a>
+            <a id="register-label" href="register.html">Register</a>
+            <form id="logout" action="users/logout" method="post">
+                <button type="submit" id="logout-btn">Logout</button>            
+            </form>
+            <a id="message-label" href="message.html" <i class="fa fa-envelope"></i></a>
+        </div>
+        
+        
+    </div>
+    <div class="gallery" id="gallery">
+        
+       <!-- 
+        <div class="image">
+            <img class="img" id="aaliya1-1.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-1.jpg">
+            <div class="img img__back" id="aaliya1-1__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Mountain & Lake</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Mountain & Lake</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+       <div class="image">
+            <img class="img" id="aaliya1-2.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-2.jpg">
+            <div class="img img__back" id="aaliya1-2__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Solitude</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Solitude</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+        <div class="image">
+            <img class="img" id="aaliya1-3.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-3.jpg">
+            <div class="img img__back" id="aaliya1-3__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Butterfly</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Butterfly</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+        <div class="image">
+            <img class="img" id="aaliya1-4.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-4.jpg">
+            <div class="img img__back" id="aaliya1-4__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Rainbow Tree</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2017</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Rainbow Tree</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+       <div class="image">
+            <img class="img" id="aaliya1-5.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-5.jpg">
+            <div class="img img__back" id="aaliya1-5__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Venice</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                    <h2>First Painting Sold!</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Venice</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+        <div class="image">
+            <img class="img" id="aaliya1-7.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-7.jpg">
+            <div class="img img__back" id="aaliya1-7__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>First Abstract</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">First Abstract</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+        <div class="image">
+            <img class="img" id="aaliya1-6.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-6.jpg">
+            <div class="img img__back" id="aaliya1-6__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Clueless Sally</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Clueless Sally</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+        
+        <div class="image">
+            <img class="img" id="aaliya1-8.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-8.jpg">
+            <div class="img img__back" id="aaliya1-8__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Surprised Sally</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Surprised Sally</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+    
+        <div class="image">
+            <img class="img" id="aaliya1-9.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-9.jpg">
+            <div class="img img__back" id="aaliya1-9__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Confused Sally</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Confused Sally</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+        
+        
+        <div class="image">
+            <img class="img" id="aaliya1-10.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-10.jpg">
+            <div class="img img__back" id="aaliya1-10__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Shore</h2>
+                    <h2>Artist: Aaliya G.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Shore</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+  
+        
+        <div class="image">
+            <img class="img" id="aaliya1-11.jpg" src="https://aaliya-gallery.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-11.jpg">
+            <div class="img img__back" id="aaliya1-11__back">
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>Medley</h2>
+                    <h2>Artist: Aaliya G. & Julia H.</h2>
+                    <h2>School: Elementary</h2>
+                    <h2>Painted: 2019</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">Medley</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>       
+        
+    -->
+    </div>
+
+  
+
+    <script id="image-template" type="text/html">
+    <!-- Even though we are using script tags, this is not an actual JS script, but is more like a defacto technique for including templates in a page. Normally script tags block all processing when rendering a page. But here the template has a type="text/html", which effectively tricks the browser into not processing it like a normal JavaScript block -->
+        <div class="image">
+            <img class="img" id={{img_id}} src={{img_src}}>
+            <div class="img img__back" id={{img_back_id}}>
+                <div class="img__back--close--container">
+                <button class="btn btn-close-information" id="btn-close-information">
+                        <i class="fa fa-arrow-circle-left img__back--close" title="Back to painting"></i>
+                </button>
+                </div>
+                <div class="img__info">
+                    <h2>{{img_displayname}}</h2>
+                    <h2>Artist: {{img_artistid}}</h2>
+                    <h2>School: {{img_grade}}</h2>
+                    <h2>Painted: {{img_year}}</h2>
+                </div>
+            </div>
+            <div class="img__stats">
+                <h4 class="image__name">{{img_displayname}}</h4>
+                <div class="likes">
+                    <button class="btn btn-thumbs-up"><i class="fa fa-thumbs-up" title="Like"></i></button>
+                    <h5 class="total-likes"></h5>
+                </div>
+                <button class="btn btn-info"><i class="fa fa-info" title="More Information"></i></button>
+            </div>
+            <div class="likes__error--message"></div>
+        </div>
+    </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="./js/app.js"></script>
+   
+
+
+
+</body>
+
+
+
+</html>
