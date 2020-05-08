@@ -47,7 +47,6 @@ TO DO
 
 TO DO BIG
 2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
-3. On any of the forms, when you get an error, the error should disappear when ncorrecting the mistake
 
 TESTING STEPS
 EXISTING USERS
@@ -117,10 +116,10 @@ CLEANUP BRANCH
 3. The old error messages to disappear when trying to correct the error
 6. Cleanup all unnecessary console.logs
 7. Stats alignment is a bit messed up
-8. The message button needs to me made bigger
 10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
 Just limit it to alpha-numeric less than 64 characters
 11. The email and the key should not be hard-coded
+12. Put a banner on all the form pges including the header which deosnt move
 
 
 UPLOAD BRANCH
@@ -160,7 +159,15 @@ V1.4
 	1. Add 3 more images by aaliya1 to AWS S3
 	2. Change the images.js script in admin directory to upload information about the 3 images
     
-
+V1.5
+1. Branch - upload-image
+2. Date - 05/07/2020
+3. Features
+	1. Created a new structure for all the forms to make them scrollable on mobile devices
+	2. Added a background pix to all the forms
+	3. Made the message icon a little bigger so easier to click
+	4. There is upload file as part of this version, but hasnt been tested 
+	5. Register button added to the home page 
 
 
 

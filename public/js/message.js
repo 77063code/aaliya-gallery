@@ -24,7 +24,7 @@ const getUserInfo = async () => {
 const initializeForm = async () => {
 // If user is logged in, then add that information to form so the user doest have to type it again
     const user = await getUserInfo();
-    if (user.user) {
+    if (user && user.user) {
         $messageName.value = user.user.name;
         $messageEmail.value = user.user.email
         $messageContent.focus();
@@ -65,6 +65,8 @@ document.forms['message-form'].addEventListener('submit', async (event) => {
     const name = document.getElementById('name-message').value;
     const email = document.getElementById('email-message').value;
     const content = document.getElementById('content-message').value;
+    
+    alert('hello World');
     
     for (var i = 0; i < errMessages.length; i++) {
         // Clear all the error messages
