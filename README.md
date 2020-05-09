@@ -15,6 +15,10 @@ FOR PRODUCTION -
 
 3. Install mongodb and mongodb backup as per the instructions
 
+TO INSTALL LETSENCRYPT
+1. First install EPEL repo
+2. yum install certbot
+
 
 TO RUN THE APPLICATION -
 1. Log-in as root
@@ -25,28 +29,6 @@ TO RUN THE APPLICATION -
 6. netstat -tulpen | grep mongo
 7. netstat -tulpen | grep node
 
-
-TO MOVE A NEW VERSION TO PRODUCTION
-3. Run user.js to find out how many images garfield3 has
-4. Delete all likes by garfield3
-5. Delete user garfield3. Now this can be used in testing
-1. Make a backup of the db
-2. mongodump --archive="<date>-backup" --db="aaliya-art-api"
-
-
-TO DO
-1. Auto renew of certbot
-1. at createddatetime filed to both colections
-2. Figure out how not to reload images
-6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
-7. On login in page, reset the messages when trying to login again from earlier emaill resent message
-8. Give a mesage when a user votes for the 1st time
-9. The painting information should also have the canvas size
-10. On every screen the button needs to be disabled when they cannot be pressed again
-
-
-TO DO BIG
-2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
 
 TESTING STEPS
 EXISTING USERS
@@ -67,37 +49,20 @@ NEW USERS
 NON-REGISTERED USERS
 1. When sending message do the user information field get populated correctly and does the message get sent and then does the redirection to home page happen correctly
 2. When clicking on thumbs up, does it show the correct error message
+CHECK FOR RESPONSIVENESS
+1. The site needs to be tested on desktop, laptop, iPad, iPhone and Android phone to make sure forms responsiveness is working good
 
 
+TO MOVE A NEW VERSION TO PRODUCTION
+1. Make a backup of the db
+2. mongodump --archive="<date>-backup" --db="aaliya-art-api"
+3. Delete node-modules and run npm install to install any new packages
+3. Run user.js to find out how many images garfield3 has
+4. Delete all likes by garfield3
+5. Delete user garfield3. Now this can be used in testing
+6. Create a new git tag with the version information
 
-TO INSTALL LETSENCRYPT
-1. First install EPEL repo
-2. yum install certbot
-
-MSC - 
-1. When saw user interacting, the username confused them, so have to change that field to login id everywhere
-
-
-WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
-1. Image name(internal)
-2. Image name(displayed)
-2. Year painted
-3. Artist Loginid
-4. Sale Price
-5. Type of painting - i.e. canvas
-6. Painting Length
-7. Painting width
-8. Orientation
-7. Formatted image
-8. Unformatted image
-9. Grade when paiting was done
-10. Already Sold - Y/N
-
-WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
-5. Parents Permission
-7. Number of paintings uploaded
-9. Index of the last file uploaded
-10. AWS BucketName
+BRANCHES & TAGS
 
 FEATURES BRANCH
 1. How to access image files directly from S3 and not on the server
@@ -110,34 +75,11 @@ FEATURES BRANCH
     7. Upload the images to S3 with the new names and change the src in index to reference the S3 files
     8. Now test and this is the next verson that should be released to production
     
-
-
-CLEANUP BRANCH
-3. The old error messages to disappear when trying to correct the error
-6. Cleanup all unnecessary console.logs
-7. Stats alignment is a bit messed up
-10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
-Just limit it to alpha-numeric less than 64 characters
-11. The email and the key should not be hard-coded
-12. Put a banner on all the form pges including the header which deosnt move
-
-
-UPLOAD BRANCH
-1 Create a form so artists can upload their images to S3
-2 The artist sub-folder is created when they register
-3 They should be able to upload upto 5 images, no more than 200kb each
-4 They should also be able to delete any image they want
-STEPS
-1. Also need to add a new field to image collection s3location-uploaded. This will be the location of the unformatted file that is uploaded
-1. First rerun the admin/images.js to make sure the most recent data is uploaded
-2. Move accessKeyId, secretAccessKey, bucket and region to the config file
-
 UPLOAD-IMAGE BRANCH
 1. Right now just creating a form to upload one file and save it as test.txt
 2. Reformatting all form pages to be able to work on mobile 
 3. Recreating a new form structure
-STEPS
-1. Install aws-sdk
+
 
 RELEASES
 V1.3
@@ -169,5 +111,61 @@ V1.5
 	4. There is upload file as part of this version, but hasnt been tested 
 	5. Register button added to the home page 
 
+
+
+WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
+1. Image name(internal)
+2. Image name(displayed)
+2. Year painted
+3. Artist Loginid
+4. Sale Price
+5. Type of painting - i.e. canvas
+6. Painting Length
+7. Painting width
+8. Orientation
+7. Formatted image
+8. Unformatted image
+9. Grade when paiting was done
+10. Already Sold - Y/N
+
+WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
+5. Parents Permission
+7. Number of paintings uploaded
+9. Index of the last file uploaded
+10. AWS BucketName
+
+
+TO DO
+6. Cleanup all unnecessary console.logs
+7. Stats alignment is a bit messed up
+10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
+Just limit it to alpha-numeric less than 64 characters
+11. The email and the key should not be hard-coded
+12. Put a banner on all the form pges including the header which deosnt move
+1. at createddatetime filed to both colections
+2. Figure out how not to reload images
+6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
+7. On login in page, reset the messages when trying to login again from earlier emaill resent message
+9. The painting information should also have the canvas size
+10. On every screen the button needs to be disabled when they cannot be pressed again
+2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
+
+
+UPLOAD BRANCH
+1 Create a form so artists can upload their images to S3
+2 The artist sub-folder is created when they register
+3 They should be able to upload upto 5 images, no more than 200kb each
+4 They should also be able to delete any image they want
+STEPS
+1. Also need to add a new field to image collection s3location-uploaded. This will be the location of the unformatted file that is uploaded
+1. First rerun the admin/images.js to make sure the most recent data is uploaded
+
+
+STORE-IMAGE
+1. Fix bug on message.js where the cursor on the website is not staying on the email field when invalid email. Same problem is happening on other forms, but only when the code is loaded to the website and not in local testing
+1 Create a form so artists can upload their images to S3
+2 The artist sub-folder is created when they register
+3 They should be able to upload upto 5 images, no more than 200kb each
+4 They should also be able to delete any image they want
 
 
