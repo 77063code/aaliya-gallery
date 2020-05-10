@@ -14,7 +14,7 @@ const host = process.env.AALIYAHOST || 'localhost';
 
 
 router.post('/users', async(req, res) => {
-    // Register a new user  
+// Register a new user  
     const user = new User(req.body);
 
     try {

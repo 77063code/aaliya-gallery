@@ -147,7 +147,7 @@ html {
 }
 
 
-#btn-close-register-form, #btn-close-register-artist-form, #btn-close-register-browser-form, #btn-close-resend-email-form, #btn-close-login-form, #btn-close-message-form, #btn-close-confirm-email-form {
+#btn-close-register-form, #btn-close-register-artist-form, #btn-close-register-browser-form, #btn-close-resend-email-form, #btn-close-login-form, #btn-close-message-form, #btn-close-confirm-email-form, #btn-close-upload-image-form {
     width: 9em;
     opacity: 0.5;
     text-align: right;

@@ -114,8 +114,8 @@ V1.5
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
-1. Image name(internal)
-2. Image name(displayed)
+1. Image title(internal)
+2. Image title(displayed)
 2. Year painted
 3. Artist Loginid
 4. Sale Price
@@ -163,6 +163,8 @@ STEPS
 
 STORE-IMAGE
 1. Fix bug on message.js where the cursor on the website is not staying on the email field when invalid email. Same problem is happening on other forms, but only when the code is loaded to the website and not in local testing
+2. In the user collection add firstname, lastname fields and make the same changes in the form
+3. For buyers/browsers, change to buyers/collectors and also ask for firstname, lastname and make email as loginid
 1 Create a form so artists can upload their images to S3
 2 The artist sub-folder is created when they register
 3 They should be able to upload upto 5 images, no more than 200kb each

@@ -15,7 +15,7 @@ const findCountByImage = async (imgName) => {
 
 const findAllUsers = async () => {
 // get the name and email of all users
-	const response = await Users.find({},'email name loginid');
+	const response = await Users.find({},'email name loginid imagesUploaded');
 	console.log(response);
 }
 
@@ -25,5 +25,5 @@ const findLikesByUser = async (id) => {
     console.log(response);
 }
 
-//findAllUsers();
-findLikesByUser('garfield1');
+findAllUsers();
+//findLikesByUser('garfield1');
