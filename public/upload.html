@@ -30,14 +30,32 @@
         
         <div class="form-component">
              <label class="forms-label">Artwork Title</label>
-            <input type="text" name="name" id="name-upload">
-            <p class="forms-error-msg" id="forms-error-name-upload"></p>
+            <input type="text" name="title" id="title-upload">
+            <p class="forms-error-msg" id="forms-error-title-upload"></p>
         </div>
        
         <div class="form-component">
-             <label class="forms-label">Year Painted</label>
+             <label class="forms-label">Year Created</label>
             <input type="number" name="year" id="year-upload" value=2020 step=1>
             <p class="forms-error-msg" id="forms-error-year-upload"></p>
+        </div>
+        
+        <div class="form-component">
+            <label class="forms-label">Grade Created</label>
+            <select name="grade" id="grade-upload">
+                <option value="Elementary">I</option>
+                <option value="Elementary">II</option>
+                <option value="Elementary">III</option>
+                <option value="Elementary">IV</option>
+                <option value="Elementary">V</option>
+                <option value="Middle">VI</option>
+                <option value="Middle">VII</option>
+                <option value="Middle">VIII</option>
+                <option value="High">IX</option>
+                <option value="High">X</option>
+                <option value="High">XI</option>
+                <option value="High">XII</option>
+            </select>
         </div>
         
         <div class="form-component">
@@ -51,13 +69,13 @@
             <input type="number" name="width" id="width-upload" value=10 step=0.1>
             <p class="forms-error-msg" id="forms-error-width-upload"></p>
         </div>
-       
+        
         <div class="form-component">
-            <label class="forms-label">Selling Price(US$)</label>
-            <input type="number" name="price" id="price-upload" step=1>
-            <p class="forms-error-msg" id="forms-error-price-upload"></p>
+            <label class="forms-label">Depth(inches)</label>
+            <input type="number" name="depth" id="depth-upload" value=2 step=0.1>
+            <p class="forms-error-msg" id="forms-error-depth-upload"></p>
         </div>
-         
+        
         <div class="form-component">
             <label class="forms-label">Type</label>
             <select id="type-upload" name="type">
@@ -68,6 +86,12 @@
             </select>
             <p class="forms-error-msg" id="forms-error-type-upload"></p>
         </div>
+       
+        <div class="form-component">
+            <label class="forms-label">Selling Price(US$)</label>
+            <input type="number" name="price" id="price-upload" step=1>
+            <p class="forms-error-msg" id="forms-error-price-upload"></p>
+        </div>
             
         <div class="form-component">
             <button id="file" type="submit">Upload</button>
@@ -75,7 +99,7 @@
 
     </form>
 
-
+    <script src="./js/common.js"></script>
     <script src="./js/upload.js"></script>
 
 </body>

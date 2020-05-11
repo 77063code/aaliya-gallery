@@ -149,6 +149,7 @@ Just limit it to alpha-numeric less than 64 characters
 9. The painting information should also have the canvas size
 10. On every screen the button needs to be disabled when they cannot be pressed again
 2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
+3. When voting if need to login then go all the way to the top
 
 
 UPLOAD BRANCH
@@ -162,6 +163,18 @@ STEPS
 
 
 STORE-IMAGE
+1. The name field in the image document should not have any extension. I don't think this will break anything. Need to test this first.
+    2. The displayname field needs to be changed to title
+        1. The change also needs to be made in index.html and app.js
+    3. The length field needs to be changed to height
+    4. New field depth
+    5. Grade should be limited to Elementary/Middle/High
+    6. Take out School field
+    
+    
+    
+    
+    
 1. Fix bug on message.js where the cursor on the website is not staying on the email field when invalid email. Same problem is happening on other forms, but only when the code is loaded to the website and not in local testing
 2. In the user collection add firstname, lastname fields and make the same changes in the form
 3. For buyers/browsers, change to buyers/collectors and also ask for firstname, lastname and make email as loginid

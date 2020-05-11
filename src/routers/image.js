@@ -17,9 +17,16 @@ const AWSBucket = process.env.AWSBUCKET
 router.post('/images', async(req, res) => {
 // Add a new entry in the image collection
 // This is called after an image has been successfully uploaded
-    console.log('Hello');
+    const image = new Image(req.body);
     console.log(req.body);
-    res.status(200).send();  
+    console.log(image);
+    
+    try {
+        await image.save();
+        res.status(201).send();
+    } catch(e) {
+        res.status(404).send(e);
+    }
     
 });
 
@@ -41,6 +48,7 @@ router.get('/images/signed-url-put-object', auth, async(req, res) => {
 // From user information get the key of the image S3 storage
 // Based on that information create a pre-signed URL which can be used to upload the image file
     
+    
     try {
         const user = req.user;
         const imageUploaded = user.imagesUploaded + 1;
@@ -53,15 +61,17 @@ router.get('/images/signed-url-put-object', auth, async(req, res) => {
         
         
         AWS.config.update({
-            accessKeyId: AWSKey, // Generated on step 1
-            secretAccessKey: AWSSecret, // Generated on step 1
+            accessKeyId: AWSKey, 
+            secretAccessKey: AWSSecret, 
             region: AWSRegion, // Must be the same as your bucket
             signatureVersion: 'v4',
         });
         const params = {
             Bucket: AWSBucket,
-            Key: loginid + '/' + loginid + '-' + imageIndex,
-            Expires: 30 * 60 // Link expires in 30 minutes
+            Key: loginid + '/' + loginid + '-' + imageIndex + '.jpg',
+            Expires: 30 * 60, // Link expires in 30 minutes
+            ACL: 'public-read', // Make the file readable to all
+            ContentType: 'image-jpeg'
         };
         //DEBUG
         //console.log(params);
@@ -70,7 +80,7 @@ router.get('/images/signed-url-put-object', auth, async(req, res) => {
                 signatureVersion: 'v4',
                 region: AWSRegion
             } // same as your bucket
-            //endpoint: new AWS.Endpoint('aaliya-gallery.s3.amazonaws.com'),    useAccelerateEndpoint: false  }
+            
         const client = new AWS.S3(options);
         const signedURL = await (new Promise((resolve, reject) => {
             client.getSignedUrl('putObject', params, (err, data) => {
@@ -81,10 +91,15 @@ router.get('/images/signed-url-put-object', auth, async(req, res) => {
                 }
             });
         }));
+        // It seems there is a signed URL generated even with incorrect creds
+        // If there is an issue with AWS it doesn't show up as an error here
         
         const data = {
             signedURL,
-            name: loginid + '-' + imageIndex
+            name: loginid + '-' + imageIndex + '.jpg',
+            artistid: loginid,
+            backside_id: loginid + '-' + imageIndex + '__back',
+            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + loginid + '-' + imageIndex + '.jpg'            
         }
         //DEBUG
         //console.log(signedURL);

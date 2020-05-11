@@ -48,17 +48,20 @@ const findImageCounts = () => {
 }
 
 const updateAllImageNames = () => {
-	updateImageNames('aaliya-1.jpg','aaliya1-1.jpg');
-	updateImageNames('aaliya-2.jpg','aaliya1-2.jpg');
-	updateImageNames('aaliya-3.jpg','aaliya1-3.jpg');
-	updateImageNames('aaliya-4.jpg','aaliya1-4.jpg');
-	updateImageNames('aaliya-5.jpg','aaliya1-5.jpg');
-	updateImageNames('aaliya-6.jpg','aaliya1-6.jpg');
-	updateImageNames('aaliya-7.jpg','aaliya1-7.jpg');
-	updateImageNames('aaliya-8.jpg','aaliya1-8.jpg');
-    updateImageNames('aaliya-9.jpg','aaliya1-9.jpg');
-	updateImageNames('aaliya-10.jpg','aaliya1-10.jpg');
-	updateImageNames('aaliya-11.jpg','aaliya1-11.jpg');
+	updateImageNames('aaliya1-1.jpg','aaliya1-1');
+	updateImageNames('aaliya1-2.jpg','aaliya1-2');
+	updateImageNames('aaliya1-3.jpg','aaliya1-3');
+	updateImageNames('aaliya1-4.jpg','aaliya1-4');
+	updateImageNames('aaliya1-5.jpg','aaliya1-5');
+	updateImageNames('aaliya1-6.jpg','aaliya1-6');
+	updateImageNames('aaliya1-7.jpg','aaliya1-7');
+	updateImageNames('aaliya1-8.jpg','aaliya1-8');
+    updateImageNames('aaliya1-9.jpg','aaliya1-9');
+	updateImageNames('aaliya1-10.jpg','aaliya1-10');
+	updateImageNames('aaliya1-11.jpg','aaliya1-11');
+    updateImageNames('aaliya1-12.jpg','aaliya1-12');
+	updateImageNames('aaliya1-13.jpg','aaliya1-13');
+	updateImageNames('aaliya1-14.jpg','aaliya1-14');
 }
 
 //findImageCounts();

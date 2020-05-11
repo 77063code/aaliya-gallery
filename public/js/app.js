@@ -79,7 +79,7 @@ const renderHomePage = async() => {
             img_id: image.name,
             img_src: image.s3location,
             img_back_id: image.backside_id,
-            img_displayname: image.displayname,
+            img_title: image.title,
             img_artistid: image.artistid,
             img_grade: image.grade,
             img_year: image.year
