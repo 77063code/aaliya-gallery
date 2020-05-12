@@ -7,11 +7,22 @@
 }
 
 html {
-    font-size: calc(100vh / 40);
+    /*font-size: calc(100vh / 40);*/
+    font-size: 10px;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 @media only screen and (max-width: 600px) {
+    html {
+        font-size: calc(100vw / 40);
+    }
+    .header-forms-page a {
+    text-decoration: none;
+    font-size: 4rem;
+    font-family: 'Yellowtail', cursive;
+    color: black;
+}
+
 .forms-page {
     font-size: calc(100vw / 40); 
     }
@@ -21,6 +32,13 @@ html {
 .forms-page {
     font-size: 16px; 
     }
+    
+.header-forms-page a {
+    text-decoration: none;
+    font-size: 5rem;
+    font-family: 'Yellowtail', cursive;
+    color: black;
+}
 }
 
 .forms-page {
@@ -36,6 +54,9 @@ html {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
             flex-direction: column;
+    position: absolute;
+    top: 10%;
+    width: 100%;
 }
 
 .forms-page form, .forms-page .register-complete-page, .forms-page #confirm-email-page {

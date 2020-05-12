@@ -163,7 +163,7 @@ STEPS
 
 
 STORE-IMAGE
-1. The name field in the image document should not have any extension. I don't think this will break anything. Need to test this first.
+1. The name field in the image document should not have any extension. I don't think this will break anything. Need to test this first. - This is not needed
     2. The displayname field needs to be changed to title
         1. The change also needs to be made in index.html and app.js
     3. The length field needs to be changed to height
@@ -179,7 +179,6 @@ STORE-IMAGE
 2. In the user collection add firstname, lastname fields and make the same changes in the form
 3. For buyers/browsers, change to buyers/collectors and also ask for firstname, lastname and make email as loginid
 1 Create a form so artists can upload their images to S3
-2 The artist sub-folder is created when they register
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
 

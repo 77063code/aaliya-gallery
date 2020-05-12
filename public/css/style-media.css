@@ -2,6 +2,12 @@
     html {
         font-size: calc(100vw / 40);
     }
+
+    .header h1 {
+	padding: 0 1rem;
+	font-size: 2rem;
+    }
+
     .gallery {
         -webkit-box-pack: center;
                 justify-content: center;
