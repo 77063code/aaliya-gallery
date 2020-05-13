@@ -61,10 +61,10 @@ router.post('/users', async(req, res) => {
 
 
 router.post('/users/login', async(req, res) => {
-    // Check to see a user exists
-    // If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
+// Check to see a user exists
+// If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
-        const user = await User.findByCredentials(req.body.loginid, req.body.password);
+        const user = await User.findByCredentials(req.body.email, req.body.password);
         if (!user) {
             res.status(404).send();
         } else if (user.hashcode === '0') {
@@ -75,7 +75,8 @@ router.post('/users/login', async(req, res) => {
             res.cookie('auth_token', token);
             /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
             res.status(200).send({
-                user, token
+                user, 
+                token
             });
         } else {
             res.status(350).send(user);

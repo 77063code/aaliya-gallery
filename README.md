@@ -136,20 +136,18 @@ WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
 
 
 TO DO
-6. Cleanup all unnecessary console.logs
-7. Stats alignment is a bit messed up
-10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
-Just limit it to alpha-numeric less than 64 characters
-11. The email and the key should not be hard-coded
-12. Put a banner on all the form pges including the header which deosnt move
-1. at createddatetime filed to both colections
-2. Figure out how not to reload images
-6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
-7. On login in page, reset the messages when trying to login again from earlier emaill resent message
-9. The painting information should also have the canvas size
-10. On every screen the button needs to be disabled when they cannot be pressed again
-2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
-3. When voting if need to login then go all the way to the top
+1. Cleanup all unnecessary console.logs
+2. Stats alignment is a bit messed up
+3. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
+    1. Just limit it to alpha-numeric less than 64 characters
+4. The email and the key should not be hard-coded
+5. at createddatetime filed to both colections
+6. Figure out how not to reload images
+7. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
+8. The painting information should also have the canvas size
+9. On every screen the button needs to be disabled when they cannot be pressed again
+10. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
+11. The db backups to be uploaded to S3
 
 
 UPLOAD BRANCH
@@ -175,7 +173,7 @@ STORE-IMAGE
     
     
     
-1. Fix bug on message.js where the cursor on the website is not staying on the email field when invalid email. Same problem is happening on other forms, but only when the code is loaded to the website and not in local testing
+
 2. In the user collection add firstname, lastname fields and make the same changes in the form
 3. For buyers/browsers, change to buyers/collectors and also ask for firstname, lastname and make email as loginid
 1 Create a form so artists can upload their images to S3
