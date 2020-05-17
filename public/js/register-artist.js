@@ -18,10 +18,13 @@ const emailArtistPostFocus = async() => {
     const email = document.getElementById('email-artist').value;
 
 
-    for (var i = 0; i < errMessages.length; i++) {
+    /*for (var i = 0; i < errMessages.length; i++) {
         errMessages.item(i).style.display = "none";
         errMessages.item(i).textContent = '';
-    }
+    }*/
+    
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (email) {
         if (!emailIsValid(email)) {
@@ -31,21 +34,19 @@ const emailArtistPostFocus = async() => {
         } else {
             try {
                 const response = await fetch('/users/info/email/' + email)
+                // Check if the email is already being used for another account
                 if (response.status !== 200) {
+                // This email is not already being used
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
-                    document.getElementById('loginid-artist').focus();
+                    //document.getElementById('loginid-artist').focus();
                 } else {
                     errMsg.style.display = "block";
                     errMsg.textContent = 'This email is already being used. Please enter a different email';
                     document.getElementById('email-artist').focus();
                 }
-            } catch {
-                for (var i = 0; i < errMessages.length; i++) {
-                    errMessages.item(i).style.display = "none";
-                    errMessages.item(i).textContent = '';
-                }
-
+            } catch (e) {
+                console.log(e);
             }
         }
     }
@@ -56,6 +57,8 @@ const loginidArtistPostFocus = async() => {
     const errMsg = document.getElementById('forms-error-loginid-artist');
     const loginid = document.getElementById('loginid-artist').value;
 
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (loginid) {
         if (!stringIsAlphaNumeric(loginid)) {
@@ -65,22 +68,18 @@ const loginidArtistPostFocus = async() => {
         } else {
             try {
                 const response = await fetch('/users/info/loginid/' + loginid)
-                console.log(response.status);
+                
                 if (response.status !== 200) {
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
-                    document.getElementById('password-artist').focus();
+                    //document.getElementById('password-artist').focus();
                 } else {
                     errMsg.style.display = "block";
                     errMsg.textContent = 'This loginid is already being used. Please enter a different loginid';
                     document.getElementById('loginid-artist').focus();
                 }
-            } catch {
-                for (var i = 0; i < errMessages.length; i++) {
-                    errMessages.item(i).style.display = "none";
-                    errMessages.item(i).textContent = '';
-                }
-
+            } catch (e) {
+                console.log(e);
             }
         }
     }
@@ -93,20 +92,17 @@ const passwordArtistPostFocus = () => {
     const password = document.getElementById('password-artist').value;
 
 
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
+    
     if (password) {
         if (password.length < 7) {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
             errMsg.style.display = "block";
             errMsg.textContent = 'Password needs to be atleast 7 characters';
             document.getElementById('password-artist').focus();
         } else {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
+            errMsg.style.display = "none";
+            errMsg.textContent = "";
         }
     }
 }
@@ -118,23 +114,15 @@ const teacheremailArtistPostFocus = async() => {
     const teacherEmail = document.getElementById('teacheremail-artist').value;
 
 
-    for (var i = 0; i < errMessages.length; i++) {
-        errMessages.item(i).style.display = "none";
-        errMessages.item(i).textContent = '';
-    }
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (teacherEmail) {
         if (!emailIsValid(teacherEmail)) {
             errMsg.style.display = "block";
             errMsg.textContent = "Please enter a valid teacher's email";
             document.getElementById('teacheremail-artist').focus();
-        } else {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
-
-        }
+        } 
     }
 }
 
@@ -233,6 +221,8 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
             }
         } catch (e) {
             console.log('Error registering. Please try again');
+            document.getElementById('forms-error-teacheremail-artist').style.display = "block";
+            document.getElementById('forms-error-teacheremail-artist').textContent = 'Excess load on server. Please try again in a few minutes';
         }
     }
 });

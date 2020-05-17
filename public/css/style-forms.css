@@ -144,6 +144,7 @@ html {
     padding: 0.7em;
     outline: none;
     font-size: 1.8em;
+    resize: none; /*This removes the ability to resize the area on the form */
 }
 
 .forms-page .form-component button {

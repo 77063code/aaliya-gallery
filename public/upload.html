@@ -7,97 +7,105 @@
     <link rel='stylesheet' href='./css/style-forms.css' />
 </head>
 
-<body class="forms-page">
+<body>
+
+    <div class="header-forms-page">
+        <a id="register-label" href="index.html">Aaliya's Art Gallery</a>
+    </div>
+
+    <div class="forms-page">
 
 
-    <form id="upload-image-form">
+        <form id="upload-image-form">
 
-        <div class="form-component">
-            <button type="button" id="btn-close-upload-image-form">
-                <i class="fa fa-times-circle" title="Close Form"></i>
-            </button>
-        </div>
+            <div class="form-component">
+                <button type="button" id="btn-close-upload-image-form">
+                    <i class="fa fa-times-circle" title="Close Form"></i>
+                </button>
+            </div>
 
-        <div class="form-component">
-            <h2>Upload Artwork Image</h2>
-        </div>
+            <div class="form-component">
+                <h2>Upload Artwork Image</h2>
+            </div>
 
-        <div class="form-component">
-            <label class="forms-label">Choose a file</label>
-            <input type="file" name="file" id="file-upload">
-            <p class="forms-error-msg" id="forms-error-file-upload"></p>
-        </div>
-        
-        <div class="form-component">
-             <label class="forms-label">Artwork Title</label>
-            <input type="text" name="title" id="title-upload">
-            <p class="forms-error-msg" id="forms-error-title-upload"></p>
-        </div>
-       
-        <div class="form-component">
-             <label class="forms-label">Year Created</label>
-            <input type="number" name="year" id="year-upload" value=2020 step=1>
-            <p class="forms-error-msg" id="forms-error-year-upload"></p>
-        </div>
-        
-        <div class="form-component">
-            <label class="forms-label">Grade Created</label>
-            <select name="grade" id="grade-upload">
-                <option value="Elementary">I</option>
-                <option value="Elementary">II</option>
-                <option value="Elementary">III</option>
-                <option value="Elementary">IV</option>
-                <option value="Elementary">V</option>
-                <option value="Middle">VI</option>
-                <option value="Middle">VII</option>
-                <option value="Middle">VIII</option>
-                <option value="High">IX</option>
-                <option value="High">X</option>
-                <option value="High">XI</option>
-                <option value="High">XII</option>
-            </select>
-        </div>
-        
-        <div class="form-component">
-            <label class="forms-label">Height(inches)</label>
-            <input type="number" name="height" id="height-upload" value=10 step=0.1>
-            <p class="forms-error-msg" id="forms-error-height-upload"></p>
-        </div>
-       
-        <div class="form-component">
-            <label class="forms-label">Width(inches)</label>
-            <input type="number" name="width" id="width-upload" value=10 step=0.1>
-            <p class="forms-error-msg" id="forms-error-width-upload"></p>
-        </div>
-        
-        <div class="form-component">
-            <label class="forms-label">Depth(inches)</label>
-            <input type="number" name="depth" id="depth-upload" value=2 step=0.1>
-            <p class="forms-error-msg" id="forms-error-depth-upload"></p>
-        </div>
-        
-        <div class="form-component">
-            <label class="forms-label">Type</label>
-            <select id="type-upload" name="type">
-                <option value="acrylic">Acrylic on Canvas</option>
-                <option value="oil">Oil on Canvas</option>
-                <option value="watercolor">Watercolor on Canvas</option>
-                <option value="lithograph">Lithograph</option>
-            </select>
-            <p class="forms-error-msg" id="forms-error-type-upload"></p>
-        </div>
-       
-        <div class="form-component">
-            <label class="forms-label">Selling Price(US$)</label>
-            <input type="number" name="price" id="price-upload" step=1>
-            <p class="forms-error-msg" id="forms-error-price-upload"></p>
-        </div>
-            
-        <div class="form-component">
-            <button id="file" type="submit">Upload</button>
-        </div>
+            <div class="form-component">
+                <label class="forms-label">Choose a file</label>
+                <input type="file" name="file" id="file-upload">
+                <p class="forms-error-msg" id="forms-error-file-upload"></p>
+            </div>
 
-    </form>
+            <div class="form-component">
+                <label class="forms-label">Artwork Title</label>
+                <input type="text" name="title" id="title-upload">
+                <p class="forms-error-msg" id="forms-error-title-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Year Created</label>
+                <input type="number" name="year" id="year-upload" value=2020 step=1>
+                <p class="forms-error-msg" id="forms-error-year-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Grade Created</label>
+                <select name="grade" id="grade-upload">
+                    <option value="Elementary">I</option>
+                    <option value="Elementary">II</option>
+                    <option value="Elementary">III</option>
+                    <option value="Elementary">IV</option>
+                    <option value="Elementary">V</option>
+                    <option value="Middle">VI</option>
+                    <option value="Middle">VII</option>
+                    <option value="Middle">VIII</option>
+                    <option value="High">IX</option>
+                    <option value="High">X</option>
+                    <option value="High">XI</option>
+                    <option value="High">XII</option>
+                </select>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Height(inches)</label>
+                <input type="number" name="height" id="height-upload" value=10 step=0.1>
+                <p class="forms-error-msg" id="forms-error-height-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Width(inches)</label>
+                <input type="number" name="width" id="width-upload" value=10 step=0.1>
+                <p class="forms-error-msg" id="forms-error-width-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Depth(inches)</label>
+                <input type="number" name="depth" id="depth-upload" value=2 step=0.1>
+                <p class="forms-error-msg" id="forms-error-depth-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Type</label>
+                <select id="type-upload" name="type">
+                    <option value="acrylic">Acrylic on Canvas</option>
+                    <option value="oil">Oil on Canvas</option>
+                    <option value="watercolor">Watercolor on Canvas</option>
+                    <option value="lithograph">Lithograph</option>
+                </select>
+                <p class="forms-error-msg" id="forms-error-type-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <label class="forms-label">Selling Price(US$)</label>
+                <input type="number" name="price" id="price-upload" step=1>
+                <p class="forms-error-msg" id="forms-error-price-upload"></p>
+            </div>
+
+            <div class="form-component">
+                <button id="file" type="submit">Upload</button>
+            </div>
+
+        </form>
+
+    </div>
 
     <script src="./js/common.js"></script>
     <script src="./js/upload.js"></script>

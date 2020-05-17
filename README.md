@@ -167,8 +167,11 @@ STORE-IMAGE
     3. The length field needs to be changed to height
     4. New field depth
     5. Grade should be limited to Elementary/Middle/High
-    6. Take out School field
-    
+    6. Take out School field. Keep the school field with the city and state also
+    7. for this release, both displayname and length need to be a part of the model
+2. Erase old errors whe resubmiting the login form
+3. Upload form to have the banner
+4. The error messaging on other forms is still buggy and also need a special call to be able to work on firefox
     
     
     

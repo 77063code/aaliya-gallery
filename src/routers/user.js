@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
+const connection = require('../middleware/connection');
 const path = require('path');
 const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
+const mongoose = require('mongoose');
+
 
 
 const sendgridAPIKEY = process.env.SENDGRIDAPIKEY;
@@ -13,8 +16,39 @@ const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
 
 
-router.post('/users', async(req, res) => {
+const exec = require('child_process').exec;
+
+// any unix based command
+const cmdToLaunch = "nohup /home/user/mongodb/bin/mongod --dbpath=/home/user/mongodb-data &";
+
+function execCB (error, stdout, stderr) {
+    if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+    }
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+}
+
+
+router.post('/users', connection, async(req, res) => {
 // Register a new user  
+    
+    if (req.connection !== 1) {
+        console.log('DB connection not working in /users')
+        const app = exec(cmdToLaunch, execCB);
+        mongoose.connect('mongodb://127.0.0.1:27017/aaliya-art-api',{
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
+        }).then((data) => {
+            console.log('Mongoose reconnection successful');
+        }).catch((error) => {
+            console.log('Mongoose unable to reconnect');
+        })
+    }
+    
     const user = new User(req.body);
 
     try {

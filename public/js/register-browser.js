@@ -17,10 +17,13 @@ const emailBrowserPostFocus = async() => {
     const email = document.getElementById('email-browser').value;
 
 
-    for (var i = 0; i < errMessages.length; i++) {
+    /*for (var i = 0; i < errMessages.length; i++) {
         errMessages.item(i).style.display = "none";
         errMessages.item(i).textContent = '';
-    }
+    }*/
+    
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (email) {
         if (!emailIsValid(email)) {
@@ -32,20 +35,17 @@ const emailBrowserPostFocus = async() => {
                 const response = await fetch('/users/info/email/' + email)
                 // Check if the email is already being used for another account
                 if (response.status !== 200) {
+                // This email is not already being used
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
-                    document.getElementById('loginid-browser').focus();
+                    //document.getElementById('loginid-browser').focus();
                 } else {
                     errMsg.style.display = "block";
                     errMsg.textContent = 'This email is already being used. Please enter a different email';
                     document.getElementById('email-browser').focus();
                 }
-            } catch {
-                for (var i = 0; i < errMessages.length; i++) {
-                    errMessages.item(i).style.display = "none";
-                    errMessages.item(i).textContent = '';
-                }
-
+            } catch (e) {
+                console.log(e);
             }
         }
     }
@@ -57,29 +57,29 @@ const loginidBrowserPostFocus = async() => {
     const loginid = document.getElementById('loginid-browser').value;
 
 
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
+    
     if (loginid) {
         if (!stringIsAlphaNumeric(loginid)) {
             errMsg.style.display = "block";
-                errMsg.textContent = 'Only alphabets and numbers allowed. Please enter a different loginid';
-                document.getElementById('loginid-browser').focus();
+            errMsg.textContent = 'Only alphabets and numbers allowed. Please enter a different loginid';
+            document.getElementById('loginid-browser').focus();
         } else {
             try {
                 const response = await fetch('/users/info/loginid/' + loginid)
-                console.log(response.status);
+                
                 if (response.status !== 200) {
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
-                    document.getElementById('password-browser').focus();
+                    //document.getElementById('password-browser').focus();
                 } else {
                     errMsg.style.display = "block";
                     errMsg.textContent = 'This loginid is already taken. Please enter a different loginid';
                     document.getElementById('loginid-browser').focus();
                 }
-            } catch {
-                for (var i = 0; i < errMessages.length; i++) {
-                    errMessages.item(i).style.display = "none";
-                    errMessages.item(i).textContent = '';
-                }
+            } catch (e) {
+                console.log(e);
 
             }
         }
@@ -92,21 +92,25 @@ const passwordBrowserPostFocus = () => {
     const errMsg = document.getElementById('forms-error-password-browser');
     const password = document.getElementById('password-browser').value;
 
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (password) {
         if (password.length < 7) {
-            for (var i = 0; i < errMessages.length; i++) {
+           /* for (var i = 0; i < errMessages.length; i++) {
                 errMessages.item(i).style.display = "none";
                 errMessages.item(i).textContent = '';
-            }
+            }*/
             errMsg.style.display = "block";
             errMsg.textContent = 'Password needs to be atleast 7 characters';
             document.getElementById('password-browser').focus();
         } else {
-            for (var i = 0; i < errMessages.length; i++) {
+            errMsg.style.display = "none";
+            errMsg.textContent = "";
+            /*for (var i = 0; i < errMessages.length; i++) {
                 errMessages.item(i).style.display = "none";
                 errMessages.item(i).textContent = '';
-            }
+            }*/
         }
     }
 }
@@ -169,7 +173,14 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
 
             })
-            if (response.status === 352) {
+            
+            console.log(response);
+            if (response.status === 500) {
+                console.log('Error registering. Please try again');
+                document.getElementById('forms-error-password-browser').style.display = "block";
+                document.getElementById('forms-error-password-browser').textContent = 'Excess load on server. Please try again in a few minutes';
+            }
+            else if (response.status === 352) {
                 document.getElementById('forms-error-email-browser').style.display = "block";
                 document.getElementById('forms-error-email-browser').textContent = 'This email is already being used. Please enter a different email';
                 document.getElementById('email-browser').focus();
@@ -186,6 +197,8 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
             }
         } catch (e) {
             console.log('Error registering. Please try again');
+            document.getElementById('forms-error-password-browser').style.display = "block";
+            document.getElementById('forms-error-password-browser').textContent = 'Excess load on server. Please try again in a few minutes';
         }
     }
 });
