@@ -17,11 +17,9 @@ const host = process.env.AALIYAHOST || 'localhost';
 
 
 const exec = require('child_process').exec;
-
-// any unix based command
 const cmdToLaunch = "nohup /home/user/mongodb/bin/mongod --dbpath=/home/user/mongodb-data &";
 
-function execCB (error, stdout, stderr) {
+const execCB = (error, stdout, stderr) => {
     if (error) {
         console.error(`exec error: ${error}`);
         return;
@@ -33,7 +31,8 @@ function execCB (error, stdout, stderr) {
 
 router.post('/users', connection, async(req, res) => {
 // Register a new user  
-    
+  
+    /* Taking this out for right now. Check if the mongodb is down and then restart it
     if (req.connection !== 1) {
         console.log('DB connection not working in /users')
         const app = exec(cmdToLaunch, execCB);
@@ -48,7 +47,17 @@ router.post('/users', connection, async(req, res) => {
             console.log('Mongoose unable to reconnect');
         })
     }
+    */
     
+    console.log(req.body);
+   
+    if (!req.body.loginid) {
+    //If registering as a browser, loginid is not used in registeration, but is still used in likes
+	req.body.loginid = req.body.email + '-' + Date.now()
+    }
+
+    console.log(req.body);
+ 
     const user = new User(req.body);
 
     try {
@@ -208,7 +217,7 @@ router.get('/users/info/loginid/:loginid', async(req, res) => {
 
 
 router.get('/users/info', auth, async(req, res) => {
-    // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
+// This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
     try {
         const user = req.user;
         res.send({

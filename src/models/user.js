@@ -10,7 +10,17 @@ const md5 = require('md5');
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true,
+        required: false,
+        trim: true
+    },
+    firstName: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    lastName: {
+        type: String,
+        required: false,
         trim: true
     },
     email: {
@@ -22,7 +32,7 @@ const userSchema = new mongoose.Schema({
     },
     loginid: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
         unique: true
     },
@@ -45,7 +55,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    teacherName: {
+    teacherFirstName: {
+        type: String,
+        trim: true
+    },
+    teacherLastName: {
         type: String,
         trim: true
     },

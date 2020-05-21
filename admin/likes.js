@@ -24,6 +24,12 @@ const deleteLikesByLogin= async (id) => {
     console.log(response);
 }
 
+const deleteAllLikes = async () => {
+    const response = await Likes.deleteMany({});
+    console.log(response);
+}
+
+
 const findImageCounts = () => {
 	findCountByImage('img1');
 	findCountByImage('img2');
@@ -65,7 +71,8 @@ const updateAllImageNames = () => {
 }
 
 //findImageCounts();
-updateAllImageNames();
+//updateAllImageNames();
 //findImageCounts();
 //findAllLikes();
 //deleteLikesByLogin('garfield1');
+deleteAllLikes();

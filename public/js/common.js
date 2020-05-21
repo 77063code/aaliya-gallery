@@ -15,3 +15,14 @@ const fileExtension = (file) => {
     }
     return a.pop();
 }
+
+const getUserInfo = async() => {
+    try {
+        const response = await fetch('/users/info/')
+        const user = await response.json();
+        return user; // Note of there was no user found, then the body is returned as an object, but it doesnt have the user property
+    } catch {
+        console.log('Error in getuserinfo');
+        return undefined;
+    }
+}

@@ -31,17 +31,6 @@ if (code) {
     loginByHashCode(code);
 }
 
-const getUserInfo = async() => {
-    try {
-        const response = await fetch('/users/info/')
-        const user = await response.json();
-        return user; // Note of there was no user found, then the body is returned as an object, but it doesnt have the user property
-    } catch {
-        console.log('Error in getuserinfo');
-        return undefined;
-    }
-}
-
 const setupHeader = async() => {
     //Setup the home page header based on if a user is alread logged in
     const user = await getUserInfo();

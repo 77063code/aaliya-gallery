@@ -172,6 +172,10 @@ STORE-IMAGE
 2. Erase old errors whe resubmiting the login form
 3. Upload form to have the banner
 4. The error messaging on other forms is still buggy and also need a special call to be able to work on firefox
+
+1. From the browser change name to firstname, lastname and takeout login
+2. From artist, change the wording to parents. Add firstname lastname instead of name. Add school, city and state
+3. Run a pre-load script on upload page for it to render only if its a registered user and is an artist
     
     
     
@@ -182,5 +186,7 @@ STORE-IMAGE
 1 Create a form so artists can upload their images to S3
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
+5.Problem with email sent through sendgrid
+6.Need to log all the actions so can be debugeed i.e when the emails are sent
 
 

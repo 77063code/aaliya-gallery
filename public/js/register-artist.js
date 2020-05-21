@@ -134,12 +134,14 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
     event.preventDefault();
 
     const errMessages = document.getElementsByClassName('forms-error-msg');
-    const name = document.getElementById('name-artist').value;
+    const firstName = document.getElementById('firstname-artist').value;
+    const lastName = document.getElementById('lastname-artist').value;
     const email = document.getElementById('email-artist').value;
     const loginid = document.getElementById('loginid-artist').value;
     const password = document.getElementById('password-artist').value;
     const school = document.getElementById('school-artist').value;
-    const teacherName = document.getElementById('teachername-artist').value;
+    const teacherFirstName = document.getElementById('teacherfirstname-artist').value;
+    const teacherLastName = document.getElementById('teacherlastname-artist').value;
     const teacherEmail = document.getElementById('teacheremail-artist').value;
 
     for (var i = 0; i < errMessages.length; i++) {
@@ -148,24 +150,32 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         errMessages.item(i).textContent = '';
     }
 
-    if (!name) {
-        document.getElementById('forms-error-name-artist').style.display = "block";
-        document.getElementById('forms-error-name-artist').textContent = "Please enter your name";
-        document.getElementById('name-artist').focus();
-        //document.getElementById('name-artist').scrollIntoView(); 
-    } else if (!email) {
+    if (!firstName) {
+        document.getElementById('forms-error-firstname-artist').style.display = "block";
+        document.getElementById('forms-error-firstname-artist').textContent = "Please enter your first name";
+        document.getElementById('firstname-artist').focus();
+    } 
+    else if (!lastName) {
+        document.getElementById('forms-error-lastname-artist').style.display = "block";
+        document.getElementById('forms-error-lastname-artist').textContent = "Please enter your last name";
+        document.getElementById('lastname-artist').focus();
+    } 
+    else if (!email) {
         document.getElementById('forms-error-email-artist').style.display = "block";
         document.getElementById('forms-error-email-artist').textContent = "Please enter your email";
         document.getElementById('email-artist').focus();
-    } else if (!emailIsValid(email)) {
+    } 
+    else if (!emailIsValid(email)) {
         document.getElementById('forms-error-email-artist').style.display = "block";
         document.getElementById('forms-error-email-artist').textContent = "Please enter a valid email";
         document.getElementById('email-artist').focus();
-    } else if (!loginid) {
+    } 
+    else if (!loginid) {
         document.getElementById('forms-error-loginid-artist').style.display = "block";
         document.getElementById('forms-error-loginid-artist').textContent = "Please enter your loginid";
         document.getElementById('loginid-artist').focus();
-    } else if (!stringIsAlphaNumeric(loginid)) {
+    } 
+    else if (!stringIsAlphaNumeric(loginid)) {
         document.getElementById('forms-error-loginid-artist').style.display = "block";
         document.getElementById('forms-error-loginid-artist').textContent = "Only alphabets and numbers allowed. Please enter a different loginid";
         document.getElementById('loginid-artist').focus();
@@ -174,7 +184,8 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-password-artist').style.display = "block";
         document.getElementById('forms-error-password-artist').textContent = "Please enter a password";
         document.getElementById('password-artist').focus();
-    } else if (password.length < 7) {
+    } 
+    else if (password.length < 7) {
         document.getElementById('forms-error-password-artist').style.display = "block";
         document.getElementById('forms-error-password-artist').textContent = 'Password needs to be atleast 7 characters';
         document.getElementById('password-artist').focus();
@@ -183,21 +194,31 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-school-artist').style.display = "block";
         document.getElementById('forms-error-school-artist').textContent = "Please enter your school's name";
         document.getElementById('school-artist').focus();
-    } else if (!teacherName) {
-        document.getElementById('forms-error-teachername-artist').style.display = "block";
-        document.getElementById('forms-error-teachername-artist').textContent = "Please enter your teacher's name";
-        document.getElementById('teachername-artist').focus();
+    } 
+    else if (!teacherFirstName) {
+        document.getElementById('forms-error-teacherfirstname-artist').style.display = "block";
+        document.getElementById('forms-error-teacherfirstname-artist').textContent = "Please enter your teacher's first name";
+        document.getElementById('teacherfirstname-artist').focus();
 
-    } else if (!teacherEmail) {
+    } 
+    else if (!teacherLastName) {
+        document.getElementById('forms-error-teacherlastname-artist').style.display = "block";
+        document.getElementById('forms-error-teacherlastname-artist').textContent = "Please enter your teacher's last name";
+        document.getElementById('teacherlastname-artist').focus();
+
+    } 
+    else if (!teacherEmail) {
         document.getElementById('forms-error-teacheremail-artist').style.display = "block";
         document.getElementById('forms-error-teacheremail-artist').textContent = "Please enter your teacher's email";
         document.getElementById('teacheremail-artist').focus();
 
-    } else if (!emailIsValid(teacherEmail)) {
+    } 
+    else if (!emailIsValid(teacherEmail)) {
         document.getElementById('forms-error-teacheremail-artist').style.display = "block";
         document.getElementById('forms-error-teacheremail-artist').textContent = "Please enter a valid teacher's email";
         document.getElementById('teacheremail-artist').focus();
-    } else {
+    } 
+    else {
 
         try {
             const response = await fetch(event.target.action, {

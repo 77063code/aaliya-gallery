@@ -51,41 +51,6 @@ const emailBrowserPostFocus = async() => {
     }
 }
 
-const loginidBrowserPostFocus = async() => {
-    const errMessages = document.getElementsByClassName('forms-error-msg');
-    const errMsg = document.getElementById('forms-error-loginid-browser');
-    const loginid = document.getElementById('loginid-browser').value;
-
-
-    errMsg.style.display = "none";
-    errMsg.textContent = "";
-    
-    if (loginid) {
-        if (!stringIsAlphaNumeric(loginid)) {
-            errMsg.style.display = "block";
-            errMsg.textContent = 'Only alphabets and numbers allowed. Please enter a different loginid';
-            document.getElementById('loginid-browser').focus();
-        } else {
-            try {
-                const response = await fetch('/users/info/loginid/' + loginid)
-                
-                if (response.status !== 200) {
-                    errMsg.style.display = "none";
-                    errMsg.textContent = "";
-                    //document.getElementById('password-browser').focus();
-                } else {
-                    errMsg.style.display = "block";
-                    errMsg.textContent = 'This loginid is already taken. Please enter a different loginid';
-                    document.getElementById('loginid-browser').focus();
-                }
-            } catch (e) {
-                console.log(e);
-
-            }
-        }
-    }
-}
-
 
 const passwordBrowserPostFocus = () => {
     const errMessages = document.getElementsByClassName('forms-error-msg');
@@ -116,8 +81,6 @@ const passwordBrowserPostFocus = () => {
 }
 
 
-
-
 document.forms['register-browser-form'].addEventListener('submit', async(event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
@@ -125,9 +88,9 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
     event.preventDefault();
 
     const errMessages = document.getElementsByClassName('forms-error-msg');
-    const name = document.getElementById('name-browser').value;
+    const firstName = document.getElementById('firstname-browser').value;
+    const lastName = document.getElementById('lastname-browser').value;
     const email = document.getElementById('email-browser').value;
-    const loginid = document.getElementById('loginid-browser').value;
     const password = document.getElementById('password-browser').value;
 
     for (var i = 0; i < errMessages.length; i++) {
@@ -136,12 +99,17 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
         errMessages.item(i).textContent = '';
     }
 
-    if (!name) {
-        document.getElementById('forms-error-name-browser').style.display = "block";
-        document.getElementById('forms-error-name-browser').textContent = "Please enter your name";
-        document.getElementById('name-browser').focus();
-        //document.getElementById('name-artist').scrollIntoView(); 
-    } else if (!email) {
+    if (!firstName) {
+        document.getElementById('forms-error-firstname-browser').style.display = "block";
+        document.getElementById('forms-error-firstname-browser').textContent = "Please enter your first name";
+        document.getElementById('firstname-browser').focus();
+    } 
+    else if (!lastName) {
+        document.getElementById('forms-error-lastname-browser').style.display = "block";
+        document.getElementById('forms-error-lastname-browser').textContent = "Please enter your first name";
+        document.getElementById('lastname-browser').focus();
+    } 
+    else if (!email) {
         document.getElementById('forms-error-email-browser').style.display = "block";
         document.getElementById('forms-error-email-browser').textContent = "Please enter your email";
         document.getElementById('email-browser').focus();
@@ -149,14 +117,6 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
         document.getElementById('forms-error-email-browser').style.display = "block";
         document.getElementById('forms-error-email-browser').textContent = "Please enter a valid email";
         document.getElementById('email-browser').focus();
-    } else if (!loginid) {
-        document.getElementById('forms-error-loginid-browser').style.display = "block";
-        document.getElementById('forms-error-loginid-browser').textContent = "Please enter a loginid";
-        document.getElementById('loginid-browser').focus();
-    } else if (!stringIsAlphaNumeric(loginid)) {
-        document.getElementById('forms-error-loginid-browser').style.display = "block";
-        document.getElementById('forms-error-loginid-browser').textContent = "Only alphabets and numbers allowed. Please enter a different loginid";
-        document.getElementById('loginid-browser').focus();
     } else if (!password) {
         document.getElementById('forms-error-password-browser').style.display = "block";
         document.getElementById('forms-error-password-browser').textContent = 'Please enter a password';
