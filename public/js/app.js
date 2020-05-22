@@ -34,9 +34,11 @@ if (code) {
 const setupHeader = async() => {
     //Setup the home page header based on if a user is alread logged in
     const user = await getUserInfo();
-    if (user.user) {
+    if (user && user.user) {
         // If the returned body has a user object
-        document.getElementById('loginid').textContent = user.user.loginid;
+        //document.getElementById('loginid').textContent = user.user.loginid;
+        document.getElementById('firstname').textContent = user.user.firstname;
+        //Changing to displaying firstname instead of loginid
         document.getElementById('logout-btn').style.display = "block"; // display the logout button
         document.getElementById('login-label').style.display = "none"; // Once logged in hide the log in button   
         document.getElementById('register-label').style.display = "none"; // Once logged in hide register button

@@ -16,6 +16,7 @@ const fileExtension = (file) => {
     return a.pop();
 }
 
+/* Same function was declared differently in app.js and message.js. This is the app.js version
 const getUserInfo = async() => {
     try {
         const response = await fetch('/users/info/')
@@ -26,3 +27,21 @@ const getUserInfo = async() => {
         return undefined;
     }
 }
+*/
+
+
+const getUserInfo = async () => {
+// get user info based on the cookie stored
+    try {
+        const response = await fetch('/users/info/')
+        if (response.status !== 401) {
+            const user = await response.json();
+            return user;
+        } else {
+            return undefined;
+        }
+    } catch {
+        return undefined;
+    }
+}
+

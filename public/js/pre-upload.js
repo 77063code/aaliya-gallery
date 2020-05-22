@@ -4,7 +4,7 @@ const preupload = async () => {
 // If not go back to the home page
     const user = await getUserInfo();
     
-    if (!user.user || !user.user.artist) {
+    if (!user || !user.user.artist) {
     //If not an artist go back to the home page
         window.location.href = '/';
     }

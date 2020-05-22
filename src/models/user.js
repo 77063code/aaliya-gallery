@@ -13,12 +13,12 @@ const userSchema = new mongoose.Schema({
         required: false,
         trim: true
     },
-    firstName: {
+    firstname: {
         type: String,
         required: false,
         trim: true
     },
-    lastName: {
+    lastname: {
         type: String,
         required: false,
         trim: true
@@ -55,15 +55,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    teacherFirstName: {
+    teacherfirstname: {
         type: String,
         trim: true
     },
-    teacherLastName: {
+    teacherlastname: {
         type: String,
         trim: true
     },
-    teacherEmail: {
+    teacheremail: {
         type: String,
         trim: true,
         lowercase: true
@@ -128,9 +128,9 @@ userSchema.methods.generateHashCode = async function () {
 
 
 userSchema.methods.toJSON = function () {
-    // We dont want to expose password and tokens when we send the user data back to the client
-    // This method(toJSON) is called whenever stringify is called on the object and stringify is
-    // called whenever we do res.send
+// We dont want to expose password and tokens when we send the user data back to the client
+// This method(toJSON) is called whenever stringify is called on the object and stringify is
+// called whenever we do res.send
     const user = this;
     const userObject = user.toObject(); // This method is provided by mongoose to remove some metadata and properties can be deleted from the object
 

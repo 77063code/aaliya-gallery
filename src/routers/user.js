@@ -49,16 +49,18 @@ router.post('/users', connection, async(req, res) => {
     }
     */
     
-    console.log(req.body);
+    
    
     if (!req.body.loginid) {
     //If registering as a browser, loginid is not used in registeration, but is still used in likes
 	req.body.loginid = req.body.email + '-' + Date.now()
     }
 
-    console.log(req.body);
+   
  
     const user = new User(req.body);
+    
+    
 
     try {
         await user.save()
