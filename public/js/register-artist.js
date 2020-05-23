@@ -264,8 +264,13 @@ document.getElementById('btn-close-resend-email-form').addEventListener('click',
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     
     e.preventDefault();
-    const loginid = document.getElementById('register-artist-form').elements['loginid'].value
-    const data = {loginid}
+    //const loginid = document.getElementById('register-artist-form').elements['loginid'].value
+    //const data = {loginid}
+    
+    const email = document.getElementById('register-artist-form').elements['email'].value
+    const data = {email}
+    //Using email instead of loginid for user identification
+    
     document.getElementById('btn-resend-email').disabled = true;
     $emailConfirm.textContent = '';
     

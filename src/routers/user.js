@@ -235,8 +235,11 @@ router.post('/users/resend/email', async(req, res) => {
     // loginid. First check if the user exists and then check if the hashcode
     // is different from zero
     try {
-        const user = await User.findByLoginId(req.body.loginid);
+        //const user = await User.findByLoginId(req.body.loginid);
 
+        const user = await User.findByEmail(req.body.email);
+        //Using email instead of loginid. When registering as a browser, loginid is not needed anymore
+        
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,

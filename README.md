@@ -176,13 +176,13 @@ STORE-IMAGE
 1. From the browser change name to firstname, lastname and takeout login
 2. From artist, change the wording to parents. Add firstname lastname instead of name. Add school, city and state
 3. Run a pre-load script on upload page for it to render only if its a registered user and is an artist
-    
-    
-    
-    
-
-2. In the user collection add firstname, lastname fields and make the same changes in the form
 3. For buyers/browsers, change to buyers/collectors and also ask for firstname, lastname and make email as loginid
+
+
+1. The resent email logic needs to change b/c it uses loginid
+2. For the names the first letter needs to be capitalized
+
+
 1 Create a form so artists can upload their images to S3
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
