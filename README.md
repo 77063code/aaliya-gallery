@@ -110,6 +110,23 @@ V1.5
 	3. Made the message icon a little bigger so easier to click
 	4. There is upload file as part of this version, but hasnt been tested 
 	5. Register button added to the home page 
+    
+V1.6
+1. Branch - store-image
+2. Date - 05/24/20
+3. Features
+    1. Added a banner to all the pages which linke back to the home page
+    2. The images on home page and forms now scroll under the banner, so it always stays in place
+    3. When resubmitting on login page after an error, the previous error message disappears
+    4. Instead of name, ask for separate firstname and lastname for browser, artist and teacher
+    5. The login is via email and not loginid anymore
+    6. Homepage displays first name instead of loginid
+    7. Added a pre-load script to upload page to check if there is a valid logged in user and is an artist
+    8. Using email instead of loginid when resending activation email
+    9. Added title and height to the images model
+    10. displayname and height will have to be deleted as part of the 2nd part of the commit
+    11. Cleaned up error display on register pages, but still not very clean and problems on firefox
+    
 
 
 
@@ -150,43 +167,19 @@ TO DO
 11. The db backups to be uploaded to S3
 
 
-UPLOAD BRANCH
 1 Create a form so artists can upload their images to S3
-2 The artist sub-folder is created when they register
-3 They should be able to upload upto 5 images, no more than 200kb each
-4 They should also be able to delete any image they want
-STEPS
-1. Also need to add a new field to image collection s3location-uploaded. This will be the location of the unformatted file that is uploaded
-1. First rerun the admin/images.js to make sure the most recent data is uploaded
-
-
-STORE-IMAGE
-1. The name field in the image document should not have any extension. I don't think this will break anything. Need to test this first. - This is not needed
-    2. The displayname field needs to be changed to title
-        1. The change also needs to be made in index.html and app.js
-    3. The length field needs to be changed to height
-    4. New field depth
-    5. Grade should be limited to Elementary/Middle/High
-    6. Take out School field. Keep the school field with the city and state also
-    7. for this release, both displayname and length need to be a part of the model
-2. Erase old errors whe resubmiting the login form
-3. Upload form to have the banner
-4. The error messaging on other forms is still buggy and also need a special call to be able to work on firefox
-
-1. From the browser change name to firstname, lastname and takeout login
-2. From artist, change the wording to parents. Add firstname lastname instead of name. Add school, city and state
-3. Run a pre-load script on upload page for it to render only if its a registered user and is an artist
-3. For buyers/browsers, change to buyers/collectors and also ask for firstname, lastname and make email as loginid
-
-
-1. The resent email logic needs to change b/c it uses loginid
 2. For the names the first letter needs to be capitalized
-
-
-1 Create a form so artists can upload their images to S3
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
 5.Problem with email sent through sendgrid
 6.Need to log all the actions so can be debugeed i.e when the emails are sent
+7. Need to create a mail server
+8. Need to create a page to be able to reset the password
+9. The onblur still doesnt work on firefox. That needs to be fixed
+10. The error display on register pages is still a mess. That also needs to be fixed.
+11. Maybe have to change the formatting of the old images
+12. How to create thumbnails of uploaded images
+13. The price and sold/not sold needs to be added to the front of the image
+14. How to show progress bar when images are being uploaded
 
 
