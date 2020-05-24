@@ -34,7 +34,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: false,
         trim: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
     hashcode: {
         // MD5 generated hash value based on loginid and email. This is filled in when the user
