@@ -5,27 +5,12 @@ $messageEmail = document.getElementById('email-message');
 $messageContent = document.getElementById('content-message');
 
 
-const getUserInfo = async () => {
-// get user info based on the cookie stored
-    try {
-        const response = await fetch('/users/info/')
-        if (response.status !== 401) {
-            const user = await response.json();
-            return user;
-        } else {
-            return undefined;
-        }
-    } catch {
-        return undefined;
-    }    
-}
-     
-        
 const initializeForm = async () => {
 // If user is logged in, then add that information to form so the user doest have to type it again
     const user = await getUserInfo();
+    console.log(user);
     if (user && user.user) {
-        $messageName.value = user.user.name;
+        $messageName.value = user.user.firstname + ' ' + user.user.lastname;
         $messageEmail.value = user.user.email
         $messageContent.focus();
     }

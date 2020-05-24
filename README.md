@@ -110,12 +110,29 @@ V1.5
 	3. Made the message icon a little bigger so easier to click
 	4. There is upload file as part of this version, but hasnt been tested 
 	5. Register button added to the home page 
+    
+V1.6
+1. Branch - store-image
+2. Date - 05/24/20
+3. Features
+    1. Added a banner to all the pages which linke back to the home page
+    2. The images on home page and forms now scroll under the banner, so it always stays in place
+    3. When resubmitting on login page after an error, the previous error message disappears
+    4. Instead of name, ask for separate firstname and lastname for browser, artist and teacher
+    5. The login is via email and not loginid anymore
+    6. Homepage displays first name instead of loginid
+    7. Added a pre-load script to upload page to check if there is a valid logged in user and is an artist
+    8. Using email instead of loginid when resending activation email
+    9. Added title and height to the images model
+    10. displayname and height will have to be deleted as part of the 2nd part of the commit
+    11. Cleaned up error display on register pages, but still not very clean and problems on firefox
+    
 
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
-1. Image name(internal)
-2. Image name(displayed)
+1. Image title(internal)
+2. Image title(displayed)
 2. Year painted
 3. Artist Loginid
 4. Sale Price
@@ -136,36 +153,33 @@ WHAT FIELDS ARE NEEDED FOR ARTIST COLLECTION
 
 
 TO DO
-6. Cleanup all unnecessary console.logs
-7. Stats alignment is a bit messed up
-10. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
-Just limit it to alpha-numeric less than 64 characters
-11. The email and the key should not be hard-coded
-12. Put a banner on all the form pges including the header which deosnt move
-1. at createddatetime filed to both colections
-2. Figure out how not to reload images
-6. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
-7. On login in page, reset the messages when trying to login again from earlier emaill resent message
-9. The painting information should also have the canvas size
-10. On every screen the button needs to be disabled when they cannot be pressed again
-2. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
+1. Cleanup all unnecessary console.logs
+2. Stats alignment is a bit messed up
+3. the loginids need to be of correct format to align with bucket names. It's not the bucket name, but the object name
+    1. Just limit it to alpha-numeric less than 64 characters
+4. The email and the key should not be hard-coded
+5. at createddatetime filed to both colections
+6. Figure out how not to reload images
+7. When the page refershes with a user, check if the auth-token matches what's in the system, if not then check them out. Probably have to do the same thing when doing likes
+8. The painting information should also have the canvas size
+9. On every screen the button needs to be disabled when they cannot be pressed again
+10. Correct any cookie conflict, on the home page check for a valid cookie, expire cookies after 24 hours, change user end point
+11. The db backups to be uploaded to S3
 
 
-UPLOAD BRANCH
 1 Create a form so artists can upload their images to S3
-2 The artist sub-folder is created when they register
+2. For the names the first letter needs to be capitalized
 3 They should be able to upload upto 5 images, no more than 200kb each
 4 They should also be able to delete any image they want
-STEPS
-1. Also need to add a new field to image collection s3location-uploaded. This will be the location of the unformatted file that is uploaded
-1. First rerun the admin/images.js to make sure the most recent data is uploaded
-
-
-STORE-IMAGE
-1. Fix bug on message.js where the cursor on the website is not staying on the email field when invalid email. Same problem is happening on other forms, but only when the code is loaded to the website and not in local testing
-1 Create a form so artists can upload their images to S3
-2 The artist sub-folder is created when they register
-3 They should be able to upload upto 5 images, no more than 200kb each
-4 They should also be able to delete any image they want
+5.Problem with email sent through sendgrid
+6.Need to log all the actions so can be debugeed i.e when the emails are sent
+7. Need to create a mail server
+8. Need to create a page to be able to reset the password
+9. The onblur still doesnt work on firefox. That needs to be fixed
+10. The error display on register pages is still a mess. That also needs to be fixed.
+11. Maybe have to change the formatting of the old images
+12. How to create thumbnails of uploaded images
+13. The price and sold/not sold needs to be added to the front of the image
+14. How to show progress bar when images are being uploaded
 
 

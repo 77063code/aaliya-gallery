@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const auth = require('../middleware/auth');
+const connection = require('../middleware/connection');
 const path = require('path');
 const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
+const mongoose = require('mongoose');
+
 
 
 const sendgridAPIKEY = process.env.SENDGRIDAPIKEY;
@@ -13,9 +16,51 @@ const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
 
 
-router.post('/users', async(req, res) => {
-    // Register a new user  
+const exec = require('child_process').exec;
+const cmdToLaunch = "nohup /home/user/mongodb/bin/mongod --dbpath=/home/user/mongodb-data &";
+
+const execCB = (error, stdout, stderr) => {
+    if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+    }
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+}
+
+
+router.post('/users', connection, async(req, res) => {
+// Register a new user  
+  
+    /* Taking this out for right now. Check if the mongodb is down and then restart it
+    if (req.connection !== 1) {
+        console.log('DB connection not working in /users')
+        const app = exec(cmdToLaunch, execCB);
+        mongoose.connect('mongodb://127.0.0.1:27017/aaliya-art-api',{
+            useNewUrlParser: true,
+            useCreateIndex: true,
+            useFindAndModify: false,
+            useUnifiedTopology: true
+        }).then((data) => {
+            console.log('Mongoose reconnection successful');
+        }).catch((error) => {
+            console.log('Mongoose unable to reconnect');
+        })
+    }
+    */
+    
+    
+   
+    if (!req.body.loginid) {
+    //If registering as a browser, loginid is not used in registeration, but is still used in likes
+	req.body.loginid = req.body.email + '-' + Date.now()
+    }
+
+   
+ 
     const user = new User(req.body);
+    
+    
 
     try {
         await user.save()
@@ -61,10 +106,10 @@ router.post('/users', async(req, res) => {
 
 
 router.post('/users/login', async(req, res) => {
-    // Check to see a user exists
-    // If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
+// Check to see a user exists
+// If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
-        const user = await User.findByCredentials(req.body.loginid, req.body.password);
+        const user = await User.findByCredentials(req.body.email, req.body.password);
         if (!user) {
             res.status(404).send();
         } else if (user.hashcode === '0') {
@@ -75,7 +120,8 @@ router.post('/users/login', async(req, res) => {
             res.cookie('auth_token', token);
             /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
             res.status(200).send({
-                user, token
+                user, 
+                token
             });
         } else {
             res.status(350).send(user);
@@ -173,7 +219,7 @@ router.get('/users/info/loginid/:loginid', async(req, res) => {
 
 
 router.get('/users/info', auth, async(req, res) => {
-    // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
+// This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
     try {
         const user = req.user;
         res.send({
@@ -189,8 +235,11 @@ router.post('/users/resend/email', async(req, res) => {
     // loginid. First check if the user exists and then check if the hashcode
     // is different from zero
     try {
-        const user = await User.findByLoginId(req.body.loginid);
+        //const user = await User.findByLoginId(req.body.loginid);
 
+        const user = await User.findByEmail(req.body.email);
+        //Using email instead of loginid. When registering as a browser, loginid is not needed anymore
+        
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,

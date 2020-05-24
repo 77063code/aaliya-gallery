@@ -7,21 +7,51 @@
 }
 
 html {
-    font-size: calc(100vh / 40);
+    /*font-size: calc(100vh / 40);*/
+    font-size: 10px;
     font-family: 'Source Sans Pro', sans-serif;
 }
 
 @media only screen and (max-width: 600px) {
-.forms-page {
-    font-size: calc(100vw / 40); 
+    html {
+        font-size: calc(100vw / 40);
+    }
+    .header-forms-page a {
+        text-decoration: none;
+        font-size: 4rem;
+        font-family: 'Yellowtail', cursive;
+        color: black;
+    }
+    .forms-page {
+        font-size: calc(100vw / 40);
     }
 }
 
 @media only screen and (min-width: 601px) {
-.forms-page {
-    font-size: 16px; 
+    .forms-page {
+        font-size: 16px;
+    }
+    .header-forms-page a {
+        text-decoration: none;
+        font-size: 5rem;
+        font-family: 'Yellowtail', cursive;
+        color: black;
     }
 }
+
+.header-forms-page {
+    background-color: lightblue;
+    color: black;
+    width: 100%;
+    height: 9%;
+    position: fixed;
+    z-index: 10;
+        display: flex;
+    justify-content: center;
+        align-items: center;
+    margin: auto;
+}
+
 
 .forms-page {
     background: #333744;
@@ -30,15 +60,20 @@ html {
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: center;
-            justify-content: center;
+    justify-content: center;
     -webkit-box-align: center;
-            align-items: center;
+    align-items: center;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-            flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    top: 9%;
+    width: 100%;
 }
 
-.forms-page form, .forms-page .register-complete-page, .forms-page #confirm-email-page {
+.forms-page form,
+.forms-page .register-complete-page,
+.forms-page #confirm-email-page {
     border: .1em solid;
     width: 30em;
     margin: auto;
@@ -47,18 +82,18 @@ html {
     background-color: white;
 }
 
-.forms-page .form-component{
+.forms-page .form-component {
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: center;
-            justify-content: center;
+    justify-content: center;
     -webkit-box-align: center;
-            align-items: center;
+    align-items: center;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-            flex-direction: column;
+    flex-direction: column;
     width: 100%;
-    margin-bottom: 1.6em;    
+    margin-bottom: 1.6em;
 }
 
 .forms-page .form-component h2 {
@@ -88,7 +123,7 @@ html {
 }
 
 .forms-page .form-component select {
-    width:90%;
+    width: 90%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -101,7 +136,6 @@ html {
 }
 
 .forms-page .form-component textarea {
-    
     width: 90%;
     margin-left: auto;
     margin-right: auto;
@@ -110,8 +144,8 @@ html {
     padding: 0.7em;
     outline: none;
     font-size: 1.8em;
+    resize: none; /*This removes the ability to resize the area on the form */
 }
-
 
 .forms-page .form-component button {
     width: 90%;
@@ -126,7 +160,7 @@ html {
     color: white;
     font-size: 1.8em;
     -webkit-transition: background .3s ease;
-    transition: background .3s ease;    
+    transition: background .3s ease;
 }
 
 .forms-page .form-component button:disabled {
@@ -134,20 +168,28 @@ html {
     opacity: 0.3;
 }
 
-.forms-page  .form-component p {
+.forms-page .form-component p {
     width: 100%;
     text-align: center;
     color: red;
     font-size: 1.6em;
     margin-top: .5em;
 }
-   
-.forms-page input:focus,textarea:focus,select:focus {
+
+.forms-page input:focus,
+textarea:focus,
+select:focus {
     background-color: lightblue;
 }
 
-
-#btn-close-register-form, #btn-close-register-artist-form, #btn-close-register-browser-form, #btn-close-resend-email-form, #btn-close-login-form, #btn-close-message-form, #btn-close-confirm-email-form {
+#btn-close-register-form,
+#btn-close-register-artist-form,
+#btn-close-register-browser-form,
+#btn-close-resend-email-form,
+#btn-close-login-form,
+#btn-close-message-form,
+#btn-close-confirm-email-form,
+#btn-close-upload-image-form {
     width: 9em;
     opacity: 0.5;
     text-align: right;
@@ -174,12 +216,14 @@ html {
 
 
 /* Completion page for register forms. Initially hidden */
-.forms-page #register-artist-complete-page, .forms-page #register-browser-complete-page {
+
+.forms-page #register-artist-complete-page,
+.forms-page #register-browser-complete-page {
     display: none;
 }
 
 .forms-page #confirm-email-page {
-	display: none;
+    display: none;
 }
 
 

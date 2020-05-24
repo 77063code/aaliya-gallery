@@ -11,24 +11,13 @@ document.getElementById('register-account').addEventListener("click", () => {
 })*/
 
 
-const displayErrors = (hide) => {
-    
-    /*const errMessages = document.getElementsByClassName('forms-error-msg');
-    
-    for (var i = 0; i < errMessages.length; i++) {
-        errMessages.item(i).style.display = hide;
-        errMessages.item(i).textContent = '';
-    }   
-    $btnLoginResendEmail.style.display = hide;*/
-}
 
-//displayErrors("none");
 
 document.forms['login-form'].addEventListener('submit', async (event) => {
 // When the login form is successfully submitted, render the header of the home page with the correct 
 // template. If unsuccessful then give an alert with a message to try again
     event.preventDefault();
-    displayErrors("none");
+    document.getElementById('error-login').textContent = "";
 
     try {
         const response = await fetch(event.target.action, {

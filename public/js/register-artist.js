@@ -18,10 +18,13 @@ const emailArtistPostFocus = async() => {
     const email = document.getElementById('email-artist').value;
 
 
-    for (var i = 0; i < errMessages.length; i++) {
+    /*for (var i = 0; i < errMessages.length; i++) {
         errMessages.item(i).style.display = "none";
         errMessages.item(i).textContent = '';
-    }
+    }*/
+    
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (email) {
         if (!emailIsValid(email)) {
@@ -31,21 +34,19 @@ const emailArtistPostFocus = async() => {
         } else {
             try {
                 const response = await fetch('/users/info/email/' + email)
+                // Check if the email is already being used for another account
                 if (response.status !== 200) {
+                // This email is not already being used
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
-                    document.getElementById('loginid-artist').focus();
+                    //document.getElementById('loginid-artist').focus();
                 } else {
                     errMsg.style.display = "block";
                     errMsg.textContent = 'This email is already being used. Please enter a different email';
                     document.getElementById('email-artist').focus();
                 }
-            } catch {
-                for (var i = 0; i < errMessages.length; i++) {
-                    errMessages.item(i).style.display = "none";
-                    errMessages.item(i).textContent = '';
-                }
-
+            } catch (e) {
+                console.log(e);
             }
         }
     }
@@ -56,6 +57,8 @@ const loginidArtistPostFocus = async() => {
     const errMsg = document.getElementById('forms-error-loginid-artist');
     const loginid = document.getElementById('loginid-artist').value;
 
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (loginid) {
         if (!stringIsAlphaNumeric(loginid)) {
@@ -65,22 +68,18 @@ const loginidArtistPostFocus = async() => {
         } else {
             try {
                 const response = await fetch('/users/info/loginid/' + loginid)
-                console.log(response.status);
+                
                 if (response.status !== 200) {
                     errMsg.style.display = "none";
                     errMsg.textContent = "";
-                    document.getElementById('password-artist').focus();
+                    //document.getElementById('password-artist').focus();
                 } else {
                     errMsg.style.display = "block";
                     errMsg.textContent = 'This loginid is already being used. Please enter a different loginid';
                     document.getElementById('loginid-artist').focus();
                 }
-            } catch {
-                for (var i = 0; i < errMessages.length; i++) {
-                    errMessages.item(i).style.display = "none";
-                    errMessages.item(i).textContent = '';
-                }
-
+            } catch (e) {
+                console.log(e);
             }
         }
     }
@@ -93,20 +92,17 @@ const passwordArtistPostFocus = () => {
     const password = document.getElementById('password-artist').value;
 
 
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
+    
     if (password) {
         if (password.length < 7) {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
             errMsg.style.display = "block";
             errMsg.textContent = 'Password needs to be atleast 7 characters';
             document.getElementById('password-artist').focus();
         } else {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
+            errMsg.style.display = "none";
+            errMsg.textContent = "";
         }
     }
 }
@@ -118,23 +114,15 @@ const teacheremailArtistPostFocus = async() => {
     const teacherEmail = document.getElementById('teacheremail-artist').value;
 
 
-    for (var i = 0; i < errMessages.length; i++) {
-        errMessages.item(i).style.display = "none";
-        errMessages.item(i).textContent = '';
-    }
+    errMsg.style.display = "none";
+    errMsg.textContent = "";
 
     if (teacherEmail) {
         if (!emailIsValid(teacherEmail)) {
             errMsg.style.display = "block";
             errMsg.textContent = "Please enter a valid teacher's email";
             document.getElementById('teacheremail-artist').focus();
-        } else {
-            for (var i = 0; i < errMessages.length; i++) {
-                errMessages.item(i).style.display = "none";
-                errMessages.item(i).textContent = '';
-            }
-
-        }
+        } 
     }
 }
 
@@ -146,12 +134,14 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
     event.preventDefault();
 
     const errMessages = document.getElementsByClassName('forms-error-msg');
-    const name = document.getElementById('name-artist').value;
+    const firstName = document.getElementById('firstname-artist').value;
+    const lastName = document.getElementById('lastname-artist').value;
     const email = document.getElementById('email-artist').value;
     const loginid = document.getElementById('loginid-artist').value;
     const password = document.getElementById('password-artist').value;
     const school = document.getElementById('school-artist').value;
-    const teacherName = document.getElementById('teachername-artist').value;
+    const teacherFirstName = document.getElementById('teacherfirstname-artist').value;
+    const teacherLastName = document.getElementById('teacherlastname-artist').value;
     const teacherEmail = document.getElementById('teacheremail-artist').value;
 
     for (var i = 0; i < errMessages.length; i++) {
@@ -160,24 +150,32 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         errMessages.item(i).textContent = '';
     }
 
-    if (!name) {
-        document.getElementById('forms-error-name-artist').style.display = "block";
-        document.getElementById('forms-error-name-artist').textContent = "Please enter your name";
-        document.getElementById('name-artist').focus();
-        //document.getElementById('name-artist').scrollIntoView(); 
-    } else if (!email) {
+    if (!firstName) {
+        document.getElementById('forms-error-firstname-artist').style.display = "block";
+        document.getElementById('forms-error-firstname-artist').textContent = "Please enter your first name";
+        document.getElementById('firstname-artist').focus();
+    } 
+    else if (!lastName) {
+        document.getElementById('forms-error-lastname-artist').style.display = "block";
+        document.getElementById('forms-error-lastname-artist').textContent = "Please enter your last name";
+        document.getElementById('lastname-artist').focus();
+    } 
+    else if (!email) {
         document.getElementById('forms-error-email-artist').style.display = "block";
         document.getElementById('forms-error-email-artist').textContent = "Please enter your email";
         document.getElementById('email-artist').focus();
-    } else if (!emailIsValid(email)) {
+    } 
+    else if (!emailIsValid(email)) {
         document.getElementById('forms-error-email-artist').style.display = "block";
         document.getElementById('forms-error-email-artist').textContent = "Please enter a valid email";
         document.getElementById('email-artist').focus();
-    } else if (!loginid) {
+    } 
+    else if (!loginid) {
         document.getElementById('forms-error-loginid-artist').style.display = "block";
         document.getElementById('forms-error-loginid-artist').textContent = "Please enter your loginid";
         document.getElementById('loginid-artist').focus();
-    } else if (!stringIsAlphaNumeric(loginid)) {
+    } 
+    else if (!stringIsAlphaNumeric(loginid)) {
         document.getElementById('forms-error-loginid-artist').style.display = "block";
         document.getElementById('forms-error-loginid-artist').textContent = "Only alphabets and numbers allowed. Please enter a different loginid";
         document.getElementById('loginid-artist').focus();
@@ -186,7 +184,8 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-password-artist').style.display = "block";
         document.getElementById('forms-error-password-artist').textContent = "Please enter a password";
         document.getElementById('password-artist').focus();
-    } else if (password.length < 7) {
+    } 
+    else if (password.length < 7) {
         document.getElementById('forms-error-password-artist').style.display = "block";
         document.getElementById('forms-error-password-artist').textContent = 'Password needs to be atleast 7 characters';
         document.getElementById('password-artist').focus();
@@ -195,21 +194,31 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-school-artist').style.display = "block";
         document.getElementById('forms-error-school-artist').textContent = "Please enter your school's name";
         document.getElementById('school-artist').focus();
-    } else if (!teacherName) {
-        document.getElementById('forms-error-teachername-artist').style.display = "block";
-        document.getElementById('forms-error-teachername-artist').textContent = "Please enter your teacher's name";
-        document.getElementById('teachername-artist').focus();
+    } 
+    else if (!teacherFirstName) {
+        document.getElementById('forms-error-teacherfirstname-artist').style.display = "block";
+        document.getElementById('forms-error-teacherfirstname-artist').textContent = "Please enter your teacher's first name";
+        document.getElementById('teacherfirstname-artist').focus();
 
-    } else if (!teacherEmail) {
+    } 
+    else if (!teacherLastName) {
+        document.getElementById('forms-error-teacherlastname-artist').style.display = "block";
+        document.getElementById('forms-error-teacherlastname-artist').textContent = "Please enter your teacher's last name";
+        document.getElementById('teacherlastname-artist').focus();
+
+    } 
+    else if (!teacherEmail) {
         document.getElementById('forms-error-teacheremail-artist').style.display = "block";
         document.getElementById('forms-error-teacheremail-artist').textContent = "Please enter your teacher's email";
         document.getElementById('teacheremail-artist').focus();
 
-    } else if (!emailIsValid(teacherEmail)) {
+    } 
+    else if (!emailIsValid(teacherEmail)) {
         document.getElementById('forms-error-teacheremail-artist').style.display = "block";
         document.getElementById('forms-error-teacheremail-artist').textContent = "Please enter a valid teacher's email";
         document.getElementById('teacheremail-artist').focus();
-    } else {
+    } 
+    else {
 
         try {
             const response = await fetch(event.target.action, {
@@ -233,6 +242,8 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
             }
         } catch (e) {
             console.log('Error registering. Please try again');
+            document.getElementById('forms-error-teacheremail-artist').style.display = "block";
+            document.getElementById('forms-error-teacheremail-artist').textContent = 'Excess load on server. Please try again in a few minutes';
         }
     }
 });
@@ -253,8 +264,13 @@ document.getElementById('btn-close-resend-email-form').addEventListener('click',
 document.getElementById('btn-resend-email').addEventListener('click', async (e) => {
     
     e.preventDefault();
-    const loginid = document.getElementById('register-artist-form').elements['loginid'].value
-    const data = {loginid}
+    //const loginid = document.getElementById('register-artist-form').elements['loginid'].value
+    //const data = {loginid}
+    
+    const email = document.getElementById('register-artist-form').elements['email'].value
+    const data = {email}
+    //Using email instead of loginid for user identification
+    
     document.getElementById('btn-resend-email').disabled = true;
     $emailConfirm.textContent = '';
     

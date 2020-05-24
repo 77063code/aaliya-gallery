@@ -259,6 +259,44 @@ const saveImageInfo = async (imageInfo) => {
     }
 }
 
-saveImageInfo(imageInfo12);
-saveImageInfo(imageInfo13);
-saveImageInfo(imageInfo14);
+const findAllImages = async () => {
+// get the full dump of the image collection
+	const response = await Image.find();
+	console.log(response);
+}
+
+const updateImageNames = async (oldImage, newImage) => {
+	const res1 = await Image.updateMany({ name: oldImage }, {name: newImage});
+	console.log(oldImage + ' was modified to  ' + newImage + ' ' + res1.nModified + ' times');
+}
+
+const updateAllImageNames = () => {
+	updateImageNames('aaliya1-1.jpg','aaliya1-1');
+	updateImageNames('aaliya1-2.jpg','aaliya1-2');
+	updateImageNames('aaliya1-3.jpg','aaliya1-3');
+	updateImageNames('aaliya1-4.jpg','aaliya1-4');
+	updateImageNames('aaliya1-5.jpg','aaliya1-5');
+	updateImageNames('aaliya1-6.jpg','aaliya1-6');
+	updateImageNames('aaliya1-7.jpg','aaliya1-7');
+	updateImageNames('aaliya1-8.jpg','aaliya1-8');
+    updateImageNames('aaliya1-9.jpg','aaliya1-9');
+	updateImageNames('aaliya1-10.jpg','aaliya1-10');
+	updateImageNames('aaliya1-11.jpg','aaliya1-11');
+    updateImageNames('aaliya1-12.jpg','aaliya1-12');
+	updateImageNames('aaliya1-13.jpg','aaliya1-13');
+	updateImageNames('aaliya1-14.jpg','aaliya1-14');
+}
+
+const updateFieldName = async () => {
+    const res = await Image.update({}, { $rename: { displayname: 'title' } }, { multi: true });
+    console.log(res);
+}
+
+
+//updateFieldName();
+
+//updateAllImageNames();
+findAllImages();
+//saveImageInfo(imageInfo12);
+//saveImageInfo(imageInfo13);
+//saveImageInfo(imageInfo14);
