@@ -38,9 +38,15 @@ const userSchema = new mongoose.Schema({
         lowercase: true
     },
     hashcode: {
-        // MD5 generated hash value based on loginid and email. This is filled in when the user
-        // registers and once the user clicks on the email confirmation link, it should be 
-        // set to zero
+    // MD5 generated hash value based on loginid and email. This is filled in when the user
+    // registers and once the user clicks on the email confirmation link, it should be 
+    // set to zero
+        type: String,
+        required: false
+    },
+    passwordhashcode: {
+    // bcrypt generated hash value based on loginid, email, current time and a random number. 
+    //This is updated whenever a user wants to change their password
         type: String,
         required: false
     },
@@ -121,6 +127,18 @@ userSchema.methods.generateHashCode = async function () {
         const user = this;
         user.hashcode = md5(user.loginid + user.email + Math.floor(Math.random() * 50000));
         // Create a hash value using the loginid, email and a random number b/w 0 amd 50000
+        await user.save();
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+userSchema.methods.generatePasswordResetHashCode = async function () {
+// Generate a new hashcode when user wants to reset their password and add it to the user instance
+    try {
+        const user = this;
+        user.passwordhashcode = md5(user.loginid + user.email + Date.now() + Math.floor(Math.random() * 50000));
+        // Create a hash value using the loginid, email, current time and a random number b/w 0 amd 50000
         await user.save();
     } catch (e) {
         console.log(e);

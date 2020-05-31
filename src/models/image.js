@@ -36,11 +36,6 @@ const imageSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
-    length: {
-        type: Number,
-        required: false,
-        trim: true
-    },
     height: {
         type: Number,
         required: false,

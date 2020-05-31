@@ -183,3 +183,13 @@ TO DO
 14. How to show progress bar when images are being uploaded
 
 
+PASSWORD-RESET
+1. Create a form and an end-point to reset the password
+2. Corrected a small text error in register-browser.js
+3. Added a Forgot Password link in login.html
+4. Added a field passwordhashcode in user model and also a function to initialize the hash
+5. Added a new route for users, so the user who wants to change the password is sent an email
+6. Deleted lenght field from immage model
+
+
+

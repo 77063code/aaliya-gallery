@@ -71,7 +71,7 @@ router.post('/users', connection, async(req, res) => {
         sgMail.send({
             to: user.email,
             from: 'aaliyagallery@gmail.com',
-            subject: 'aaliya-art login confirmation',
+            subject: 'aaliya-gallery login confirmation',
             text: `Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`
         })
         sgMail.send({
@@ -133,6 +133,33 @@ router.post('/users/login', async(req, res) => {
 
     }
 });
+
+router.post('/users/reset-password-email', async(req,res) => {
+//Check if the email exists in the db. If the email exists then send a link to reset the password
+    try {
+        const user = await User.findByEmail(req.body.email);
+        if (user) {
+            console.log('Password reset user found');
+	    await user.generatePasswordResetHashCode();
+	     // Send a password reset link to the user
+	     sgMail.setApiKey(sendgridAPIKEY);
+	     sgMail.send({
+	     	to: user.email,
+	     	from: 'aaliyagallery@gmail.com',
+	        subject: 'aaliya-gallery password reset',
+	     	text: `You recently requested that your aaliya-gallery password be reset.
+
+To reset your password, click on the following link https://${host}.com:${portHTTPS}/resetpasswordform.html/?code=${user.passwordhashcode}`
+            })
+        }         
+        else {
+            console.log('Password reset user not found');
+        }
+        res.status(200).send();
+    } catch (e) {
+        console.log(e);
+    }
+})
 
 router.post('/users/logout', auth, async(req, res) => {
     try {

@@ -45,6 +45,6 @@ const deleteUser = async (email_id) => {
 findAllUsers();
 //findLikesByUser('garfield1');
 //updateHashCode('sanjaygupta100@yahoo.com');
-deleteUser('sgupt9999@gmail.com');
+//deleteUser('sgupt9999@gmail.com');
 //findAllUsers();
 //updateField('sgupt9999@gmail.com',false);
