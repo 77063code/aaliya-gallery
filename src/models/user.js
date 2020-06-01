@@ -236,6 +236,22 @@ userSchema.statics.findByHashCode = async(hashcode) => {
     }
 };
 
+userSchema.statics.findByPasswordHashCode = async(passwordhashcode) => {
+    // Find the user by hashcode
+    try {
+        const user = await User.findOne({
+            passwordhashcode
+        });
+        if (!user) {
+            console.log('User not found in password reset')
+            return undefined;
+        }
+        return user;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 userSchema.pre('save', async function (next) {
     // Hash the plain text password before saving
     try {
