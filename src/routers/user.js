@@ -149,7 +149,7 @@ router.post('/users/reset-password-email', async(req,res) => {
 	        subject: 'aaliya-gallery password reset',
 	     	text: `You recently requested that your aaliya-gallery password be reset.
 
-To reset your password, click on the following link https://${host}.com:${portHTTPS}/resetpasswordform.html?code=${user.passwordhashcode}`
+To reset your password, click on the following link https://${host}.com:${portHTTPS}/reset-password.html?code=${user.passwordhashcode}`
             })
         }         
         else {
