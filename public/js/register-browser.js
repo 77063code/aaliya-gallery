@@ -106,7 +106,7 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
     } 
     else if (!lastName) {
         document.getElementById('forms-error-lastname-browser').style.display = "block";
-        document.getElementById('forms-error-lastname-browser').textContent = "Please enter your first name";
+        document.getElementById('forms-error-lastname-browser').textContent = "Please enter your last name";
         document.getElementById('lastname-browser').focus();
     } 
     else if (!email) {

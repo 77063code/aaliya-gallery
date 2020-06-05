@@ -189,7 +189,8 @@ select:focus {
 #btn-close-login-form,
 #btn-close-message-form,
 #btn-close-confirm-email-form,
-#btn-close-upload-image-form {
+#btn-close-upload-image-form,
+#btn-close-reset-password-email-form {
     width: 9em;
     opacity: 0.5;
     text-align: right;
