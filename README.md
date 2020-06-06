@@ -126,8 +126,17 @@ V1.6
     9. Added title and height to the images model
     10. displayname and height will have to be deleted as part of the 2nd part of the commit
     11. Cleaned up error display on register pages, but still not very clean and problems on firefox
-    
 
+V1.7
+1. Branch - password-reset
+2. Date - 06/04/20
+3. Features
+	1. Added a new route for users, so the user who wants to change the password is sent an email
+	2. Added a Forgot Password link in login.html
+	3. Create a form and an end-point to reset the password
+	4. Corrected a small text error in register-browser.js
+	5. Added a field passwordhashcode in user model and also a function to initialize the hash
+	6. Deleted length field from image model
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
@@ -183,13 +192,12 @@ TO DO
 14. How to show progress bar when images are being uploaded
 
 
-PASSWORD-RESET
-1. Create a form and an end-point to reset the password
-2. Corrected a small text error in register-browser.js
-3. Added a Forgot Password link in login.html
-4. Added a field passwordhashcode in user model and also a function to initialize the hash
-5. Added a new route for users, so the user who wants to change the password is sent an email
-6. Deleted lenght field from immage model
-
+DOMAIN-EMAIL
+WHAT ALL NEED TO DO
+1. Set up a domain email instead of gmail from which to send emails from
+2. Integrate sendgrid with domain email
+3. Work on onblur and onfocus on firefox
+4. Create prod and test buckets for all the images
+5. Renew the certbot certificate for both aaliya-gallery and cmeitest.com
 
 
