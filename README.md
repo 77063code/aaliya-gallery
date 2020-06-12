@@ -19,6 +19,11 @@ TO INSTALL LETSENCRYPT
 1. First install EPEL repo
 2. yum install certbot
 
+TO RENEW LETSENCRYPT
+1. certbot certonly --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns -d 'cmeitest.com' OR certbot certonly --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns -d 'aaliya-gallery.com'
+2. Say yes to logging in the IP address
+
+
 
 TO RUN THE APPLICATION -
 1. Log-in as root
