@@ -292,6 +292,11 @@ const updateFieldName = async () => {
     console.log(res);
 }
 
+const deleteAllImageInfo = async() => {
+	const response = await Image.deleteMany({});
+	console.log(response);
+}
+
 
 //updateFieldName();
 
@@ -300,3 +305,4 @@ findAllImages();
 //saveImageInfo(imageInfo12);
 //saveImageInfo(imageInfo13);
 //saveImageInfo(imageInfo14);
+//deleteAllImageInfo();

@@ -199,5 +199,23 @@ WHAT ALL NEED TO DO
 3. Work on onblur and onfocus on firefox
 4. Create prod and test buckets for all the images
 5. Renew the certbot certificate for both aaliya-gallery and cmeitest.com
+6. Autofocus error in register-artist on 2 fields
+7. Website Title
+
+
+STEPS
+1. Installed new packages
+2. Created WorkMail setup on AWS
+3. Created SMTP user in AWS
+4. Add STMP creds and the send email address to custom.sh file
+5. export AWSBUCKET='aaliya-gallery-test'
+   export AWSSMTPHOST=''
+   export AWSSMTPUSER=''
+   export AWSSMTPPASS=''
+   export SENDEMAIL=''
+4. Have created functions for sending email through node.js with using both STMP or SES in the admin directory
+5. Created a new bucket aaliya-gallery-test. Need to have the common folder and he bg file and CORS policy
+6. On test machines change AWSBUKCET = this new bucket
+7. Delete all images from collection and reupload images for cmeitest to test the new bucket is working
 
 

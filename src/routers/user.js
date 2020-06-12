@@ -8,12 +8,17 @@ const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 
 
 
 const sendgridAPIKEY = process.env.SENDGRIDAPIKEY;
 const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
+const AWSSMTPHOST = process.env.AWSSMTPHOST
+const AWSSMTPUSER = process.env.AWSSMTPUSER;
+const AWSSMTPPASS = process.env.AWSSMTPPASS;
+const SENDEMAIL = process.env.SENDEMAIL;
 
 
 const exec = require('child_process').exec;
@@ -28,6 +33,14 @@ const execCB = (error, stdout, stderr) => {
     console.log('stderr: ' + stderr);
 }
 
+const getCurrDateTime = () => {
+	const today = new Date();
+	const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	const dateTime = date+' '+time;
+
+	return dateTime;
+}
 
 router.post('/users', connection, async(req, res) => {
 // Register a new user  
@@ -142,7 +155,9 @@ router.post('/users/reset-password-email', async(req,res) => {
             console.log('Password reset user found');
 	    await user.generatePasswordResetHashCode();
 	     // Send a password reset link to the user
-	     sgMail.setApiKey(sendgridAPIKEY);
+	    
+	    /* Sending email using sendgrid
+ 	     sgMail.setApiKey(sendgridAPIKEY);
 	     sgMail.send({
 	     	to: user.email,
 	     	from: 'aaliyagallery@gmail.com',
@@ -151,6 +166,43 @@ router.post('/users/reset-password-email', async(req,res) => {
 
 To reset your password, click on the following link https://${host}.com:${portHTTPS}/reset-password.html?code=${user.passwordhashcode}`
             })
+	    */
+	      const transport = nodemailer.createTransport(
+              {
+                "host": AWSSMTPHOST,
+                "secureConnection": true,
+                "port": 465,
+                "auth": {
+                        "user": AWSSMTPUSER,
+                        "pass": AWSSMTPPASS
+                 }
+               });
+
+  		const mailOptions = {
+        		from: SENDEMAIL,
+        		to: user.email,
+        		subject: "aaliya-gallery password reset",
+        		html: `You recently requested that your aaliya-gallery password be reset.<br><br><br>
+				To reset your password, click on the following link https://${host}.com:${portHTTPS}/reset-password.html?code=${user.passwordhashcode}`
+  		};
+
+  		transport.sendMail(mailOptions, function(err,response) {
+        		if (err) {
+                		console.log('##### Password reset link not sent #####');
+                		console.log(getCurrDateTime());
+                		console.log(err);
+                		console.log('##### Password reset link not sent #####');
+                		transport.close();
+        		}
+        		else {
+                		console.log('##### Password reset link sent #####');
+                		console.log(getCurrDateTime());
+                		console.log(response);
+                		console.log('##### Password reset link sent #####');
+                		transport.close();
+        		}
+  		});
+
         }         
         else {
             console.log('Password reset user not found');
@@ -192,6 +244,7 @@ router.post('/users/logout', auth, async(req, res) => {
     }
 });
 
+/* Sending email using sendgrid
 router.post('/users/message', async(req, res) => {
     try {
         sgMail.setApiKey(sendgridAPIKEY);
@@ -206,6 +259,50 @@ router.post('/users/message', async(req, res) => {
         res.status(500).send(e);
     }
 });
+*/
+
+router.post('/users/message', (req, res) => {
+
+  const transport = nodemailer.createTransport(
+        {
+                "host": AWSSMTPHOST,
+                "secureConnection": true,
+                "port": 465,
+                "auth": {
+                        "user": AWSSMTPUSER,
+                        "pass": AWSSMTPPASS
+                }
+        }
+  );
+
+  const mailOptions = {
+        from: SENDEMAIL,
+        to: SENDEMAIL,
+        subject: "NEW MESSAGE",
+        html: `${req.body.name} sent message<br><br>${req.body.content}<br><br>from ${req.body.email}`
+  };
+
+  transport.sendMail(mailOptions, function(err,response) {
+        if (err) {
+		console.log('##### Message not sent #####');
+		console.log(getCurrDateTime());
+                console.log(err);
+		console.log('##### Message not sent #####');
+        	transport.close();
+		res.status(500).send();
+        }
+        else {
+		console.log('##### Message sent #####');
+		console.log(getCurrDateTime());
+                console.log(response);
+		console.log('##### Message sent #####');
+        	transport.close();
+		res.status(200).send();
+        }
+  });
+
+});
+
 
 
 router.get('/users/confirm/:code', async(req, res) => {
