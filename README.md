@@ -19,6 +19,11 @@ TO INSTALL LETSENCRYPT
 1. First install EPEL repo
 2. yum install certbot
 
+TO RENEW LETSENCRYPT
+1. certbot certonly --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns -d 'cmeitest.com' OR certbot certonly --server https://acme-v02.api.letsencrypt.org/directory --manual --preferred-challenges dns -d 'aaliya-gallery.com'
+2. Say yes to logging in the IP address
+
+
 
 TO RUN THE APPLICATION -
 1. Log-in as root
@@ -126,8 +131,17 @@ V1.6
     9. Added title and height to the images model
     10. displayname and height will have to be deleted as part of the 2nd part of the commit
     11. Cleaned up error display on register pages, but still not very clean and problems on firefox
-    
 
+V1.7
+1. Branch - password-reset
+2. Date - 06/04/20
+3. Features
+	1. Added a new route for users, so the user who wants to change the password is sent an email
+	2. Added a Forgot Password link in login.html
+	3. Create a form and an end-point to reset the password
+	4. Corrected a small text error in register-browser.js
+	5. Added a field passwordhashcode in user model and also a function to initialize the hash
+	6. Deleted length field from image model
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
@@ -181,15 +195,31 @@ TO DO
 12. How to create thumbnails of uploaded images
 13. The price and sold/not sold needs to be added to the front of the image
 14. How to show progress bar when images are being uploaded
+15.  Work on onblur and onfocus on firefox
 
 
-PASSWORD-RESET
-1. Create a form and an end-point to reset the password
-2. Corrected a small text error in register-browser.js
-3. Added a Forgot Password link in login.html
-4. Added a field passwordhashcode in user model and also a function to initialize the hash
-5. Added a new route for users, so the user who wants to change the password is sent an email
-6. Deleted lenght field from immage model
+DOMAIN-EMAIL
+WHAT ALL NEED TO DO
+1. Set up a domain email instead of gmail from which to send emails from
+4. Create prod and test buckets for all the images
+5. Renew the certbot certificate for both aaliya-gallery and cmeitest.com
+6. Autofocus error in register-artist on 2 fields
+7. Website Title
 
 
+STEPS
+1. Installed new packages
+2. Created WorkMail setup on AWS
+3. Created SMTP user in AWS
+4. Add STMP creds and the send email address to custom.sh file
+5. export AWSBUCKET='aaliya-gallery-test'
+   export AWSSMTPHOST=''
+   export AWSSMTPUSER=''
+   export AWSSMTPPASS=''
+   export SENDEMAIL=''
+4. Have created functions for sending email through node.js with using both STMP or SES in the admin directory
+5. Created a new bucket aaliya-gallery-test. Need to have the common folder and he bg file and CORS policy
+6. On test machines change AWSBUKCET = this new bucket
+7. Delete all images from collection and reupload images for cmeitest to test the new bucket is working
+8. Corrected a bug in app.js when confirm code was 0
 

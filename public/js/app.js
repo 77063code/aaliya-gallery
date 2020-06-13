@@ -27,7 +27,8 @@ const {
     ignoreQueryPrefix: true
 });
 // This is the user confirming the creation of the account through the email link
-if (code) {
+if (code && code !== "0") {
+// This is to prevent someone from trying to connect using code="0"
     loginByHashCode(code);
 }
 

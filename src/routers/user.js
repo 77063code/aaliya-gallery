@@ -8,12 +8,17 @@ const validator = require('validator');
 const uniqueValidator = require('mongoose-unique-validator');
 const sgMail = require('@sendgrid/mail');
 const mongoose = require('mongoose');
+const nodemailer = require('nodemailer');
 
 
 
 const sendgridAPIKEY = process.env.SENDGRIDAPIKEY;
 const portHTTPS = process.env.AALIYAPORTHTTPS || 3000;
 const host = process.env.AALIYAHOST || 'localhost';
+const AWSSMTPHOST = process.env.AWSSMTPHOST
+const AWSSMTPUSER = process.env.AWSSMTPUSER;
+const AWSSMTPPASS = process.env.AWSSMTPPASS;
+const SENDEMAIL = process.env.SENDEMAIL;
 
 
 const exec = require('child_process').exec;
@@ -28,10 +33,18 @@ const execCB = (error, stdout, stderr) => {
     console.log('stderr: ' + stderr);
 }
 
+const getCurrDateTime = () => {
+    const today = new Date();
+    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    const dateTime = date + ' ' + time;
+
+    return dateTime;
+}
 
 router.post('/users', connection, async(req, res) => {
-// Register a new user  
-  
+    // Register a new user  
+
     /* Taking this out for right now. Check if the mongodb is down and then restart it
     if (req.connection !== 1) {
         console.log('DB connection not working in /users')
@@ -48,25 +61,23 @@ router.post('/users', connection, async(req, res) => {
         })
     }
     */
-    
-    
-   
+
+
+
     if (!req.body.loginid) {
-    //If registering as a browser, loginid is not used in registeration, but is still used in likes
-	req.body.loginid = req.body.email + '-' + Date.now()
+        //If registering as a browser, loginid is not used in registeration, but is still used in likes
+        req.body.loginid = req.body.email + '-' + Date.now()
     }
 
-   
- 
     const user = new User(req.body);
-    
-    
 
     try {
         await user.save()
         await user.generateHashCode();
 
         // Send a confirmation email to the new user, and a new user joining email to admin
+
+        /* Sending email using sendgrid
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,
@@ -80,9 +91,65 @@ router.post('/users', connection, async(req, res) => {
                 subject: 'New User Account Created',
                 text: `Name: ${user.name}, Email: ${user.email}, Loginid: ${user.loginid}`
             })
-            //DEBUG
-            //console.log(`Please click on following link to login https://${host}.com:${portHTTPS}?code=${user.hashcode}`)
-            //DEBUG
+	*/
+
+
+        const transport = nodemailer.createTransport({
+            "host": AWSSMTPHOST,
+            "secureConnection": true,
+            "port": 465,
+            "auth": {
+                "user": AWSSMTPUSER,
+                "pass": AWSSMTPPASS
+            }
+        });
+
+        const mailOptions = {
+            from: SENDEMAIL,
+            to: user.email,
+            subject: "aaliya-gallery login confirmation",
+            html: `Please click on following link or open in a new tab to complete registration<br><br>https://${host}.com:${portHTTPS}?code=${user.hashcode}`
+        };
+
+        transport.sendMail(mailOptions, function (err, response) {
+            if (err) {
+                console.log('##### Registration email not sent #####');
+                console.log(getCurrDateTime());
+                console.log(err);
+                console.log('##### Registration email not sent #####');
+                transport.close();
+            } else {
+                console.log('##### Registration email sent #####');
+                console.log(getCurrDateTime());
+                console.log(response);
+                console.log('##### Registration email sent #####');
+                transport.close();
+            }
+        });
+
+        const mailOptions2 = {
+            from: SENDEMAIL,
+            to: SENDEMAIL,
+            subject: "New User Account Created",
+            html: `Name: ${user.firstname} ${user.lastname} Email: ${user.email}, Loginid: ${user.loginid}`
+        };
+
+        transport.sendMail(mailOptions2, function (err, response) {
+            if (err) {
+                console.log('##### Registration email not sent to admin account #####');
+                console.log(getCurrDateTime());
+                console.log(err);
+                console.log('##### Registration email not sent to admin account #####');
+                transport.close();
+            } else {
+                console.log('##### Registration email sent to admin account #####');
+                console.log(getCurrDateTime());
+                console.log(response);
+                console.log('##### Registration email sent to admin account #####');
+                transport.close();
+            }
+        });
+
         res.status(201).send(); // The 201 is most route appropriate status code for a successful creation
     } catch (e) {
 
@@ -106,8 +173,8 @@ router.post('/users', connection, async(req, res) => {
 
 
 router.post('/users/login', async(req, res) => {
-// Check to see a user exists
-// If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
+    // Check to see a user exists
+    // If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
         if (!user) {
@@ -120,7 +187,7 @@ router.post('/users/login', async(req, res) => {
             res.cookie('auth_token', token);
             /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
             res.status(200).send({
-                user, 
+                user,
                 token
             });
         } else {
@@ -134,15 +201,17 @@ router.post('/users/login', async(req, res) => {
     }
 });
 
-router.post('/users/reset-password-email', async(req,res) => {
-//Check if the email exists in the db. If the email exists then send a link to reset the password
+router.post('/users/reset-password-email', async(req, res) => {
+    //Check if the email exists in the db. If the email exists then send a link to reset the password
     try {
         const user = await User.findByEmail(req.body.email);
         if (user) {
             console.log('Password reset user found');
-	    await user.generatePasswordResetHashCode();
-	     // Send a password reset link to the user
-	     sgMail.setApiKey(sendgridAPIKEY);
+            await user.generatePasswordResetHashCode();
+            // Send a password reset link to the user
+
+            /* Sending email using sendgrid
+ 	     sgMail.setApiKey(sendgridAPIKEY);
 	     sgMail.send({
 	     	to: user.email,
 	     	from: 'aaliyagallery@gmail.com',
@@ -151,8 +220,42 @@ router.post('/users/reset-password-email', async(req,res) => {
 
 To reset your password, click on the following link https://${host}.com:${portHTTPS}/reset-password.html?code=${user.passwordhashcode}`
             })
-        }         
-        else {
+	    */
+            const transport = nodemailer.createTransport({
+                "host": AWSSMTPHOST,
+                "secureConnection": true,
+                "port": 465,
+                "auth": {
+                    "user": AWSSMTPUSER,
+                    "pass": AWSSMTPPASS
+                }
+            });
+
+            const mailOptions = {
+                from: SENDEMAIL,
+                to: user.email,
+                subject: "aaliya-gallery password reset",
+                html: `You recently requested that your aaliya-gallery password be reset.<br><br><br>
+				To reset your password, click on the following link https://${host}.com:${portHTTPS}/reset-password.html?code=${user.passwordhashcode}`
+            };
+
+            transport.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                    console.log('##### Password reset link not sent #####');
+                    console.log(getCurrDateTime());
+                    console.log(err);
+                    console.log('##### Password reset link not sent #####');
+                    transport.close();
+                } else {
+                    console.log('##### Password reset link sent #####');
+                    console.log(getCurrDateTime());
+                    console.log(response);
+                    console.log('##### Password reset link sent #####');
+                    transport.close();
+                }
+            });
+
+        } else {
             console.log('Password reset user not found');
         }
         res.status(200).send();
@@ -162,15 +265,14 @@ To reset your password, click on the following link https://${host}.com:${portHT
 })
 
 
-router.post('/users/reset-password', async(req,res) => {
-//Get the user based on password hash code and then update the password
+router.post('/users/reset-password', async(req, res) => {
+    //Get the user based on password hash code and then update the password
     try {
         const user = await User.findByPasswordHashCode(req.body.passwordhashcode);
         if (user) {
             user.password = req.body.password;
             await user.save()
-        }         
-        else {
+        } else {
             console.log('Password reset user not found');
         }
         res.status(200).send();
@@ -192,6 +294,7 @@ router.post('/users/logout', auth, async(req, res) => {
     }
 });
 
+/* Sending email using sendgrid
 router.post('/users/message', async(req, res) => {
     try {
         sgMail.setApiKey(sendgridAPIKEY);
@@ -206,6 +309,47 @@ router.post('/users/message', async(req, res) => {
         res.status(500).send(e);
     }
 });
+*/
+
+router.post('/users/message', (req, res) => {
+
+    const transport = nodemailer.createTransport({
+        "host": AWSSMTPHOST,
+        "secureConnection": true,
+        "port": 465,
+        "auth": {
+            "user": AWSSMTPUSER,
+            "pass": AWSSMTPPASS
+        }
+    });
+
+    const mailOptions = {
+        from: SENDEMAIL,
+        to: SENDEMAIL,
+        subject: "NEW MESSAGE",
+        html: `${req.body.name} sent message<br><br>${req.body.content}<br><br>from ${req.body.email}`
+    };
+
+    transport.sendMail(mailOptions, function (err, response) {
+        if (err) {
+            console.log('##### Message not sent #####');
+            console.log(getCurrDateTime());
+            console.log(err);
+            console.log('##### Message not sent #####');
+            transport.close();
+            res.status(500).send();
+        } else {
+            console.log('##### Message sent #####');
+            console.log(getCurrDateTime());
+            console.log(response);
+            console.log('##### Message sent #####');
+            transport.close();
+            res.status(200).send();
+        }
+    });
+
+});
+
 
 
 router.get('/users/confirm/:code', async(req, res) => {
@@ -246,7 +390,7 @@ router.get('/users/info/email/:email', async(req, res) => {
 })
 
 router.get('/users/info/loginid/:loginid', async(req, res) => {
-// This route is used to check if a login id already exists in the system
+    // This route is used to check if a login id already exists in the system
     const loginid = req.params.loginid;
     try {
         const user = await User.findByLoginId(loginid);
@@ -263,7 +407,7 @@ router.get('/users/info/loginid/:loginid', async(req, res) => {
 })
 
 router.get('/users/info/passwordhashcode/:passwordhashcode', async(req, res) => {
-// This route is used to check if a passwordhashcode already exists in the system
+    // This route is used to check if a passwordhashcode already exists in the system
     const passwordhashcode = req.params.passwordhashcode;
     try {
         const user = await User.findByPasswordHashCode(passwordhashcode);
@@ -281,7 +425,7 @@ router.get('/users/info/passwordhashcode/:passwordhashcode', async(req, res) => 
 
 
 router.get('/users/info', auth, async(req, res) => {
-// This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
+    // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
     try {
         const user = req.user;
         res.send({
@@ -294,14 +438,13 @@ router.get('/users/info', auth, async(req, res) => {
 
 router.post('/users/resend/email', async(req, res) => {
     // This route is used to resend the confirmation email based on the 
-    // loginid. First check if the user exists and then check if the hashcode
-    // is different from zero
+    // email. 
     try {
-        //const user = await User.findByLoginId(req.body.loginid);
-
         const user = await User.findByEmail(req.body.email);
-        //Using email instead of loginid. When registering as a browser, loginid is not needed anymore
-        
+
+        if (user) {
+
+            /* Sending email using sendgrid 
         sgMail.setApiKey(sendgridAPIKEY);
         sgMail.send({
             to: user.email,
@@ -315,7 +458,69 @@ router.post('/users/resend/email', async(req, res) => {
                 subject: 'New User Account Created',
                 text: `Name: ${user.name}, Email: ${user.email}, Loginid: ${user.loginid}`
             })
-            // Send a confirmation email to the new user, and a new user joining email to admin
+	*/
+
+
+            const transport = nodemailer.createTransport({
+                "host": AWSSMTPHOST,
+                "secureConnection": true,
+                "port": 465,
+                "auth": {
+                    "user": AWSSMTPUSER,
+                    "pass": AWSSMTPPASS
+                }
+            });
+
+            const mailOptions = {
+                from: SENDEMAIL,
+                to: user.email,
+                subject: "aaliya-gallery login confirmation",
+                html: `Please click on following link or open in a new tab to complete registration<br><br>https://${host}.com:${portHTTPS}?code=${user.hashcode}`
+            };
+
+            transport.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                    console.log('##### Registration email not sent #####');
+                    console.log(getCurrDateTime());
+                    console.log(err);
+                    console.log('##### Registration email not sent #####');
+                    transport.close();
+                } else {
+                    console.log('##### Registration email sent #####');
+                    console.log(getCurrDateTime());
+                    console.log(response);
+                    console.log('##### Registration email sent #####');
+                    transport.close();
+                }
+            });
+
+
+            const mailOptions2 = {
+                from: SENDEMAIL,
+                to: SENDEMAIL,
+                subject: "New User Account Created",
+                html: `Name: ${user.firstname} ${user.lastname} Email: ${user.email}, Loginid: ${user.loginid}`
+            };
+
+            transport.sendMail(mailOptions2, function (err, response) {
+                if (err) {
+                    console.log('##### Registration email not sent to admin account #####');
+                    console.log(getCurrDateTime());
+                    console.log(err);
+                    console.log('##### Registration email not sent to admin account #####');
+                    transport.close();
+                } else {
+                    console.log('##### Registration email sent to admin account #####');
+                    console.log(getCurrDateTime());
+                    console.log(response);
+                    console.log('##### Registration email sent to admin account #####');
+                    transport.close();
+                }
+            });
+
+
+        }
+        // Send a confirmation email to the new user, and a new user joining email to admin
         res.send(); // 
     } catch {
         res.status(401).send();
