@@ -195,13 +195,12 @@ TO DO
 12. How to create thumbnails of uploaded images
 13. The price and sold/not sold needs to be added to the front of the image
 14. How to show progress bar when images are being uploaded
+15.  Work on onblur and onfocus on firefox
 
 
 DOMAIN-EMAIL
 WHAT ALL NEED TO DO
 1. Set up a domain email instead of gmail from which to send emails from
-2. Integrate sendgrid with domain email
-3. Work on onblur and onfocus on firefox
 4. Create prod and test buckets for all the images
 5. Renew the certbot certificate for both aaliya-gallery and cmeitest.com
 6. Autofocus error in register-artist on 2 fields
@@ -222,5 +221,5 @@ STEPS
 5. Created a new bucket aaliya-gallery-test. Need to have the common folder and he bg file and CORS policy
 6. On test machines change AWSBUKCET = this new bucket
 7. Delete all images from collection and reupload images for cmeitest to test the new bucket is working
-
+8. Corrected a bug in app.js when confirm code was 0
 

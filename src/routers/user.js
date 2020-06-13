@@ -108,7 +108,7 @@ router.post('/users', connection, async(req, res) => {
             from: SENDEMAIL,
             to: user.email,
             subject: "aaliya-gallery login confirmation",
-            html: `Please click on following link complete registration and login<br><br>https://${host}.com:${portHTTPS}?code=${user.hashcode}`
+            html: `Please click on following link or open in a new tab to complete registration<br><br>https://${host}.com:${portHTTPS}?code=${user.hashcode}`
         };
 
         transport.sendMail(mailOptions, function (err, response) {
@@ -475,7 +475,7 @@ router.post('/users/resend/email', async(req, res) => {
                 from: SENDEMAIL,
                 to: user.email,
                 subject: "aaliya-gallery login confirmation",
-                html: `Please click on following link complete registration and login<br><br>https://${host}.com:${portHTTPS}?code=${user.hashcode}`
+                html: `Please click on following link or open in a new tab to complete registration<br><br>https://${host}.com:${portHTTPS}?code=${user.hashcode}`
             };
 
             transport.sendMail(mailOptions, function (err, response) {
