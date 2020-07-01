@@ -14,26 +14,36 @@ const AWSRegion = process.env.AWSREGION || 'us-west-2';
 const AWSBucket = process.env.AWSBUCKET
 
 
-router.post('/images', async(req, res) => {
+router.post('/images/:update', async(req, res) => {
 // Add a new entry in the image collection
 // This is called after an image has been successfully uploaded
-    const image = new Image(req.body);
+    const update = req.params.update;
+
     console.log(req.body);
-    console.log(image);
-    
-    try {
-        await image.save();
-        res.status(201).send();
-    } catch(e) {
-        res.status(404).send(e);
+
+    if (update === 'false') {
+    // Create a new Image object and save it to the collection
+    	const image = new Image(req.body);
+	
+        try {
+        	await image.save();
+        	res.status(201).send();
+    	} catch(e) {
+        	res.status(404).send(e);
+    	}
     }
-    
+    else {
+	   try {
+           await Image.updateOne({name : req.body.name}, {grade: req.body.grade, type: req.body.type, title: req.body.title, year: req.body.year, price: req.body.price, height: req.body.height, width: req.body.width, depth: req.body.depth});
+           res.status(201).send();
+       } catch(e) {
+           res.status(404).send(e);
+       }
+    }    
 });
 
 router.get('/images/homepage', async(req, res) => {
-    // Get list and information of all images that get rendered to the home page 
-
-
+// Get list and information of all images that get rendered to the home page 
     try {
         const images = await Image.find({});
         res.send(images);
@@ -43,22 +53,47 @@ router.get('/images/homepage', async(req, res) => {
     }
 });
 
-router.get('/images/signed-url-put-object', auth, async(req, res) => {
+router.get('/images/byuser', auth, async(req, res) => {
+// Get list and information of all images for a user identified by the cookie passed
+    try {
+        if (req.user && req.user.artist) {
+		const images = await Image.find({artistid:req.user.loginid});
+        	res.send(images);
+	}
+	else {
+		console.log('Either user not found by cookie or user not an artist');
+		res.status(401).send;
+	}
+    } catch (e) {
+        console.log(e);
+        res.status(401).send();
+    }
+});
+
+
+router.get('/images/signed-url-put-object/:update', auth, async(req, res) => {
 // Based on the cookie, get user information
 // From user information get the key of the image S3 storage
 // Based on that information create a pre-signed URL which can be used to upload the image file
+// If it's an update then the imagesUploaded and imageIndex don't get incremented
     
     
     try {
         const user = req.user;
-        const imageUploaded = user.imagesUploaded + 1;
-        const imageIndex = user.imagesIndex + 1;
+        const update = req.params.update;
         const loginid = user.loginid;
         
-        req.user.imagesUploaded = imageUploaded; // Incremented by 1
-        req.user.imagesIndex = imageIndex; // Incremented by 1
-        await req.user.save();
+        req.user.imagesUploaded = user.imagesUploaded;
+        req.user.imagesIndex = user.imagesIndex;
         
+
+        if (update !== 'true') {
+        // Adding a new painting. need to increment the imagesUploaded and imagesIndex
+            req.user.imagesUploaded += 1;
+            req.user.imagesIndex += 1;
+            await req.user.save();
+        }
+         
         
         AWS.config.update({
             accessKeyId: AWSKey, 
@@ -66,16 +101,15 @@ router.get('/images/signed-url-put-object', auth, async(req, res) => {
             region: AWSRegion, // Must be the same as your bucket
             signatureVersion: 'v4',
         });
+        
         const params = {
             Bucket: AWSBucket,
-            Key: loginid + '/' + loginid + '-' + imageIndex + '.jpg',
+            Key: loginid + '/' + loginid + '-' + req.user.imagesIndex + '.jpg',
             Expires: 30 * 60, // Link expires in 30 minutes
             ACL: 'public-read', // Make the file readable to all
             ContentType: 'image-jpeg'
         };
-        //DEBUG
-        //console.log(params);
-        //DEBUG
+
         const options = {
                 signatureVersion: 'v4',
                 region: AWSRegion
@@ -96,15 +130,11 @@ router.get('/images/signed-url-put-object', auth, async(req, res) => {
         
         const data = {
             signedURL,
-            name: loginid + '-' + imageIndex + '.jpg',
+            name: loginid + '-' + req.user.imagesIndex + '.jpg',
             artistid: loginid,
-            backside_id: loginid + '-' + imageIndex + '__back',
-            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + loginid + '-' + imageIndex + '.jpg'            
+            backside_id: loginid + '-' + req.user.imagesIndex + '__back',
+            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + loginid + '-' + req.user.imagesIndex + '.jpg'            
         }
-        //DEBUG
-        //console.log(signedURL);
-        //console.log(data);
-        //DEBUG
         res.status(201).send(data);
         //res.json(signedURL);
     } catch (e) {

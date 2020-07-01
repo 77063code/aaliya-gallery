@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+    <link href="./css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='./css/style-non-forms.css' />
+    <title>Aaliya's Art Gallery</title>
+</head>
+
+<body>
+
+
+    <div class="header-non-forms-page">
+        <a id="register-label" href="index.html">Aaliya's Art Gallery</a>
+    </div>
+
+    <div class="non-forms-page">
+        <div class="non-forms-page-main">
+            <h2>Upload Images </h2>
+            <div class="user-images" id="user-images"></div>
+            <button id="btn-add-new-painting">Add another image</button>
+            <button>Done</button>
+        </div>
+    </div>
+
+
+    <script id="user-image-template" type="text/html">
+        <!-- Even though we are using script tags, this is not an actual JS script, but is more like a defacto technique for including templates in a page. Normally script tags block all processing when rendering a page. But here the template has a type="text/html", which effectively tricks the browser into not processing it like a normal JavaScript block -->
+        <div class="user-image-info">
+            <p style="display:none">{{img_name}}</p>
+            <p style="display:none">{{img_year}}</p>
+            <p style="display:none">{{img_grade}}</p>
+            <p style="display:none">{{img_height}}</p>
+            <p style="display:none">{{img_width}}</p>
+            <p style="display:none">{{img_depth}}</p>
+            <p style="display:none">{{img_type}}</p>
+            <p style="display:none">{{img_price}}</p>
+            <p>{{img_title}}</p>
+            <img class="thumbnail-img" src={{img_src}}>
+            <p style="display:none">{{img_name}}</p>
+            <button class="update-image-info" >Update</button>
+            <button>Delete</button>
+        </div>
+
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/user-upload.js"></script>
+
+</body>
+
+</html>

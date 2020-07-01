@@ -265,6 +265,12 @@ const findAllImages = async () => {
 	console.log(response);
 }
 
+const findAllImagesByID = async (artistid) => {
+// get the list of images for a particular artist
+	const response = await Image.find({artistid: artistid});
+	console.log(response);
+}
+
 const updateImageNames = async (oldImage, newImage) => {
 	const res1 = await Image.updateMany({ name: oldImage }, {name: newImage});
 	console.log(oldImage + ' was modified to  ' + newImage + ' ' + res1.nModified + ' times');
@@ -302,6 +308,7 @@ const deleteAllImageInfo = async() => {
 
 //updateAllImageNames();
 findAllImages();
+//findAllImagesByID('garfield200');
 //saveImageInfo(imageInfo12);
 //saveImageInfo(imageInfo13);
 //saveImageInfo(imageInfo14);

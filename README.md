@@ -223,3 +223,11 @@ STEPS
 7. Delete all images from collection and reupload images for cmeitest to test the new bucket is working
 8. Corrected a bug in app.js when confirm code was 0
 
+UPLOAD-FORMS
+WHAT ALL NEED TO DO
+1. Create a form to upload images
+
+
+STEPS
+1. Create a new html page and based on the user login show all the images the user has already uploaded
+

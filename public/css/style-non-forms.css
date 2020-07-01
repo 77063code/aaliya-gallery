@@ -1,0 +1,161 @@
+/** Login, Create and Message forms **/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    /*font-size: calc(100vh / 40);*/
+    font-size: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+@media only screen and (max-width: 600px) {
+    html {
+        font-size: calc(100vw / 40);
+    }
+    .header-non-forms-page a {
+        text-decoration: none;
+        font-size: 4rem;
+        font-family: 'Yellowtail', cursive;
+        color: black;
+    }
+    .non-forms-page {
+        font-size: calc(100vw / 40);
+    }
+}
+
+@media only screen and (min-width: 601px) {
+    .non-forms-page {
+        font-size: 16px;
+    }
+    .header-non-forms-page a {
+        text-decoration: none;
+        font-size: 5rem;
+        font-family: 'Yellowtail', cursive;
+        color: black;
+    }
+}
+
+.header-non-forms-page {
+    background-color: lightblue;
+    color: black;
+    width: 100%;
+    height: 9%;
+    position: fixed;
+    z-index: 10;
+        display: flex;
+    justify-content: center;
+        align-items: center;
+    margin: auto;
+}
+
+
+.non-forms-page {
+    background: #333744;
+    background-color: mintcream;
+    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    position: absolute;
+    top: 9%;
+    width: 100%;
+}
+
+.non-forms-page-main {
+    border: .1em solid;
+    width: 30em;
+    margin: auto;
+    margin-top: 5em;
+    margin-bottom: 5em;
+    background-color: white;
+}
+
+
+.non-forms-page-main h2 {
+    font-size: 2.1em;
+    margin: 5px auto;
+}
+
+.non-forms-page-main button {
+    width: 90%;
+    margin: 0.3em auto;
+    cursor: pointer;
+    padding: 0.3em;
+    background-color: blue;
+    border: none;
+    border-radius: 1em;
+    color: white;
+    font-size: 1em;
+    -webkit-transition: background .3s ease;
+    transition: background .3s ease;
+}
+
+.forms-page .form-component button:disabled {
+    color: lightgrey;
+    opacity: 0.3;
+}
+
+.user-image-info {
+    display: flex;
+    flex-direction: row;
+	width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 2em;
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.user-image-info > p {
+    margin: 0.3em;
+}
+
+.user-image-info > button {
+    margin: 0.3em;
+    font-size: 1em;
+	
+}
+
+.user-image-info .thumbnail-img {
+    margin: 0.3em;
+    width: 20%;
+    height: 20%;
+}
+
+#btn-close-reset-password-email-form {
+    width: 9em;
+    opacity: 0.5;
+    text-align: right;
+    background-color: transparent;
+    margin-right: -3.2em;
+    margin-top: -1em;
+    outline: none;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fa-times-circle {
+    color: black;
+    cursor: pointer;
+    font-size: 1.6em;
+    margin-right: 1.22em;
+    margin-top: -0.15em;
+    opacity: 0.7;
+}
+
+.fa-times-circle:hover {
+    cursor: pointer
+}
+
+
