@@ -73,6 +73,6 @@ const updateAllImageNames = () => {
 //findImageCounts();
 //updateAllImageNames();
 //findImageCounts();
-//findAllLikes();
+findAllLikes();
 //deleteLikesByLogin('garfield1');
-deleteAllLikes();
+//deleteAllLikes();

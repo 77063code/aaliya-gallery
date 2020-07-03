@@ -1,5 +1,6 @@
 // Elements
 const $updateimageinfo = document.getElementsByClassName('update-image-info'); //Get all the update image buttons
+const $deleteimage = document.getElementsByClassName('delete-image'); //Get all the delete image buttons
 
 const getImageInfo = async() => {
 // Get information on all the images this user has uploaded
@@ -53,6 +54,28 @@ const renderImageUploadPage = async() => {
             
             window.location.href = "upload.html?name=" + name + "&title=" + title + "&year=" + year + "&height=" + height + "&width=" + width + "&depth=" + depth + "&price=" + price;
         })
+    })
+    
+    
+        Array.from($deleteimage).forEach((element) => {
+            element.addEventListener('click', async () => {
+            //Create a click event for each delete button.
+            //Delete image corresponding to that delete button
+            //This will delete all associated likes, image info and the image from the database
+                const name = element.parentElement.children[0].textContent;
+
+                try {
+                    const response = await fetch('/images/delete/' + name);
+                    if (response.status === 200) {
+                        window.location.reload(); //Reload the  page on successful delete. This should remove this image from the list
+                    }
+                    else {
+                        alert('There was an error deleting the image. Please refresh the page and try again')
+                    }
+                } catch (e) {
+                    alert('Error deleting image. Please try again')
+                }
+            })
     })
 }
 

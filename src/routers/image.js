@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Image = require('../models/image');
+const Likes = require('../models/likes');
 const auth = require('../middleware/auth');
 const path = require('path');
 const AWS = require('aws-sdk');
@@ -15,8 +16,8 @@ const AWSBucket = process.env.AWSBUCKET
 
 
 router.post('/images/:update', async(req, res) => {
-// Add a new entry in the image collection
-// This is called after an image has been successfully uploaded
+//Add a new entry in the image collection
+//This is called after an image has been successfully uploaded
     const update = req.params.update;
 
     console.log(req.body);
@@ -41,6 +42,58 @@ router.post('/images/:update', async(req, res) => {
        }
     }    
 });
+
+router.get('/images/delete/:name', auth, async(req,res) => {
+//Delete the image with the name passed on to the function
+//Delete all likes for the image
+//Delete the image information from the db
+//Delete the iamge file from S3
+    
+    const name = req.params.name;
+    const loginid = req.user.loginid;
+    
+    //DEBUG
+    console.log(`Deleting image ${name} for user {loginid}`);
+    //DEBUG
+    
+    try {
+        await Likes.deleteMany({img:name}); //Delete all the likes for this image
+        await Image.deleteMany({name:name}); //Delete the image from the db
+        
+        
+        const params = {
+            Bucket: AWSBucket,
+            Key: `${loginid}/${name}`            
+        }
+        
+        const s3 = new AWS.S3({
+            accessKeyId: AWSKey,
+            secretAccessKey: AWSSecret
+        })
+        
+        s3.deleteObject(params, (error, data) => {
+            if (error) {
+                res.status(500).send(error);
+            }
+            //DEBUG
+            console.log(`${loginid} sucessfully deleted ${name}`)
+            //DEBUG
+            res.status(200).send('Image deleted sucessfully');
+        })
+        
+    } catch(e) {
+        //DEBUG
+        console.log(`${loginid} wasn't able to delete ${name}`);
+        console.log(`and got this error ${e}`);
+        //DEBUG
+        res.status(500).send(e);
+    }
+    
+})
+
+
+
+
 
 router.get('/images/homepage', async(req, res) => {
 // Get list and information of all images that get rendered to the home page 
@@ -71,7 +124,7 @@ router.get('/images/byuser', auth, async(req, res) => {
 });
 
 
-router.get('/images/signed-url-put-object/:update', auth, async(req, res) => {
+router.get('/images/signed-url-put-object/:update/:name', auth, async(req, res) => {
 // Based on the cookie, get user information
 // From user information get the key of the image S3 storage
 // Based on that information create a pre-signed URL which can be used to upload the image file
@@ -81,7 +134,12 @@ router.get('/images/signed-url-put-object/:update', auth, async(req, res) => {
     try {
         const user = req.user;
         const update = req.params.update;
+        const name = req.params.name
         const loginid = user.loginid;
+        let params;
+     
+        console.log(update);
+        console.log(name);
         
         req.user.imagesUploaded = user.imagesUploaded;
         req.user.imagesIndex = user.imagesIndex;
@@ -102,13 +160,28 @@ router.get('/images/signed-url-put-object/:update', auth, async(req, res) => {
             signatureVersion: 'v4',
         });
         
-        const params = {
-            Bucket: AWSBucket,
-            Key: loginid + '/' + loginid + '-' + req.user.imagesIndex + '.jpg',
-            Expires: 30 * 60, // Link expires in 30 minutes
-            ACL: 'public-read', // Make the file readable to all
-            ContentType: 'image-jpeg'
-        };
+        if (update === 'true') {
+            params = {
+                Bucket: AWSBucket,
+                Key: loginid + '/' + name,
+                Expires: 30 * 60, // Link expires in 30 minutes
+                ACL: 'public-read', // Make the file readable to all
+                ContentType: 'image-jpeg'
+            }
+            console.log(params);
+        }
+        else {
+            params = {
+                Bucket: AWSBucket,
+                Key: loginid + '/' + loginid + '-' + req.user.imagesIndex + '.jpg',
+                Expires: 30 * 60, // Link expires in 30 minutes
+                ACL: 'public-read', // Make the file readable to all
+                ContentType: 'image-jpeg'
+            } 
+            console.log(params);
+        }
+            
+        
 
         const options = {
                 signatureVersion: 'v4',

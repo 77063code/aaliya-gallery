@@ -22,8 +22,14 @@ initializeForm();
 
 const getS3Data = async () => {
 // Get signed URL from AWS to be able to upload to S3
+    let response;
     try {
-        let response = await fetch('/images/signed-url-put-object/' + update)
+        if (update) {
+            response = await fetch('/images/signed-url-put-object/' + update + '/' + obj.name);
+        }
+        else {
+            response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined);
+        }
         // Sending the update argument to the route. If update = true, the it doesnt increment imagesUploaded and imagesIndex for this user
         response = await response.json();
         //DEBUG
@@ -104,6 +110,8 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 const data =  await getS3Data(); // get signed URL and other data for the image to be uploaded
                 const file = document.getElementById('file-upload').files[0];
                 const signedURL = data.signedURL;
+                
+                console.log(signedURL);
 
                 const response = await fetch(signedURL, {
                 // upload the file to AWS S3 based on the signed URL
@@ -181,7 +189,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 }
                 else {
                     $formsPriceError.style.display = "block";
-                    $formsPriceError.textContent = "Server not responding. Please try again";
+                    $formsPriceError.textContent = "Server not responding. Please make sure you have permissions to read the image file and try again";
                 }
             }
             else {
@@ -217,7 +225,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
             }
         } catch (e) {
             $formsPriceError.style.display = "block";
-            $formsPriceError.textContent = "Server not responding. Please try again";
+            $formsPriceError.textContent = "Server not responding. Please make sure you have permissions to read the image file and try again";
         }
     }
 })
