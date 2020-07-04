@@ -188,7 +188,6 @@ TO DO
 5.Problem with email sent through sendgrid
 6.Need to log all the actions so can be debugeed i.e when the emails are sent
 7. Need to create a mail server
-8. Need to create a page to be able to reset the password
 9. The onblur still doesnt work on firefox. That needs to be fixed
 10. The error display on register pages is still a mess. That also needs to be fixed.
 11. Maybe have to change the formatting of the old images
@@ -196,6 +195,7 @@ TO DO
 13. The price and sold/not sold needs to be added to the front of the image
 14. How to show progress bar when images are being uploaded
 15.  Work on onblur and onfocus on firefox
+16. The background image is different on test and prod
 
 
 DOMAIN-EMAIL

@@ -17,12 +17,14 @@
         <a id="register-label" href="index.html">Aaliya's Art Gallery</a>
     </div>
 
-    <div class="non-forms-page">
+    <div class="wrapper">
         <div class="non-forms-page-main">
-            <h2>Upload Images </h2>
+            <h2>Upload/Update Images & Information </h2>
             <div class="user-images" id="user-images"></div>
-            <button id="btn-add-new-painting">Add another image</button>
-            <button>Done</button>
+            <div class="btn-main-page">
+                <button id="btn-add-new-painting">Add another painting</button>
+                <button id="btn-done">Done</button>
+            </div>
         </div>
     </div>
 
@@ -38,11 +40,12 @@
             <p style="display:none">{{img_depth}}</p>
             <p style="display:none">{{img_type}}</p>
             <p style="display:none">{{img_price}}</p>
-            <p>{{img_title}}</p>
+            <p class="image-title">{{img_title}}</p>
             <img class="thumbnail-img" src={{img_src}}>
-            <p style="display:none">{{img_name}}</p>
-            <button class="update-image-info" >Update</button>
-            <button class="delete-image">Delete</button>
+            <div class="btn-list">
+                <button class="update-image-info" >Update</button>
+                <button class="delete-image">Delete</button>
+            </div>
         </div>
 
     </script>

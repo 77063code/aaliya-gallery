@@ -18,6 +18,8 @@ const getImageInfo = async() => {
 //getImageInfo();
 
 const renderImageUploadPage = async() => {
+    
+    
     const userImages = document.getElementById('user-images');
     const images = await getImageInfo();
     let obj = {};
@@ -44,13 +46,15 @@ const renderImageUploadPage = async() => {
 
     Array.from($updateimageinfo).forEach((element) => {
         element.addEventListener('click',() => {
-            const name = element.parentElement.children[0].textContent;
-            const title = element.parentElement.children[8].textContent;
-            const year = element.parentElement.children[1].textContent;
-            const height = element.parentElement.children[3].textContent;
-            const width = element.parentElement.children[4].textContent;
-            const depth = element.parentElement.children[5].textContent;
-            const price = element.parentElement.children[7].textContent;
+        //Create a click event for each update button.
+        //Redirect to update.html passing the information about the image so the form can be populated with existing values
+            const name = element.parentElement.parentElement.children[0].textContent;
+            const title = element.parentElement.parentElement.children[8].textContent;
+            const year = element.parentElement.parentElement.children[1].textContent;
+            const height = element.parentElement.parentElement.children[3].textContent;
+            const width = element.parentElement.parentElement.children[4].textContent;
+            const depth = element.parentElement.parentElement.children[5].textContent;
+            const price = element.parentElement.parentElement.children[7].textContent;            
             
             window.location.href = "upload.html?name=" + name + "&title=" + title + "&year=" + year + "&height=" + height + "&width=" + width + "&depth=" + depth + "&price=" + price;
         })
@@ -62,7 +66,7 @@ const renderImageUploadPage = async() => {
             //Create a click event for each delete button.
             //Delete image corresponding to that delete button
             //This will delete all associated likes, image info and the image from the database
-                const name = element.parentElement.children[0].textContent;
+                const name = element.parentElement.parentElement.children[0].textContent;
 
                 try {
                     const response = await fetch('/images/delete/' + name);
@@ -81,6 +85,10 @@ const renderImageUploadPage = async() => {
 
 document.getElementById('btn-add-new-painting').addEventListener('click', () => {
     window.location.href = "upload.html";
+})
+
+document.getElementById('btn-done').addEventListener('click', () => {
+    window.location.href = "/";
 })
 
 renderImageUploadPage();

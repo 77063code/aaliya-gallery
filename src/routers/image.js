@@ -53,7 +53,7 @@ router.get('/images/delete/:name', auth, async(req,res) => {
     const loginid = req.user.loginid;
     
     //DEBUG
-    console.log(`Deleting image ${name} for user {loginid}`);
+    console.log(`Deleting image ${name} for user ${loginid}`);
     //DEBUG
     
     try {

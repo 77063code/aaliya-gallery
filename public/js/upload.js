@@ -2,13 +2,14 @@
 $formsPriceError = document.getElementById('forms-error-price-upload');
 
 const obj = Qs.parse(location.search, { ignoreQueryPrefix: true });
-let update = false //By default update is false and adding a new painting is true
+let update = false //By default updating an existing painting is false and adding a new painting is true
 
 const initializeForm = () => {
 // Initialize the forms based on any parametsrs passed
     if (Object.keys(obj).length > 0) {
     // If arguments were passed when calling this page, then an existing painting's information is being updated
         update = true; //Updating information about an existing painting instead of adding a new one
+        document.getElementById('forms-error-file-upload').textContent = "Don't select this if not updating the image of the painting"                                                                       
         document.getElementById('title-upload').value = obj.title;
         document.getElementById('year-upload').value = obj.year;
         document.getElementById('height-upload').value = obj.height;
@@ -145,6 +146,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             $formsPriceError.style.display = "block";
                             $formsPriceError.textContent = "Information successfully updated";
                             $formsPriceError.style.color = "green";
+                            setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
                         } catch (e) {
                             $formsPriceError.style.display = "block";
                             $formsPriceError.textContent = "Information could not be updated. Please try again";
@@ -181,6 +183,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             $formsPriceError.style.display = "block";
                             $formsPriceError.textContent = "Image Successfully uploaded";
                             $formsPriceError.style.color = "green";
+                            setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
                         } catch (e) {
                             $formsPriceError.style.display = "block";
                             $formsPriceError.textContent = "Image could not be uploaded. Please reselect the file and try again";
@@ -218,6 +221,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                         $formsPriceError.style.display = "block";
                         $formsPriceError.textContent = "Information successfully updated";
                         $formsPriceError.style.color = "green";
+                        setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
                     } catch (e) {
                         $formsPriceError.style.display = "block";
                         $formsPriceError.textContent = "Information could not be updated. Please try again";
