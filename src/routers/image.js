@@ -16,11 +16,14 @@ const AWSBucket = process.env.AWSBUCKET
 
 
 router.post('/images/:update', async(req, res) => {
-//Add a new entry in the image collection
+//Add a new entry in the image collection or update information of an existing painting
 //This is called after an image has been successfully uploaded
+    
     const update = req.params.update;
 
+    //DEBUG
     console.log(req.body);
+    //DEBUG
 
     if (update === 'false') {
     // Create a new Image object and save it to the collection
@@ -35,7 +38,7 @@ router.post('/images/:update', async(req, res) => {
     }
     else {
 	   try {
-           await Image.updateOne({name : req.body.name}, {grade: req.body.grade, type: req.body.type, title: req.body.title, year: req.body.year, price: req.body.price, height: req.body.height, width: req.body.width, depth: req.body.depth});
+           await Image.updateOne({name : req.body.name}, {s3location: req.body.s3location, grade: req.body.grade, type: req.body.type, title: req.body.title, year: req.body.year, price: req.body.price, height: req.body.height, width: req.body.width, depth: req.body.depth, version:req.body.version});
            res.status(201).send();
        } catch(e) {
            res.status(404).send(e);
@@ -124,22 +127,25 @@ router.get('/images/byuser', auth, async(req, res) => {
 });
 
 
-router.get('/images/signed-url-put-object/:update/:name', auth, async(req, res) => {
-// Based on the cookie, get user information
-// From user information get the key of the image S3 storage
-// Based on that information create a pre-signed URL which can be used to upload the image file
-// If it's an update then the imagesUploaded and imageIndex don't get incremented
+router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(req, res) => {
+//Based on the cookie, get user information
+//From user information get the key of the image S3 storage
+//Based on that information create a pre-signed URL which can be used to upload the image file
+//If it's an update then the name and current version are passed to the route and the imagesUploaded and imageIndex not incremented
     
     
     try {
-        const user = req.user;
         const update = req.params.update;
-        const name = req.params.name
-        const loginid = user.loginid;
+        const name = req.params.name;
+        let version = req.params.version;
+        const user = req.user;
+        const loginid = user.loginid
         let params;
      
-        console.log(update);
-        console.log(name);
+         //DEBUG
+        //console.log(update);
+        //console.log(name);
+        //DEBUG
         
         req.user.imagesUploaded = user.imagesUploaded;
         req.user.imagesIndex = user.imagesIndex;
@@ -149,10 +155,13 @@ router.get('/images/signed-url-put-object/:update/:name', auth, async(req, res) 
         // Adding a new painting. need to increment the imagesUploaded and imagesIndex
             req.user.imagesUploaded += 1;
             req.user.imagesIndex += 1;
+            version = 1;
             await req.user.save();
         }
+        else {
+            version = Number(version) + 1;
+        }
          
-        
         AWS.config.update({
             accessKeyId: AWSKey, 
             secretAccessKey: AWSSecret, 
@@ -163,26 +172,28 @@ router.get('/images/signed-url-put-object/:update/:name', auth, async(req, res) 
         if (update === 'true') {
             params = {
                 Bucket: AWSBucket,
-                Key: loginid + '/' + name,
+                Key: loginid + '/' + name + '-' + version + '.jpg',
                 Expires: 30 * 60, // Link expires in 30 minutes
                 ACL: 'public-read', // Make the file readable to all
                 ContentType: 'image-jpeg'
             }
+            //DEBUG
             console.log(params);
+            //DEBUG
         }
         else {
             params = {
                 Bucket: AWSBucket,
-                Key: loginid + '/' + loginid + '-' + req.user.imagesIndex + '.jpg',
+                Key: loginid + '/' + loginid + '-' + req.user.imagesIndex + '-' + version + '.jpg',
                 Expires: 30 * 60, // Link expires in 30 minutes
                 ACL: 'public-read', // Make the file readable to all
                 ContentType: 'image-jpeg'
-            } 
+            }
+            //DEBUG
             console.log(params);
-        }
-            
+            //DEBUG
+        }        
         
-
         const options = {
                 signatureVersion: 'v4',
                 region: AWSRegion
@@ -203,13 +214,12 @@ router.get('/images/signed-url-put-object/:update/:name', auth, async(req, res) 
         
         const data = {
             signedURL,
-            name: loginid + '-' + req.user.imagesIndex + '.jpg',
+            name: loginid + '-' + req.user.imagesIndex,
             artistid: loginid,
             backside_id: loginid + '-' + req.user.imagesIndex + '__back',
-            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + loginid + '-' + req.user.imagesIndex + '.jpg'            
+            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + loginid + '-' + req.user.imagesIndex + '-' + version + '.jpg'            
         }
         res.status(201).send(data);
-        //res.json(signedURL);
     } catch (e) {
         console.log(e);
     }

@@ -230,4 +230,5 @@ WHAT ALL NEED TO DO
 
 STEPS
 1. Create a new html page and based on the user login show all the images the user has already uploaded
+2. Added 2 new fields to the image model - version number of if it's an original piece or not
 

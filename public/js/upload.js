@@ -9,9 +9,10 @@ const initializeForm = () => {
     if (Object.keys(obj).length > 0) {
     // If arguments were passed when calling this page, then an existing painting's information is being updated
         update = true; //Updating information about an existing painting instead of adding a new one
-        document.getElementById('forms-error-file-upload').textContent = "Don't select this if not updating the image of the painting"                                                                       
+        document.getElementById('forms-error-file-upload').textContent = "Please leave this blank if not updating the image of the painting"                                                                       
         document.getElementById('title-upload').value = obj.title;
         document.getElementById('year-upload').value = obj.year;
+        document.getElementById('grade-upload').value = obj.grade;
         document.getElementById('height-upload').value = obj.height;
         document.getElementById('width-upload').value = obj.width;
         document.getElementById('depth-upload').value = obj.depth;
@@ -26,10 +27,10 @@ const getS3Data = async () => {
     let response;
     try {
         if (update) {
-            response = await fetch('/images/signed-url-put-object/' + update + '/' + obj.name);
+            response = await fetch('/images/signed-url-put-object/' + update + '/' + obj.name + '/' + obj.version);
         }
         else {
-            response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined);
+            response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined + '/' + 1);
         }
         // Sending the update argument to the route. If update = true, the it doesnt increment imagesUploaded and imagesIndex for this user
         response = await response.json();
@@ -126,6 +127,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                         try {
                             const imageData = {
                                 name: obj.name,
+                                s3location: data.s3location,
                                 grade: document.getElementById('grade-upload').value,
                                 type: document.getElementById('type-upload').value,
                                 title,
@@ -133,9 +135,10 @@ document.getElementById('file').addEventListener('click', async (event) => {
                                 price,
                                 height,
                                 width,
-                                depth                        
+                                depth,
+                                version: Number(obj.version) + 1
                             }
-                            const response = await fetch('/images/update', {
+                            const response = await fetch('/images/' + update, {
                                 method: 'POST',
                                 body: JSON.stringify(imageData),
                                 headers: new Headers({
@@ -169,7 +172,8 @@ document.getElementById('file').addEventListener('click', async (event) => {
                                 price,
                                 height,
                                 width,
-                                depth                        
+                                depth,
+                                version: 1
                             }
                             const response = await fetch('/images/' + update, {
                             // The true argument is to tell it's only an update and not an addition of a new painting
@@ -196,9 +200,9 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 }
             }
             else {
-            // This is an update of an existing painting
+            // This is an update of an existing painting without any update to the painting image
                 try {
-                    // Update record in the image collection
+                // Update record in the image collection
                         const imageData = {
                             name: obj.name,
                             grade: document.getElementById('grade-upload').value,

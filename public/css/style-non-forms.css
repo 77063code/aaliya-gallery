@@ -79,6 +79,11 @@ body {
     margin: 5px auto;
 }
 
+.non-forms-page-main h3 {
+    font-size: 1.1em;
+    margin: 5px auto;
+}
+
 .btn-main-page {
     display: flex;
     flex-direction: row;
