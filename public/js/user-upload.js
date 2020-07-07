@@ -42,6 +42,7 @@ const renderImageUploadPage = async() => {
             img_width: image.width,
             img_depth: image.depth,
             img_type: image.type,
+            img_orientation: image.orientation,
             img_price: image.price,
             img_version: image.version
         })
@@ -58,17 +59,18 @@ const renderImageUploadPage = async() => {
         //Create a click event for each update button.
         //Redirect to update.html passing the information about the image so the form can be populated with existing values
             const name = element.parentElement.parentElement.children[0].textContent;
-            const title = element.parentElement.parentElement.children[9].textContent;
             const year = element.parentElement.parentElement.children[1].textContent;
             const grade = element.parentElement.parentElement.children[2].textContent;
             const height = element.parentElement.parentElement.children[3].textContent;
             const width = element.parentElement.parentElement.children[4].textContent;
             const depth = element.parentElement.parentElement.children[5].textContent;
             const type = element.parentElement.parentElement.children[6].textContent;
-            const price = element.parentElement.parentElement.children[7].textContent;
-            const version = element.parentElement.parentElement.children[8].textContent;
+            const orientation = element.parentElement.parentElement.children[7].textContent;
+            const price = element.parentElement.parentElement.children[8].textContent;
+            const version = element.parentElement.parentElement.children[9].textContent;
+            const title = element.parentElement.parentElement.children[10].textContent;
             
-            window.location.href = "upload.html?name=" + name + "&title=" + title + "&year=" + year + "&grade=" + grade + "&height=" + height + "&width=" + width + "&depth=" + depth + "&type=" + type + "&price=" + price + "&version=" + version;
+            window.location.href = "upload.html?name=" + name + "&title=" + title + "&year=" + year + "&grade=" + grade + "&height=" + height + "&width=" + width + "&depth=" + depth + "&type=" + type + "&orientation=" + orientation + "&price=" + price + "&version=" + version;
         })
     })
     

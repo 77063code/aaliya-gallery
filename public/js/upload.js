@@ -2,6 +2,9 @@
 $formsPriceError = document.getElementById('forms-error-price-upload');
 
 const obj = Qs.parse(location.search, { ignoreQueryPrefix: true });
+//DEBUG
+console.log(obj);
+//DEBUG
 let update = false //By default updating an existing painting is false and adding a new painting is true
 
 const initializeForm = () => {
@@ -16,6 +19,7 @@ const initializeForm = () => {
         document.getElementById('height-upload').value = obj.height;
         document.getElementById('width-upload').value = obj.width;
         document.getElementById('depth-upload').value = obj.depth;
+        document.getElementById('orientation-upload').value = obj.orientation;
         document.getElementById('price-upload').value = obj.price;
     }
 }
@@ -30,7 +34,7 @@ const getS3Data = async () => {
             response = await fetch('/images/signed-url-put-object/' + update + '/' + obj.name + '/' + obj.version);
         }
         else {
-            response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined + '/' + 1);
+            response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined + '/' + 1); //This is a new painting. The name will be calculated in the route and version is 1
         }
         // Sending the update argument to the route. If update = true, the it doesnt increment imagesUploaded and imagesIndex for this user
         response = await response.json();
@@ -113,13 +117,19 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 const file = document.getElementById('file-upload').files[0];
                 const signedURL = data.signedURL;
                 
+                //DEBUG
                 console.log(signedURL);
+                //DEBUG
 
                 const response = await fetch(signedURL, {
                 // upload the file to AWS S3 based on the signed URL
                     method: 'PUT',
                     body: file
                 })
+                
+                //DEBUG
+                console.log(response);
+                //DEBUG
 
                 if (response.status === 200) { 
                     if (update) {
@@ -128,15 +138,17 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             const imageData = {
                                 name: obj.name,
                                 s3location: data.s3location,
-                                grade: document.getElementById('grade-upload').value,
-                                type: document.getElementById('type-upload').value,
                                 title,
                                 year,
-                                price,
+                                grade: document.getElementById('grade-upload').value,
                                 height,
                                 width,
                                 depth,
-                                version: Number(obj.version) + 1
+                                type: document.getElementById('type-upload').value,
+                                orientation: document.getElementById('orientation-upload').value,
+                                price,
+                                version: Number(obj.version) + 1,
+                                newfile: true //This is a new file for an existing painting
                             }
                             const response = await fetch('/images/' + update, {
                                 method: 'POST',
@@ -145,14 +157,20 @@ document.getElementById('file').addEventListener('click', async (event) => {
                                     'Content-Type': 'application/json'
                                 })
                             })
-
-                            $formsPriceError.style.display = "block";
-                            $formsPriceError.textContent = "Information successfully updated";
-                            $formsPriceError.style.color = "green";
-                            setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
+                            
+                            if (response.status === 200) {
+                                $formsPriceError.style.display = "block";
+                                $formsPriceError.textContent = "Information successfully updated";
+                                $formsPriceError.style.color = "green";
+                                setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
+                            }
+                            else {
+                                $formsPriceError.style.display = "block";
+                                $formsPriceError.textContent = "New image could not be loaded. Please try again";
+                            }
                         } catch (e) {
                             $formsPriceError.style.display = "block";
-                            $formsPriceError.textContent = "Information could not be updated. Please try again";
+                            $formsPriceError.textContent = "New image could not be loaded. Please try again";
                         }
                     }
                     else {
@@ -165,14 +183,15 @@ document.getElementById('file').addEventListener('click', async (event) => {
                                 s3location: data.s3location,
                                 backside_id: data.backside_id,
                                 sold: 'N',
-                                grade: document.getElementById('grade-upload').value,
-                                type: document.getElementById('type-upload').value,
                                 title,
                                 year,
+                                grade: document.getElementById('grade-upload').value,
                                 price,
                                 height,
                                 width,
                                 depth,
+                                type: document.getElementById('type-upload').value,
+                                orientation: document.getElementById('orientation-upload').value,
                                 version: 1
                             }
                             const response = await fetch('/images/' + update, {
@@ -183,14 +202,20 @@ document.getElementById('file').addEventListener('click', async (event) => {
                                     'Content-Type': 'application/json'
                                 })
                             })
-
-                            $formsPriceError.style.display = "block";
-                            $formsPriceError.textContent = "Image Successfully uploaded";
-                            $formsPriceError.style.color = "green";
-                            setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
+                            
+                            if (response.status === 200) {
+                                $formsPriceError.style.display = "block";
+                                $formsPriceError.textContent = "Image Successfully uploaded";
+                                $formsPriceError.style.color = "green";
+                                setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
+                            }
+                            else {
+                                $formsPriceError.style.display = "block";
+                                $formsPriceError.textContent = "Image could not be successfully uploaded. Please reselect the file and try again";
+                            }
                         } catch (e) {
                             $formsPriceError.style.display = "block";
-                            $formsPriceError.textContent = "Image could not be uploaded. Please reselect the file and try again";
+                            $formsPriceError.textContent = "Image could not be successfully uploaded. Please reselect the file and try again";
                         }
                     } 
                 }
@@ -205,14 +230,15 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 // Update record in the image collection
                         const imageData = {
                             name: obj.name,
-                            grade: document.getElementById('grade-upload').value,
-                            type: document.getElementById('type-upload').value,
                             title,
+                            grade: document.getElementById('grade-upload').value,
                             year,
-                            price,
                             height,
                             width,
-                            depth                        
+                            depth,
+                            type: document.getElementById('type-upload').value,
+                            orientation: document.getElementById('orientation-upload').value,
+                            price
                         }
                         const response = await fetch('/images/' + update, {
                             method: 'POST',
@@ -222,13 +248,19 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             })
                         })
 
-                        $formsPriceError.style.display = "block";
-                        $formsPriceError.textContent = "Information successfully updated";
-                        $formsPriceError.style.color = "green";
-                        setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
+                        if (response.status === 200) {
+                            $formsPriceError.style.display = "block";
+                            $formsPriceError.textContent = "Information successfully updated";
+                            $formsPriceError.style.color = "green";
+                            setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
+                        }
+                        else {
+                            $formsPriceError.style.display = "block";
+                            $formsPriceError.textContent = "Information could not be successfully updated. Please try again";
+                        }
                     } catch (e) {
                         $formsPriceError.style.display = "block";
-                        $formsPriceError.textContent = "Information could not be updated. Please try again";
+                        $formsPriceError.textContent = "Information could not be successfully updated. Please try again";
                     }
             }
         } catch (e) {

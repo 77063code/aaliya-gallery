@@ -28,20 +28,37 @@ router.post('/images/:update', async(req, res) => {
     if (update === 'false') {
     // Create a new Image object and save it to the collection
     	const image = new Image(req.body);
+        
+        //DEBUG
+        console.log(image);
+        //DEBUG
 	
         try {
         	await image.save();
-        	res.status(201).send();
+            //DEBUG
+            console.log('Image successfully saved');
+            //DEBUG
+        	res.status(200).send();
     	} catch(e) {
-        	res.status(404).send(e);
+            console.log(e);
+        	res.status(500).send(e);
     	}
     }
     else {
 	   try {
-           await Image.updateOne({name : req.body.name}, {s3location: req.body.s3location, grade: req.body.grade, type: req.body.type, title: req.body.title, year: req.body.year, price: req.body.price, height: req.body.height, width: req.body.width, depth: req.body.depth, version:req.body.version});
-           res.status(201).send();
+           if (req.body.newfile) {
+           //There is a new image for an existing painting
+               await Image.updateOne({name : req.body.name}, {s3location: req.body.s3location, title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation, version:req.body.version});
+               
+           } else {
+               await Image.updateOne({name : req.body.name}, {title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation});
+           }
+           res.status(200).send();
        } catch(e) {
-           res.status(404).send(e);
+           //DEBUG
+           console.log(e);
+           //DEBUG
+           res.status(500).send(e);
        }
     }    
 });
@@ -111,10 +128,14 @@ router.get('/images/homepage', async(req, res) => {
 
 router.get('/images/byuser', auth, async(req, res) => {
 // Get list and information of all images for a user identified by the cookie passed
+    //DEBUG
+    //console.log(req.user);
+    //DEBUG
     try {
         if (req.user && req.user.artist) {
-		const images = await Image.find({artistid:req.user.loginid});
-        	res.send(images);
+        //Only fetch images if user is an artist
+            const images = await Image.find({artistid:req.user.loginid});
+            res.send(images);
 	}
 	else {
 		console.log('Either user not found by cookie or user not an artist');
@@ -136,15 +157,15 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
     
     try {
         const update = req.params.update;
-        const name = req.params.name;
+        let name = req.params.name;
         let version = req.params.version;
         const user = req.user;
         const loginid = user.loginid
-        let params;
      
-         //DEBUG
-        //console.log(update);
-        //console.log(name);
+        //DEBUG
+        console.log(update);
+        console.log(name);
+        console.log(version);
         //DEBUG
         
         req.user.imagesUploaded = user.imagesUploaded;
@@ -152,14 +173,15 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
         
 
         if (update !== 'true') {
-        // Adding a new painting. need to increment the imagesUploaded and imagesIndex
+        //Adding a new painting. need to increment the imagesUploaded and imagesIndex
             req.user.imagesUploaded += 1;
             req.user.imagesIndex += 1;
-            version = 1;
+            version = 1; //This is a new painting and the first version
             await req.user.save();
+            name = loginid + '-' + req.user.imagesIndex 
         }
         else {
-            version = Number(version) + 1;
+            version = Number(version) + 1; //A new image is being added for an existing painting
         }
          
         AWS.config.update({
@@ -169,30 +191,18 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
             signatureVersion: 'v4',
         });
         
-        if (update === 'true') {
-            params = {
+        const params = {
                 Bucket: AWSBucket,
                 Key: loginid + '/' + name + '-' + version + '.jpg',
                 Expires: 30 * 60, // Link expires in 30 minutes
                 ACL: 'public-read', // Make the file readable to all
                 ContentType: 'image-jpeg'
-            }
-            //DEBUG
-            console.log(params);
-            //DEBUG
         }
-        else {
-            params = {
-                Bucket: AWSBucket,
-                Key: loginid + '/' + loginid + '-' + req.user.imagesIndex + '-' + version + '.jpg',
-                Expires: 30 * 60, // Link expires in 30 minutes
-                ACL: 'public-read', // Make the file readable to all
-                ContentType: 'image-jpeg'
-            }
-            //DEBUG
-            console.log(params);
-            //DEBUG
-        }        
+        
+        //DEBUG
+        console.log(params);
+        //DEBUG
+       
         
         const options = {
                 signatureVersion: 'v4',
@@ -214,10 +224,10 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
         
         const data = {
             signedURL,
-            name: loginid + '-' + req.user.imagesIndex,
+            name,
             artistid: loginid,
             backside_id: loginid + '-' + req.user.imagesIndex + '__back',
-            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + loginid + '-' + req.user.imagesIndex + '-' + version + '.jpg'            
+            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + name + '-' + version + '.jpg'            
         }
         res.status(201).send(data);
     } catch (e) {

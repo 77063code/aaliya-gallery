@@ -54,18 +54,12 @@ const imageSchema = new mongoose.Schema({
     orientation: {
         type: String,
         required: false,
-        trim: true,
-        lowercase: true
+        trim: true
     },
     grade: {
         type: String,
         required: false,
         trim: true
-    },
-    sold: {
-        type: String,
-        required: false,
-        lowercase: true
     },
     backside_id: {
         type: String,
@@ -86,6 +80,11 @@ const imageSchema = new mongoose.Schema({
     //User entered field to tag a painting as original or not
         type: Boolean,
         required: false
+    },
+    sold: {
+        type: String,
+        required: false,
+        default: 'N'
     }
 
 });

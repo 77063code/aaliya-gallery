@@ -248,9 +248,27 @@ const imageInfo14 = {
 }
 
 
+const testImageInfo = { 
+  name: 'garfield200-50',
+  artistid: 'garfield200',
+  s3location:
+   'https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/garfield200/garfield200-50-1.jpg',
+  backside_id: 'garfield200-50__back',
+  title: 'test',
+  year: 2020,
+  grade: 'I',
+  price: 4567,
+  height: 10,
+  width: 10,
+  depth: 2,
+  type: 'Acrylic Painting',
+  orientation: 'Landscape',
+  version: 1 }
+
 
 const saveImageInfo = async (imageInfo) => {
     const image = new Image(imageInfo);
+    console.log(image);
     try {
         await image.save();
         console.log(`${image.name} save successfully`)
@@ -303,13 +321,20 @@ const deleteAllImageInfo = async() => {
 	console.log(response);
 }
 
+const dropImageCollection = async () => {
+    const response = await mongoose.connection.db.collections() 
+          //await mongoose.db.dropCollection('Image');
+    console.log(response);
+}
 
 //updateFieldName();
 
 //updateAllImageNames();
-findAllImages();
+//findAllImages();
 //findAllImagesByID('garfield200');
 //saveImageInfo(imageInfo12);
 //saveImageInfo(imageInfo13);
 //saveImageInfo(imageInfo14);
+//saveImageInfo(testImageInfo);
 //deleteAllImageInfo();
+dropImageCollection();
