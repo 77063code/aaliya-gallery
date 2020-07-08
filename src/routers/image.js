@@ -77,6 +77,10 @@ router.get('/images/delete/:name', auth, async(req,res) => {
     //DEBUG
     
     try {
+        console.log('Number of images that have been uploaded before delete ' + req.user.imagesUploaded);
+        req.user.imagesUploaded -= 1; //Decrease the number of artwork uploaed by this user by one
+        console.log('Number of images that have been uploaded after delete ' + req.user.imagesUploaded);
+        await req.user.save();
         await Likes.deleteMany({img:name}); //Delete all the likes for this image
         await Image.deleteMany({name:name}); //Delete the image from the db
         

@@ -8,10 +8,12 @@ $messageContent = document.getElementById('content-message');
 const initializeForm = async () => {
 // If user is logged in, then add that information to form so the user doest have to type it again
     const user = await getUserInfo();
-    console.log(user);
-    if (user && user.user) {
-        $messageName.value = user.user.firstname + ' ' + user.user.lastname;
-        $messageEmail.value = user.user.email
+    //DEBUG
+    //console.log(user);
+    //DEBUG
+    if (user) {
+        $messageName.value = user.firstname + ' ' + user.lastname;
+        $messageEmail.value = user.email
         $messageContent.focus();
     }
     else {

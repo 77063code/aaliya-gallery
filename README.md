@@ -196,6 +196,8 @@ TO DO
 14. How to show progress bar when images are being uploaded
 15.  Work on onblur and onfocus on firefox
 16. The background image is different on test and prod
+17. Hoe to order images being displayed on the main screen
+18. Right now for every new user the imagesAllowed defaults to 5. This needs to change to only for onyl artists
 
 
 DOMAIN-EMAIL
@@ -226,6 +228,8 @@ STEPS
 UPLOAD-FORMS
 WHAT ALL NEED TO DO
 1. Create a form to upload images
+2. Need to have a character limit on the title of the image
+3. When on the user-upload.html page have to order images by the time of upload. Might have to change the image collection
 
 
 STEPS

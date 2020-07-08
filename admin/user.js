@@ -15,7 +15,7 @@ const findCountByImage = async (imgName) => {
 
 const findAllUsers = async () => {
 // get the name and email of all users
-	const response = await Users.find({},'email loginid imagesUploaded imagesIndex hashcode artist firstname lastname');
+	const response = await Users.find({},'email loginid imagesAllowed imagesUploaded imagesIndex hashcode artist firstname lastname');
 	console.log(response);
 }
 
@@ -31,6 +31,12 @@ const updateHashCode = async (email_id) => {
     console.log(response);
 }
 
+const updateImagesUploaded = async (email_id) => {
+//Update images uploaded for a user to zero
+    const response = await Users.updateOne({ email : email_id}, { imagesUploaded: 0 })
+    console.log(response);
+}
+
 const updateField = async (user,value) => {
 //Update field of a user to a passed value
     const response = await Users.updateOne({ email : user}, { artist: value })
@@ -43,6 +49,7 @@ const deleteUser = async (email_id) => {
 }
 
 findAllUsers();
+//updateImagesUploaded('sgupt9999@gmail.com');
 //findLikesByUser('garfield1');
 //updateHashCode('sgupt9999@gmail.com');
 //deleteUser('sgupt9999@gmail.com');

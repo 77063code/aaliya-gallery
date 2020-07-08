@@ -2,17 +2,40 @@
 const $updateimageinfo = document.getElementsByClassName('update-image-info'); //Get all the update image buttons
 const $deleteimage = document.getElementsByClassName('delete-image'); //Get all the delete image buttons
 
+const checkUserEligibility = async () => {
+//Check if the user is an artist. If not redirect to home page
+    const user = await getUserInfo();
+    
+    if (!user || !user.artist) {
+        window.location.href = '/';
+    }
+    else {
+        //DEBUG
+        //alert(user.imagesAllowed);
+        //DEBUG
+        if (user.imagesAllowed <= user.imagesUploaded) {
+        //User has reached the maximum number of artwork images that can be uploaed. Disbale the add button
+            document.getElementById('btn-add-new-painting').disabled = true
+        }
+    }
+}
+
+checkUserEligibility();
+
+
 const getImageInfo = async() => {
 // Get information on all the images this user has uploaded
     try {
         let response = await fetch('/images/byuser');
         response = await response.json();
         //DEBUG
-        console.log(response);
+        //console.log(response);
         //DEBUG
         return response;
     } catch (e) {
-        console.log(e);
+        //DEBUG
+        //console.log(e);
+        //DEBUG
         return undefined;
     }
 }
@@ -47,7 +70,7 @@ const renderImageUploadPage = async() => {
             img_version: image.version
         })
         //DEBUG
-        console.log(html);
+        //console.log(html);
         //DEBUG
         obj[image.name] = image;
         userImages.insertAdjacentHTML('beforeEnd',html);    

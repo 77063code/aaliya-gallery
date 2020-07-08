@@ -330,11 +330,11 @@ const dropImageCollection = async () => {
 //updateFieldName();
 
 //updateAllImageNames();
-//findAllImages();
+findAllImages();
 //findAllImagesByID('garfield200');
 //saveImageInfo(imageInfo12);
 //saveImageInfo(imageInfo13);
 //saveImageInfo(imageInfo14);
 //saveImageInfo(testImageInfo);
 //deleteAllImageInfo();
-dropImageCollection();
+//dropImageCollection();

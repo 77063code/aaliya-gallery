@@ -226,8 +226,10 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
                 body: new URLSearchParams(new FormData(event.target)) // event.target is the form
 
             })
-            console.log(response);
-            console.log(response.status);
+            //DEBUG
+            //console.log(response);
+            //console.log(response.status);
+            //DEBUG
             if (response.status === 352) {
                 document.getElementById('forms-error-email-artist').textContent = 'This email is already being used. Please enter a different email';
                 document.getElementById('email-artist').focus();
