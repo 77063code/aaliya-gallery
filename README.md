@@ -198,6 +198,7 @@ TO DO
 16. The background image is different on test and prod
 17. Hoe to order images being displayed on the main screen
 18. Right now for every new user the imagesAllowed defaults to 5. This needs to change to only for onyl artists
+19. How does token array get cleaned up in user record
 
 
 DOMAIN-EMAIL
@@ -230,6 +231,8 @@ WHAT ALL NEED TO DO
 1. Create a form to upload images
 2. Need to have a character limit on the title of the image
 3. When on the user-upload.html page have to order images by the time of upload. Might have to change the image collection
+4. To simulate failure of uploading an image change the permission of the file to non-read
+5. When deleting an image how to delete all versions of it
 
 
 STEPS

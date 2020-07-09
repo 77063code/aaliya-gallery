@@ -37,6 +37,12 @@ const updateImagesUploaded = async (email_id) => {
     console.log(response);
 }
 
+const updateImagesIndex = async (email_id) => {
+//Update images uploaded for a user to zero
+    const response = await Users.updateOne({ email : email_id}, { imagesIndex: 0 })
+    console.log(response);
+}
+
 const updateField = async (user,value) => {
 //Update field of a user to a passed value
     const response = await Users.updateOne({ email : user}, { artist: value })
@@ -54,4 +60,5 @@ findAllUsers();
 //updateHashCode('sgupt9999@gmail.com');
 //deleteUser('sgupt9999@gmail.com');
 //findAllUsers();
-//updateField('sgupt9999@gmail.com',false);
+//updateField('sgupt9999@gmail.com',true);
+//updateImagesIndex('sgupt9999@gmail.com');

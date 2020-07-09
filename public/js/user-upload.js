@@ -104,10 +104,12 @@ const renderImageUploadPage = async() => {
             //Delete image corresponding to that delete button
             //This will delete all associated likes, image info and the image from the database
                 const name = element.parentElement.parentElement.children[0].textContent;
+                const version = element.parentElement.parentElement.children[9].textContent;
 
                 try {
-                    const response = await fetch('/images/delete/' + name);
+                    const response = await fetch('/images/delete/' + name + '/'  + version);
                     if (response.status === 200) {
+                        alert('Hello');
                         window.location.reload(); //Reload the  page on successful delete. This should remove this image from the list
                     }
                     else {

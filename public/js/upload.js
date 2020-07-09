@@ -3,7 +3,7 @@ $formsPriceError = document.getElementById('forms-error-price-upload');
 
 const obj = Qs.parse(location.search, { ignoreQueryPrefix: true });
 //DEBUG
-console.log(obj);
+//console.log(obj);
 //DEBUG
 let update = false //By default updating an existing painting is false and adding a new painting is true
 
@@ -31,7 +31,8 @@ const getS3Data = async () => {
     let response;
     try {
         if (update) {
-            response = await fetch('/images/signed-url-put-object/' + update + '/' + obj.name + '/' + obj.version);
+            const newVersion = Number(obj.version) + 1;
+            response = await fetch('/images/signed-url-put-object/' + update + '/' + obj.name + '/' + newVersion);
         }
         else {
             response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined + '/' + 1); //This is a new painting. The name will be calculated in the route and version is 1
@@ -113,6 +114,11 @@ document.getElementById('file').addEventListener('click', async (event) => {
 
         try {
             if (fileLength) {
+                
+                $formsPriceError.style.display = "block";
+                $formsPriceError.textContent = "Uploading...............";
+                $formsPriceError.style.color = "green";
+                
                 const data =  await getS3Data(); // get signed URL and other data for the image to be uploaded
                 const file = document.getElementById('file-upload').files[0];
                 const signedURL = data.signedURL;
@@ -159,18 +165,27 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             })
                             
                             if (response.status === 200) {
-                                $formsPriceError.style.display = "block";
-                                $formsPriceError.textContent = "Information successfully updated";
+                                $formsPriceError.textContent = "Information successfully updated"
                                 $formsPriceError.style.color = "green";
                                 setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
                             }
-                            else {
-                                $formsPriceError.style.display = "block";
+                            else if (response.status === 401) {
+				                $formsPriceError.textContent = "You have reached maximum artwork limit. Please delete an existing image to upload a new one"
+                                $formsPriceError.style.color = "red";
+				                setTimeout(() => {window.location.replace('user-upload.html')}, 3000)
+			                 } 
+			                 else if (response.status === 400) {
+				                $formsPriceError.textContent = "User is not registerd as an artist"
+                                $formsPriceError.style.color = "red";
+                                setTimeout(() => {window.location.replace('/')}, 3000)
+			                 } 
+			                 else {
                                 $formsPriceError.textContent = "New image could not be loaded. Please try again";
-                            }
+                                $formsPriceError.style.color = "red";
+                             }
                         } catch (e) {
-                            $formsPriceError.style.display = "block";
                             $formsPriceError.textContent = "New image could not be loaded. Please try again";
+                            $formsPriceError.style.color = "red";
                         }
                     }
                     else {
@@ -204,28 +219,41 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             })
                             
                             if (response.status === 200) {
-                                $formsPriceError.style.display = "block";
+                                //$formsPriceError.style.display = "block";
                                 $formsPriceError.textContent = "Image Successfully uploaded";
                                 $formsPriceError.style.color = "green";
                                 setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
                             }
+			    else if (response.status === 401) {
+                                $formsPriceError.textContent = "You have reached maximum artwork limit. Please delete an existing image to upload a new one"
+                                $formsPriceError.style.color = "red";
+                                setTimeout(() => {window.location.replace('user-upload.html')}, 3000)
+                            }
+                            else if (response.status === 400) {
+                                $formsPriceError.textContent = "User is not registerd as an artist"
+                                $formsPriceError.style.color = "red";
+                                setTimeout(() => {window.location.replace('/')}, 3000)
+                            }
                             else {
-                                $formsPriceError.style.display = "block";
-                                $formsPriceError.textContent = "Image could not be successfully uploaded. Please reselect the file and try again";
+                                $formsPriceError.textContent = "Image could not be uploaded. Please reselect the file and try again";
+                                $formsPriceError.style.color = "red";
                             }
                         } catch (e) {
-                            $formsPriceError.style.display = "block";
-                            $formsPriceError.textContent = "Image could not be successfully uploaded. Please reselect the file and try again";
+                            $formsPriceError.textContent = "Image could not be uploaded. Please reselect the file and try again";
+                            $formsPriceError.style.color = "red";
                         }
                     } 
                 }
                 else {
-                    $formsPriceError.style.display = "block";
                     $formsPriceError.textContent = "Server not responding. Please make sure you have permissions to read the image file and try again";
+                    $formsPriceError.style.color = "red";
                 }
             }
             else {
             // This is an update of an existing painting without any update to the painting image
+                $formsPriceError.style.display = "block";
+                $formsPriceError.textContent = "Updating...............";
+                $formsPriceError.style.color = "green";
                 try {
                 // Update record in the image collection
                         const imageData = {
@@ -249,23 +277,22 @@ document.getElementById('file').addEventListener('click', async (event) => {
                         })
 
                         if (response.status === 200) {
-                            $formsPriceError.style.display = "block";
                             $formsPriceError.textContent = "Information successfully updated";
                             $formsPriceError.style.color = "green";
                             setTimeout(() => {window.location.replace('user-upload.html')}, 1000)
                         }
                         else {
-                            $formsPriceError.style.display = "block";
-                            $formsPriceError.textContent = "Information could not be successfully updated. Please try again";
+                            $formsPriceError.textContent = "Information could not be updated. Please try again";
+                            $formsPriceError.style.color = "red";
                         }
                     } catch (e) {
-                        $formsPriceError.style.display = "block";
-                        $formsPriceError.textContent = "Information could not be successfully updated. Please try again";
+                        $formsPriceError.textContent = "Information could not be updated. Please try again";
+                        $formsPriceError.style.color = "red";
                     }
             }
         } catch (e) {
-            $formsPriceError.style.display = "block";
             $formsPriceError.textContent = "Server not responding. Please make sure you have permissions to read the image file and try again";
+            $formsPriceError.style.color = "red";
         }
     }
 })
@@ -273,7 +300,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
 document.getElementById('btn-close-upload-image-form').addEventListener('click', (e) => {
 // Close the form  and go back to the home page
      e.preventDefault();
-     window.location.href = '/';
+     window.location.href = '/user-upload.html';
 })
 
 

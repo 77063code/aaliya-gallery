@@ -15,61 +15,88 @@ const AWSRegion = process.env.AWSREGION || 'us-west-2';
 const AWSBucket = process.env.AWSBUCKET
 
 
-router.post('/images/:update', async(req, res) => {
+router.post('/images/:update', auth, async(req, res) => {
 //Add a new entry in the image collection or update information of an existing painting
 //This is called after an image has been successfully uploaded
+//Also check to see if the user is an artist and also if the imagesUploaded is less than imagesAllowed
     
-    const update = req.params.update;
-
     //DEBUG
-    console.log(req.body);
+    //console.log(req.user);
     //DEBUG
-
-    if (update === 'false') {
-    // Create a new Image object and save it to the collection
-    	const image = new Image(req.body);
+    
+    if (req.user.artist) {
         
-        //DEBUG
-        console.log(image);
-        //DEBUG
-	
-        try {
-        	await image.save();
+        if (req.user.imagesUploaded < req.user.imagesAllowed) {
+        //Only add image information to the collection if user can add more artwork
+        //This check happens twice, before uploading the file and before adding/updating the image information
+        //It seems redundant here, but what if user is logged from 2 devices and reaches limit on the 2nd device, while still at the image load page on the frirst device
+        //In this case the image gets uploaded to S3, but the image collection never gets updated
+
+            const update = req.params.update;
+
             //DEBUG
-            console.log('Image successfully saved');
+            //console.log(req.body);
             //DEBUG
-        	res.status(200).send();
-    	} catch(e) {
-            console.log(e);
-        	res.status(500).send(e);
-    	}
+
+
+            if (update === 'false') {
+            // Create a new Image object and save it to the collection
+                const image = new Image(req.body);
+
+                //DEBUG
+                //console.log(image);
+                //DEBUG
+
+                try {
+                    await image.save();
+                    //DEBUG
+                    console.log('Image Information successfully saved');
+                    //DEBUG
+                    req.user.imagesUploaded += 1;
+                    req.user.imagesIndex += 1;
+                    await req.user.save();
+                    res.status(200).send();
+                } catch(e) {
+                    console.log(e);
+                    res.status(500).send(e);
+                }
+            }
+            else {
+               try {
+                   if (req.body.newfile) {
+                   //There is a new image for an existing painting
+                       await Image.updateOne({name : req.body.name}, {s3location: req.body.s3location, title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation, version:req.body.version});
+
+                   } else {
+                       await Image.updateOne({name : req.body.name}, {title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation});
+                   }
+                   res.status(200).send();
+               } catch(e) {
+                   //DEBUG
+                   console.log(e);
+                   //DEBUG
+                   res.status(500).send(e);
+               }
+            }
+        }
+        else {
+        //Images Uploaded = Images Allowed
+            res.status(401).send('Images Uploaded already equal to Images Allowed')
+        }
     }
     else {
-	   try {
-           if (req.body.newfile) {
-           //There is a new image for an existing painting
-               await Image.updateOne({name : req.body.name}, {s3location: req.body.s3location, title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation, version:req.body.version});
-               
-           } else {
-               await Image.updateOne({name : req.body.name}, {title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation});
-           }
-           res.status(200).send();
-       } catch(e) {
-           //DEBUG
-           console.log(e);
-           //DEBUG
-           res.status(500).send(e);
-       }
-    }    
+        res.status(400).send('User is not an artist'); //Bad Request. User is not an artist
+    }
 });
 
-router.get('/images/delete/:name', auth, async(req,res) => {
+router.get('/images/delete/:name/:version', auth, async(req,res) => {
 //Delete the image with the name passed on to the function
 //Delete all likes for the image
 //Delete the image information from the db
-//Delete the iamge file from S3
+//Delete all the image versions from S3
     
     const name = req.params.name;
+    let version = req.params.version;
     const loginid = req.user.loginid;
     
     //DEBUG
@@ -85,25 +112,33 @@ router.get('/images/delete/:name', auth, async(req,res) => {
         await Image.deleteMany({name:name}); //Delete the image from the db
         
         
-        const params = {
-            Bucket: AWSBucket,
-            Key: `${loginid}/${name}`            
-        }
-        
         const s3 = new AWS.S3({
             accessKeyId: AWSKey,
             secretAccessKey: AWSSecret
         })
         
-        s3.deleteObject(params, (error, data) => {
-            if (error) {
-                res.status(500).send(error);
+        while (version > 0) {  
+        //Delete all the versions of the image
+            console.log(version);
+            let params = {
+                Bucket: AWSBucket,
+                Key: `${loginid}/${name}-${version}.jpg`            
             }
-            //DEBUG
-            console.log(`${loginid} sucessfully deleted ${name}`)
-            //DEBUG
-            res.status(200).send('Image deleted sucessfully');
-        })
+            
+            await s3.deleteObject(params, (error, data) => {
+                if (error) {
+                    res.status(500).send(error);
+                }
+                //DEBUG
+                console.log(`${loginid} sucessfully deleted ${name}-${version}`)
+                //DEBUG
+            })
+            version -= 1;
+        }
+        
+        console.log('All imaged deleted')
+        
+        res.status(200).send('Image deleted sucessfully');
         
     } catch(e) {
         //DEBUG
@@ -172,20 +207,12 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
         console.log(version);
         //DEBUG
         
-        req.user.imagesUploaded = user.imagesUploaded;
-        req.user.imagesIndex = user.imagesIndex;
+        const newIndex = req.user.imagesIndex += 1;
         
 
         if (update !== 'true') {
-        //Adding a new painting. need to increment the imagesUploaded and imagesIndex
-            req.user.imagesUploaded += 1;
-            req.user.imagesIndex += 1;
-            version = 1; //This is a new painting and the first version
-            await req.user.save();
-            name = loginid + '-' + req.user.imagesIndex 
-        }
-        else {
-            version = Number(version) + 1; //A new image is being added for an existing painting
+        //Adding a new painting. Calculate the name
+            name = loginid + '-' + newIndex 
         }
          
         AWS.config.update({
