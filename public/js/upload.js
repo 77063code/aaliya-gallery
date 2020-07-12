@@ -38,13 +38,20 @@ const getS3Data = async () => {
             response = await fetch('/images/signed-url-put-object/' + update + '/' + undefined + '/' + 1); //This is a new painting. The name will be calculated in the route and version is 1
         }
         // Sending the update argument to the route. If update = true, the it doesnt increment imagesUploaded and imagesIndex for this user
-        response = await response.json();
-        //DEBUG
-        console.log(response);
-        //DEBUG
-        return response
+        if (response.status === 201) {
+            response = await response.json();
+            //DEBUG
+            //console.log(response);
+            //DEBUG
+            return response
+        }
+        else {
+            $formsPriceError.textContent = "Error uploading image. Please try again"
+            $formsPriceError.style.color = "red";
+        }
     } catch (e) {
-        console.log(e)
+        $formsPriceError.textContent = "Error uploading image. Please try again"
+        $formsPriceError.style.color = "red";
     }
 }
 
@@ -124,7 +131,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 const signedURL = data.signedURL;
                 
                 //DEBUG
-                console.log(signedURL);
+                //console.log(signedURL);
                 //DEBUG
 
                 const response = await fetch(signedURL, {
@@ -134,7 +141,7 @@ document.getElementById('file').addEventListener('click', async (event) => {
                 })
                 
                 //DEBUG
-                console.log(response);
+                //console.log(response);
                 //DEBUG
 
                 if (response.status === 200) { 

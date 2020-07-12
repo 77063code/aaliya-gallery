@@ -50,14 +50,16 @@ router.post('/images/:update', auth, async(req, res) => {
                 try {
                     await image.save();
                     //DEBUG
-                    console.log('Image Information successfully saved');
+                    //console.log('Image Information successfully saved');
                     //DEBUG
                     req.user.imagesUploaded += 1;
                     req.user.imagesIndex += 1;
                     await req.user.save();
                     res.status(200).send();
                 } catch(e) {
-                    console.log(e);
+                    //DEBUG
+                    //console.log(e);
+                    //DEBUG
                     res.status(500).send(e);
                 }
             }
@@ -73,7 +75,7 @@ router.post('/images/:update', auth, async(req, res) => {
                    res.status(200).send();
                } catch(e) {
                    //DEBUG
-                   console.log(e);
+                   //console.log(e);
                    //DEBUG
                    res.status(500).send(e);
                }
@@ -104,9 +106,13 @@ router.get('/images/delete/:name/:version', auth, async(req,res) => {
     //DEBUG
     
     try {
-        console.log('Number of images that have been uploaded before delete ' + req.user.imagesUploaded);
+        //DEBUG
+        //console.log('Number of images that have been uploaded before delete ' + req.user.imagesUploaded);
+        //DEBUG
         req.user.imagesUploaded -= 1; //Decrease the number of artwork uploaed by this user by one
-        console.log('Number of images that have been uploaded after delete ' + req.user.imagesUploaded);
+        //DEBUG
+        //console.log('Number of images that have been uploaded after delete ' + req.user.imagesUploaded);
+        //DEBUG
         await req.user.save();
         await Likes.deleteMany({img:name}); //Delete all the likes for this image
         await Image.deleteMany({name:name}); //Delete the image from the db
@@ -117,28 +123,37 @@ router.get('/images/delete/:name/:version', auth, async(req,res) => {
             secretAccessKey: AWSSecret
         })
         
-        while (version > 0) {  
-        //Delete all the versions of the image
-            console.log(version);
-            let params = {
-                Bucket: AWSBucket,
-                Key: `${loginid}/${name}-${version}.jpg`            
-            }
-            
-            await s3.deleteObject(params, (error, data) => {
-                if (error) {
-                    res.status(500).send(error);
-                }
-                //DEBUG
-                console.log(`${loginid} sucessfully deleted ${name}-${version}`)
-                //DEBUG
-            })
-            version -= 1;
+        let params = {
+            Bucket: AWSBucket,
+            Delete: {Objects: []}
         }
         
-        console.log('All imaged deleted')
+        //DEBUG
+        //console.log(params);
+        //console.log(version);
+        //DEBUG
         
-        res.status(200).send('Image deleted sucessfully');
+        while (version > 0) {
+            params.Delete.Objects[version-1] = {Key: `${loginid}/${name}-${version}.jpg`};
+            version -= 1;
+        }
+        //DEBUG
+        //console.log(params);
+        //DEBUG
+        
+        s3.deleteObjects(params, (error, data) => {
+            if (error) {
+                //DEBUG
+                console.log(`${loginid} wasn't able to delete ${name}`);
+                console.log(`and got this error ${e}`);
+                //DEBUG
+                res.status(500).send(error);
+            }
+            res.status(200).send('Image deleted sucessfully');
+            //DEBUG
+            //console.log('All versions of image deleted')
+            //DEBUG
+        });   
         
     } catch(e) {
         //DEBUG
@@ -146,13 +161,8 @@ router.get('/images/delete/:name/:version', auth, async(req,res) => {
         console.log(`and got this error ${e}`);
         //DEBUG
         res.status(500).send(e);
-    }
-    
+    }    
 })
-
-
-
-
 
 router.get('/images/homepage', async(req, res) => {
 // Get list and information of all images that get rendered to the home page 
@@ -160,7 +170,9 @@ router.get('/images/homepage', async(req, res) => {
         const images = await Image.find({});
         res.send(images);
     } catch (e) {
-        console.log(e);
+        //DEBUG
+        //console.log(e);
+        //DEBUG
         res.status(401).send();
     }
 });
@@ -181,7 +193,9 @@ router.get('/images/byuser', auth, async(req, res) => {
 		res.status(401).send;
 	}
     } catch (e) {
-        console.log(e);
+        //DEBUG
+        //console.log(e);
+        //DEBUG
         res.status(401).send();
     }
 });
@@ -202,9 +216,9 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
         const loginid = user.loginid
      
         //DEBUG
-        console.log(update);
-        console.log(name);
-        console.log(version);
+        //console.log(update);
+        //console.log(name);
+        //console.log(version);
         //DEBUG
         
         const newIndex = req.user.imagesIndex += 1;
@@ -228,13 +242,10 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
                 Expires: 30 * 60, // Link expires in 30 minutes
                 ACL: 'public-read', // Make the file readable to all
                 ContentType: 'image-jpeg'
-        }
-        
+        }       
         //DEBUG
-        console.log(params);
-        //DEBUG
-       
-        
+        //console.log(params);
+        //DEBUG 
         const options = {
                 signatureVersion: 'v4',
                 region: AWSRegion
@@ -263,6 +274,7 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
         res.status(201).send(data);
     } catch (e) {
         console.log(e);
+        res.status(503).send(e);
     }
 })
 

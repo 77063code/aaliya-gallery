@@ -20,7 +20,9 @@
     <div class="wrapper">
         <div class="non-forms-page-main">
             <h2>Upload/Update Images & Information </h2>
-            <h3 style="display:none" id="msg-no-images">You haven't uploded any artwork yet. Start today. It's absolutley free!!! You can upload images for 5 artworks</h3>
+            <!-- <h3 style="display:none" id="msg-no-images msg-images-allowed">You haven't uploded any artwork yet. Start today. It's absolutley free!!! You can upload images for 5 artworks</h3> -->
+            <h3 style="display:none" id="msg-images-allowed-1">You haven't uploded any artwork yet. Start today. It's absolutley free!!!</h3>
+            <h3 id="msg-images-allowed-2"></h3>
             <div class="user-images" id="user-images"></div>
             <div class="btn-main-page">
                 <button id="btn-add-new-painting">Add another artwork</button>
@@ -29,6 +31,10 @@
         </div>
     </div>
 
+    <script id="msg-images-allowed-template" type="text/html">
+    <!--Script to dynamically change the message telling the user how many images can they upload -->
+            You can upload images for upto {{img_allowed}} artworks
+    </script>
 
     <script id="user-image-template" type="text/html">
     <!-- Even though we are using script tags, this is not an actual JS script, but is more like a defacto technique for including templates in a page. Normally script tags block all processing when rendering a page. But here the template has a type="text/html", which effectively tricks the browser into not processing it like a normal JavaScript block -->
@@ -48,6 +54,7 @@
             <div class="btn-list">
                 <button class="update-image-info" >Update</button>
                 <button class="delete-image">Delete</button>
+                <h4 style="display:none" id="msg-deleting-image-{{img_name}}"></h4>
             </div>
         </div>
 

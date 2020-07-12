@@ -3,7 +3,7 @@ const $updateimageinfo = document.getElementsByClassName('update-image-info'); /
 const $deleteimage = document.getElementsByClassName('delete-image'); //Get all the delete image buttons
 
 const checkUserEligibility = async () => {
-//Check if the user is an artist. If not redirect to home page
+//If user is not an artist redirect to home page
     const user = await getUserInfo();
     
     if (!user || !user.artist) {
@@ -17,6 +17,16 @@ const checkUserEligibility = async () => {
         //User has reached the maximum number of artwork images that can be uploaed. Disbale the add button
             document.getElementById('btn-add-new-painting').disabled = true
         }
+        if (user.imagesUploaded === 0) {
+        //if the artist hasn't uploaded any images, remind them it's free
+            document.getElementById('msg-images-allowed-1').style.display = "block";
+        }
+        const msgImagesAllowedTemplate = document.getElementById('msg-images-allowed-template').innerHTML;
+        const html = Mustache.render(msgImagesAllowedTemplate, {img_allowed: user.imagesAllowed})
+        //DEBUG
+        //console.log(html);
+        //DEBUG
+        document.getElementById('msg-images-allowed-2').innerHTML = html;
     }
 }
 
@@ -43,6 +53,7 @@ const getImageInfo = async() => {
 const renderImageUploadPage = async() => {
 //This function runs everytime the page is called or refershed
     
+    
     const userImages = document.getElementById('user-images');
     const images = await getImageInfo();
     let obj = {};
@@ -50,7 +61,7 @@ const renderImageUploadPage = async() => {
     if (images.length === 0) {
     //This user hasn't uploaded any artwork
     //Show a message asking them to upload artwork
-        document.getElementById('msg-no-images').style.display = "block";
+        //document.getElementById('msg-no-images').style.display = "block";
     }
     
     images.forEach((image) => {
@@ -107,16 +118,18 @@ const renderImageUploadPage = async() => {
                 const version = element.parentElement.parentElement.children[9].textContent;
 
                 try {
+                    document.getElementById(`msg-deleting-image-${name}`).style.display = 'block';
+                    document.getElementById(`msg-deleting-image-${name}`).style.color = 'red';
+                    document.getElementById(`msg-deleting-image-${name}`).textContent = 'Deleting image......';
                     const response = await fetch('/images/delete/' + name + '/'  + version);
                     if (response.status === 200) {
-                        alert('Hello');
                         window.location.reload(); //Reload the  page on successful delete. This should remove this image from the list
                     }
                     else {
-                        alert('There was an error deleting the image. Please refresh the page and try again')
+                        document.getElementById(`msg-deleting-image-${name}`).textContent = 'There was an error. Please try again';
                     }
                 } catch (e) {
-                    alert('Error deleting image. Please try again')
+                    document.getElementById(`msg-deleting-image-${name}`).textContent = 'There was an error. Please try again';
                 }
             })
     })
