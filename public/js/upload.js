@@ -12,7 +12,7 @@ const initializeForm = () => {
     if (Object.keys(obj).length > 0) {
     // If arguments were passed when calling this page, then an existing painting's information is being updated
         update = true; //Updating information about an existing painting instead of adding a new one
-        document.getElementById('forms-error-file-upload').textContent = "Please leave this blank if not updating the image of the painting"                                                                       
+        document.getElementById('forms-error-file-upload').textContent = "Only choose a file if upating image of the artwork"
         document.getElementById('title-upload').value = obj.title;
         document.getElementById('year-upload').value = obj.year;
         document.getElementById('grade-upload').value = obj.grade;

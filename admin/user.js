@@ -55,7 +55,8 @@ const deleteUser = async (email_id) => {
 }
 
 findAllUsers();
-updateImagesUploaded('sanjaygupta100@yahoo.com');
+//updateImagesUploaded('sgupt9999@gmail.com');
+//updateImagesUploaded('sanjaygupta9999@yahoo.com');
 //findLikesByUser('garfield1');
 //updateHashCode('sgupt9999@gmail.com');
 //deleteUser('sgupt9999@gmail.com');

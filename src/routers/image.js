@@ -25,28 +25,21 @@ router.post('/images/:update', auth, async(req, res) => {
     //DEBUG
     
     if (req.user.artist) {
-        
-        if (req.user.imagesUploaded < req.user.imagesAllowed) {
-        //Only add image information to the collection if user can add more artwork
+	const update = req.params.update;
+        if (req.user.imagesUploaded < req.user.imagesAllowed || update) {
+        //Only add image information to the collection if user can add more artwork or it's an update to existing artwork
         //This check happens twice, before uploading the file and before adding/updating the image information
         //It seems redundant here, but what if user is logged from 2 devices and reaches limit on the 2nd device, while still at the image load page on the frirst device
         //In this case the image gets uploaded to S3, but the image collection never gets updated
-
-            const update = req.params.update;
-
             //DEBUG
             //console.log(req.body);
             //DEBUG
-
-
             if (update === 'false') {
             // Create a new Image object and save it to the collection
                 const image = new Image(req.body);
-
                 //DEBUG
                 //console.log(image);
                 //DEBUG
-
                 try {
                     await image.save();
                     //DEBUG
@@ -68,7 +61,6 @@ router.post('/images/:update', auth, async(req, res) => {
                    if (req.body.newfile) {
                    //There is a new image for an existing painting
                        await Image.updateOne({name : req.body.name}, {s3location: req.body.s3location, title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation, version:req.body.version});
-
                    } else {
                        await Image.updateOne({name : req.body.name}, {title: req.body.title, year: req.body.year, grade: req.body.grade,  height: req.body.height, width: req.body.width, depth: req.body.depth, type: req.body.type, price: req.body.price, orientation: req.body.orientation});
                    }

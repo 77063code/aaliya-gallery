@@ -303,12 +303,15 @@ const updateAllImageNames = () => {
 	updateImageNames('aaliya1-6.jpg','aaliya1-6');
 	updateImageNames('aaliya1-7.jpg','aaliya1-7');
 	updateImageNames('aaliya1-8.jpg','aaliya1-8');
-    updateImageNames('aaliya1-9.jpg','aaliya1-9');
+    	updateImageNames('aaliya1-9.jpg','aaliya1-9');
 	updateImageNames('aaliya1-10.jpg','aaliya1-10');
 	updateImageNames('aaliya1-11.jpg','aaliya1-11');
-    updateImageNames('aaliya1-12.jpg','aaliya1-12');
+    	updateImageNames('aaliya1-12.jpg','aaliya1-12');
 	updateImageNames('aaliya1-13.jpg','aaliya1-13');
 	updateImageNames('aaliya1-14.jpg','aaliya1-14');
+    	updateImageNames('aaliya1-15.jpg','aaliya1-15');
+	updateImageNames('aaliya1-16.jpg','aaliya1-16');
+	updateImageNames('aaliya1-17.jpg','aaliya1-17');
 }
 
 const updateFieldName = async () => {
@@ -327,10 +330,45 @@ const dropImageCollection = async () => {
     console.log(response);
 }
 
-//updateFieldName();
+const updateField = async (image, value) => {
+//Update the given field for the passed image to passed value
+	const response = await Image.updateOne({ name: image}, { s3location: value});
+	console.log(response);
+}
 
+const updateAllImageS3Locations = () => {
+	updateField('aaliya1-1','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-1-1.jpg')
+	updateField('aaliya1-2','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-2-1.jpg')
+	updateField('aaliya1-3','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-3-1.jpg')
+	updateField('aaliya1-4','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-4-1.jpg')
+	updateField('aaliya1-5','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-5-1.jpg')
+	updateField('aaliya1-6','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-6-1.jpg')
+	updateField('aaliya1-7','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-7-1.jpg')
+	updateField('aaliya1-8','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-8-1.jpg')
+	updateField('aaliya1-9','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-9-1.jpg')
+	updateField('aaliya1-10','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-10-1.jpg')
+	updateField('aaliya1-11','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-11-1.jpg')
+	updateField('aaliya1-12','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-12-1.jpg')
+	updateField('aaliya1-13','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-13-1.jpg')
+	updateField('aaliya1-14','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-14-1.jpg')
+	updateField('aaliya1-15','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-15-1.jpg')
+	updateField('aaliya1-16','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-16-1.jpg')
+	updateField('aaliya1-17','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-17-1.jpg')
+}
+
+const updateAllField = async () => {
+//Update the value of a field for all the documents in the collection
+	const response = await Image.updateMany({},{version: 1}); //The {} means no condition for select - select all
+	console.log(response);
+}
+
+
+
+//findAllImages();
+updateAllField();
+//updateAllImageS3Locations();
+//updateFieldName();
 //updateAllImageNames();
-findAllImages();
 //findAllImagesByID('garfield200');
 //saveImageInfo(imageInfo12);
 //saveImageInfo(imageInfo13);
