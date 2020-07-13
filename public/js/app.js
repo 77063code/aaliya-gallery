@@ -33,13 +33,11 @@ if (code && code !== "0") {
 }
 
 const setupHeader = async() => {
-    //Setup the home page header based on if a user is alread logged in
+//Setup the home page header based on if a user is alread logged in
     const user = await getUserInfo();
-    if (user && user.user) {
-        // If the returned body has a user object
-        //document.getElementById('loginid').textContent = user.user.loginid;
-        document.getElementById('firstname').textContent = user.user.firstname;
-        //Changing to displaying firstname instead of loginid
+    if (user) {
+    //If user is not undefined
+        document.getElementById('firstname').textContent = user.firstname;
         document.getElementById('logout-btn').style.display = "block"; // display the logout button
         document.getElementById('login-label').style.display = "none"; // Once logged in hide the log in button   
         document.getElementById('register-label').style.display = "none"; // Once logged in hide register button

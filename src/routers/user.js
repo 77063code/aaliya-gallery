@@ -65,7 +65,7 @@ router.post('/users', connection, async(req, res) => {
 
 
     if (!req.body.loginid) {
-        //If registering as a browser, loginid is not used in registeration, but is still used in likes
+    //If registering as a browser, loginid is not used in registration, but is still used in likes
         req.body.loginid = req.body.email + '-' + Date.now()
     }
 
@@ -373,7 +373,7 @@ router.get('/users/confirm/:code', async(req, res) => {
 })
 
 router.get('/users/info/email/:email', async(req, res) => {
-    // This route is uased to check if an email already exists in the system
+// This route is uased to check if an email already exists in the system
     const email = req.params.email;
     try {
         const user = await User.findByEmail(email);
@@ -390,7 +390,7 @@ router.get('/users/info/email/:email', async(req, res) => {
 })
 
 router.get('/users/info/loginid/:loginid', async(req, res) => {
-    // This route is used to check if a login id already exists in the system
+// This route is used to check if a login id already exists in the system
     const loginid = req.params.loginid;
     try {
         const user = await User.findByLoginId(loginid);
@@ -425,12 +425,11 @@ router.get('/users/info/passwordhashcode/:passwordhashcode', async(req, res) => 
 
 
 router.get('/users/info', auth, async(req, res) => {
-    // This route is called from the message page. Send the user information based on the cookie. If a user is found then the information can be used to fill out name and email fields on the message page. This will save the user some typing
+//This route is called when fetching user information based on the cookie
+//If a user is found then the information can be used to fill out forms or show messages
     try {
         const user = req.user;
-        res.send({
-            user
-        });
+        res.status(200).send(user);
     } catch (e) {
         res.status(401).send(e);
     }

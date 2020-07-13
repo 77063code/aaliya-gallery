@@ -15,7 +15,7 @@ const findCountByImage = async (imgName) => {
 
 const findAllUsers = async () => {
 // get the name and email of all users
-	const response = await Users.find({},'email loginid imagesUploaded hashcode artist firstname lastname');
+	const response = await Users.find({},'email loginid imagesAllowed imagesUploaded imagesIndex hashcode artist firstname lastname');
 	console.log(response);
 }
 
@@ -31,9 +31,21 @@ const updateHashCode = async (email_id) => {
     console.log(response);
 }
 
+const updateImagesUploaded = async (email_id) => {
+//Update images uploaded for a user to zero
+    const response = await Users.updateOne({ email : email_id}, { imagesUploaded: 0 })
+    console.log(response);
+}
+
+const updateImagesIndex = async (email_id) => {
+//Update images uploaded for a user to zero
+    const response = await Users.updateOne({ email : email_id}, { imagesIndex: 0 })
+    console.log(response);
+}
+
 const updateField = async (user,value) => {
 //Update field of a user to a passed value
-    const response = await Users.updateOne({ email : user}, { artist: value })
+    const response = await Users.updateOne({ email : user}, { imagesAllowed: value })
     console.log(response);
 }
 
@@ -42,9 +54,12 @@ const deleteUser = async (email_id) => {
     console.log(response);
 }
 
-//findAllUsers();
+findAllUsers();
+//updateImagesUploaded('sgupt9999@gmail.com');
+//updateImagesUploaded('sanjaygupta9999@yahoo.com');
 //findLikesByUser('garfield1');
 //updateHashCode('sgupt9999@gmail.com');
-deleteUser('sgupt9999@gmail.com');
+//deleteUser('sgupt9999@gmail.com');
 //findAllUsers();
-//updateField('sgupt9999@gmail.com',false);
+//updateField('sgupt9999@gmail.com',15);
+//updateImagesIndex('sgupt9999@gmail.com');

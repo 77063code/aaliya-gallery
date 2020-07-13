@@ -82,11 +82,11 @@ const userSchema = new mongoose.Schema({
         type: Number,
         default: 5
     },
-    imagesUploaded: { // Number of images this artist has currently uploaded
+    imagesUploaded: { // Number of images this artist has currently uploaded. This goes down if a user deletes an image
         type: Number, 
         default: 0
     },
-    imagesIndex: { // Index of the last image this artist uploaded. This is used to create S3 bucket key
+    imagesIndex: { // Index of the last image this artist uploaded. This is used to create S3 bucket key. This never goes down and gets incremented by one whenever a new image is uploaded
         type: Number,
         default: 0
     },

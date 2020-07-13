@@ -31,7 +31,7 @@ const getUserInfo = async() => {
 
 
 const getUserInfo = async () => {
-// get user info based on the cookie stored
+//get user info based on the cookie stored
     try {
         const response = await fetch('/users/info/')
         if (response.status !== 401) {

@@ -56,11 +56,14 @@ NON-REGISTERED USERS
 2. When clicking on thumbs up, does it show the correct error message
 CHECK FOR RESPONSIVENESS
 1. The site needs to be tested on desktop, laptop, iPad, iPhone and Android phone to make sure forms responsiveness is working good
+UPLOADING/DELETING FILES
+1. When uploading files, try to upload a file on which you don't have read permissions to simulate failed uploads
+2. When deleting files, change the s3location to a non existing file when deleting file to simulate a failed delete
 
 
 TO MOVE A NEW VERSION TO PRODUCTION
 1. Make a backup of the db
-2. mongodump --archive="<date>-backup" --db="aaliya-art-api"
+2. mongodump --archive="db-backup-<date>" --db="aaliya-art-api"
 3. Delete node-modules and run npm install to install any new packages
 3. Run user.js to find out how many images garfield3 has
 4. Delete all likes by garfield3
@@ -188,7 +191,6 @@ TO DO
 5.Problem with email sent through sendgrid
 6.Need to log all the actions so can be debugeed i.e when the emails are sent
 7. Need to create a mail server
-8. Need to create a page to be able to reset the password
 9. The onblur still doesnt work on firefox. That needs to be fixed
 10. The error display on register pages is still a mess. That also needs to be fixed.
 11. Maybe have to change the formatting of the old images
@@ -196,6 +198,14 @@ TO DO
 13. The price and sold/not sold needs to be added to the front of the image
 14. How to show progress bar when images are being uploaded
 15.  Work on onblur and onfocus on firefox
+16. The background image is different on test and prod
+17. Hoe to order images being displayed on the main screen
+18. Right now for every new user the imagesAllowed defaults to 5. This needs to change to only for onyl artists
+19. How does token array get cleaned up in user record
+20. Need to have a character limit on the title f uploaded images
+21. When uploading new images the newest image should show on the top
+22. Should there be a minimum price at which a paitning can be sold
+23. Need to create 
 
 
 DOMAIN-EMAIL
@@ -222,4 +232,22 @@ STEPS
 6. On test machines change AWSBUKCET = this new bucket
 7. Delete all images from collection and reupload images for cmeitest to test the new bucket is working
 8. Corrected a bug in app.js when confirm code was 0
+
+UPLOAD-FORMS
+WHAT ALL NEED TO DO
+1. Create a form to upload images
+2. User gets a message on how many artwork they can upload. The initial limit is 5 and then its 5 more for every piece they sell
+3. User gets a message when an image is being deleted
+4. When deleting an image all versions of a file are deleted
+5. DB changes - Add version field and make the value equal to 1 for all images in Image collection
+6. DB changes - Rename image names to not have .jpg extension for all images in Image collection
+7. DB changes - Update the s3 location value to have the version number in the name
+8. DB changes - Rename image names to not have .jpg extension for all images in Likes collection
+9. AWS S3 changes - update the file names to add the version number for all image files
+
+STEPS
+1. Create a new html page and based on the user login show all the images the user has already uploaded
+2. Added 2 new fields to the image model - version number of if it's an original piece or not
+3. Currently, the original piece field is not being used
+4. For version in production, thid field needs to be initialized as 1 for all images and all files need to renamed manually in S3
 

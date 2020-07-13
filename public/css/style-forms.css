@@ -227,6 +227,27 @@ select:focus {
     display: none;
 }
 
+.user-image-info {
+    display: flex;
+    flex-direction: row;
+	width: 100%;
+    justify-content: space-around;
+    font-size: 2em;
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.user-image-info > p {
+    margin: 1em 2em;
+}
+
+.user-image-info > button {
+    margin: 1em 2em;
+    font-size: 1em;
+	
+}
+
 
 /* Not being used right now. Moving to the bottom 
 .centered-form .social--auth {

@@ -54,18 +54,12 @@ const imageSchema = new mongoose.Schema({
     orientation: {
         type: String,
         required: false,
-        trim: true,
-        lowercase: true
+        trim: true
     },
     grade: {
         type: String,
         required: false,
         trim: true
-    },
-    sold: {
-        type: String,
-        required: false,
-        lowercase: true
     },
     backside_id: {
         type: String,
@@ -74,6 +68,23 @@ const imageSchema = new mongoose.Schema({
     s3location: {
         type: String,
         lowercase: true
+    },
+    version: {
+    //Version of the image saved. If user updates the image, the due to caching the new image doesn't get displayed
+    //version will get incremented everytime an image for a painting is updated. This will create a new AWS S3 link
+    //and will force the browser to et the new file
+        type: Number,
+        required: false
+    },
+    original: {
+    //User entered field to tag a painting as original or not
+        type: Boolean,
+        required: false
+    },
+    sold: {
+        type: String,
+        required: false,
+        default: 'N'
     }
 
 });
