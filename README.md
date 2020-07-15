@@ -145,6 +145,32 @@ V1.7
 	4. Corrected a small text error in register-browser.js
 	5. Added a field passwordhashcode in user model and also a function to initialize the hash
 	6. Deleted length field from image model
+    
+V1.8
+1. Branch - domain-email
+2. Date - 06/13/20
+3. Features
+    1. Created a AWS WorkMail account - support@aaliya-gallery.com
+    2. Created a new SMTP user in AWS
+    3. Changed to sending all emails from this account using SMTP from sending emails from gmail using sendgrid
+    4. Updated the environment variables file
+    5. Created a new S3 bucket for storing images in test environment different from production
+    6. Added a website title
+    7. Fixed a bug in app.js when code = 0
+
+V1.9
+1. Branch - upload-forms
+2. Date - 07/13/20
+3. Features
+    1. Added 2 new fields to the image model - version number and if the uploaded artwork is on original piece or not
+    2. Version number is initialized to 1 for existing images
+    3. Created a form where artists can see the images already uploaded, update image information, upload new images or delete images
+    4. DB changes - Add version field and make the value equal to 1 for all images in Image collection
+    5. DB changes - Rename image names to not have .jpg extension for all images in Image collection
+    6. DB changes - Update the s3 location value to have the version number in the name in Image collection
+    7. DB changes - Rename image names to not have .jpg extension for all images in Likes collection
+    8. AWS S3 changes - update the file names to add the version number for all image files
+
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION

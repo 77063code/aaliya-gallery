@@ -1,3 +1,4 @@
+const common = require('./common');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
@@ -33,14 +34,7 @@ const execCB = (error, stdout, stderr) => {
     console.log('stderr: ' + stderr);
 }
 
-const getCurrDateTime = () => {
-    const today = new Date();
-    const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const dateTime = date + ' ' + time;
-
-    return dateTime;
-}
+const getCurrDateTime = common.getCurrDateTime;
 
 router.post('/users', connection, async(req, res) => {
     // Register a new user  
@@ -173,17 +167,16 @@ router.post('/users', connection, async(req, res) => {
 
 
 router.post('/users/login', async(req, res) => {
-    // Check to see a user exists
-    // If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
+// Check to see a user exists
+// If user exists then check if hashcode has a non-zero value. If it does then that means the user hasn't confirmed the registration via email and should not be able to login    
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password);
         if (!user) {
             res.status(404).send();
         } else if (user.hashcode === '0') {
-            // means the user has clicked on the confirmation email
+          // means the user has clicked on the confirmation email
             const token = await user.generateAuthToken();
             // Note this method is on instance user and not the model User
-
             res.cookie('auth_token', token);
             /*res.sendFile(path.resolve(__dirname, '..', 'views', 'private.html'));*/
             res.status(200).send({
@@ -194,10 +187,7 @@ router.post('/users/login', async(req, res) => {
             res.status(350).send(user);
         }
     } catch (e) {
-        res.status(400).send({
-            e
-        });
-
+        res.status(400).send({e});
     }
 });
 
