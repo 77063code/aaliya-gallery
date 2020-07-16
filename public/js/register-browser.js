@@ -92,6 +92,7 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
     const lastName = document.getElementById('lastname-browser').value;
     const email = document.getElementById('email-browser').value;
     const password = document.getElementById('password-browser').value;
+    const confirmPassword = document.getElementById('confirm-password-browser').value;
 
     for (var i = 0; i < errMessages.length; i++) {
         // Clear all the error messages
@@ -125,6 +126,14 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
         document.getElementById('forms-error-password-browser').style.display = "block";
         document.getElementById('forms-error-password-browser').textContent = 'Password needs to be atleast 7 characters';
         document.getElementById('password-browser').focus();
+    } else if (!confirmPassword) {
+        document.getElementById('forms-error-confirm-password-browser').style.display = "block";
+        document.getElementById('forms-error-confirm-password-browser').textContent = 'Please confirm the password';
+        document.getElementById('confirm-password-browser').focus();
+    } else if (password != confirmPassword) {
+        document.getElementById('forms-error-confirm-password-browser').style.display = "block";
+        document.getElementById('forms-error-confirm-password-browser').textContent = 'The two passowrd are not the same';
+        document.getElementById('confirm-password-browser').focus();
     } else {
 
         try {

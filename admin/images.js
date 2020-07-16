@@ -279,7 +279,8 @@ const saveImageInfo = async (imageInfo) => {
 
 const findAllImages = async () => {
 // get the full dump of the image collection
-	const response = await Image.find();
+	//const response = await Image.find();
+	const response = await Image.find().sort({name:1});
 	console.log(response);
 }
 
@@ -364,8 +365,8 @@ const updateAllField = async () => {
 
 
 
-//findAllImages();
-updateAllField();
+findAllImages();
+//updateAllField();
 //updateAllImageS3Locations();
 //updateFieldName();
 //updateAllImageNames();

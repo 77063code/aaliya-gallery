@@ -63,6 +63,9 @@ router.post('/users', connection, async(req, res) => {
         req.body.loginid = req.body.email + '-' + Date.now()
     }
 
+    //DEBUG
+    console.log(req.body);
+    //DEBUG
     const user = new User(req.body);
 
     try {
