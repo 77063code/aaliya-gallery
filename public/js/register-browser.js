@@ -132,7 +132,7 @@ document.forms['register-browser-form'].addEventListener('submit', async(event) 
         document.getElementById('confirm-password-browser').focus();
     } else if (password != confirmPassword) {
         document.getElementById('forms-error-confirm-password-browser').style.display = "block";
-        document.getElementById('forms-error-confirm-password-browser').textContent = 'The two passowrd are not the same';
+        document.getElementById('forms-error-confirm-password-browser').textContent = "The two passwords don't match";
         document.getElementById('confirm-password-browser').focus();
     } else {
 

@@ -197,7 +197,7 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('confirm-password-artist').focus();
     } else if (password != confirmPassword) {
         document.getElementById('forms-error-confirm-password-artist').style.display = "block";
-        document.getElementById('forms-error-confirm-password-artist').textContent = 'The two passowrd are not the same';
+        document.getElementById('forms-error-confirm-password-artist').textContent = "The two passwords don't match";
         document.getElementById('confirm-password-artist').focus();
     }
     else if (!school) {
