@@ -1,3 +1,4 @@
+const common = require('../routers/common.js');
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
@@ -5,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const uniqueValidator = require('mongoose-unique-validator');
 const md5 = require('md5');
 
-
+const getCurrDateTime = common.getCurrDateTime;
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -167,18 +168,24 @@ userSchema.methods.toJSON = function () {
 userSchema.statics.findByCredentials = async(email, password) => {
 
     try {
-        const user = await User.findOne({
-            email
-        });
+        const user = await User.findOne({email});
         
         if (!user) {
-            throw new Error('Unable to login');
+            console.log('#########################################################');
+            console.log(getCurrDateTime());
+            console.log(`##### User email - ${email} not found during login #####`);
+            console.log('#########################################################');
+            return undefined;
         };
 
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
-            throw new Error('Unable to login');            
+            console.log('#########################################################');
+            console.log(getCurrDateTime());
+            console.log(`##### User password for - ${email} doesn't match during login #####`);
+            console.log('#########################################################');
+            return undefined;       
         }
         return user;
     } catch (e) {

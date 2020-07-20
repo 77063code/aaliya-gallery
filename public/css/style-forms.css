@@ -96,11 +96,28 @@ html {
     margin-bottom: 1.6em;
 }
 
+.form-component-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 1.6em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-component-two__first, 
+.form-component-two__second {
+    margin-left: 0.7em;
+}
+
+
 .forms-page .form-component h2 {
     font-size: 2.1em;
 }
 
-.forms-page .form-component label {
+.forms-page .form-component label,
+.form-component-two label {
     display: block;
     width: 90%;
     margin-left: auto;
@@ -115,6 +132,16 @@ html {
     width: 90%;
     margin-left: auto;
     margin-right: auto;
+    border: .1em solid lightblue;
+    border-radius: 1em;
+    padding: 0.7em;
+    outline: none;
+    font-size: 1.8em;
+}
+
+.form-component-two input {
+    width: 95%;
+    margin: 0 auto;
     border: .1em solid lightblue;
     border-radius: 1em;
     padding: 0.7em;
@@ -173,6 +200,14 @@ html {
     text-align: center;
     color: red;
     font-size: 1.6em;
+    margin-top: .5em;
+}
+
+.form-component-two p {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.3em;
     margin-top: .5em;
 }
 

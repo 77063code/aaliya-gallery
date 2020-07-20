@@ -30,20 +30,22 @@
                 <h4>(All fields required)</h4>
             </div>
 
-            <div class="form-component">
-                <label class="forms-label">Artist's First Name</label>
-                <input type="text" autocorrect="off" autocomplete="off" spellcheck="false" name="firstname" id="firstname-artist" autofocus/>
-                <p class="forms-error-msg" id="forms-error-firstname-artist"></p>
-            </div>
-            
-            <div class="form-component">
-                <label class="forms-label">Artist's Last Name</label>
-                <input type="text" autocorrect="off" autocomplete="off" spellcheck="false" name="lastname" id="lastname-artist" autofocus/>
-                <p class="forms-error-msg" id="forms-error-lastname-artist"></p>
+           <div class="form-component-two">
+                <div class="form-component-two__first">
+                    <label for="firstname" class="forms-label">First Name</label>
+                    <input type="text" autocorrect="off" autocomplete="off" spellcheck="false" name="firstname" id="firstname-artist" autofocus/>
+                    <p class="forms-error-msg" id="forms-error-firstname-artist"></p>
+                </div>
+
+                <div class="form-component-two__second">
+                    <label for="lastname" class="forms-label">Last Name</label>
+                    <input type="text" autocorrect="off" autocomplete="off" spellcheck="false" name="lastname" id="lastname-artist" autofocus/>
+                    <p class="forms-error-msg" id="forms-error-lastname-artist"></p>
+                </div>
             </div>
 
             <div class="form-component">
-                <label class="forms-label">Artist's Email</label>
+                <label class="forms-label">Email</label>
                 <input type="text" autocorrect="off" autocapitalize="none" autocomplete="off" spellcheck="false" name="email" id="email-artist" onBlur="emailArtistPostFocus()" />
                 <p class="forms-error-msg" id="forms-error-email-artist"></p>
             </div>
@@ -58,6 +60,12 @@
                 <label class="forms-label">Password(min 7 char)</label>
                 <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" name="password" id="password-artist" onBlur="passwordArtistPostFocus()" placeholder="Min 7 characters" />
                 <p class="forms-error-msg" id="forms-error-password-artist"></p>
+            </div>
+            
+            <div class="form-component">
+                <label for="confirm-password-artist">Confirm Password</label>
+                <input type="password" autocorrect="off" autocapitalize="none" autocomplete="off" name="confirm-password-artist" spellcheck="false" id="confirm-password-artist"  />
+                <p class="forms-error-msg" id="forms-error-confirm-password-artist"></p>
             </div>
 
             <div class="form-component">

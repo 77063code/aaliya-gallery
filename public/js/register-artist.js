@@ -139,6 +139,7 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
     const email = document.getElementById('email-artist').value;
     const loginid = document.getElementById('loginid-artist').value;
     const password = document.getElementById('password-artist').value;
+    const confirmPassword = document.getElementById('confirm-password-artist').value;
     const school = document.getElementById('school-artist').value;
     const teacherFirstName = document.getElementById('teacherfirstname-artist').value;
     const teacherLastName = document.getElementById('teacherlastname-artist').value;
@@ -190,6 +191,15 @@ document.forms['register-artist-form'].addEventListener('submit', async(event) =
         document.getElementById('forms-error-password-artist').textContent = 'Password needs to be atleast 7 characters';
         document.getElementById('password-artist').focus();
     } 
+    else if (!confirmPassword) {
+        document.getElementById('forms-error-confirm-password-artist').style.display = "block";
+        document.getElementById('forms-error-confirm-password-artist').textContent = 'Please confirm the password';
+        document.getElementById('confirm-password-artist').focus();
+    } else if (password != confirmPassword) {
+        document.getElementById('forms-error-confirm-password-artist').style.display = "block";
+        document.getElementById('forms-error-confirm-password-artist').textContent = "The two passwords don't match";
+        document.getElementById('confirm-password-artist').focus();
+    }
     else if (!school) {
         document.getElementById('forms-error-school-artist').style.display = "block";
         document.getElementById('forms-error-school-artist').textContent = "Please enter your school's name";

@@ -70,25 +70,6 @@ TO MOVE A NEW VERSION TO PRODUCTION
 5. Delete user garfield3. Now this can be used in testing
 6. Create a new git tag with the version information
 
-BRANCHES & TAGS
-
-FEATURES BRANCH
-1. How to access image files directly from S3 and not on the server
-    1. Get Rid of the class name from the images and change the functions in app.js to reference the ids 
-    2. Changes the ids to the actual image name i.e with jpg or png or whatever extension
-    3. This change will have to made at the same time as step 2 - Update the likes database to add the same extension to the image name
-    4. Create the image collection. The image names will have to be updated from aaliya to aaliya1
-    5. The same change will have to be made in the likes db and the index.html file
-    6. Delete the unwanted files from img folder and rename the others as per the new naming convention
-    7. Upload the images to S3 with the new names and change the src in index to reference the S3 files
-    8. Now test and this is the next verson that should be released to production
-    
-UPLOAD-IMAGE BRANCH
-1. Right now just creating a form to upload one file and save it as test.txt
-2. Reformatting all form pages to be able to work on mobile 
-3. Recreating a new form structure
-
-
 RELEASES
 V1.3
 1. Date - 02/11/2020
@@ -145,6 +126,40 @@ V1.7
 	4. Corrected a small text error in register-browser.js
 	5. Added a field passwordhashcode in user model and also a function to initialize the hash
 	6. Deleted length field from image model
+    
+V1.8
+1. Branch - domain-email
+2. Date - 06/13/20
+3. Features
+    1. Created a AWS WorkMail account - support@aaliya-gallery.com
+    2. Created a new SMTP user in AWS
+    3. Changed to sending all emails from this account using SMTP from sending emails from gmail using sendgrid
+    4. Updated the environment variables file
+    5. Created a new S3 bucket for storing images in test environment different from production
+    6. Added a website title
+    7. Fixed a bug in app.js when code = 0
+
+V1.9
+1. Branch - upload-forms
+2. Date - 07/13/20
+3. Features
+    1. Added 2 new fields to the image model - version number and if the uploaded artwork is on original piece or not
+    2. Version number is initialized to 1 for existing images
+    3. Created a form where artists can see the images already uploaded, update image information, upload new images or delete images
+    4. DB changes - Add version field and make the value equal to 1 for all images in Image collection
+    5. DB changes - Rename image names to not have .jpg extension for all images in Image collection
+    6. DB changes - Update the s3 location value to have the version number in the name in Image collection
+    7. DB changes - Rename image names to not have .jpg extension for all images in Likes collection
+    8. AWS S3 changes - update the file names to add the version number for all image files
+    
+
+V1.10
+1. Branch - enhancements
+2. Date - 07/19/20
+3. Features
+    1. On the registration pages added firstname and lastname side by side to save some space
+    2. Added a new field to confirm the password
+    3. On login error, formatted the message that gets printed to the log
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
@@ -184,19 +199,15 @@ TO DO
 11. The db backups to be uploaded to S3
 
 
-1 Create a form so artists can upload their images to S3
 2. For the names the first letter needs to be capitalized
 3 They should be able to upload upto 5 images, no more than 200kb each
-4 They should also be able to delete any image they want
 5.Problem with email sent through sendgrid
-6.Need to log all the actions so can be debugeed i.e when the emails are sent
 7. Need to create a mail server
 9. The onblur still doesnt work on firefox. That needs to be fixed
 10. The error display on register pages is still a mess. That also needs to be fixed.
 11. Maybe have to change the formatting of the old images
 12. How to create thumbnails of uploaded images
 13. The price and sold/not sold needs to be added to the front of the image
-14. How to show progress bar when images are being uploaded
 15.  Work on onblur and onfocus on firefox
 16. The background image is different on test and prod
 17. Hoe to order images being displayed on the main screen
@@ -205,49 +216,12 @@ TO DO
 20. Need to have a character limit on the title f uploaded images
 21. When uploading new images the newest image should show on the top
 22. Should there be a minimum price at which a paitning can be sold
-23. Need to create 
+23. Need to create a new DEV environment
+24. format of the buttons
+25. Correct error messages
+26. Login/Register setup like costco.com
 
 
-DOMAIN-EMAIL
-WHAT ALL NEED TO DO
-1. Set up a domain email instead of gmail from which to send emails from
-4. Create prod and test buckets for all the images
-5. Renew the certbot certificate for both aaliya-gallery and cmeitest.com
-6. Autofocus error in register-artist on 2 fields
-7. Website Title
 
 
-STEPS
-1. Installed new packages
-2. Created WorkMail setup on AWS
-3. Created SMTP user in AWS
-4. Add STMP creds and the send email address to custom.sh file
-5. export AWSBUCKET='aaliya-gallery-test'
-   export AWSSMTPHOST=''
-   export AWSSMTPUSER=''
-   export AWSSMTPPASS=''
-   export SENDEMAIL=''
-4. Have created functions for sending email through node.js with using both STMP or SES in the admin directory
-5. Created a new bucket aaliya-gallery-test. Need to have the common folder and he bg file and CORS policy
-6. On test machines change AWSBUKCET = this new bucket
-7. Delete all images from collection and reupload images for cmeitest to test the new bucket is working
-8. Corrected a bug in app.js when confirm code was 0
-
-UPLOAD-FORMS
-WHAT ALL NEED TO DO
-1. Create a form to upload images
-2. User gets a message on how many artwork they can upload. The initial limit is 5 and then its 5 more for every piece they sell
-3. User gets a message when an image is being deleted
-4. When deleting an image all versions of a file are deleted
-5. DB changes - Add version field and make the value equal to 1 for all images in Image collection
-6. DB changes - Rename image names to not have .jpg extension for all images in Image collection
-7. DB changes - Update the s3 location value to have the version number in the name
-8. DB changes - Rename image names to not have .jpg extension for all images in Likes collection
-9. AWS S3 changes - update the file names to add the version number for all image files
-
-STEPS
-1. Create a new html page and based on the user login show all the images the user has already uploaded
-2. Added 2 new fields to the image model - version number of if it's an original piece or not
-3. Currently, the original piece field is not being used
-4. For version in production, thid field needs to be initialized as 1 for all images and all files need to renamed manually in S3
 

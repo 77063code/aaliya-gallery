@@ -28,7 +28,7 @@ document.forms['login-form'].addEventListener('submit', async (event) => {
             window.location.href='/';
         }
         else if (response.status === 350) {
-        // loginid and password math, but accont hasn't been activated through the email
+        //loginid and password match, but account hasn't been activated through the email
             document.getElementById('login-form').style.display = "none";
             document.getElementById('confirm-email-page').style.display = "block";
             document.getElementById('confirmation-email').textContent = 'Before your account can be activated, please click on the link sent to your email';
