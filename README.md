@@ -151,7 +151,15 @@ V1.9
     6. DB changes - Update the s3 location value to have the version number in the name in Image collection
     7. DB changes - Rename image names to not have .jpg extension for all images in Likes collection
     8. AWS S3 changes - update the file names to add the version number for all image files
+    
 
+V1.10
+1. Branch - enhancements
+2. Date - 07/19/20
+3. Features
+    1. On the registration pages added firstname and lastname side by side to save some space
+    2. Added a new field to confirm the password
+    3. On login error, formatted the message that gets printed to the log
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
@@ -214,20 +222,6 @@ TO DO
 26. Login/Register setup like costco.com
 
 
-ENHANCEMENTS
-WHAT TO DO
-1. Log file - The error message when login information is not corect is not good
-2. On the buyer registration page have firstname and lastname side by side, extra field for confirm password and make password minimum 8 characters
-3. On browser register page, the firstname and last name are side by side and also there is a new confirm password field
-4. Same change on the artist register page
-
-
-
-WHAT WAS DONE
-1. Created a new file common.js in src/routers
-2. Changed the Log file error message for being unable to login action
-3. On browser register page, the firstname and lastname are side by side and also there is a new confirm password field. This field is never passed with the form data
-4. same change on the artist register page
 
 
 
