@@ -171,6 +171,10 @@ STEPS TO DO
 1. Create a new OLD directory
 2. Move all *old* files to this directory
 3. Create a sass directory
+4. Install node-sass package
+5. Move and rename style-non-forms to the sass folder
+6. Create a script in package.json to create this css file in the css folder
+7. Created a new file _base.scss in the sass folder and moved some of the base css to this file
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION

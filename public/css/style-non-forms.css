@@ -1,190 +1,154 @@
-/** Login, Create and Message forms **/
+:root {
+  --color-primary: #eb2f64;
+  --color-primary-light: #FF3366;
+  --color-primary-dark: #BA265D;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+  --shadow-dark: 0 2rem 6rem rgba(0,0,0,0.3);
+  --shadow-light: 0 2rem 6rem rgba(0,0,0,.06);
+  --line: 1px solid var(--color-grey-light-2); }
 
+/* 1200px / 16(default browser font size) */
+/* 1100px/16 */
+/* 900px/16 */
+/* 600px/16 */
+/* 450px/16 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0; }
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit; }
 
 html {
-    font-size: 62.5%; /* 16px * 62.5% = 10px */
-    font-family: 'Source Sans Pro', sans-serif;
-
-   
-}
-
- @media only screen and (max-width: 600px) {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /* 16px * 62.5% = 10px */ }
+  @media only screen and (max-width: 37.5em) {
     html {
-            font-size: 50%; 
-        }
-}
-
-/*@media only screen and (max-width: 600px) {
-    .header-non-forms-page a {
-        text-decoration: none;
-        font-size: 4rem;
-        font-family: 'Yellowtail', cursive;
-        color: black;
-    }
-
-}
-
-@media only screen and (min-width: 601px) {
-    .header-non-forms-page a {
-        text-decoration: none;
-        font-size: 5rem;
-        font-family: 'Yellowtail', cursive;
-        color: black;
-    }
-}*/
+      font-size: 50%;
+      /* As screen gets smaller the text and photos start to wrap. This will make the font-size smaller */ } }
 
 body {
-    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
-    background-size: cover;
-    height: 100vh;
-}
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-image: url("https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg");
+  background-size: cover;
+  height: 100vh; }
 
 .header-non-forms-page {
-    background-color: lightblue;
-    color: black;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    height: 9%;    
-    z-index: 10;
-    /*margin: 0 auto; This can be deleted */
-    /*text-align: center;*/
-    
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
+  background-color: lightblue;
+  color: black;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 9%;
+  z-index: 10;
+  /*margin: 0 auto; This can be deleted */
+  /*text-align: center;*/
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .header-title {
-    text-decoration: none;
-    font-size: 4rem;
-    font-family: 'Yellowtail', cursive;
-    color: black;
-}
-
+  text-decoration: none;
+  font-size: 4rem;
+  font-family: 'Yellowtail', cursive;
+  color: black; }
 
 .wrapper {
-    position: absolute;
-    top: 11%;
-    width: 100%;
-}
+  position: absolute;
+  top: 11%;
+  width: 100%; }
 
 .non-forms-page-main {
-    max-width: 550px;
-    margin: 0 auto;
-    padding: 0 10px;
-    display: flex;
-    flex-direction: column;
-    background: rgba(0,0,0,0);    
-}
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0); }
 
 .non-forms-page-main h2 {
-    font-size: 2.1rem;
-    margin: 5px auto;
-}
+  font-size: 2.1rem;
+  margin: 5px auto; }
 
 .non-forms-page-main h3 {
-    font-size: 1.1rem;
-    margin: 5px auto;
-}
-
-
-
-/* IMAGE INFORMATION */
+  font-size: 1.1rem;
+  margin: 5px auto; }
 
 .user-image-info {
-    display: flex;
-    align-items: center;
-	width: 100%;
-    margin: 20px auto;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: orangered;
-}
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--color-grey-light-1); }
 
 .image-title,
 .thumbnail-img,
 .btn-list {
-    /*width: 33.33333%;*/
-    flex: 0 0 33.33333%;
-    padding: 1rem;
-    text-align: center;
-}
+  /*width: 33.33333%;*/
+  flex: 0 0 33.33333%;
+  padding: 1rem;
+  text-align: center; }
 
 .image-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-}
-
-@media only screen and (max-width: 450px) {
+  font-size: 1.5rem;
+  font-weight: 700; }
+  @media only screen and (max-width: 28.13em) {
     .image-title {
-        font-size: 1.2rem;
-    }
-}
+      font-size: 1.2rem; } }
 
 .thumbnail-img {
-    width: 8rem;
-    
-}
-
-/* IMAGE BUTTONS */
+  width: 8rem; }
 
 .btn-list {
-    display: flex;
-    flex-direction: column;
-}
+  display: flex;
+  flex-direction: column; }
 
 .btn-update-image-info,
 .btn-delete-image {
-    width: 100%;
-    text-align: center;
-    padding: 5px;
-    margin: 5px auto;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    background: rgba(0,0,255,0.2);
-}
-
-@media only screen and (max-width: 450px) {
+  width: 60%;
+  text-align: center;
+  padding: 5px;
+  margin: 15px auto;
+  font-size: 1.5rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: rgba(0, 0, 255, 0.2); }
+  @media only screen and (max-width: 28.13em) {
     .btn-update-image-info,
     .btn-delete-image {
-	    padding: 2px;
-        font-size: 1.2rem;
-    }
-}
-
-/* MAIN PAGE BUTTONS */
+      padding: 2px;
+      font-size: 1.2rem; } }
 
 .btn-main-page {
-    display: flex;
-    flex-direction: row;
-}
+  display: flex;
+  flex-direction: row; }
 
 .btn-main-page > button {
-    width: 50%;
-    text-align: center;
-    font-size: 2rem;
-    padding: .3rem;
-    margin: .4rem;
-    background-color: blue;
-    border: none;
-    border-radius: 1rem;
-    color: white; 
-    cursor: pointer;
-}
+  width: 50%;
+  text-align: center;
+  font-size: 2rem;
+  padding: .3rem;
+  margin: .4rem;
+  background-color: blue;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  cursor: pointer; }
 
 .btn-main-page > button:disabled {
-    background-color: grey;
-    color: #666666;
-}
-
-
-
-
-
+  background-color: grey;
+  color: #666666; }
