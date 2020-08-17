@@ -160,6 +160,17 @@ V1.10
     1. On the registration pages added firstname and lastname side by side to save some space
     2. Added a new field to confirm the password
     3. On login error, formatted the message that gets printed to the log
+    
+    
+    
+CSS-REORG
+WHAT TO DO
+1. Reorg the CSS files
+
+STEPS TO DO
+1. Create a new OLD directory
+2. Move all *old* files to this directory
+3. Create a sass directory
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION

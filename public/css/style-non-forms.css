@@ -7,24 +7,26 @@
 }
 
 html {
-    /*font-size: calc(100vh / 40);*/
-    font-size: 10px;
+    font-size: 62.5%; /* 16px * 62.5% = 10px */
     font-family: 'Source Sans Pro', sans-serif;
+
+   
 }
 
-@media only screen and (max-width: 600px) {
+ @media only screen and (max-width: 600px) {
     html {
-        font-size: calc(100vw / 40);
-    }
+            font-size: 50%; 
+        }
+}
+
+/*@media only screen and (max-width: 600px) {
     .header-non-forms-page a {
         text-decoration: none;
         font-size: 4rem;
         font-family: 'Yellowtail', cursive;
         color: black;
     }
-    .wrapper {
-        font-size: calc(100vw / 40);
-    }
+
 }
 
 @media only screen and (min-width: 601px) {
@@ -34,11 +36,7 @@ html {
         font-family: 'Yellowtail', cursive;
         color: black;
     }
-    
-    .wrapper {
-        font-size: 15px;
-    }
-}
+}*/
 
 body {
     background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
@@ -50,12 +48,23 @@ body {
     background-color: lightblue;
     color: black;
     width: 100%;
-    top: 0;
-    height: 9%;
     position: fixed;
+    top: 0;
+    height: 9%;    
     z-index: 10;
-    margin: 0 auto;
-    text-align: center;
+    /*margin: 0 auto; This can be deleted */
+    /*text-align: center;*/
+    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-title {
+    text-decoration: none;
+    font-size: 4rem;
+    font-family: 'Yellowtail', cursive;
+    color: black;
 }
 
 
@@ -71,18 +80,86 @@ body {
     padding: 0 10px;
     display: flex;
     flex-direction: column;
-    background: rgb(0,0,0,0);    
+    background: rgba(0,0,0,0);    
 }
 
 .non-forms-page-main h2 {
-    font-size: 2.1em;
+    font-size: 2.1rem;
     margin: 5px auto;
 }
 
 .non-forms-page-main h3 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     margin: 5px auto;
 }
+
+
+
+/* IMAGE INFORMATION */
+
+.user-image-info {
+    display: flex;
+    align-items: center;
+	width: 100%;
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: orangered;
+}
+
+.image-title,
+.thumbnail-img,
+.btn-list {
+    /*width: 33.33333%;*/
+    flex: 0 0 33.33333%;
+    padding: 1rem;
+    text-align: center;
+}
+
+.image-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 450px) {
+    .image-title {
+        font-size: 1.2rem;
+    }
+}
+
+.thumbnail-img {
+    width: 8rem;
+    
+}
+
+/* IMAGE BUTTONS */
+
+.btn-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-update-image-info,
+.btn-delete-image {
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    margin: 5px auto;
+    font-size: 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: rgba(0,0,255,0.2);
+}
+
+@media only screen and (max-width: 450px) {
+    .btn-update-image-info,
+    .btn-delete-image {
+	    padding: 2px;
+        font-size: 1.2rem;
+    }
+}
+
+/* MAIN PAGE BUTTONS */
 
 .btn-main-page {
     display: flex;
@@ -92,12 +169,12 @@ body {
 .btn-main-page > button {
     width: 50%;
     text-align: center;
-    font-size: 2em;
-    padding: .3em;
-    margin: .4em;
+    font-size: 2rem;
+    padding: .3rem;
+    margin: .4rem;
     background-color: blue;
     border: none;
-    border-radius: 1em;
+    border-radius: 1rem;
     color: white; 
     cursor: pointer;
 }
@@ -105,49 +182,6 @@ body {
 .btn-main-page > button:disabled {
     background-color: grey;
     color: #666666;
-}
-
-
-.user-image-info {
-    display: flex;
-    align-items: center;
-	width: 100%;
-    margin: 20px auto;
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-.image-title,
-.thumbnail-img,
-.btn-list {
-    width: 33%;
-    margin: 3%;
-    text-align: center;
-}
-
-.image-title {
-    font-size: 1.6em;
-}
-
-.thumbnail-img {
-    height: 10em;
-}
-
-
-.btn-list {
-    display: flex;
-    flex-direction: column;
-}
-
-.btn-list > button {
-    width: 100%;
-    text-align: center;
-    padding: 5px;
-    margin: 5px auto;
-    font-size: 1.5em;
-    border-radius: 5px;
-    cursor: pointer;
-    background: rgba(0,0,255,0.2);
 }
 
 
