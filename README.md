@@ -176,6 +176,11 @@ STEPS TO DO
 6. Create a script in package.json to create this css file in the css folder
 7. Created a new file _base.scss in the sass folder and moved some of the base css to this file
 
+8. Move and rename style-forms to the sass folder
+9. Create a script in package.json to create this css file in the css folder
+10. Created a new common file in sass directory. Moved the common code from form and non form files to the common file
+11. Changed the header class name and added header-title to all files other than home page
+
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 1. Image title(internal)

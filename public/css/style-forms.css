@@ -1,221 +1,209 @@
-/** Login, Create and Message forms **/
+:root {
+  --color-primary: #eb2f64;
+  --color-primary-light: #FF3366;
+  --color-primary-dark: #BA265D;
+  --color-grey-light-1: #faf9f9;
+  --color-grey-light-2: #f4f2f2;
+  --color-grey-light-3: #f0eeee;
+  --color-grey-light-4: #ccc;
+  --color-grey-dark-1: #333;
+  --color-grey-dark-2: #777;
+  --color-grey-dark-3: #999;
+  --shadow-dark: 0 2rem 6rem rgba(0,0,0,0.3);
+  --shadow-light: 0 2rem 6rem rgba(0,0,0,.06);
+  --line: 1px solid var(--color-grey-light-2); }
 
+/* 1200px / 16(default browser font size) */
+/* 1100px/16 */
+/* 900px/16 */
+/* 600px/16 */
+/* 450px/16 */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0; }
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit; }
 
 html {
-    /*font-size: calc(100vh / 40);*/
-    font-size: 10px;
-    font-family: 'Source Sans Pro', sans-serif;
-}
-
-@media only screen and (max-width: 600px) {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  /* 16px * 62.5% = 10px */ }
+  @media only screen and (max-width: 37.5em) {
     html {
-        font-size: calc(100vw / 40);
-    }
-    .header-forms-page a {
-        text-decoration: none;
-        font-size: 4rem;
-        font-family: 'Yellowtail', cursive;
-        color: black;
-    }
-    .forms-page {
-        font-size: calc(100vw / 40);
-    }
-}
+      font-size: 50%;
+      /* As screen gets smaller the text and photos start to wrap. This will make the font-size smaller */ } }
 
-@media only screen and (min-width: 601px) {
-    .forms-page {
-        font-size: 16px;
-    }
-    .header-forms-page a {
-        text-decoration: none;
-        font-size: 5rem;
-        font-family: 'Yellowtail', cursive;
-        color: black;
-    }
-}
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  background-image: url("https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg");
+  background-size: cover;
+  height: 100vh; }
 
-.header-forms-page {
-    background-color: lightblue;
-    color: black;
-    width: 100%;
-    height: 9%;
-    position: fixed;
-    z-index: 10;
-        display: flex;
-    justify-content: center;
-        align-items: center;
-    margin: auto;
-}
+.header-page {
+  background-color: lightblue;
+  color: black;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 9%;
+  z-index: 10;
+  /*margin: 0 auto; This can be deleted */
+  /*text-align: center;*/
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
+.header-title {
+  text-decoration: none;
+  font-size: 4rem;
+  font-family: 'Yellowtail', cursive;
+  color: black; }
 
 .forms-page {
-    background: #333744;
-    background-color: mintcream;
-    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    position: absolute;
-    top: 9%;
-    width: 100%;
-}
+  /*background: #333744;
+    background-color: mintcream; These 2 can be deleted with the background-image */
+  background-image: url("https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg");
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 9%;
+  width: 100%; }
 
 .forms-page form,
 .forms-page .register-complete-page,
 .forms-page #confirm-email-page {
-    border: .1em solid;
-    width: 30em;
-    margin: auto;
-    margin-top: 5em;
-    margin-bottom: 5em;
-    background-color: white;
-}
+  border: .1rem solid;
+  width: 35rem;
+  /*margin: auto; This can be deleted */
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  background-color: white; }
+  @media only screen and (min-width: 56.25em) {
+    .forms-page form,
+    .forms-page .register-complete-page,
+    .forms-page #confirm-email-page {
+      width: 45rem; } }
 
 .forms-page .form-component {
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-pack: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    flex-direction: column;
-    width: 100%;
-    margin-bottom: 1.6em;
-}
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1.6rem; }
 
 .form-component-two {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    width: 100%;
-    margin-bottom: 1.6em;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.form-component-two__first, 
-.form-component-two__second {
-    margin-left: 0.7em;
-}
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 1.6rem;
+  margin-left: auto;
+  margin-right: auto; }
+  .form-component-two__first, .form-component-two__second {
+    margin-left: 0.7rem; }
 
 .forms-page .form-component h2 {
-    font-size: 2.1em;
-}
+  font-size: 2.1rem;
+  text-align: center; }
 
 .forms-page .form-component label,
 .form-component-two label {
-    display: block;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    font-size: 1.8em;
-    font-weight: bold;
-    color: #333744;
-    padding-left: 0.8em;
-}
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333744;
+  padding-left: 0.8rem; }
 
 .forms-page .form-component input {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    border: .1em solid lightblue;
-    border-radius: 1em;
-    padding: 0.7em;
-    outline: none;
-    font-size: 1.8em;
-}
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border: .1rem solid lightblue;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  outline: none;
+  font-size: 1.8rem; }
 
 .form-component-two input {
-    width: 95%;
-    margin: 0 auto;
-    border: .1em solid lightblue;
-    border-radius: 1em;
-    padding: 0.7em;
-    outline: none;
-    font-size: 1.8em;
-}
+  width: 95%;
+  margin: 0 auto;
+  border: .1rem solid lightblue;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  outline: none;
+  font-size: 1.8rem; }
 
 .forms-page .form-component select {
-    width: 90%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border: .1em solid lightblue;
-    border-radius: 1em;
-    padding: 0.7em;
-    font-size: 1.8em;
-    outline: none;
-    background-color: white;
-}
+  width: 90%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border: .1rem solid lightblue;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  font-size: 1.8rem;
+  outline: none;
+  background-color: white; }
 
 .forms-page .form-component textarea {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    border: .1em solid lightblue;
-    border-radius: 1em;
-    padding: 0.7em;
-    outline: none;
-    font-size: 1.8em;
-    resize: none; /*This removes the ability to resize the area on the form */
-}
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  border: .1rem solid lightblue;
+  border-radius: 1rem;
+  padding: 0.7rem;
+  outline: none;
+  font-size: 1.8rem;
+  resize: none;
+  /*This removes the ability to resize the area on the form */ }
 
 .forms-page .form-component button {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5%;
-    cursor: pointer;
-    padding: 1.2em;
-    background-color: blue;
-    border: none;
-    border-radius: 1em;
-    color: white;
-    font-size: 1.8em;
-    -webkit-transition: background .3s ease;
-    transition: background .3s ease;
-}
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  cursor: pointer;
+  padding: 1.2rem;
+  background-color: blue;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-size: 1.8rem;
+  transition: background .3s ease; }
 
 .forms-page .form-component button:disabled {
-    color: lightgrey;
-    opacity: 0.3;
-}
+  color: lightgrey;
+  opacity: 0.3; }
 
 .forms-page .form-component p {
-    width: 100%;
-    text-align: center;
-    color: red;
-    font-size: 1.6em;
-    margin-top: .5em;
-}
+  width: 100%;
+  text-align: center;
+  color: red;
+  font-size: 1.6rem;
+  margin-top: .5rem; }
 
 .form-component-two p {
-    width: 100%;
-    text-align: center;
-    color: red;
-    font-size: 1.3em;
-    margin-top: .5em;
-}
+  width: 100%;
+  text-align: center;
+  color: red;
+  font-size: 1.3rem;
+  margin-top: .5rem; }
 
 .forms-page input:focus,
 textarea:focus,
 select:focus {
-    background-color: lightblue;
-}
+  background-color: lightblue; }
 
 #btn-close-register-form,
 #btn-close-register-artist-form,
@@ -226,66 +214,55 @@ select:focus {
 #btn-close-confirm-email-form,
 #btn-close-upload-image-form,
 #btn-close-reset-password-email-form {
-    width: 9em;
-    opacity: 0.5;
-    text-align: right;
-    background-color: transparent;
-    margin-right: -3.2em;
-    margin-top: -1em;
-    outline: none;
-    overflow: hidden;
-    -webkit-tap-highlight-color: transparent;
-}
+  width: 9rem;
+  text-align: right;
+  background-color: transparent;
+  margin-right: -3.2rem;
+  margin-top: -1rem;
+  outline: none;
+  overflow: hidden; }
 
 .fa-times-circle {
-    color: black;
-    cursor: pointer;
-    font-size: 1.6em;
-    margin-right: 1.22em;
-    margin-top: -0.15em;
-    opacity: 0.7;
-}
+  color: black;
+  cursor: pointer;
+  font-size: 2.6rem;
+  margin-right: 1.75rem;
+  margin-top: -0.25rem;
+  opacity: 0.5; }
+  @media only screen and (max-width: 56.25em) {
+    .fa-times-circle {
+      font-size: 3rem; } }
 
 .fa-times-circle:hover {
-    cursor: pointer
-}
-
+  cursor: pointer; }
 
 /* Completion page for register forms. Initially hidden */
-
 .forms-page #register-artist-complete-page,
 .forms-page #register-browser-complete-page {
-    display: none;
-}
+  display: none; }
 
 .forms-page #confirm-email-page {
-    display: none;
-}
+  display: none; }
 
 .user-image-info {
-    display: flex;
-    flex-direction: row;
-	width: 100%;
-    justify-content: space-around;
-    font-size: 2em;
-    margin: 20px auto;
-    border: 1px solid black;
-    border-radius: 5px;
-}
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  font-size: 2rem;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 5px; }
 
 .user-image-info > p {
-    margin: 1em 2em;
-}
+  margin: 1rem 2rem; }
 
 .user-image-info > button {
-    margin: 1em 2em;
-    font-size: 1em;
-	
-}
-
+  margin: 1rem 2rem;
+  font-size: 1rem; }
 
 /* Not being used right now. Moving to the bottom 
-.centered-form .social--auth {
+.centered-form .social_auth {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -310,7 +287,7 @@ i.fa-google {
             justify-content: center;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center;
+            align-itrems: center;
 }
 
 */

@@ -1,0 +1,260 @@
+.forms-page {
+    /*background: #333744;
+    background-color: mintcream; These 2 can be deleted with the background-image */
+    background-image: url('https://aaliya-gallery.s3-us-west-2.amazonaws.com/common/bg.jpg');
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 9%;
+    width: 100%;
+}
+
+.forms-page form,
+.forms-page .register-complete-page,
+.forms-page #confirm-email-page {
+    border: .1rem solid;
+    width: 35rem;
+    /*margin: auto; This can be deleted */
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    background-color: white;
+    
+    @media only screen and (min-width: $bp-medium) {
+        width: 45rem;
+    }
+}
+
+.forms-page .form-component {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1.6rem;
+}
+
+.form-component-two {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 1.6rem;
+    margin-left: auto;
+    margin-right: auto;
+    
+    &__first,
+    &__second {
+        margin-left: 0.7rem;
+    }
+}
+
+.forms-page .form-component h2 {
+    font-size: 2.1rem;
+    text-align: center;
+}
+
+.forms-page .form-component label,
+.form-component-two label {
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333744;
+    padding-left: 0.8rem;
+}
+
+.forms-page .form-component input {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1rem solid lightblue;
+    border-radius: 1rem;
+    padding: 0.7rem;
+    outline: none;
+    font-size: 1.8rem;
+}
+
+.form-component-two input {
+    width: 95%;
+    margin: 0 auto;
+    border: .1rem solid lightblue;
+    border-radius: 1rem;
+    padding: 0.7rem;
+    outline: none;
+    font-size: 1.8rem;
+}
+
+.forms-page .form-component select {
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1rem solid lightblue;
+    border-radius: 1rem;
+    padding: 0.7rem;
+    font-size: 1.8rem;
+    outline: none;
+    background-color: white;
+}
+
+.forms-page .form-component textarea {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    border: .1rem solid lightblue;
+    border-radius: 1rem;
+    padding: 0.7rem;
+    outline: none;
+    font-size: 1.8rem;
+    resize: none; /*This removes the ability to resize the area on the form */
+}
+
+.forms-page .form-component button {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    cursor: pointer;
+    padding: 1.2rem;
+    background-color: blue;
+    border: none;
+    border-radius: 1rem;
+    color: white;
+    font-size: 1.8rem;
+    transition: background .3s ease;
+}
+
+.forms-page .form-component button:disabled {
+    color: lightgrey;
+    opacity: 0.3;
+}
+
+.forms-page .form-component p {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.6rem;
+    margin-top: .5rem;
+}
+
+.form-component-two p {
+    width: 100%;
+    text-align: center;
+    color: red;
+    font-size: 1.3rem;
+    margin-top: .5rem;
+}
+
+.forms-page input:focus,
+textarea:focus,
+select:focus {
+    background-color: lightblue;
+}
+
+#btn-close-register-form,
+#btn-close-register-artist-form,
+#btn-close-register-browser-form,
+#btn-close-resend-email-form,
+#btn-close-login-form,
+#btn-close-message-form,
+#btn-close-confirm-email-form,
+#btn-close-upload-image-form,
+#btn-close-reset-password-email-form {
+    width: 9rem;
+    text-align: right;
+    background-color: transparent;
+    margin-right: -3.2rem;
+    margin-top: -1rem;
+    outline: none;
+    overflow: hidden;
+}
+
+.fa-times-circle {
+    color: black;
+    cursor: pointer;
+    font-size: 2.6rem;
+    margin-right: 1.75rem;
+    margin-top: -0.25rem;
+    opacity: 0.5;
+    
+    @media only screen and (max-width: $bp-medium) {
+        font-size: 3rem;
+    }
+}
+
+.fa-times-circle:hover {
+    cursor: pointer
+}
+
+
+/* Completion page for register forms. Initially hidden */
+
+.forms-page #register-artist-complete-page,
+.forms-page #register-browser-complete-page {
+    display: none;
+}
+
+.forms-page #confirm-email-page {
+    display: none;
+}
+
+
+/* This can be deleted as this is in the non forms file
+.user-image-info {
+    display: flex;
+    flex-direction: row;
+	width: 100%;
+    justify-content: space-around;
+    font-size: 2rem;
+    margin: 20px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.user-image-info > p {
+    margin: 1rem 2rem;
+}
+
+.user-image-info > button {
+    margin: 1rem 2rem;
+    font-size: 1rem;
+	
+}
+
+*/
+
+
+/* Not being used right now. Moving to the bottom 
+.centered-form .social_auth {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+i.fa-facebook,
+i.fa-amazon,
+i.fa-google {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    color: #fff;
+    background: lightblue;
+    margin: 2rem 0;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 3rem;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-itrems: center;
+}
+
+*/
