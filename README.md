@@ -181,6 +181,8 @@ STEPS TO DO
 10. Created a new common file in sass directory. Moved the common code from form and non form files to the common file
 11. Changed the header class name and added header-title to all files other than home page
 
+12. Merged forms and non-forms into style2
+
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 1. Image title(internal)

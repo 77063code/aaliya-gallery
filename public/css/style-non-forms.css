@@ -29,12 +29,12 @@
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%;
-  /* 16px * 62.5% = 10px */ }
-  @media only screen and (max-width: 37.5em) {
+  font-size: 50%;
+  /* 16px * 50% = 8px */ }
+  @media only screen and (min-width: 37.5em) {
     html {
-      font-size: 50%;
-      /* As screen gets smaller the text and photos start to wrap. This will make the font-size smaller */ } }
+      font-size: 62.5%;
+      /* Only on the smallest screens, make the defaut font size 8px. After that make it 10px */ } }
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
@@ -44,7 +44,40 @@ body {
   background-size: cover;
   height: 100vh; }
 
-.header-non-forms-page {
+.btn-close-form {
+  width: 9rem;
+  background-color: transparent;
+  margin-right: -4rem;
+  margin-top: -1rem;
+  padding: 1.2rem;
+  margin-left: auto;
+  border: none;
+  cursor: pointer; }
+  @media only screen and (min-width: 56.25em) {
+    .btn-close-form {
+      margin-right: -4.2rem; } }
+  .btn-close-form:focus {
+    outline: none; }
+
+.btn-submit-form {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  cursor: pointer;
+  padding: 1.2rem;
+  background-color: blue;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-size: 1.8rem; }
+  .btn-submit-form:disabled {
+    color: lightgrey;
+    opacity: 0.3; }
+  .btn-submit-form:focus {
+    outline: none; }
+
+.header-page {
   background-color: lightblue;
   color: black;
   width: 100%;
@@ -103,11 +136,11 @@ body {
   text-align: center; }
 
 .image-title {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 700; }
-  @media only screen and (max-width: 28.13em) {
+  @media only screen and (min-width: 28.13em) {
     .image-title {
-      font-size: 1.2rem; } }
+      font-size: 1.5rem; } }
 
 .thumbnail-img {
   width: 8rem; }
@@ -120,18 +153,18 @@ body {
 .btn-delete-image {
   width: 60%;
   text-align: center;
-  padding: 5px;
+  padding: 2px;
   margin: 15px auto;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border-radius: 5px;
   text-transform: uppercase;
   cursor: pointer;
   background: rgba(0, 0, 255, 0.2); }
-  @media only screen and (max-width: 28.13em) {
+  @media only screen and (min-width: 28.13em) {
     .btn-update-image-info,
     .btn-delete-image {
-      padding: 2px;
-      font-size: 1.2rem; } }
+      padding: 5px;
+      font-size: 1.5rem; } }
 
 .btn-main-page {
   display: flex;

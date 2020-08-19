@@ -44,39 +44,6 @@ body {
   background-size: cover;
   height: 100vh; }
 
-.btn-close-form {
-  width: 9rem;
-  background-color: transparent;
-  margin-right: -4rem;
-  margin-top: -1rem;
-  padding: 1.2rem;
-  margin-left: auto;
-  border: none;
-  cursor: pointer; }
-  @media only screen and (min-width: 56.25em) {
-    .btn-close-form {
-      margin-right: -4.2rem; } }
-  .btn-close-form:focus {
-    outline: none; }
-
-.btn-submit-form {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5%;
-  cursor: pointer;
-  padding: 1.2rem;
-  background-color: blue;
-  border: none;
-  border-radius: 1rem;
-  color: white;
-  font-size: 1.8rem; }
-  .btn-submit-form:disabled {
-    color: lightgrey;
-    opacity: 0.3; }
-  .btn-submit-form:focus {
-    outline: none; }
-
 .header-page {
   background-color: lightblue;
   color: black;
@@ -243,56 +210,124 @@ select:focus {
 .forms-page #confirm-email-page {
   display: none; }
 
-/* This can be deleted as this is in the non forms file
+.btn-close-form {
+  width: 9rem;
+  background-color: transparent;
+  margin-right: -4rem;
+  margin-top: -1rem;
+  padding: 1.2rem;
+  margin-left: auto;
+  border: none;
+  cursor: pointer; }
+  @media only screen and (min-width: 56.25em) {
+    .btn-close-form {
+      margin-right: -4.2rem; } }
+  .btn-close-form:focus {
+    outline: none; }
+
+.btn-submit-form {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  cursor: pointer;
+  padding: 1.2rem;
+  background-color: blue;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-size: 1.8rem; }
+  .btn-submit-form:disabled {
+    color: lightgrey;
+    opacity: 0.3; }
+  .btn-submit-form:focus {
+    outline: none; }
+
+.wrapper {
+  position: absolute;
+  top: 11%;
+  width: 100%; }
+
+.non-forms-page-main {
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0); }
+
+.non-forms-page-main h2 {
+  font-size: 2.1rem;
+  margin: 5px auto; }
+
+.non-forms-page-main h3 {
+  font-size: 1.1rem;
+  margin: 5px auto; }
+
 .user-image-info {
-    display: flex;
-    flex-direction: row;
-	width: 100%;
-    justify-content: space-around;
-    font-size: 2rem;
-    margin: 20px auto;
-    border: 1px solid black;
-    border-radius: 5px;
-}
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--color-grey-light-1); }
 
-.user-image-info > p {
-    margin: 1rem 2rem;
-}
+.image-title,
+.thumbnail-img,
+.btn-list {
+  /*width: 33.33333%;*/
+  flex: 0 0 33.33333%;
+  padding: 1rem;
+  text-align: center; }
 
-.user-image-info > button {
-    margin: 1rem 2rem;
-    font-size: 1rem;
-	
-}
+.image-title {
+  font-size: 1.2rem;
+  font-weight: 700; }
+  @media only screen and (min-width: 28.13em) {
+    .image-title {
+      font-size: 1.5rem; } }
 
-*/
-/* Not being used right now. Moving to the bottom 
-.centered-form .social_auth {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: distribute;
-        justify-content: space-around;
-}
+.thumbnail-img {
+  width: 8rem; }
 
-i.fa-facebook,
-i.fa-amazon,
-i.fa-google {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    color: #fff;
-    background: lightblue;
-    margin: 2rem 0;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 3rem;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-itrems: center;
-}
+.btn-list {
+  display: flex;
+  flex-direction: column; }
 
-*/
+.btn-update-image-info,
+.btn-delete-image {
+  width: 60%;
+  text-align: center;
+  padding: 2px;
+  margin: 15px auto;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: rgba(0, 0, 255, 0.2); }
+  @media only screen and (min-width: 28.13em) {
+    .btn-update-image-info,
+    .btn-delete-image {
+      padding: 5px;
+      font-size: 1.5rem; } }
+
+.btn-main-page {
+  display: flex;
+  flex-direction: row; }
+
+.btn-main-page > button {
+  width: 50%;
+  text-align: center;
+  font-size: 2rem;
+  padding: .3rem;
+  margin: .4rem;
+  background-color: blue;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  cursor: pointer; }
+
+.btn-main-page > button:disabled {
+  background-color: grey;
+  color: #666666; }

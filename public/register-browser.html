@@ -6,7 +6,7 @@
     <link href="./css/all.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='./css/style-forms.css' />
+    <link rel='stylesheet' href='./css/style2.css' />
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <form id="register-browser-form" method="POST" action="users" autocomplete="off">
 
             <div class="form-component">
-                <button type="button" id="btn-close-register-browser-form">
+                <button type="button" class="btn-close-form" id="btn-close-register-browser-form">
                     <i class="fa fa-times-circle" title="Close Form"></i>
                 </button>
             </div>
@@ -65,7 +65,7 @@
             <input type="hidden" id="artist" name="artist" value=false />
 
             <div class="form-component">
-                <button type="submit">Create a new account</button>
+                <button type="submit" class="btn-submit-form">Create a new account</button>
             </div>
 
         </form>
@@ -73,7 +73,7 @@
         <div class="register-complete-page" id="register-browser-complete-page">
 
             <div class="form-component">
-                <button id="btn-close-resend-email-form">
+                <button type="button" class="btn-close-form" id="btn-close-resend-email-form">
                     <i class="fa fa-times-circle" title="Close Form"></i>
                 </button>
             </div>
@@ -87,7 +87,7 @@
             </div>
 
             <div class="form-component">
-                <button id="btn-resend-email">Resend Email</button>
+                <button type="submit" class="btn-submit-form" id="btn-resend-email">Resend Email</button>
             </div>
 
         </div>
