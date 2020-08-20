@@ -183,6 +183,11 @@ STEPS TO DO
 
 12. Merged forms and non-forms into style2
 
+13. Move and rename style.css to sass folder
+14. Changed the script in package.json to create style.css from style.scss
+15. Merged style-media.css into style.scss
+16. Moved the common elements from style.scss to common.scss
+
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 1. Image title(internal)

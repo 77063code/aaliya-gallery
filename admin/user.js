@@ -37,6 +37,11 @@ const updateImagesUploaded = async (email_id) => {
     console.log(response);
 }
 
+const updateImagesAllowed = async (email_id) => {
+//Update images alled for a user to 50
+    const response = await Users.updateOne({ email : email_id}, { imagesAllowed: 50 })
+    console.log(response);
+}
 const updateImagesIndex = async (email_id) => {
 //Update images uploaded for a user to zero
     const response = await Users.updateOne({ email : email_id}, { imagesIndex: 0 })
@@ -55,6 +60,7 @@ const deleteUser = async (email_id) => {
 }
 
 findAllUsers();
+updateImagesAllowed('cmeitester1@gmail.com');
 //updateImagesUploaded('sgupt9999@gmail.com');
 //updateImagesUploaded('sanjaygupta9999@yahoo.com');
 //findLikesByUser('garfield1');
