@@ -188,6 +188,10 @@ STEPS TO DO
 15. Merged style-media.css into style.scss
 16. Moved the common elements from style.scss to common.scss
 
+17. Rename _style.scss _homepage.scss
+18. Combine base,common,homepage and components into one css file called style.css
+19. Change all html pages to use this css file
+
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
 1. Image title(internal)

@@ -60,12 +60,12 @@ const deleteUser = async (email_id) => {
 }
 
 findAllUsers();
-updateImagesAllowed('cmeitester1@gmail.com');
+//updateImagesAllowed('cmeitester1@gmail.com');
 //updateImagesUploaded('sgupt9999@gmail.com');
 //updateImagesUploaded('sanjaygupta9999@yahoo.com');
 //findLikesByUser('garfield1');
 //updateHashCode('cmeitester1@gmail.com');
-//updateHashCode('cmeitester2@gmail.com');
+updateHashCode('cmeitester2@gmail.com');
 //deleteUser('cmeitester1@gmail.com');
 //deleteUser('cmeitester2@gmail.com');
 //findAllUsers();
