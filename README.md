@@ -160,6 +160,43 @@ V1.10
     1. On the registration pages added firstname and lastname side by side to save some space
     2. Added a new field to confirm the password
     3. On login error, formatted the message that gets printed to the log
+    
+    
+    
+CSS-REORG
+WHAT TO DO
+1. Reorg the CSS files
+
+STEPS TO DO
+1. Create a new OLD directory
+2. Move all *old* files to this directory
+3. Create a sass directory
+4. Install node-sass package
+5. Move and rename style-non-forms to the sass folder
+6. Create a script in package.json to create this css file in the css folder
+7. Created a new file _base.scss in the sass folder and moved some of the base css to this file
+
+8. Move and rename style-forms to the sass folder
+9. Create a script in package.json to create this css file in the css folder
+10. Created a new common file in sass directory. Moved the common code from form and non form files to the common file
+11. Changed the header class name and added header-title to all files other than home page
+
+12. Merged forms and non-forms into style2
+
+13. Move and rename style.css to sass folder
+14. Changed the script in package.json to create style.css from style.scss
+15. Merged style-media.css into style.scss
+16. Moved the common elements from style.scss to common.scss
+
+17. Rename _style.scss _homepage.scss
+18. Combine base,common,homepage and components into one css file called style.css
+19. Change all html pages to use this css file
+20. Deleted the unused files from sass and css directories
+
+21. Install autoprefixer, concat, npm-run-all and postcss-cli packages
+22. Build the flow to compile, concatenate, autoprefix and compress into style.css
+23. Change all html files to not call all.css separately
+24. Update .gitignore to not load the intermediary production flow files
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION

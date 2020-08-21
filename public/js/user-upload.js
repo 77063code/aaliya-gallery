@@ -1,6 +1,6 @@
 // Elements
-const $updateimageinfo = document.getElementsByClassName('update-image-info'); //Get all the update image buttons
-const $deleteimage = document.getElementsByClassName('delete-image'); //Get all the delete image buttons
+const $updateimageinfo = document.getElementsByClassName('btn-update-image-info'); //Get all the update image buttons
+const $deleteimage = document.getElementsByClassName('btn-delete-image'); //Get all the delete image buttons
 
 const checkUserEligibility = async () => {
 //If user is not an artist redirect to home page

@@ -3,18 +3,18 @@
 
 <head>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0' />
-    <link href="./css/all.css" rel="stylesheet">
+    <!--<link href="./css/all.css" rel="stylesheet"> -->
     <link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='./css/style-non-forms.css' />
+    <link rel='stylesheet' href='./css/style.css' />
     <title>Aaliya's Art Gallery</title>
 </head>
 
 <body>
 
 
-    <div class="header-non-forms-page">
-        <a id="register-label" href="index.html">Aaliya's Art Gallery</a>
+    <div class="header-page">
+        <a class="header-title" id="register-label" href="index.html">Aaliya's Art Gallery</a>
     </div>
 
     <div class="wrapper">
@@ -52,8 +52,8 @@
             <p class="image-title">{{img_title}}</p>
             <img class="thumbnail-img" src={{img_src}}>
             <div class="btn-list">
-                <button class="update-image-info" >Update</button>
-                <button class="delete-image">Delete</button>
+                <button class="btn-update-image-info" >Update</button>
+                <button class="btn-delete-image">Delete</button>
                 <h4 style="display:none" id="msg-deleting-image-{{img_name}}"></h4>
             </div>
         </div>
