@@ -191,6 +191,12 @@ STEPS TO DO
 17. Rename _style.scss _homepage.scss
 18. Combine base,common,homepage and components into one css file called style.css
 19. Change all html pages to use this css file
+20. Deleted the unused files from sass and css directories
+
+21. Install autoprefixer, concat, npm-run-all and postcss-cli packages
+22. Build the flow to compile, concatenate, autoprefix and compress into style.css
+23. Change all html files to not call all.css separately
+24. Update .gitignore to not load the intermediary production flow files
 
 
 WHAT FIELDS ARE NEEDED FOR THE IMAGE COLLECTION
