@@ -261,7 +261,9 @@ router.get('/images/signed-url-put-object/:update/:name/:version', auth, async(r
             name,
             artistid: loginid,
             backside_id: loginid + '-' + req.user.imagesIndex + '__back',
-            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + name + '-' + version + '.jpg'            
+            s3location: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + name + '-' + version + '.jpg',
+            s3locationbig: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + name + '-big-' + version + '.jpg',
+            s3locationmini: 'https://' + AWSBucket + '.s3-' + AWSRegion + '.amazonaws.com/' + loginid + '/' + name + '-mini-' + version + '.jpg'
         }
         res.status(201).send(data);
     } catch (e) {

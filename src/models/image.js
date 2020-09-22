@@ -65,7 +65,15 @@ const imageSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    s3location: {
+    s3location: { // Location od the original uploaded file
+        type: String,
+        lowercase: true
+    },
+    s3locationbig: { // Location of the cropped file
+        type: String,
+        lowercase: true
+    },
+    s3locationmini: { // Location of the cropped squared file displayed on home page
         type: String,
         lowercase: true
     },

@@ -163,6 +163,27 @@ V1.10
     
     
     
+V1.11
+1. Branch - css-reorg
+2. Date - 08/20/20
+3. Features
+    1. Merged all css files into one using sass
+    2. Created a production workflow with all html files calling one compressed css file
+    
+    
+GALLERY-REORG
+WHAT TO DO
+1. Remove border and outline from the images
+2. Make some other font size and positioning changes on home page
+3. Change the display pictures where if portrait instead of stretching, just show the important part of the image
+   
+   
+STEPS TO DO
+    
+   
+    
+    
+    
 CSS-REORG
 WHAT TO DO
 1. Reorg the CSS files
@@ -192,6 +213,8 @@ STEPS TO DO
 18. Combine base,common,homepage and components into one css file called style.css
 19. Change all html pages to use this css file
 20. Deleted the unused files from sass and css directories
+
+
 
 21. Install autoprefixer, concat, npm-run-all and postcss-cli packages
 22. Build the flow to compile, concatenate, autoprefix and compress into style.css

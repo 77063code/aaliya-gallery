@@ -67,7 +67,7 @@ const renderHomePage = async() => {
         const imageTemplate = document.querySelector('#image-template').innerHTML;
         const html = Mustache.render(imageTemplate, {
             img_id: image.name,
-            img_src: image.s3location,
+            img_src: image.s3locationmini,
             img_back_id: image.backside_id,
             img_title: image.title,
             img_artistid: image.artistid,
@@ -122,14 +122,18 @@ const renderHomePage = async() => {
 
 
     Array.from($closeinformationclassname).forEach((element) => {
-        // Create a separate click event for all back pages of the images
-        // When clicking close of the back page, it should revert back to the image
+    // Create a separate click event for all back pages of the images
+    // When clicking close of the back page, it should revert back to the image
         element.addEventListener('click', () => {
             document.getElementById(element.parentElement.parentElement.parentElement.children[0].id).style.transform = "rotateY(0)"; // Rotate the front side to 0deg so it's visible
             document.getElementById(element.parentElement.parentElement.parentElement.children[1].id).style.transform = "rotateY(180deg)"; // Rotate the back side 180deg so its not visible 
         })
     });
 
+    
+    document.getElementById('cmeitester1-48').addEventListener('click', () => {
+        alert('Hello');
+    })
 
 }
 
