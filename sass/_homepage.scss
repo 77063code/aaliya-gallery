@@ -250,6 +250,11 @@
             transform: rotateY(180deg);
 }
 
+.img__s3locationbig {
+// This attribute is only used to save the S3 location of the bigger version
+    display: none;
+}
+
 
 .popup {
     position: fixed;
@@ -259,8 +264,8 @@
     width: 100%;
     z-index: 5000;
     background-color: rgba(black,0.8);
-    //opacity: 0;
-    //visibility: hidden;
+    opacity: 0;
+    visibility: hidden;
     
     &__content {
         position: absolute;

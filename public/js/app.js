@@ -5,6 +5,7 @@ const $imgbackclose = document.getElementsByClassName('img__back--close');
 const $likesclassname = document.getElementsByClassName('total-likes');
 const $messageclass = document.getElementsByClassName('fa-envelope')
 const $closeinformationclassname = document.getElementsByClassName('btn-close-information');
+const $imgfront = document.getElementsByClassName('img__front');
 
 
 
@@ -68,6 +69,7 @@ const renderHomePage = async() => {
         const html = Mustache.render(imageTemplate, {
             img_id: image.name,
             img_src: image.s3locationmini,
+            img_s3locationbig: image.s3locationbig,
             img_back_id: image.backside_id,
             img_title: image.title,
             img_artistid: image.artistid,
@@ -131,10 +133,15 @@ const renderHomePage = async() => {
     });
 
     
-    document.getElementById('cmeitester1-48').addEventListener('click', () => {
-        alert('Hello');
-    })
-
+    Array.from($imgfront).forEach((element) => {
+    // Create a separate click event for all images to display a bigger version of the image
+        element.addEventListener('click', () => {
+            const s3locationbig = element.parentElement.children[1].children[1].children[0].innerHTML; // Get s3 location of the big image of the image that was clicked
+            document.getElementById('popup').style.opacity = 1;
+            document.getElementById('popup').style.visibility = 'visible'; 
+            document.getElementById('popup__img').src = s3locationbig;
+        })
+    });
 }
 
 renderHomePage();
