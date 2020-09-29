@@ -9,6 +9,10 @@ const $imgfront = document.getElementsByClassName('img__front');
 
 
 
+
+
+
+
 const loginByHashCode = async(hashcode) => {
     try {
         const response = await fetch('/users/confirm/' + hashcode)
@@ -136,15 +140,121 @@ const renderHomePage = async() => {
     Array.from($imgfront).forEach((element) => {
     // Create a separate click event for all images to display a bigger version of the image
         element.addEventListener('click', () => {
-            const s3locationbig = element.parentElement.children[1].children[1].children[0].innerHTML; // Get s3 location of the big image of the image that was clicked
-            document.getElementById('popup').style.opacity = 1;
-            document.getElementById('popup').style.visibility = 'visible'; 
-            document.getElementById('popup__img').src = s3locationbig;
+            //const windowWidth = window.innerWidth;
+            const imgBigLink = element.parentElement.children[1].children[1].children[0].innerHTML; // Get s3 location of the big image of the image that was clicked
+            let currImgElement = element.parentElement;
+            let nextImgElement = element.parentElement.nextElementSibling;
+            let prevImgElement = element.parentElement.previousElementSibling;
+            const container = document.body;
+            const newImgWindow = document.createElement("div");
+
+
+            container.appendChild(newImgWindow);
+            newImgWindow.setAttribute("class","img-window");
+
+            newImgWindow.addEventListener('click', () => {
+            // If clicked anywhere on the screen then close the big image and the buttons
+                document.querySelector(".img-window").remove();
+                document.querySelector(".img-btn-next").remove();
+                document.querySelector(".img-btn-prev").remove();
+            })
+
+            const newImg = document.createElement('img');
+            newImgWindow.appendChild(newImg);
+            newImg.setAttribute('src',imgBigLink); // Set the big image source to the AWS S3 location
+            newImg.setAttribute('id','current-img');
+
+            newImg.onload = function() {
+            // This is only run after the image has been completely loaded
+            // Figure out the links for the next and previous buttons
+                if (Array.from($imgfront).length > 1) {
+                // If there is only one artwork then there are no buttons
+                    // const imgWidth = this.width; 
+
+                    const newNextBtn = document.createElement('a');
+                    const btnNextText = document.createTextNode("Next");
+                    newNextBtn.appendChild(btnNextText);
+                    container.appendChild(newNextBtn);
+                    newNextBtn.setAttribute('class','img-btn-next');
+
+
+                    const newPrevBtn = document.createElement('a');
+                    const btnPrevText = document.createTextNode("Prev");
+                    newPrevBtn.appendChild(btnPrevText);
+                    container.appendChild(newPrevBtn);
+                    newPrevBtn.setAttribute('class','img-btn-prev');
+
+                    //newNextBtn.style.cssText = "right:" + calcImgToEdge + "px";
+                    //newPrevBtn.style.cssText = "left:" + calcImgToEdge + "px";
+
+                   
+                    /*if (!nextImgElement) {
+                        newNextBtn.style.display = 'none';
+                    } else{
+                        newNextBtn.style.display = 'block';
+                    }*/
+
+                    newNextBtn.addEventListener('click', () => {
+                        document.querySelector('#current-img').remove();
+                        const getImgWindow = document.querySelector('.img-window');
+                        const newImg = document.createElement('img');
+                        getImgWindow.appendChild(newImg)
+                        newImg.setAttribute('src',nextImgElement.children[1].children[1].children[0].innerHTML);
+                        newImg.setAttribute('id','current-img');
+                        if (nextImgElement.nextElementSibling) {
+                        // If there are more elements in the list, then move forward
+                            prevImgElement = currImgElement;
+                            currImgElement = nextImgElement;
+                            nextImgElement = nextImgElement.nextElementSibling;
+                            newPrevBtn.style.display = 'block';
+                            newNextBtn.style.display = 'block';
+                        } else {
+                        // No more images to display. Disable the next button
+                            prevImgElement = currImgElement;
+                            currImgElement = nextImgElement;
+                            newPrevBtn.style.display = 'block';
+                            newNextBtn.style.display = 'none';
+                            }
+                        })                    
+                    
+                    /*if (!prevImgElement) {
+                        newPrevBtn.style.display = 'none';
+                    } else {
+                        newPrevBtn.style.display = 'block';
+                    }*/
+
+                    newPrevBtn.addEventListener('click', () => {
+                        document.querySelector('#current-img').remove();
+                        const getImgWindow = document.querySelector('.img-window');
+                        const newImg = document.createElement('img');
+                        getImgWindow.appendChild(newImg)
+                        newImg.setAttribute('src',prevImgElement.children[1].children[1].children[0].innerHTML);
+                        newImg.setAttribute('id','current-img');
+                        if (prevImgElement.previousElementSibling) {
+                        // If there are more elements in the list, then move back
+                            nextImgElement = currImgElement;
+                            currImgElement = prevImgElement;
+                            prevImgElement = prevImgElement.previousElementSibling;
+                            newNextBtn.style.display = 'block';
+                            newPrevBtn.style.display = 'block';
+                        } else {
+                        // No more images to display. Disable the previous button
+                            nextImgElement = currImgElement;
+                            currImgElement = prevImgElement;
+                            newPrevBtn.style.display = 'none';
+                            newNextBtn.style.display = 'block';
+                        }
+                    })                    
+                }
+            }
         })
     });
 }
 
 renderHomePage();
+
+
+
 
 
 

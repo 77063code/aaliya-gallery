@@ -1,17 +1,5 @@
 :root {
-  --color-primary: #eb2f64;
-  --color-primary-light: #FF3366;
-  --color-primary-dark: #BA265D;
-  --color-grey-light-1: #faf9f9;
-  --color-grey-light-2: #f4f2f2;
-  --color-grey-light-3: #f0eeee;
-  --color-grey-light-4: #ccc;
-  --color-grey-dark-1: #333;
-  --color-grey-dark-2: #777;
-  --color-grey-dark-3: #999;
-  --shadow-dark: 0 2rem 6rem rgba(0,0,0,0.3);
-  --shadow-light: 0 2rem 6rem rgba(0,0,0,.06);
-  --line: 1px solid var(--color-grey-light-2); }
+  --color-grey-light-1: #faf9f9; }
 
 /* 1200px / 16(default browser font size) */
 /* 1100px/16 */
@@ -295,6 +283,53 @@ body {
   .popup__img {
     display: block;
     width: 100%; }
+
+.img-window {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100; }
+
+.img-window img {
+  max-width: 80vw;
+  max-height: 80vh; }
+  @media only screen and (max-width: 37.5em) {
+    .img-window img {
+      max-width: 90vw;
+      max-height: 90vh; } }
+
+.img-btn-next,
+.img-btn-prev {
+  border-radius: 4px;
+  background-color: blue;
+  position: fixed;
+  top: 90vh;
+  z-index: 500;
+  color: #ffffff;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 2.5rem; }
+  @media only screen and (max-width: 37.5em) {
+    .img-btn-next,
+    .img-btn-prev {
+      top: 95vh; } }
+
+.img-btn-next {
+  right: 5vw; }
+
+.img-btn-prev {
+  left: 5vw; }
+
+.img-btn-next:hover,
+.img-btn-prev:hover {
+  opacity: 0.8; }
 
 /*
 .img__back--close--container {

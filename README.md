@@ -175,11 +175,15 @@ GALLERY-REORG
 WHAT TO DO
 1. Remove border and outline from the images
 2. Make some other font size and positioning changes on home page
-3. Change the display pictures where if portrait instead of stretching, just show the important part of the image
+3. Change the home page artwork pictures where instead of stretching, just show the important part of the image
    
    
 STEPS TO DO
-    
+1. Added 2 new fields to the image model - s3locationmini and s3locationbig. These are for small square image for the homepage and a bigger image when the small image is clicked
+2. Uploaded the correct images to AWS S3 manually
+3. Added a popup with the larger image and a click event on all small image to display their corresponding bigger images
+4. Added navigation when viewing larger images to continue viewing larger images
+5. Deleted a lot of variable definitions from base.scss which were not being used anywhere  
    
     
     
@@ -280,6 +284,8 @@ TO DO
 24. format of the buttons
 25. Correct error messages
 26. Login/Register setup like costco.com
+27. When deleting an image, need to delete all versions of uploaded, mini and big
+28. When updating an image, delete all the previous versions of all the types
 
 
 
