@@ -141,6 +141,7 @@ const renderHomePage = async() => {
     // Create a separate click event for all images to display a bigger version of the image
         element.addEventListener('click', () => {
             //const windowWidth = window.innerWidth;
+            //const windowHeight = window.innerHeight;
             const imgBigLink = element.parentElement.children[1].children[1].children[0].innerHTML; // Get s3 location of the big image of the image that was clicked
             let currImgElement = element.parentElement;
             let nextImgElement = element.parentElement.nextElementSibling;
@@ -169,7 +170,8 @@ const renderHomePage = async() => {
             // Figure out the links for the next and previous buttons
                 if (Array.from($imgfront).length > 1) {
                 // If there is only one artwork then there are no buttons
-                    // const imgWidth = this.width; 
+                    //const imgWidth = this.width; 
+                    //const imgHeight = this.height
 
                     const newNextBtn = document.createElement('a');
                     const btnNextText = document.createTextNode("Next");
@@ -188,11 +190,12 @@ const renderHomePage = async() => {
                     //newPrevBtn.style.cssText = "left:" + calcImgToEdge + "px";
 
                    
-                    /*if (!nextImgElement) {
+                    if (!nextImgElement) {
+                    // This condition is needed in cases when the user selects the last image
                         newNextBtn.style.display = 'none';
                     } else{
                         newNextBtn.style.display = 'block';
-                    }*/
+                    }
 
                     newNextBtn.addEventListener('click', () => {
                         document.querySelector('#current-img').remove();
@@ -201,8 +204,9 @@ const renderHomePage = async() => {
                         getImgWindow.appendChild(newImg)
                         newImg.setAttribute('src',nextImgElement.children[1].children[1].children[0].innerHTML);
                         newImg.setAttribute('id','current-img');
+
                         if (nextImgElement.nextElementSibling) {
-                        // If there are more elements in the list, then move forward
+                            // If there are more elements in the list, then move forward
                             prevImgElement = currImgElement;
                             currImgElement = nextImgElement;
                             nextImgElement = nextImgElement.nextElementSibling;
@@ -214,14 +218,15 @@ const renderHomePage = async() => {
                             currImgElement = nextImgElement;
                             newPrevBtn.style.display = 'block';
                             newNextBtn.style.display = 'none';
-                            }
-                        })                    
+                        }
+                    })                    
                     
-                    /*if (!prevImgElement) {
+                    if (!prevImgElement) {
+                    // This condition is needed when the user selects the first image
                         newPrevBtn.style.display = 'none';
                     } else {
                         newPrevBtn.style.display = 'block';
-                    }*/
+                    }
 
                     newPrevBtn.addEventListener('click', () => {
                         document.querySelector('#current-img').remove();

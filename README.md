@@ -286,6 +286,7 @@ TO DO
 26. Login/Register setup like costco.com
 27. When deleting an image, need to delete all versions of uploaded, mini and big
 28. When updating an image, delete all the previous versions of all the types
+29. On the user-upload page, do you show mini photos? If yes, then how about the just uploaded ones.
 
 
 
