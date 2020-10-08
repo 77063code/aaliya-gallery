@@ -333,28 +333,53 @@ const dropImageCollection = async () => {
 
 const updateField = async (image, value) => {
 //Update the given field for the passed image to passed value
-	const response = await Image.updateOne({ name: image}, { s3location: value});
+	const response = await Image.updateOne({ name: image}, { s3locationmini: value});
+	console.log(response);
+}
+
+const updateField2 = async (image, value) => {
+// Copy of updateField. Creating it so can run 2 updates together
+//Update the given field for the passed image to passed value
+	const response = await Image.updateOne({ name: image}, { s3locationbig: value});
 	console.log(response);
 }
 
 const updateAllImageS3Locations = () => {
-	updateField('aaliya1-1','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-1-1.jpg')
-	updateField('aaliya1-2','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-2-1.jpg')
-	updateField('aaliya1-3','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-3-1.jpg')
-	updateField('aaliya1-4','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-4-1.jpg')
-	updateField('aaliya1-5','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-5-1.jpg')
-	updateField('aaliya1-6','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-6-1.jpg')
-	updateField('aaliya1-7','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-7-1.jpg')
-	updateField('aaliya1-8','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-8-1.jpg')
-	updateField('aaliya1-9','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-9-1.jpg')
-	updateField('aaliya1-10','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-10-1.jpg')
-	updateField('aaliya1-11','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-11-1.jpg')
-	updateField('aaliya1-12','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-12-1.jpg')
-	updateField('aaliya1-13','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-13-1.jpg')
-	updateField('aaliya1-14','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-14-1.jpg')
-	updateField('aaliya1-15','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-15-1.jpg')
-	updateField('aaliya1-16','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-16-1.jpg')
-	updateField('aaliya1-17','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-17-1.jpg')
+	updateField('aaliya1-1','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-1-mini-1.jpg')
+	updateField('aaliya1-2','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-2-mini-1.jpg')
+	updateField('aaliya1-3','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-3-mini-1.jpg')
+	updateField('aaliya1-4','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-4-mini-1.jpg')
+	updateField('aaliya1-5','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-5-mini-1.jpg')
+	updateField('aaliya1-6','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-6-mini-1.jpg')
+	updateField('aaliya1-7','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-7-mini-1.jpg')
+	updateField('aaliya1-8','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-8-mini-1.jpg')
+	updateField('aaliya1-9','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-9-mini-1.jpg')
+	updateField('aaliya1-10','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-10-mini-1.jpg')
+	updateField('aaliya1-11','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-11-mini-1.jpg')
+	updateField('aaliya1-12','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-12-mini-1.jpg')
+	updateField('aaliya1-13','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-13-mini-1.jpg')
+	updateField('aaliya1-14','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-14-mini-1-jpg')
+	updateField('aaliya1-15','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-15-mini-1.jpg')
+	updateField('aaliya1-16','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-16-mini-1.jpg')
+	updateField('aaliya1-17','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-17-mini-1.jpg')
+	
+	updateField('aaliya1-1','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-1-big-1.jpg')
+	updateField('aaliya1-2','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-2-big-1.jpg')
+	updateField('aaliya1-3','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-3-big-1.jpg')
+	updateField('aaliya1-4','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-4-big-1.jpg')
+	updateField('aaliya1-5','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-5-big-1.jpg')
+	updateField('aaliya1-6','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-6-big-1.jpg')
+	updateField('aaliya1-7','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-7-big-1.jpg')
+	updateField('aaliya1-8','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-8-big-1.jpg')
+	updateField('aaliya1-9','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-9-big-1.jpg')
+	updateField('aaliya1-10','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-10-big-1.jpg')
+	updateField('aaliya1-11','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-11-big-1.jpg')
+	updateField('aaliya1-12','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-12-big-1.jpg')
+	updateField('aaliya1-13','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-13-big-1.jpg')
+	updateField('aaliya1-14','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-14-big-1-jpg')
+	updateField('aaliya1-15','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-15-big-1.jpg')
+	updateField('aaliya1-16','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-16-big-1.jpg')
+	updateField('aaliya1-17','https://aaliya-gallery-test.s3-us-west-2.amazonaws.com/aaliya1/aaliya1-17-big-1.jpg')
 }
 
 const updateAllField = async () => {
@@ -363,11 +388,22 @@ const updateAllField = async () => {
 	console.log(response);
 }
 
+const addNewAttribute = async () => {
+// Add a new attribute to all the records in the colletion	
+// The attribute should already be a part of the model even if it's not in any of the documents
+	try {
+		const response = await Image.updateMany( {}, {$set:{testfield: null}},{upsert:false});
+		console.log(response);
+	} catch (e) {
+		console.log(e)
+	}
+}
 
 
-findAllImages();
+//addNewAttribute();
+//findAllImages();
 //updateAllField();
-//updateAllImageS3Locations();
+updateAllImageS3Locations();
 //updateFieldName();
 //updateAllImageNames();
 //findAllImagesByID('garfield200');

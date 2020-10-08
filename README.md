@@ -174,8 +174,9 @@ V1.11
 GALLERY-REORG
 WHAT TO DO
 1. Remove border and outline from the images
-2. Make some other font size and positioning changes on home page
+2. Make other font size and positioning changes on home page so the responsive changes look better
 3. Change the home page artwork pictures where instead of stretching, just show the important part of the image
+4. Clicking on an image on the home page should display a bigger and fuller picture. It shows a fuller picture on smaller screens, but not necessarily bigger as it has to maintain the aspect ratio. The portraid images are shohn better on smaller screens
    
    
 STEPS TO DO
@@ -287,6 +288,8 @@ TO DO
 27. When deleting an image, need to delete all versions of uploaded, mini and big
 28. When updating an image, delete all the previous versions of all the types
 29. On the user-upload page, do you show mini photos? If yes, then how about the just uploaded ones.
+30. When trying to upload 2 files at the same time, it errors out on one of the tries. When trying to reload it overwrites the first image
+31. If large image in unavailable, still show the mini one
 
 
 
