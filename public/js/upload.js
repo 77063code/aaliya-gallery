@@ -151,6 +151,8 @@ document.getElementById('file').addEventListener('click', async (event) => {
                             const imageData = {
                                 name: obj.name,
                                 s3location: data.s3location,
+                                s3locationbig: data.s3locationbig,
+                                s3locationmini: data.s3locationmini,
                                 title,
                                 year,
                                 grade: document.getElementById('grade-upload').value,
@@ -203,6 +205,8 @@ document.getElementById('file').addEventListener('click', async (event) => {
                                 name: data.name,
                                 artistid: data.artistid,
                                 s3location: data.s3location,
+                                s3locationbig: data.s3locationbig,
+                                s3locationmini: data.s3locationmini,
                                 backside_id: data.backside_id,
                                 sold: 'N',
                                 title,

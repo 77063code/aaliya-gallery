@@ -1,3 +1,5 @@
+// HEADER
+
 .header {
     background-color: lightblue;
     color: black;
@@ -82,6 +84,8 @@
     margin: 0 1rem;
 }
 
+// END OF HEADER
+
 
 
 
@@ -91,6 +95,7 @@
     justify-content: center;
     position: absolute;
     top: 10%;
+    width: 100%; // made this change becuase if only one artwork, it doesnt align correctly on smaller screens
     
     @media only screen and (min-width: $bp-small) {
         justify-content: space-between;
@@ -120,13 +125,15 @@
     width: 95%;
     height: 80%;
     margin: 1rem 1rem 0 1rem;
-    border: .3rem solid silver;
-    outline: .3rem solid gold;
+    //border: .3rem solid silver;
+    //outline: .3rem solid gold;
     transition: all .8s ease;
     position: absolute;
     top: 0;
     left: 0;
     backface-visibility: hidden;
+    border-radius: 2%;
+
 }
 
 
@@ -147,23 +154,17 @@
 }
 
 .img__stats h4 {
-    font-size: 2.5rem;
-    padding-top: 1rem;
-    
-    @media only screen and (min-width: $bp-small) and (max-width: $bp-medium) {
-        font-size: 2rem;
-        padding-top: .3rem;
-    }
-    
+    font-size: 1.75rem;
+    padding-left: 1rem;    
 }
     
 .img__stats h5 {
     font-size: 2rem;
-    padding-top: 1rem;
+    //padding-top: 1rem;
     
     @media only screen and (min-width: $bp-small) and (max-width: $bp-medium) {
         font-size: 1.5rem;
-        padding-top: .3rem;
+        //padding-top: .3rem;
     }
 }
     
@@ -172,7 +173,8 @@
     display: -webkit-box;
     display: flex;
     -webkit-box-pack: start;
-            justify-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 .total-likes {
     padding-left: .5rem;
@@ -198,14 +200,14 @@
 }
 
 .fa-thumbs-up, .fa-info, .fa-arrow-circle-left {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     
     @media only screen and (min-width: $bp-small) and (max-width: $bp-medium) {
         font-size: 2.5rem;
     }
     
     @media only screen and (min-width: $bp-medium) {
-        font-size: 3.5rem;
+        font-size: 2.5rem;
     }
 }   
 
@@ -220,10 +222,19 @@
     -webkit-box-pack: center;
             justify-content: center;
     position:absolute;
-    top: calc(100% - 1.3rem);
+    top: calc(100% - 3rem);
     left: 0;
     color: red;
     font-size: 1.2rem;
+    
+    @media only screen and (min-width: $bp-small) and (max-width: $bp-medium) {
+        top: calc(100% - 1.5rem);
+    }
+    
+    @media only screen and (max-width: $bp-small) {
+        top: calc(100% - 6rem);
+        font-size: 1.5rem;
+    }
 }
 
 /* backside of the image */
@@ -243,6 +254,86 @@
     -webkit-transform: rotateY(180deg);
             transform: rotateY(180deg);
 }
+
+.img__s3locationbig {
+// This attribute is only used to save the S3 location of the bigger version
+    display: none;
+}
+
+
+.img-window {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.img-window img{
+    max-width: 80vw;
+    max-height: 80vh;
+
+    @media only screen and (max-width: $bp-small) {
+        max-width: 90vw;
+        max-height: 80vh;
+        align-self: start;
+        margin-top: 2vh;
+    }
+}
+
+.img-btn-next,
+.img-btn-prev {
+    //display: block;
+    //padding: 6px 10px;
+    border-radius: 4px;
+    background-color: blue;
+    position: fixed;
+    top: 92vh;
+    z-index: 500;
+    color: #ffffff;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+
+    @media only screen and (max-width: $bp-small) {
+        top: 85vh;
+    }
+}
+
+.img-btn-next {
+    right: 5vw;
+}
+
+.img-btn-prev {
+    left: 5vw;
+}
+
+.img-btn-next:hover,
+.img-btn-prev:hover {
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 .img__back--close--container {

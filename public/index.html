@@ -27,12 +27,12 @@
     </div>
 
     <div class="gallery" id="gallery">
-    </div> 
-
+    </div>
+    
     <script id="image-template" type="text/html">
     <!-- Even though we are using script tags, this is not an actual JS script, but is more like a defacto technique for including templates in a page. Normally script tags block all processing when rendering a page. But here the template has a type="text/html", which effectively tricks the browser into not processing it like a normal JavaScript block -->
         <div class="image">
-            <img class="img" id={{img_id}} src={{img_src}}>
+            <img class="img img__front" id={{img_id}} src={{img_src}}>
             <div class="img img__back" id={{img_back_id}}>
                 <div class="img__back--close--container">
                 <button class="btn btn-close-information" id="btn-close-information">
@@ -40,6 +40,7 @@
                 </button>
                 </div>
                 <div class="img__info">
+                    <h2 class="img__s3locationbig">{{img_s3locationbig}}</h2>
                     <h2>{{img_title}}</h2>
                     <h2>Artist: {{img_artistid}}</h2>
                     <h2>Grade: {{img_grade}}</h2>
